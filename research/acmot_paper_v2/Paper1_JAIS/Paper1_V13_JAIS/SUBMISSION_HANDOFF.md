@@ -6,9 +6,13 @@
 |---|---|
 | Status | **Submitted** to the Journal of Aerospace Information Systems |
 | Manuscript ID | **2026-10-I012138** |
+| Date submitted | 18-Oct-2026 |
+| Manuscript type (portal) | Full Paper |
+| Subject index categories | 03410 Uninhabited and Unmanned Air Vehicles; 12110 Artificial Intelligence Systems; 14200 Signal Processing |
+| Review copy | 27 pages: 1 ScholarOne cover page + the 26-page V12 manuscript; no Acknowledgments section |
 | Submitted file | Main Document from **V12** (`Paper1_V12_JAIS.pdf`), not V13 |
 | Co-author confirmation | Pending: Dr. Mohamed S. Mohamed and Dr. Tarek Ahmed Mahmoud must confirm through the ScholarOne email |
-| Declarations entered | Not recorded here; read them from the submission proof (Author Center → Submitted Manuscripts → View Submission) |
+| Declarations entered | Not shown in the review-copy PDF; check them in the Author Center (Submitted Manuscripts → View Submission → submission details) |
 
 Sections 6–9 describe the draft state before submission and are kept for reference.
 
