@@ -1,5 +1,17 @@
 # Paper 1 – JAIS Submission Handoff (V13)
 
+## 0. Current status
+
+| Item | Value |
+|---|---|
+| Status | **Submitted** to the Journal of Aerospace Information Systems |
+| Manuscript ID | **2026-10-I012138** |
+| Submitted file | Main Document from **V12** (`Paper1_V12_JAIS.pdf`), not V13 |
+| Co-author confirmation | Pending: Dr. Mohamed S. Mohamed and Dr. Tarek Ahmed Mahmoud must confirm through the ScholarOne email |
+| Declarations entered | Not recorded here; read them from the submission proof (Author Center → Submitted Manuscripts → View Submission) |
+
+Sections 6–9 describe the draft state before submission and are kept for reference.
+
 ## 1. Location
 
 | Item | Value |
@@ -172,14 +184,11 @@ The last paragraph is valid only after the "not under consideration elsewhere", 
 
 ## 10. Remaining tasks for Codex
 
-1. Compile V13 locally (Section 3) and confirm 26 pages.
-2. In ScholarOne, Step 2: replace the V12 Main Document with `Paper1_V13_JAIS.pdf`.
-3. Step 4: link the three institutions to the Ringgold list if available; remove the "Dr." salutation from the corresponding author.
-4. Step 5: enter at least 3 reviewers and 1 associate editor after the authors approve the choices in Section 7.
-5. Step 6: enter the declarations only after the pending items in Section 8 are confirmed by the authors; enter word count 11,457, 26 pages, 3 color figures; paste the cover letter.
-6. Generate the ScholarOne PDF proof and check all 26 pages, equations, 3 figures, 11 tables, and 34 references.
-7. Delete the older 01-Oct unsubmitted draft.
-8. Show the authors a full summary and wait for explicit approval before clicking Submit.
-9. After submission, record the manuscript ID; co-authors must confirm through the ScholarOne email for the submission to be complete.
+1. Track manuscript 2026-10-I012138 in the ScholarOne Author Center; do not resubmit.
+2. Confirm that both co-authors have completed the ScholarOne contribution confirmation.
+3. Record the declarations as entered, from the submission proof, in Section 8.
+4. If the AI-language question was answered Yes: V12 has no Acknowledgments section, while V13 has the required AI-use statement. Use V13 at the first revision, or send it to the editorial office through the Author Center if they request it.
+5. At revision: start a new version folder from V13, address the reviewer comments, keep 20–26 pages, and upload the LaTeX source (`Paper1_V13_JAIS_overleaf.zip` or its successor).
+6. Delete the older 01-Oct unsubmitted draft from the ScholarOne account, if it still exists.
 
 Do not modify frozen tags, locks, or protected evaluation data in this repository.
