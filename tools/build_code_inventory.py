@@ -15,6 +15,7 @@ current.
 from __future__ import annotations
 
 import ast
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -124,7 +125,11 @@ def main() -> int:
     text = build()
     if "--check" in sys.argv:
         current = OUT.read_text(encoding="utf-8") if OUT.exists() else ""
-        if current != text:
+        # Compare structure only: a file's "last commit" changes whenever the
+        # inventory itself is committed together with code, so it is not staleness.
+        def norm(t: str) -> str:
+            return re.sub(r"last commit [^;\n]*", "last commit -", t)
+        if norm(current) != norm(text):
             print("CODE_INVENTORY.md is out of date: run tools/build_code_inventory.py")
             return 1
         print("CODE_INVENTORY.md up to date")

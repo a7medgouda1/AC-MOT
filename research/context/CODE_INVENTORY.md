@@ -786,13 +786,13 @@ Modules indexed: 191.
 - def `main` L70
 
 ### `tools/build_code_inventory.py`
-- 138 lines; last commit untracked; Generate research/context/CODE_INVENTORY.md: a deterministic, AST-based list of
-- def `last_commit` L48
-- def `first_line` L54
-- def `describe` L61
-- def `files_for` L82
-- def `build` L92
-- def `main` L123
+- 143 lines; last commit 52b78ce 2026-10-20; Generate research/context/CODE_INVENTORY.md: a deterministic, AST-based list of
+- def `last_commit` L49
+- def `first_line` L55
+- def `describe` L62
+- def `files_for` L83
+- def `build` L93
+- def `main` L124
 
 ### `tools/build_context_graph.py`
 - 180 lines; last commit 8e3ab87 2026-09-27; Rebuild graphify-out/ for Universal AC-MOT: Graphify AST extraction of the
@@ -821,7 +821,7 @@ Modules indexed: 191.
 - def `main` L47
 
 ### `tools/context_health_check.py`
-- 336 lines; last commit 2cff95f 2026-09-28; Consistency checks for the canonical project memory (stdlib only).
+- 336 lines; last commit 52b78ce 2026-10-20; Consistency checks for the canonical project memory (stdlib only).
 - def `report` L57
 - def `git` L61
 - def `read` L66
