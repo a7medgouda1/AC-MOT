@@ -7,6 +7,7 @@ Exit code 1 if any FAIL. WARN = needs attention but not contradictory.
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -22,7 +23,8 @@ REQUIRED = ["README.md", "PROJECT_STATE.md", "ARCHITECTURE.md", "HARD_CONSTRAINT
             "ENVIRONMENT_AND_PATHS.md", "GIT_STATE.md", "NEXT_STEPS.md",
             "SESSION_HANDOFF.md", "NEW_SESSION_PROMPT.md", "KNOWLEDGE_GRAPH.md",
             "PROJECT_COMPLETION.md", "VERSION_HISTORY.md", "PAPERS.md",
-            "CODE_ARCHITECTURE.md", "CODE_INVENTORY.md", "REPRODUCIBILITY.md", "CHANGELOG.md"]
+            "CODE_ARCHITECTURE.md", "CODE_INVENTORY.md", "REPRODUCIBILITY.md", "CHANGELOG.md",
+            "RESTORE_AND_ROLLBACK.md", "PRESERVATION_POLICY.md", "VERSION_REGISTRY.md"]
 REPRO_LABELS = ("REPRODUCIBLE", "PARTIALLY", "NOT YET REPRODUCIBLE", "HISTORICAL")
 # Representative questions: graphify must surface the node, and the canonical
 # file must contain the fact the node stands for (the graph is never the authority).
@@ -35,10 +37,18 @@ KNOWLEDGE_PROBES = [
     ("V6-TF external negative SparseTrack BoostTrack", "negative external transfer D-029", "FAILED_EXPERIMENTS.md", "SparseTrack −4.15, BoostTrack −5.89 HOTA"),
     ("Paper 1 UAVDT transfer result", "Result: Paper 1 UAVDT transfer", "RESULTS_CANONICAL.md", "UAVDT_TRANSFER_RESULT.json"),
     ("open conflicts recent externals omitted", "Conflict: CF-04 recent externals omitted", "RESULTS_CANONICAL.md", "CF-04"),
+    ("who may delete files owner approval signed", "Policy: owner-only delete", "PRESERVATION_POLICY.md", "Fail closed"),
+    ("next manuscript version number completed versions", "Registry: VERSION_REGISTRY", "VERSION_REGISTRY.md", "| paper1 |"),
 ]
 # Commits touching only these paths do not make the context stale.
 CONTEXT_PATHS = ("research/context/", "AGENTS.md", "CLAUDE.md", ".graphifyignore", ".gitignore",
                  ".github/copilot-instructions.md", "tools/build_code_inventory.py",
+                 "tools/research_guard.py", "tools/claude_tool_guard.py", "tools/install_git_hooks.sh",
+                 "tools/open_version.sh", ".githooks/", ".claude/settings.json",
+                 ".github/workflows/research_guard.yml", "tests/test_research_memory.py",
+                 "tests/test_deletion_guard.py", ".github/rulesets/", ".claude/settings.proposed.json",
+                 "research/VERSION_REGISTRY.json", "tools/version_registry.py", "tests/test_completed_versions.py",
+                 "tools/owner_lock_completed.sh",
                  "tools/update_project_context.py", "tools/context_health_check.py",
                  "tools/build_context_graph.py")
 FINAL = "V7"                         # Amendment 10 (frozen V7f; supersedes V6-TF)
@@ -107,7 +117,9 @@ def check_freshness() -> None:
         report("FAIL", f"LAST VERIFIED COMMIT {sha[:7]} is not an ancestor of HEAD")
     mb = re.search(r"CURRENT BRANCH: (\S+)", ps)
     if mb and mb.group(1) != branch:
-        report("FAIL", f"PROJECT_STATE branch {mb.group(1)} != git branch {branch}")
+        # In CI (detached or other-branch checkouts) the recorded branch is informational.
+        level = "WARN" if os.environ.get("GITHUB_ACTIONS") or branch == "HEAD" else "FAIL"
+        report(level, f"PROJECT_STATE branch {mb.group(1)} != git branch {branch}")
     gs = read("GIT_STATE.md")
     mh = re.search(r"HEAD: ([0-9a-f]{40})", gs)
     if not mh:
@@ -320,7 +332,8 @@ def main() -> int:
     check_kg()
     check_inventory()
     check_registry_labels()
-    check_graphify(run_queries="--no-graphify" not in sys.argv)
+    if "--no-graph" not in sys.argv:   # CI has no local graphify-out/ (git-ignored)
+        check_graphify(run_queries="--no-graphify" not in sys.argv)
     if not (CTX / "NEW_SESSION_PROMPT.md").exists():
         report("FAIL", "NEW_SESSION_PROMPT.md missing")
     for level, msg in results:

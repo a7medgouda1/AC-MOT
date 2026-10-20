@@ -97,3 +97,4 @@ Evaluators differ per set (stated); never pool across sets.
 | CF-05 | `research/final/aerial_v7f_val/README.md` run table says no metric computed (run 36910783384) while `STATUS.txt` = OK with metrics from later runs 36994862846 / 36995662755 (commits 852071e, 741813a) | folder files | EXPLAINED (later successful runs); README run table not yet updated |
 | CF-06 | DATASETS_AND_SPLITS.md original text called confirmation-16 and UAVDT untouched; later evaluated (E48, E50, P1-UAVDT) | EXPERIMENT_REGISTRY.md | RECORDED as dated status update |
 | CF-07 | Paper 1 val-7 = evaluation set, read twice; V12 text does not state the second read | archive README disclosures | OPEN (Paper 1 revision) |
+| CF-08 | `research/TESTDEV_LOCK_V4.json` hashes match commit 3ea7d69, not the V4 tag fc003bf it names | commit 3ea7d69 "V4: skip unused scene statistics in the live entry point (no behaviour change)" | EXPLAINED (lock rehashed after the tag; V4 is baseline/ablation only) |

@@ -139,3 +139,9 @@ protocol · metrics/units · baseline · result + uncertainty · limitations · 
 | Legacy U2MOT/SparseTrack Drive packages | P1-LEGACY | keep the read-only audit; re-running needs the Drive folders named in the audit |
 | JRTIP-version figure `fig3_forest_col.pdf` (md5 6d64acca…) generation script | Paper 2 Fig. 3 | not found in the repository: regenerate from `research/final/V7_MAIN_RESULTS.json` with a committed script, or locate the script |
 | T4 fidelity gate / official GPU timing for V7f | real-time claims on GPU | run `notebooks/Colab_T4_gate_and_benchmark.ipynb` retargeted to 488df9a |
+
+## Version provenance (D-035)
+Every registered version carries its Git commit and tree/blob hash in `research/VERSION_REGISTRY.json`;
+new versions also record parent, parent commit and parent tree. `python3 tools/version_registry.py verify`
+re-checks every completed version byte-for-byte. Old scripts are reproduced in a read-only worktree
+(`sh tools/open_version.sh <tag-or-commit>`), never in place, so completed outputs are not regenerated.

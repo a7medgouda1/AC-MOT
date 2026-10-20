@@ -290,6 +290,13 @@ Edit this file when the project state changes, then rebuild the graph.
 | Commit: 488df9a | HISTORY | V7f freeze commit | VERSION_HISTORY.md |
 | Decision: D-030 paper registry and venues | ACTIVE | PAPERS.md canonical; Paper 1 JAIS; Paper 2 JRTIP | DECISIONS.md |
 | Decision: D-031 Paper 2 audit fixes | ACTIVE | Paper2_V11 not submitted until audit items fixed | DECISIONS.md |
+| Decision: D-033 owner-only delete | ACTIVE | AI may create and edit; deletion needs the owner's explicit target-specific approval | DECISIONS.md |
+| Decision: D-034 signed approval fail closed | ACTIVE | trailer alone never approval; owner-signed commit verified against trusted keys; fail closed | DECISIONS.md |
+| Policy: owner-only delete | ACTIVE | Claude hook, git hooks, CI signature check, rulesets proposal; limits documented | PRESERVATION_POLICY.md |
+| Conflict: CF-08 V4 lock rehash | EXPLAINED | TESTDEV_LOCK_V4 hashes match 3ea7d69 not fc003bf | RESULTS_CANONICAL.md |
+| Decision: D-035 completed versions immutable | ACTIVE | completed versions read-only to AI; changes go into the next sequential version | DECISIONS.md |
+| Policy: completed versions immutable | ACTIVE | registry-backed R9 in Claude hook, git hooks and CI; owner OS lock script | PRESERVATION_POLICY.md |
+| Registry: VERSION_REGISTRY | ACTIVE | authoritative status and Git hashes of completed versions; next Paper 1 V14, Paper 2 V12, Universal AC-MOT V8 | VERSION_REGISTRY.md |
 
 ## Relations
 | Subject | Relation | Object |
@@ -717,6 +724,15 @@ Edit this file when the project state changes, then rebuild the graph.
 | Decision: D-030 paper registry and venues | GOVERNS | Paper: Paper 1 AC-MOT JAIS |
 | Decision: D-031 Paper 2 audit fixes | GOVERNS | Manuscript: Paper2_V11 |
 | Decision: D-031 Paper 2 audit fixes | SUPPORTED_BY | Review: Paper2_V11 internal audit |
+| Policy: owner-only delete | DECIDED_BY | Decision: D-033 owner-only delete |
+| Decision: D-034 signed approval fail closed | REFINES | Decision: D-033 owner-only delete |
+| Policy: owner-only delete | DECIDED_BY | Decision: D-034 signed approval fail closed |
+| Policy: completed versions immutable | DECIDED_BY | Decision: D-035 completed versions immutable |
+| Policy: completed versions immutable | USES | Registry: VERSION_REGISTRY |
+| Policy: completed versions immutable | EXTENDS | Policy: owner-only delete |
+| Registry: VERSION_REGISTRY | RECORDS | Paper: Paper 1 AC-MOT JAIS |
+| Registry: VERSION_REGISTRY | RECORDS | Paper: Paper 2 SCL JRTIP |
+| Registry: VERSION_REGISTRY | RECORDS | Version: V7 |
 
 ## Code links
 | Entity | Relation | Code file |
@@ -772,3 +788,7 @@ Edit this file when the project state changes, then rebuild the graph.
 | Module: adapters/trackers/oatrack.py | IMPLEMENTED_IN | adapters/trackers/oatrack.py |
 | Module: run_v3_joint_search.py | IMPLEMENTED_IN | research/acmot_paper_v2/controller_search/run_v3_joint_search.py |
 | Module: run_v3_second_val_read.py | IMPLEMENTED_IN | research/acmot_paper_v2/run_v3_second_val_read.py |
+| Policy: owner-only delete | IMPLEMENTED_IN | tools/claude_tool_guard.py |
+| Policy: owner-only delete | IMPLEMENTED_IN | tools/research_guard.py |
+| Policy: completed versions immutable | IMPLEMENTED_IN | tools/version_registry.py |
+| Registry: VERSION_REGISTRY | IMPLEMENTED_IN | tools/version_registry.py |

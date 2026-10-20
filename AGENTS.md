@@ -23,6 +23,19 @@ modify tracked files. Stop the supervisor with `tools/stop_autonomous_v5tf.sh`
 hold the lock, make and commit the change, release the lock, then restart the
 supervisor with `tools/start_autonomous_v5tf.sh`.
 
+Deletion (owner decisions D-033, D-034; `research/context/PRESERVATION_POLICY.md`): create, write and
+edit files normally, but NEVER delete, rename/move or empty an existing file or directory, delete or move
+a branch or tag, or rewrite history without the owner's explicit, authenticated approval for that exact
+target. Ask first, naming the target, the reason and the consequences. A commit-message trailer alone is
+not approval; never write owner-approval trailers, never use `--no-verify`, never edit the guards, hooks,
+Claude settings or owner keys, and never retry a blocked deletion by another route.
+
+Completed versions (D-035): every COMPLETED / FROZEN / SUPERSEDED version in
+`research/VERSION_REGISTRY.json` is read-only. To change a completed artifact, run
+`python3 tools/version_registry.py new <family>` (exact copy, next number, provenance recorded) and edit only
+the new ACTIVE version; never edit, add to, rename, regenerate or delete a completed one, and never mark a
+completed version ACTIVE. Determine numbers with `version_registry.py next`, never by assumption.
+
 Task-dependent reading:
 - architecture → `ARCHITECTURE.md`, `DECISIONS.md`
 - evaluation → `VALIDATION_PROTOCOL.md`, `DATASETS_AND_SPLITS.md` (and PROTECTED_EVALUATIONS.md first)

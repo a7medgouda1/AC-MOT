@@ -368,3 +368,28 @@ universal-acmot-v7-freeze → 488df9a) is the final version and contribution.
 HARD_CONSTRAINTS C0 is amended accordingly; V6-TF becomes frozen history;
 V4 stays baseline/ablation only. V7f is not changed or retuned; Paper 2
 presents it.
+
+### D-033 — AI write access, owner-only delete (2026-10-20)
+Owner decision: AI agents (Claude Code, Codex, others) create, write and edit project files normally.
+Deleting, renaming/moving or emptying an existing file or directory, deleting or moving a branch or tag,
+or rewriting history needs the owner's explicit approval for that exact target; approval of one deletion
+never covers another, and silence, earlier approvals or general instructions are not approval. Agents
+never bypass, disable or weaken the guards. Scientific freeze rules (C0, frozen V7f, locks, results,
+manuscript version folders) are unchanged. Implementation and limits: PRESERVATION_POLICY.md.
+
+### D-034 — Owner approval must be authenticated and fail closed (2026-10-20)
+Owner decision refining D-033: a commit-message trailer alone is never approval. An approval counts only
+inside a commit signed by a trusted owner key (repository variable ACMOT_OWNER_KEYS, else key files at the
+base of the checked range); missing, invalid, foreign or unverifiable signatures block the deletion.
+Local hooks cannot verify signatures and therefore refuse every deletion. Agents never hold the private key
+and cannot change the trusted key configuration.
+
+### D-035 — Completed versions are permanently immutable; changes go into the next version (2026-10-20)
+Owner decision: every completed version of any project artifact (code, configurations, results,
+manuscripts, presentations, figures, reports, snapshots) is permanently read-only to AI agents. A change
+to a completed artifact creates the next sequential version (exact copy of the latest completed version,
+parent and Git provenance recorded, previous versions verified byte-for-byte). Statuses COMPLETED, FROZEN,
+SUPERSEDED are immutable; ACTIVE/DRAFT are editable until explicitly completed. research/VERSION_REGISTRY.json
+is authoritative, backed by Git hashes; numbers never reused, overwritten or skipped without a documented
+reason; existing names (V7f, Paper2_V11) are kept. Changing a completed version needs a separate
+owner-signed approval; a deletion approval never covers it. Implementation: PRESERVATION_POLICY.md section 6.

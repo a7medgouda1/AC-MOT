@@ -1,0 +1,14 @@
+#!/bin/sh
+# AC-MOT owner-only-delete policy for pushes (read-only): no remote branch/tag
+# deletion, no tag move, no non-fast-forward push, and every pushed commit follows
+# the preservation rules; then the context health check. The owner pushes an
+# approved ref deletion from their own terminal with --no-verify.
+root=$(git rev-parse --show-toplevel) || exit 1
+status=0
+python3 "$root/tools/research_guard.py" --push-refs --quiet || status=1
+if [ -f "$root/tools/context_health_check.py" ]; then
+  health=$(python3 "$root/tools/context_health_check.py" --no-graph 2>&1) || {
+    printf '%s\n' "$health" | grep -E "FAIL|SUMMARY" >&2; status=1; }
+fi
+[ $status -ne 0 ] && echo "pre-push: blocked by the owner-only-delete policy / health check." >&2
+exit $status

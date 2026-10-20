@@ -204,7 +204,7 @@ Headline results in Paper2_V11:
 | Paper2_V1-V8 | JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev1-rev8 | clarity rounds |
 | Paper2_V9 | JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev9 | comparison table with recent methods (pushed 347577c) |
 | Paper2_V10 | JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev10 | Paper 1 supervisor comments applied (e-mail ";", abbreviations, units, higher/lower better, Algorithm 1 check), AC-MOT reference title (pushed 9151751) |
-| Paper2_V11 | JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev11 | abstract as relative percentages (249 words), Algorithm 1 with Input/Output and comments, shorter conclusion, no re-defined SCL/AOB, "each tracker runs", AC-MOT reference = submitted JAIS title; 12 pages (NOT PUSHED as of 2026-10-20) |
+| Paper2_V11 | JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev11 | abstract as relative percentages (249 words), Algorithm 1 with Input/Output and comments, shorter conclusion, no re-defined SCL/AOB, "each tracker runs", AC-MOT reference = submitted JAIS title; 12 pages (pushed dbf162c; registered COMPLETED in VERSION_REGISTRY.md) |
 
 ### Internal reviewer audit of Paper2_V11 (2026-10-20), verified against the evidence
 Open items to fix in Paper2_V12 (text only, no new experiments):
@@ -280,3 +280,9 @@ ByteTrack) are run before submission or at revision.
 LaTeX and Word versions of the M.Sc. thesis live in THESIS/ (Word file
 THESIS/word/Thesis_Ahmed_Gouda_Ismail.docx), last committed 2026-10-03,
 before the Paper1_V4-V13 and Paper2_V10-V11 rounds.
+
+## Version numbering (D-035)
+Completed manuscript versions are read-only; the next version is created with
+`python3 tools/version_registry.py new paper1|paper2` (exact copy of the latest completed version, parent and
+commit recorded in research/VERSION_REGISTRY.json). Next: Paper 1 = Paper1_V14_JAIS, Paper 2 = Paper2_V12
+(`JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev12`). Status of every version: VERSION_REGISTRY.md.

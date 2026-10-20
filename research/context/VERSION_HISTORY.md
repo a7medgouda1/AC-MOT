@@ -63,3 +63,8 @@ detections on MOT17/KITTI with TrackEval.
 ## Open version questions
 - G1 is tagged `general-acmot-g1-freeze` but labelled "development candidate" in its lock; it is not a Universal AC-MOT freeze and not the FINAL TARGET.
 - The P1 controller archive is frozen as an experiment snapshot (280b4a2), not as a `universal-acmot-*` version; Paper 1 reports it as "AC-MOT".
+
+## Completed-version registry (D-035)
+Immutable status (COMPLETED / FROZEN / SUPERSEDED / ACTIVE / DRAFT) and the next number of each family are
+kept in `research/VERSION_REGISTRY.json` (view: VERSION_REGISTRY.md). Universal AC-MOT numbering continues at
+V8 (V2 and V5 were never frozen; documented skip reasons). This file keeps the narrative history.

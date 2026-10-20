@@ -76,6 +76,9 @@ justifications or frozen state.
 | CODE_INVENTORY.md | generated list of modules, classes, functions, line numbers, last commit | AUTO (`tools/build_code_inventory.py`) |
 | REPRODUCIBILITY.md | reproducibility labels, environments, experiment cards, matrix, missing artifacts | manual |
 | CHANGELOG.md | dated log of knowledge-base changes | manual, append-only |
+| PRESERVATION_POLICY.md | AI write access, owner-only delete: approval procedure, enforcement layers, owner setup, known gaps | owner (protection file) |
+| RESTORE_AND_ROLLBACK.md | open, compare and recover any frozen version safely (no destructive commands) | manual |
+| VERSION_REGISTRY.md | status (COMPLETED/FROZEN/SUPERSEDED/ACTIVE/DRAFT), Git hashes and next number of every version | AUTO (`tools/version_registry.py render`) from research/VERSION_REGISTRY.json |
 | PAPERS.md | publication registry: Paper 0 (published survey), Paper 1 (JAIS, submitted), Paper 2 (JRTIP, in preparation), versions, submission and review state | manual |
 | KNOWLEDGE_GRAPH.md | typed entities + relations fed to Graphify | manual |
 | NEW_SESSION_PROMPT.md | copy-paste start prompt | manual |
@@ -97,6 +100,11 @@ VisDrone2019-MOT-train confirmation-16, UAVDT test.
   Run with Graphify's interpreter:
   `$(cat graphify-out/.graphify_python 2>/dev/null || echo /Users/ahmedgouda/.local/share/uv/tools/graphifyy/bin/python) tools/build_context_graph.py`
 - `tools/context_health_check.py` — consistency checks (exit 1 on failure).
+- `tools/research_guard.py` / `tools/claude_tool_guard.py` — owner-only-delete and preservation guards
+  (git hooks via `tools/install_git_hooks.sh`, CI, Claude Code hook); `tools/open_version.sh` opens a
+  version read-only. See PRESERVATION_POLICY.md and RESTORE_AND_ROLLBACK.md.
+- `tools/version_registry.py` — completed-version registry: `next`, `new` (next version as exact copy),
+  `complete`, `verify`, `render` (D-035).
 - `graphify query "<question>"`, `graphify explain "<node>"`,
   `graphify path "<A>" "<B>"` — querying.
 
