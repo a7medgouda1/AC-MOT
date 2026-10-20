@@ -18,3 +18,4 @@ what the knowledge base itself learned and when. Add one entry per substantive t
 - Found and recorded: Paper2_V11 omits the negative/neutral recent external runs (CF-04), 3 of 6 KITTI
   cells (CF-03), and misdescribes the BoT-SORT 0020 exclusion (CF-02); Paper 1 V12 does not state the
   second val read (CF-07) or the shuffled control (FX-29).
+- tools/build_code_inventory.py: inventory limited to git-tracked files (untracked local files such as scratch scripts no longer enter CODE_INVENTORY.md); `--check` compares structure only.
