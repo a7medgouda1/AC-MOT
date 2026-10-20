@@ -8,6 +8,9 @@ Every new coding/research session MUST, before modifying code or running experim
 2. read `research/context/HARD_CONSTRAINTS.md`
 3. read `research/context/NEXT_STEPS.md`
 4. read `research/context/PROTECTED_EVALUATIONS.md`
+4b. for version, paper or experiment work: `research/context/VERSION_HISTORY.md`,
+    `research/context/PAPERS.md`, `research/context/EXPERIMENT_REGISTRY.md`,
+    `research/context/REPRODUCIBILITY.md`, `research/context/CODE_ARCHITECTURE.md`
 5. inspect git: `git status --short`, `git rev-parse --abbrev-ref HEAD`, `git log --oneline -10`, `git tag`
 6. query Graphify for the relevant architecture / decision / experiment context
    (`graphify query "<question>"`, `graphify explain "<node>"`)
@@ -27,8 +30,9 @@ Task-dependent reading:
 
 Non-negotiable (details in HARD_CONSTRAINTS.md): the final AC layer is
 TRAINING-FREE, online self-calibrating, causal, detector-/tracker-agnostic;
-Optuna/S1–S3 are discovery tools only; no quality metrics on protected
-evaluations before the V5-TF freeze; frozen versions, tags and locks are immutable.
+the FINAL TARGET is V7 = frozen V7f (Amendment 10); Optuna/S1–S3 are discovery
+tools only; protected evaluations stay closed (PROTECTED_EVALUATIONS.md);
+frozen versions, tags, locks, results and old decisions are immutable.
 
 When uncertain about a project fact, DO NOT infer it. Check, in order:
 1. git/code  2. canonical result files  3. research/context  4. Graphify  5. detailed logs.
@@ -36,10 +40,13 @@ If evidence remains ambiguous, mark the fact UNKNOWN or NEEDS VERIFICATION.
 Never invent metrics, experiment status, commit SHAs, dataset leakage status,
 parameter justification or frozen state.
 
-End of every substantial session: follow the workflow in
-`research/context/README.md` (update state/decisions/experiments/next steps/
-handoff → `python3 tools/update_project_context.py` → rebuild the graph →
-`python3 tools/context_health_check.py` → commit context files only).
+Research-memory maintenance is part of every substantive task: follow the
+"Maintenance workflow" in `research/context/README.md` (update the owning
+documents, register experiments/results/decisions, CHANGELOG entry →
+`python3 tools/build_code_inventory.py` if code changed →
+`python3 tools/update_project_context.py` → rebuild the graph →
+`python3 tools/context_health_check.py --queries` → report documentation
+status). Evidence ranking and conflict handling: same README.
 
 Graph rebuild (code + canonical context, deterministic, no LLM):
 `$(cat graphify-out/.graphify_python 2>/dev/null || echo ~/.local/share/uv/tools/graphifyy/bin/python) tools/build_context_graph.py`

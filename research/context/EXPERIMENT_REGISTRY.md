@@ -56,3 +56,64 @@ from `outputs/v5/s3*/` during the context build → re-derive before citing in a
 | E53 | frozen / external | BoostTrack (MVA 2024) faithful execution + frozen V6-TF | `tools/v6/external/boosttrack_v6.py` | MOT17 val-half (owner's Drive, split verified) | execution 68.49/75.50/81.41 (authors 68.37/75.56/81.35); + V6-TF 62.61/66.64/75.19; ΔHOTA −5.89 [−7.76, −2.87], ΔIDS −38 [−81, −1] | DONE (negative transfer) |
 | E54 | frozen / external | SparseTrack (IEEE TCSVT 2025, headline) faithful execution + frozen V6-TF on identical detections | `tools/v6/external/sparsetrack_v6.py` | MOT17 val-half | execution 68.88/77.85/81.97 (paper 69.2/76.8/81.4); + V6-TF 64.72/71.71/77.49; ΔHOTA −4.15 [−5.54, −1.66], ΔMOTA −6.14, ΔIDF1 −4.49, ΔFP −1630, ΔFN +4955; diagnostic: dedup causes ~62% of the loss | DONE (negative transfer) |
 
+
+## V7 era, compute lines, Paper 1 line (added 2026-10-20; index only — detail in the ledger named per block)
+Reproducibility labels (definitions in REPRODUCIBILITY.md): REPRODUCIBLE · PARTIALLY REPRODUCIBLE ·
+NOT YET REPRODUCIBLE · HISTORICAL / ARTIFACTS MISSING. IDs are stable; never renumber.
+Protocols are never mixed across rows: MOT17 = TrackEval on MOT17 val-half with published detections;
+KITTI = official KITTI HOTA averaged over car and pedestrian; VisDrone "internal" = class-agnostic
+protocol above; VisDrone "official" = class-aware official-compatible port (`tools/v6/eval_official.py`).
+
+### V7 development (ledger `research/final/V7_EXPERIMENT_LEDGER.md`; ablation `research/final/V7_ABLATION.md`)
+| ID | Version | Question | Data | Command | Result (headline) | Status | Repro |
+|---|---|---|---|---|---|---|---|
+| V7-E0 | infra | runner identities (replay = official output) | MOT17 val-half, KITTI | `tools/v7/external/*_v7.py --system BASELINE` | identical outputs | ACCEPTED | REPRODUCIBLE (assets release v7-dev-assets-1) |
+| V7-E1–E5 | V7a | track-context duplicates, per-frame ρ regime, duplicate scope/memory | MOT17 (SparseTrack), val-7 | `tools/v7/external/sparsetrack_v7.py`, `tools/v7/dev.py run` | crowd-safe duplicates needed; `ctx` rule rejected (E4) | DONE | PARTIALLY (val-7 needs VisDrone caches) |
+| V7-E6 | V6EMU | one-factor ablations from V6 emulation | VisDrone val-7 × YOLOv8n/RT-DETR-L | `tools/v7/dev.py run` | per-factor effects | DONE | PARTIALLY |
+| V7-E7–E10 | V7b–V7d | noisy-only duplicates, auto scores, clean = min(host, t2), motion only in noisy frames | MOT17 hosts, val-7 | `tools/v7/dev.py`, external runners | SparseTrack 64.72 → 68.93, BoostTrack 62.61 → 68.37 | DONE | PARTIALLY |
+| V7-E12-LF, STRESS-LF | V7c/d | label-free ID churn; calibration/floor stress without labels | val-7, KITTI | ledger cloud C1 | diagnostic | DIAGNOSTIC | PARTIALLY |
+| V7-E15 | V7c/d | identity/floor stress on MOT17 hosts | MOT17 | `tools/v7/external/mot17_bytetrack_v7.py` | per-floor table | DONE | REPRODUCIBLE |
+| V7-E16 | V7f part | regime from the whole stream (rho_frames 0) | MOT17 | same | ByteTrack (0.1) 67.561 → 67.702; OC-SORT (0.1) 65.697 → 66.071 | ADOPTED | REPRODUCIBLE |
+| V7-E17 | V7f part | track-consistent rescue | MOT17, KITTI YOLOv8n | same + `tools/v7/dev.py` | OC-SORT (0.01) 66.405 → 66.619; KITTI YOLOv8n OC 41.14 → 44.15 | ADOPTED | REPRODUCIBLE |
+| V7-E18 | V7f | background (interpretability) check | MOT17 | same | OC-SORT floor 0.01 67.041 (+0.61 vs host) | ADOPTED = V7f | REPRODUCIBLE |
+| V7-STRESS-L | V7f | labelled score transforms (pow3, scale05, temp2, temp05) | MOT17, floor 0.01 | `tools/v7/ci/calib_boot.sh` | 7 of 14 conditions significantly better, 0 worse (`research/final/paper2_calib_boot/calib_boot.json`) | DONE | REPRODUCIBLE (GitHub Actions workflow paper2_calib_boot.yml) |
+| V7-E19 | V7d/f | motion rule vs CMC on KITTI (YOLOv8n) | KITTI training 21 seq (BoT-SORT 20: seq 0020 Cholesky error with layer-filtered input) | `V7_SPLIT=kitti tools/v7/dev.py track …`, `tools/v7/kitti/kitti_eval.py` | effects ≤ 0.12 HOTA; motion kept noisy-only | DONE | PARTIALLY (KITTI frames via remotezip) |
+| V7-E20 | rejected | host-relative noisy band | KITTI YOLOv8n, VisDrone RT-DETR label-free | ledger | +1.4 HOTA but uncontrolled boxes (26.9 vs 14.9 per frame) | REJECTED | PARTIALLY |
+| V7-FREEZE | V7f | freeze + statistics + external predeclaration | — | `tools/v7/freeze.py V7f` | tag universal-acmot-v7-freeze → 488df9a; `research/V7_POLICY_LOCK.json` | FROZEN | REPRODUCIBLE |
+
+### V7f post-freeze evaluations (frozen V7f, lock checked)
+| ID | Question | Host · data | Command / workflow | Result | Status | Repro |
+|---|---|---|---|---|---|---|
+| V7-POST-ST | SparseTrack + V7f on verified MOT17 frames | SparseTrack · MOT17 val-half | `.github/workflows/sparsetrack_v7f.yml` → `tools/v7/ci/sparsetrack_v7f.sh`; record `research/final/sparsetrack_v7f/` | 68.876 → 68.931 HOTA, +0.055 [−0.011, +0.254] | DONE | REPRODUCIBLE |
+| V7-POST-PD | predeclared external PD-SORT | PD-SORT · MOT17 val-half (released detections) | `tools/v7/external/pdsort_v7.py`, `tools/v7/mot17_eval_v7.py --boot` | HOTA 68.011 → 68.624, +0.61 [+0.27, +1.65]; MOTA +1.13; IDF1 +0.82; 7/7 | DONE | REPRODUCIBLE |
+| V7-POST-HS | predeclared external Hybrid-SORT | Hybrid-SORT · MOT17 val-half | `tools/v7/external/hybridsort_v7.py` (Python 3.11 venv) | identical output; reproduction CLOSE 66.698 vs 67.1 | DONE | REPRODUCIBLE |
+| V7-POST-CTW | recent external C-TWiX (Pattern Recognition 2025) | C-TWiX · MOT17 val-half, KITTIMOT val, DanceTrack val | `.github/workflows/recent_ctwix.yml` → `tools/v7/recent/ctwix_run.sh`; `research/final/recent/ctwix/` | MOT17 −0.05 HOTA [−0.46, +0.40]; KITTIMOT car −1.52 [−4.05, −0.13]; ped −0.10 [−2.16, +0.03]; DanceTrack −1.00 [−2.62, +0.65] | DONE (negative / neutral) | REPRODUCIBLE |
+| V7-POST-TOP | recent external TOPICTrack (IEEE TIP 2025) | TOPICTrack · MOT17 val-half | `.github/workflows/recent_topictrack.yml`; `research/final/recent/topictrack/` | reproduction FAILED (67.538 vs 69.6); exploratory V7f arm −0.016 HOTA (post) | EXCLUDED from claims | REPRODUCIBLE (as a failed reproduction) |
+| V7-POST-TT | recent external TrackTrack (CVPR 2025) | TrackTrack · DanceTrack val | `.github/workflows/recent_tracktrack*.yml`; `research/final/recent/tracktrack/` | reproduction CLOSE; −0.012 HOTA [−0.032, −0.001], 0/21/4 W/T/L | DONE (tiny negative) | REPRODUCIBLE |
+| V7-POST-VD | frozen V7f on VisDrone val-7 (development split) | ByteTrack · YOLOv8n, RT-DETR-L | `tools/v7/ci/aerial_v7f_val.sh` (needs own VisDrone val zip); `research/final/aerial_v7f_val/` | internal HOTA YOLOv8n +2.17 [+1.20, +3.58]; official-compatible: catastrophic cells 7 → 4 | DONE (development evidence) | PARTIALLY (dataset zip not public via script) |
+| V7-POST-RT | runtime | ByteTrack · KITTI 0001/0009/0019, live YOLOv8n, 4-vCPU Xeon | `tools/v7/benchmark.py --weights yolov8n.pt --seqs 0001 0009 0019` | layer 2.95 ms mean / 4.39 ms P95; pipeline 57.85 → 60.44 ms | DONE | REPRODUCIBLE |
+
+### Compute lines on frozen V7f (ledgers `research/final/SCI_V7F_EXPERIMENT_LEDGER.md`, `research/final/G2_EXPERIMENT_LEDGER.md`)
+| ID | Question | Data | Command | Result | Status | Repro |
+|---|---|---|---|---|---|---|
+| SCI-E1 (E-SCI-1) | pre-registered historical SCI + V7f (C1 = 5a8502f) | VisDrone val-7, ByteTrack, YOLOv8n/RT-DETR-L | `tools/sci_v7/dev.py run`; `research/final/sci_v7f/C1_5a8502f/` | SCI + V7f − V7f only −0.17 HOTA [−0.56, +0.21]; not adopted | DONE (negative) | PARTIALLY |
+| SCI-D1 | GT-oracle headroom | val-7 | `tools/sci_v7/oracle.py` | oracle at matched compute +0.47 [+0.005, +0.97] | DONE | PARTIALLY |
+| SCI-D2–D4, P-GSCI-1 | cue audit 640/736/832; resolution sweep 512–960 | val-7 | `tools/sci_v7/cue_audit.py`, `tools/sci_v7/sweep_cache.py` | 13 causal cues, none passes the pre-registered rule | DONE (negative) | PARTIALLY |
+| G1-FREEZE | constant compute + V7f | — | tag general-acmot-g1-freeze → 751c602; `research/GENERAL_ACMOT_G1_LOCK.json` | development candidate | FROZEN (candidate) | REPRODUCIBLE |
+| G1-T-OCSORT / T-RETINANET / T-BOTSORT | G1 transfer to hosts and an unseen detector | val-7 | `research/final/sci_v7f/G1_transfer*/`; lock `research/TRANSFER_LOCK_RETINANET_G1.json` | see SCI ledger §4 | DONE | PARTIALLY |
+| G2-S1/S2/S3, G2-REGIME, P-GSCI-2 | GT-oracle gate per compute space | val-7 | `tools/g2/dev.py`, `tools/g2/oracle.py`; `research/final/g2/` | all spaces fail the gate → static compute + V7f | DONE (negative) | PARTIALLY |
+
+### Paper 1 line (AC-MOT v3 operating-point controller; archive `research/acmot_paper_v2/experiments/ACMOT_EXP_V3_2026-10-04/`)
+| ID | Question | Data | Command | Result | Status | Repro |
+|---|---|---|---|---|---|---|
+| P1-DET | freeze a public detector | — | `research/acmot_paper_v2/frozen_detector/DETECTOR_PROVENANCE.json` | YOLO11m dronefreak/visdrone-yolo11m sha256 c6f98247… (AGPL-3.0) | DONE | REPRODUCIBLE (public checkpoint) |
+| P1-BASE | baseline systems r1536_n70 + ByteTrack / OATrack | VisDrone val-7 | `python research/acmot_paper_v2/run_baseline_systems.py` | ByteTrack HOTA 41.586; `research/acmot_paper_v2/BASELINE_SYSTEMS_RESULT.json` | DONE | PARTIALLY (detection cache external, hash-listed) |
+| P1-A1–A5 | Phase A searches (resolution map, NMS map, cue subset, joint) vs calibration matched-static | 8 VisDrone-MOT-train calibration sequences, 4 folds | `research/acmot_paper_v2/controller_search/run_stage1.py` … `run_stage3b4_joint.py` | null: no policy beat the best fixed point | DONE (negative) | PARTIALLY |
+| P1-ORACLE | oracle gates, segment headroom, confidence oracle | calibration | `controller_search/oracle_gate*.py`, `segment_headroom.py`, `confidence_oracle.py` | headroom recorded in `controller_search/*_RESULT.json` | DONE | PARTIALLY |
+| P1-B (V3 joint) | Phase B: 60-trial TPE over τm, τh and actions incl. confidence floor vs r1536_n70 | calibration, 4 folds | `controller_search/run_v3_joint_search.py` | trial 7 frozen (commit 309dca5): τm 0.297, τh 0.511 | DONE | PARTIALLY |
+| P1-SHUF | same-action-distribution shuffled control | calibration | `controller_search/run_shuffled_control.py` | does not establish that timing adds value beyond the action mix | DONE (limitation) | PARTIALLY |
+| P1-STATIC | static no-op policy, FIRST val read | VisDrone val-7 | `python research/acmot_paper_v2/run_final_acmot_systems.py` (commit bfa5caf) | `research/acmot_paper_v2/FINAL_ACMOT_SYSTEMS_RESULT.json` | DONE | PARTIALLY |
+| P1-V3 | frozen v3, SECOND val read | VisDrone val-7, ByteTrack / OATrack | `python research/acmot_paper_v2/run_v3_second_val_read.py` (commit 0af0066) | ByteTrack HOTA 41.586 → 44.523; OATrack 46.770 → 48.095; bootstrap 5000, seed 42 (`research/acmot_paper_v2/BOOTSTRAP_V3_RESULT.json`) | DONE | PARTIALLY |
+| P1-UAVDT | frozen transfer without retuning | UAVDT test 20 seq (Kaggle kernel) | `research/acmot_paper_v2/run_uavdt_transfer.py`, `python research/acmot_paper_v2/run_uavdt_bootstrap.py` | MOTA ByteTrack −1.573 → 16.028; OATrack 19.607 → 22.873 | DONE | PARTIALLY (cache on Kaggle/Drive) |
+| P1-RT | runtime on Tesla T4 | — | `research/acmot_paper_v2/V3_RUNTIME_BENCHMARK_RESULT.json` | controller ≈ 4.2 ms/frame | DONE | PARTIALLY |
+| P1-LEGACY | U2MOT and SparseTrack scene-adaptive Colab runs (Sept 2026) | VisDrone val/test-dev; MOT17/MOT20 | audit `research/transfer_legacy/U2MOT_SPARSETRACK_EVIDENCE_AUDIT.md`; re-scoring `research/transfer_legacy/rescore/` | used in Paper 1 legacy section | DONE (audited) | HISTORICAL / ARTIFACTS MISSING (runs on Drive) |

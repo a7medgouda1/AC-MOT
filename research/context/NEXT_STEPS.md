@@ -1,6 +1,22 @@
-> **V7 development cycle (2026-09-28): `CODEX_HANDOFF_V7.md` is authoritative for current work; this file is V6-era.**
+> **Amendment 10 (2026-10-20): V7 / frozen V7f is the approved FINAL version. The PAPERS section is current; the V6-TF sections below are history.**
 
 # NEXT STEPS (operational; keep short; move finished items to DECISIONS/EXPERIMENT_REGISTRY)
+
+## PAPERS (current work, 2026-10-20; details PAPERS.md)
+1. Paper 1 (JAIS 2026-10-I012138): confirm both co-authors completed the
+   ScholarOne confirmation; record the declarations as entered; wait for
+   reviews; revise from Paper1_V13_JAIS in a new version folder.
+2. Paper 2: owner answers (funding, code availability, new baselines now or at
+   revision) -> build Paper2_V12 fixing the 9 audit items in PAPERS.md
+   (data table, all 6 KITTI cells, BoT-SORT 0020 failure, contract values,
+   rank memory, real-time wording, Hybrid-SORT cause, external scope, Springer
+   declarations and reference rule) -> supervisor -> JRTIP submission.
+3. Paper2_V11 (JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev11) is not pushed yet.
+4. Knowledge base (2026-10-20): resolve the OPEN conflicts CF-02, CF-03, CF-04, CF-07
+   (RESULTS_CANONICAL.md) in the next manuscript versions; restore the missing artifacts listed in
+   REPRODUCIBILITY.md (Paper 1 detection cache release, VisDrone zip hash, Paper 2 fig3 script).
+5. Optional: HTML presentation of Paper 2 (prompt prepared; new folder
+   presentations/Paper2_SCL_V11/, never edit older presentations).
 
 ## CURRENT GOAL
 Complete V6-TF, the FINAL system (Amendment 9; V4 = baseline/ablation only;

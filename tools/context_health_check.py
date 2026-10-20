@@ -21,13 +21,28 @@ REQUIRED = ["README.md", "PROJECT_STATE.md", "ARCHITECTURE.md", "HARD_CONSTRAINT
             "PARAMETER_STATUS.md", "VALIDATION_PROTOCOL.md", "PROTECTED_EVALUATIONS.md",
             "ENVIRONMENT_AND_PATHS.md", "GIT_STATE.md", "NEXT_STEPS.md",
             "SESSION_HANDOFF.md", "NEW_SESSION_PROMPT.md", "KNOWLEDGE_GRAPH.md",
-            "PROJECT_COMPLETION.md"]
+            "PROJECT_COMPLETION.md", "VERSION_HISTORY.md", "PAPERS.md",
+            "CODE_ARCHITECTURE.md", "CODE_INVENTORY.md", "REPRODUCIBILITY.md", "CHANGELOG.md"]
+REPRO_LABELS = ("REPRODUCIBLE", "PARTIALLY", "NOT YET REPRODUCIBLE", "HISTORICAL")
+# Representative questions: graphify must surface the node, and the canonical
+# file must contain the fact the node stands for (the graph is never the authority).
+KNOWLEDGE_PROBES = [
+    ("latest frozen version", "Version: V7", "FROZEN_VERSIONS.md", "universal-acmot-v7-freeze"),
+    ("how does V7f differ from V6-TF", "V7f vs V6-TF (what changed and why)", "VERSION_HISTORY.md", "| When to act |"),
+    ("which code module implements the V7 layer", "Module: acmot_v7.py V7Layer", "CODE_ARCHITECTURE.md", "`V7Layer` L200"),
+    ("Paper 1 JAIS submission status manuscript ID", "Submission: JAIS 2026-10-I012138", "PAPERS.md", "2026-10-I012138"),
+    ("Paper 2 external validation claim recent externals", "Claim: P2 external validation", "PAPERS.md", "C-TWiX"),
+    ("V6-TF external negative SparseTrack BoostTrack", "negative external transfer D-029", "FAILED_EXPERIMENTS.md", "SparseTrack −4.15, BoostTrack −5.89 HOTA"),
+    ("Paper 1 UAVDT transfer result", "Result: Paper 1 UAVDT transfer", "RESULTS_CANONICAL.md", "UAVDT_TRANSFER_RESULT.json"),
+    ("open conflicts recent externals omitted", "Conflict: CF-04 recent externals omitted", "RESULTS_CANONICAL.md", "CF-04"),
+]
 # Commits touching only these paths do not make the context stale.
 CONTEXT_PATHS = ("research/context/", "AGENTS.md", "CLAUDE.md", ".graphifyignore", ".gitignore",
+                 ".github/copilot-instructions.md", "tools/build_code_inventory.py",
                  "tools/update_project_context.py", "tools/context_health_check.py",
                  "tools/build_context_graph.py")
-FINAL = "V6-TF"                      # Amendment 9 (supersedes V5-TF/E41)
-V5TF_TAG = "universal-acmot-v6-freeze"   # freeze tag of the FINAL target
+FINAL = "V7"                         # Amendment 10 (frozen V7f; supersedes V6-TF)
+V5TF_TAG = "universal-acmot-v7-freeze"   # freeze tag of the FINAL target
 # Artifacts that must not exist before the V5-TF freeze (protected evaluations).
 FORBIDDEN_BEFORE_FREEZE = ["outputs/v5tf_confirm*", "outputs/confirmation*",
                            "outputs/v6/conf16*", "outputs/v6/testdev*",
@@ -237,7 +252,7 @@ def check_graphify(run_queries: bool) -> None:
     if g.stat().st_mtime < kg_mtime:
         report("WARN", "KNOWLEDGE_GRAPH.md newer than graph.json — rebuild the graph")
     if run_queries and shutil.which("graphify"):
-        probes = {"current version V6-TF training-free": "Version: V6-TF",
+        probes = {"current final version V7 frozen V7f": "Version: V7",
                   "latest frozen version": f"Version: {FINAL}",
                   "protected datasets evaluations": "Constraint: C8"}
         for q, expect in probes.items():
@@ -245,6 +260,37 @@ def check_graphify(run_queries: bool) -> None:
                                  capture_output=True, text=True).stdout
             report("PASS" if expect in out else "FAIL",
                    f"graphify query {q!r} {'surfaces' if expect in out else 'MISSES'} {expect!r}")
+        for q, node, src, fact in KNOWLEDGE_PROBES:
+            out = subprocess.run(["graphify", "query", q, "--budget", "600"], cwd=ROOT,
+                                 capture_output=True, text=True).stdout
+            backed = fact in read(src)
+            ok = node in out and backed
+            report("PASS" if ok else "FAIL",
+                   f"knowledge query {q!r}: node {'found' if node in out else 'MISSING'}, "
+                   f"source {src} {'supports' if backed else 'DOES NOT support'} it")
+
+
+def check_inventory() -> None:
+    out = subprocess.run([sys.executable, str(ROOT / "tools" / "build_code_inventory.py"), "--check"],
+                         cwd=ROOT, capture_output=True, text=True)
+    report("PASS" if out.returncode == 0 else "WARN",
+           "CODE_INVENTORY.md up to date" if out.returncode == 0
+           else "CODE_INVENTORY.md stale — run tools/build_code_inventory.py")
+
+
+def check_registry_labels() -> None:
+    reg = read("EXPERIMENT_REGISTRY.md")
+    part = reg.split("Reproducibility labels", 1)
+    if len(part) < 2:
+        report("WARN", "EXPERIMENT_REGISTRY.md has no reproducibility-labelled section")
+        return
+    rows = [l for l in part[1].splitlines() if l.startswith("| ") and not l.startswith("| ID")
+            and not re.match(r"^\|\s*-", l)]
+    missing = [l.split("|")[1].strip() for l in rows if not any(x in l for x in REPRO_LABELS)]
+    if missing:
+        report("FAIL", f"experiments without a reproducibility label: {missing[:6]}")
+    else:
+        report("PASS", f"{len(rows)} labelled experiment rows carry a reproducibility label")
 
 
 def check_kg() -> None:
@@ -272,6 +318,8 @@ def main() -> int:
     check_references()
     check_results()
     check_kg()
+    check_inventory()
+    check_registry_labels()
     check_graphify(run_queries="--no-graphify" not in sys.argv)
     if not (CTX / "NEW_SESSION_PROMPT.md").exists():
         report("FAIL", "NEW_SESSION_PROMPT.md missing")

@@ -333,3 +333,38 @@ Decision:
   the same 0.1-floored stream as BoostTrack; its environment and weights are
   ready.
 
+
+### D-030 — Paper registry and venues (2026-10-20)
+Context: the project produced three manuscripts; their state lived only in
+chat history and version folders.
+Decision:
+- PAPERS.md is the canonical registry for Paper 0 (published ICMISI 2026
+  survey), Paper 1 (AC-MOT operating-point controller) and Paper 2 (SCL =
+  frozen V7f).
+- Paper 1 venue: Journal of Aerospace Information Systems (AIAA), chosen from
+  the supervisors' list; AIAA format, 26 pages; submitted 18-Oct-2026 as
+  manuscript 2026-10-I012138 with Paper1_V12_JAIS. The Springer-format
+  Paper 1 is not submitted elsewhere while JAIS reviews it.
+- Paper 2 venue target: Journal of Real-Time Image Processing (Springer).
+- Every manuscript change goes into a new version folder with PDF,
+  standalone main.tex and Overleaf zip, and passes build, integrity and
+  clean-folder compile checks; pushes only on the owner's "push".
+
+### D-031 — Paper 2 internal audit findings must be fixed before submission (2026-10-20)
+Evidence: research/final/V7_STATISTICS.md (6 KITTI cells, BoT-SORT 0020
+exclusion), research/final/V7_EXPERIMENT_LEDGER.md (E19 Cholesky error with
+layer-filtered input; E20 VisDrone RT-DETR development stream; freeze note on
+the YOLOv8n two-stage regression), research/final/V7_EXTERNAL_SELECTION.md
+(contract values), acmot_v7.py (_ecdf rank memory).
+Decision: Paper2_V11 is not submitted. Paper2_V12 reports all six KITTI cells,
+lists VisDrone as development data, describes the BoT-SORT 0020 failure
+correctly, gives numeric host contracts and the rank-memory definition,
+narrows the real-time claim to the layer's cost, and adds Springer
+declarations. No new experiments are run for these fixes.
+
+### D-032 — V7f is the approved final version (Amendment 10, 2026-10-20)
+Owner decision: Universal AC-MOT V7 (frozen V7f, tag
+universal-acmot-v7-freeze → 488df9a) is the final version and contribution.
+HARD_CONSTRAINTS C0 is amended accordingly; V6-TF becomes frozen history;
+V4 stays baseline/ablation only. V7f is not changed or retuned; Paper 2
+presents it.

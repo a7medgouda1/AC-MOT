@@ -16,7 +16,7 @@ Edit this file when the project state changes, then rebuild the graph.
 | Version: V4 | FROZEN BASELINE ONLY | previous frozen version (before V6-TF); baseline and ablation only, never the final system or a fallback; compute-budget-only, VisDrone-tuned constants | FROZEN_VERSIONS.md |
 | Version: V5 learned controller | SUPERSEDED RESEARCH-ONLY | scene-state learned stump tree Optuna controller research upper bound not deployable | DECISIONS.md |
 | Version: V5-TF | SUPERSEDED DEVELOPMENT | training-free Otsu-band line F1-F5 and E41; E41 locked then rejected by audit (FX-18); never frozen; succeeded by V6-TF | ARCHITECTURE.md |
-| Version: V6-TF | FINAL TARGET FROZEN | latest frozen version (tag universal-acmot-v6-freeze, 2cff95f); final target and contribution: training-free online self-calibrating causal detector-agnostic tracker-agnostic; dedup IoU 0.5, nested exact-Otsu bands on logits of frames t-10..t-1, motion-conditioned association; tag universal-acmot-v6-freeze | ARCHITECTURE.md |
+| Version: V6-TF | FROZEN SUPERSEDED | previous frozen final target (tag universal-acmot-v6-freeze, 2cff95f): dedup IoU 0.5, nested exact-Otsu bands on logits of frames t-10..t-1, motion-conditioned association; negative external transfer D-029; superseded by V7 (Amendment 10) | ARCHITECTURE.md |
 | Architecture: Original SCI architecture | SUPERSEDED | scene analysis SCI weighted sum resolution and sensitivity controller | ARCHITECTURE.md |
 | Architecture: V4 compute-budget architecture | ABLATION | V4 is not the final architecture: compute-budget-only ablation, scene adaptation deletion rejected (D-009), VisDrone-tuned category E constants; resolution budget ECDF z-gate | ARCHITECTURE.md |
 | Architecture: V5-TF target architecture | CURRENT | frame scene state analyzer online self-calibration AC controller before detector candidate handling tracker feedback | ARCHITECTURE.md |
@@ -118,7 +118,7 @@ Edit this file when the project state changes, then rebuild the graph.
 | Decision: D-023 E39 C5 blockers | ACTIVE | Otsu bins and window sensitive E block policy lock and freeze | DECISIONS.md |
 | Decision: D-024 live replay parity | ACTIVE | F3 live motion path exactly equals cached replay on declared development subset | DECISIONS.md |
 | Decision: D-017 repository is project memory | ACTIVE | context files over chat history | DECISIONS.md |
-| Constraint: C0 final target V6-TF | HARD | FINAL TARGET = V6-TF (Amendment 9); V4 historical baseline ablation only; never revert to V4 | HARD_CONSTRAINTS.md |
+| Constraint: C0 final target V7 | HARD | FINAL TARGET = V7 frozen V7f (Amendment 10, owner decision 2026-10-20); V6-TF frozen history; V4 historical baseline ablation only; never revert to V4 | HARD_CONSTRAINTS.md |
 | Constraint: C1 training-free final AC layer | HARD | AC training NOT allowed no fitted controller no labels no GT at deployment | HARD_CONSTRAINTS.md |
 | Constraint: C3 causality | HARD | frame t uses only frames up to t no future no GT | HARD_CONSTRAINTS.md |
 | Constraint: C5 no category E constants | HARD | E39 resolved history and warm-up as A; sensitive Otsu window and bins remain freeze blockers | HARD_CONSTRAINTS.md |
@@ -159,6 +159,137 @@ Edit this file when the project state changes, then rebuild the graph.
 | Component: Nested Otsu Bands | FINAL | background/foreground then extension/primary exact 2-class Otsu on pooled logits of frames t-10..t-1 | ARCHITECTURE.md |
 | Experiment: E54 SparseTrack external transfer | DONE NEGATIVE | SparseTrack TCSVT 2025 faithful execution plus frozen V6-TF on identical detections: HOTA -4.15, MOTA -6.14, IDF1 -4.49; dedup and over-conservative bands in crowds | EXPERIMENT_REGISTRY.md |
 | Decision: D-029 external transfer negative | ACTIVE | SparseTrack headline, BoostTrack supporting; frozen V6-TF degrades both; scope restricted to calibration and domain shift | DECISIONS.md |
+| Version: V7 | FINAL TARGET FROZEN | latest frozen version and approved final version (tag universal-acmot-v7-freeze, 488df9a; Amendment 10); V7f self-limiting control layer between frozen detector and frozen tracker: nested Otsu on logits of frames t-10..t-1, whole-stream clean/noisy mode, host contract, rank remap, continuation rescue; frozen policy behind Paper 2 SCL | FROZEN_VERSIONS.md |
+| Tag: universal-acmot-v7-freeze | FROZEN | V7f freeze commit 488df9a 2026-09-28 | FROZEN_VERSIONS.md |
+| Lock: V7_POLICY_LOCK | ACTIVE | file hashes of the frozen V7f policy, config and evaluation scripts | ../V7_POLICY_LOCK.json |
+| Tag: acmot-v3-exp-2026-10-04-freeze | FROZEN | AC-MOT V3 paper-ready experiment archive 280b4a2 evidence for Paper 1 | FROZEN_VERSIONS.md |
+| Person: Ahmed Gouda Ismail | AUTHOR | M.Sc. student corresponding author of all papers a7medgouda1@gmail.com | PAPERS.md |
+| Person: Mohamed S. Mohamed | SUPERVISOR | Associate Professor Computer Engineering and Artificial Intelligence Department Military Technical College second author | PAPERS.md |
+| Person: Tarek Ahmed Mahmoud | SUPERVISOR | Professor Computer Engineering Department Egypt University of Informatics third author | PAPERS.md |
+| Paper: Paper 0 ICMISI survey | PUBLISHED | Real-Time Object Detection and Tracking: Challenges, Innovations and Future Directions; IEEE ICMISI 2026 pp 119-125 DOI 10.1109/ICMISI69868.2026.11583994 | PAPERS.md |
+| Paper: Paper 1 AC-MOT JAIS | SUBMITTED | Optimization-Guided Adaptive Detector Operating-Point Control for Multi-Object Aerial Tracking; training-free scene-adaptive operating-point controller; JAIS manuscript 2026-10-I012138 | PAPERS.md |
+| Paper: Paper 2 SCL JRTIP | IN PREPARATION | Training-Free Self-Calibrating Control Layer for Heterogeneous Multi-Object Trackers; frozen V7f; target JRTIP; not submitted | PAPERS.md |
+| Venue: IEEE ICMISI 2026 | CONFERENCE | Machine Intelligence and Smart Innovation Alexandria May 9-11 2026 IEEE catalog CFP26UT0-POD | PAPERS.md |
+| Venue: Journal of Aerospace Information Systems | JOURNAL | AIAA JAIS ScholarOne mc.manuscriptcentral.com/aiaa new-aiaa template 20-26 pages abstract 100-200 words no acronyms OA optional | PAPERS.md |
+| Venue: Journal of Real-Time Image Processing | JOURNAL TARGET | Springer JRTIP sn-jnl template two-column abstract up to 250 words Statements and Declarations required | PAPERS.md |
+| Submission: JAIS 2026-10-I012138 | SUBMITTED | Paper 1 submitted 18-Oct-2026 Full Paper with V12 PDF; co-author confirmations pending; declarations check in Author Center | PAPERS.md |
+| Method: AC-MOT operating-point controller | PAPER 1 METHOD | selects LOW MEDIUM HIGH detector operating point every 10 frames from SCI scene cues with recovery probe hysteresis 30-frame dwell; training-free | PAPERS.md |
+| Method: SCL self-calibrating control layer | PAPER 2 METHOD | the frozen V7f layer presented as SCL; clean mode keeps tracker settings, noisy mode remaps scores and sets thresholds, rescue for single-stage trackers | PAPERS.md |
+| Manuscript: Paper1_V5 Springer | SENT TO SUPERVISOR | all 12 handwritten supervisor comments applied research/acmot_paper_v2/Paper1_Springer_Template/Paper1_V5 | PAPERS.md |
+| Manuscript: Paper1_V6 Springer | SUPERSEDED | Springer version with clear Algorithm 1; 42 percent overlap with JAIS version do not double submit | PAPERS.md |
+| Manuscript: Paper1_V12_JAIS | SUBMITTED VERSION | AIAA 26 pages abstract relative percentages final author titles research/acmot_paper_v2/Paper1_JAIS/Paper1_V12_JAIS | PAPERS.md |
+| Manuscript: Paper1_V13_JAIS | REVISION READY | V12 plus AI-assisted language editing Acknowledgments and SUBMISSION_HANDOFF.md research/acmot_paper_v2/Paper1_JAIS/Paper1_V13_JAIS | PAPERS.md |
+| Manuscript: Paper2_V10 | SUPERSEDED | Paper 1 supervisor comments applied JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev10 | PAPERS.md |
+| Manuscript: Paper2_V11 | LATEST NOT PUSHED | abstract relative percentages 249 words Algorithm 1 Input Output 12 pages JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev11 | PAPERS.md |
+| Review: Paper2_V11 internal audit | OPEN | 9 verified items: VisDrone dev data missing in data table, 3 KITTI cells omitted incl BoT-SORT YOLOv8n MOTA -2.43, BoT-SORT 0020 Cholesky failure misdescribed, host contract values, rank memory, real-time wording, Hybrid-SORT cause, external scope, Springer declarations | PAPERS.md |
+| Rule: Paper versioning and testing | ACTIVE | new folder per version; PDF + standalone main.tex + overleaf zip; 0 errors 0 overfull 0 undefined; integrity check; clean-folder compile; push only when owner says push | PAPERS.md |
+| Dataset: MOT17 | USED | val-half 7 sequences published YOLOX-X detections Paper 2 development and predeclared external | PAPERS.md |
+| Dataset: KITTI tracking | USED | training 21 sequences RT-DETR-L and YOLOv8n Paper 2 development detector transfer | PAPERS.md |
+| Tracker: OATrack | USED | quality-gated tracker host in Paper 1 | PAPERS.md |
+| Protocol: Amendment 10 | CURRENT | owner decision 2026-10-20: V7 frozen V7f is the approved final version; V6-TF history; no retuning | VALIDATION_PROTOCOL.md |
+| Decision: D-032 V7f approved final version | ACTIVE | C0 amended to V7 frozen V7f; V6-TF frozen history; V4 baseline only; Paper 2 presents V7f | DECISIONS.md |
+| Line: legacy thesis AC-MOT | HISTORY | handcrafted SCI controls detector resolution and confidence; YOLOv8n ByteTrack; tag v1.0.0-acmot-frozen | VERSION_HISTORY.md |
+| Line: Universal AC-MOT layer | CURRENT | candidate admission scores and thresholds between frozen detector and frozen tracker; V1 to V7f | VERSION_HISTORY.md |
+| Line: compute layers on V7f | DEVELOPMENT | detector compute upstream of frozen V7f: C1 SCI plus V7f, G1 constant compute, G2 gate; none adopted beyond a static compute point | VERSION_HISTORY.md |
+| Line: Paper 1 operating-point controller | PAPER 1 | AC-MOT v3 controller of detector operating point resolution NMS IoU confidence floor from a crowd scene index; YOLO11m ByteTrack OATrack | VERSION_HISTORY.md |
+| Version: V7a-V7d | DEVELOPMENT NOT FROZEN | rho regime host-anchored clean mode crowd-safe duplicates; tag v7-dev-assets-1 d56bba0 | VERSION_HISTORY.md |
+| Version: C1 SCI plus V7f | NOT ADOPTED | historical SCI resolution rule upstream of frozen V7f candidate 5a8502f; -0.17 HOTA vs V7f only | VERSION_HISTORY.md |
+| Version: G1 constant compute plus V7f | DEVELOPMENT CANDIDATE FROZEN | tag general-acmot-g1-freeze 751c602; behaviourally V7f at 736 px | VERSION_HISTORY.md |
+| Version: G2 compute adaptation | GATE FAILED | resolution call-rate crop spaces fail the GT-oracle gate; static compute plus V7f | VERSION_HISTORY.md |
+| Version: AC-MOT v3 controller | PAPER 1 FROZEN ARCHIVE | frozen at 309dca5; actions 1536/0.70/0.10 1280/0.45/0.40 1088/0.60/0.40; tau_m 0.297 tau_h 0.511; archive tag acmot-v3-exp-2026-10-04-freeze | VERSION_HISTORY.md |
+| Mechanism: nested Otsu bands | IMPLEMENTED | two exact Otsu splits t1 t2 on pooled logits of frames t-10..t-1; acmot_v7 _bands | CODE_ARCHITECTURE.md |
+| Mechanism: clean noisy mode | IMPLEMENTED | clean if median confident share rho over past non-cold frames >= 0.5; clean keeps host thresholds raw scores | CODE_ARCHITECTURE.md |
+| Mechanism: background check | IMPLEMENTED | rho = 1 when fewer candidates below t1 than above; prevents wrong noisy decisions | CODE_ARCHITECTURE.md |
+| Mechanism: rank score remap | IMPLEMENTED | noisy mode scores 0.5+0.5u confident 0.1+0.4u uncertain; u mid-rank ECDF of memory of 20 samples frame 1 and every 10th frame | CODE_ARCHITECTURE.md |
+| Mechanism: crowd-safe duplicates | IMPLEMENTED | track-context duplicate rule in noisy frames, cross-class only in clean frames | CODE_ARCHITECTURE.md |
+| Mechanism: continuation rescue | IMPLEMENTED | foreground candidate continuing an unmatched track passed just above the host lowest threshold; single-stage hosts | CODE_ARCHITECTURE.md |
+| Mechanism: motion tolerance | IMPLEMENTED | match tolerance min(0.95, 1-(1-m0)/max(1,r)) from phase-correlation motion ratio, noisy frames only | CODE_ARCHITECTURE.md |
+| Mechanism: host contract | IMPLEMENTED | tracker published settings a b l m0 declared by its adapter | CODE_ARCHITECTURE.md |
+| Mechanism: SCI scene index | IMPLEMENTED | crowd cue from tracks of earlier frames; three levels with recovery probe hysteresis 30-frame dwell; acmot_sci SceneLayer | CODE_ARCHITECTURE.md |
+| Mechanism: adaptive resolution before detector | REJECTED | V5-TF F5 R-res and C1 SCI compute rule; not better than random or constant compute | CODE_ARCHITECTURE.md |
+| Module: acmot_v7.py V7Layer | CODE | V7 layer; V7f config; step L326 observe L478 _bands L289 _ecdf L319 | CODE_ARCHITECTURE.md |
+| Module: acmot_sci.py SceneLayer | CODE | Paper 1 scene layer; decide L117 observe L113 | CODE_ARCHITECTURE.md |
+| Module: acmot_sci_v7.py LevelSource | CODE | compute level upstream of V7f (C1 G1) | CODE_ARCHITECTURE.md |
+| Module: acmot_g2.py G2Pipeline | CODE | G2 compute schedules | CODE_ARCHITECTURE.md |
+| Module: online_calibration.py | CODE | exact Otsu nested_otsu dedup for V5-TF V6-TF | CODE_ARCHITECTURE.md |
+| Module: tools/v7/dev.py | CODE | V7 development runner with protected-split guard | CODE_ARCHITECTURE.md |
+| Module: tools/v7/bootstrap.py | CODE | paired sequence bootstrap 10000 seed 42 | CODE_ARCHITECTURE.md |
+| Module: tools/v7/kitti/kitti_eval.py | CODE | official KITTI HOTA car pedestrian average | CODE_ARCHITECTURE.md |
+| Module: tools/v7/mot17_eval_v7.py | CODE | TrackEval MOT17 val-half evaluation | CODE_ARCHITECTURE.md |
+| Module: tools/v7/benchmark.py | CODE | live runtime benchmark | CODE_ARCHITECTURE.md |
+| Module: tools/v6/eval_official.py | CODE | official-compatible VisDrone evaluation used by V6 V7 and Paper 1 | CODE_ARCHITECTURE.md |
+| Module: adapters/trackers/oatrack.py | CODE | OATrack re-implementation for Paper 1 | CODE_ARCHITECTURE.md |
+| Module: run_v3_joint_search.py | CODE | Paper 1 Phase B TPE search and run_policy_with_conf | CODE_ARCHITECTURE.md |
+| Module: run_v3_second_val_read.py | CODE | Paper 1 final VisDrone second val read | CODE_ARCHITECTURE.md |
+| Experiment: V7-E16 whole-stream mode | ADOPTED | ByteTrack 0.1 67.561 to 67.702; OC-SORT 65.697 to 66.071 | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-E17 continuation rescue | ADOPTED | OC-SORT 0.01 66.405 to 66.619; KITTI YOLOv8n OC 41.14 to 44.15 | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-E18 background check | ADOPTED | completes V7f; OC-SORT 0.01 67.041 | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-E19 KITTI motion rule | DONE | effects within 0.12 HOTA; BoT-SORT 0020 Cholesky error with layer output | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-E20 host-relative band | REJECTED | 26.9 vs 14.9 boxes per frame on noisy VisDrone RT-DETR stream | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-STRESS-L score shifts | REPRODUCIBLE | 14 conditions 7 significant recoveries 0 degradations; calib_boot.json | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-POST-ST SparseTrack | REPRODUCIBLE | 68.876 to 68.931 HOTA n.s.; GitHub Actions | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-POST-PD PD-SORT external | REPRODUCIBLE | HOTA +0.61 CI above zero MOTA +1.13 IDF1 +0.82 7/7 sequences | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-POST-HS Hybrid-SORT external | REPRODUCIBLE | identical output; reproduction CLOSE 66.698 vs 67.1 | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-POST-CTW C-TWiX external | REPRODUCIBLE | KITTIMOT car -1.52 HOTA CI below zero; MOT17 -0.05 DanceTrack -1.00 n.s. | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-POST-TOP TOPICTrack external | FAILED REPRODUCTION | 67.538 vs 69.6; excluded | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-POST-TT TrackTrack external | REPRODUCIBLE | DanceTrack -0.012 HOTA CI below zero; near pass-through | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-POST-VD VisDrone val-7 | PARTIALLY REPRODUCIBLE | YOLOv8n internal HOTA +2.17; official catastrophic cells 7 to 4; development split | EXPERIMENT_REGISTRY.md |
+| Experiment: V7-POST-RT runtime | REPRODUCIBLE | 2.95 ms mean 4.39 ms P95 per frame 4-vCPU Xeon; pipeline 57.85 to 60.44 ms | EXPERIMENT_REGISTRY.md |
+| Experiment: SCI-E1 SCI plus V7f | DONE NEGATIVE | -0.17 HOTA vs V7f only | EXPERIMENT_REGISTRY.md |
+| Experiment: G2 oracle gate | DONE NEGATIVE | all compute spaces fail the gate | EXPERIMENT_REGISTRY.md |
+| Experiment: P1-BASE baseline systems | PARTIALLY REPRODUCIBLE | r1536_n70 ByteTrack HOTA 41.586 OATrack 46.770 | EXPERIMENT_REGISTRY.md |
+| Experiment: P1-A Phase A searches | DONE NEGATIVE | no policy beat the calibration matched-static point | EXPERIMENT_REGISTRY.md |
+| Experiment: P1-B V3 joint search | PARTIALLY REPRODUCIBLE | 60-trial TPE; trial 7 frozen at 309dca5 | EXPERIMENT_REGISTRY.md |
+| Experiment: P1-SHUF shuffled control | LIMITATION | timing value beyond the action mix not shown | EXPERIMENT_REGISTRY.md |
+| Experiment: P1-STATIC first val read | DONE | static no-op policy bfa5caf | EXPERIMENT_REGISTRY.md |
+| Experiment: P1-V3 second val read | PARTIALLY REPRODUCIBLE | ByteTrack HOTA 41.586 to 44.523 OATrack 46.770 to 48.095; commit 0af0066 | EXPERIMENT_REGISTRY.md |
+| Experiment: P1-UAVDT transfer | PARTIALLY REPRODUCIBLE | MOTA ByteTrack -1.573 to 16.028 OATrack 19.607 to 22.873 | EXPERIMENT_REGISTRY.md |
+| Experiment: P1-RT runtime | PARTIALLY REPRODUCIBLE | 4.256 and 4.201 ms controller overhead Tesla T4 | EXPERIMENT_REGISTRY.md |
+| Experiment: P1-LEGACY U2MOT SparseTrack | HISTORICAL | Colab runs audited; artifacts on Drive | EXPERIMENT_REGISTRY.md |
+| Result: V7 main results | CANONICAL | research/final/V7_MAIN_RESULTS.json | RESULTS_CANONICAL.md |
+| Result: V7 recent externals | CANONICAL | research/final/V7_RECENT_EXTERNAL_RESULTS.json; negative or neutral | RESULTS_CANONICAL.md |
+| Result: V7 KITTI six cells | CANONICAL | research/final/V7_STATISTICS.md; 3 positive 3 not | RESULTS_CANONICAL.md |
+| Result: Paper 1 VisDrone second read | CANONICAL | research/acmot_paper_v2/SECOND_VAL_READ_V3_RESULT.json with BASELINE_SYSTEMS_RESULT.json | RESULTS_CANONICAL.md |
+| Result: Paper 1 UAVDT transfer | CANONICAL | research/acmot_paper_v2/UAVDT_TRANSFER_RESULT.json | RESULTS_CANONICAL.md |
+| Claim: P2 single-stage HOTA plus 0.9 percent | VERIFIED | OC-SORT 66.428 to 67.041 and PD-SORT 68.011 to 68.624 | PAPERS.md |
+| Claim: P2 halved scores recover 97 percent | VERIFIED | 66.166 of 67.698 and 66.72 of 66.428 | PAPERS.md |
+| Claim: P2 RT-DETR MOTA plus 12.6 and 16.3 percent | VERIFIED INCOMPLETE | 3 of 6 KITTI cells reported | PAPERS.md |
+| Claim: P2 external validation | INCOMPLETE REPORTING | recent externals omitted | PAPERS.md |
+| Claim: P2 real-time | TO NARROW | layer 2.95 ms; full pipeline about 16.5 FPS | PAPERS.md |
+| Claim: P1 ByteTrack HOTA plus 7.1 percent | VERIFIED | 41.586 to 44.523 second val read | PAPERS.md |
+| Claim: P1 UAVDT OATrack MOTA plus 16.7 percent | VERIFIED | 19.607 to 22.873 | PAPERS.md |
+| Claim: P1 4.2 ms on T4 | VERIFIED | 4.256 and 4.201 ms | PAPERS.md |
+| Figure: Paper 2 fig3 forest | SCRIPT NOT FOUND | JRTIP fig3_forest_col.pdf md5 6d64acca has no generation script in the repository | PAPERS.md |
+| Figure: Paper 2 fig4 fig5 | TRACED | byte-identical to outputs of JAIS_PAPERS/PAPER2_UNIVERSAL_ACMOT_JAIS/scripts/make_figures.py | PAPERS.md |
+| Conflict: CF-02 BoT-SORT 0020 caption | OPEN | caption says unmodified tracker fails; ledger E19 says Cholesky error with layer output | RESULTS_CANONICAL.md |
+| Conflict: CF-03 KITTI cells omitted | OPEN | Paper2_V11 shows 3 of 6 cells | RESULTS_CANONICAL.md |
+| Conflict: CF-04 recent externals omitted | OPEN | negative or neutral predeclared externals not reported | RESULTS_CANONICAL.md |
+| Conflict: CF-05 aerial val README | EXPLAINED | README run table predates the successful runs | RESULTS_CANONICAL.md |
+| Conflict: CF-07 Paper 1 second val read | OPEN | V12 does not state that val-7 was read twice | RESULTS_CANONICAL.md |
+| Failure: FX-20 V6-TF external negative | FAILED | SparseTrack -4.15 BoostTrack -5.89 HOTA | FAILED_EXPERIMENTS.md |
+| Failure: FX-24 V7f KITTI YOLOv8n regression | FAILED | two-stage MOTA -1.87 -2.43 | FAILED_EXPERIMENTS.md |
+| Failure: FX-25 V7f recent externals | FAILED | C-TWiX KITTIMOT -1.52; TrackTrack -0.012 | FAILED_EXPERIMENTS.md |
+| Failure: FX-26 SCI plus V7f | FAILED | no gain over V7f only | FAILED_EXPERIMENTS.md |
+| Failure: FX-27 G2 gate | FAILED | no compute headroom at matched compute | FAILED_EXPERIMENTS.md |
+| Failure: FX-28 Paper 1 Phase A null | FAILED | no policy beat matched static | FAILED_EXPERIMENTS.md |
+| Failure: FX-29 Paper 1 shuffled control | FAILED | timing value not shown | FAILED_EXPERIMENTS.md |
+| Dataset: DanceTrack | USED EXTERNAL | val 25 sequences; C-TWiX and TrackTrack recent externals | DATASETS_AND_SPLITS.md |
+| Dataset: KITTIMOT val | USED EXTERNAL | C-TWiX recent external car and pedestrian | DATASETS_AND_SPLITS.md |
+| Split: VisDrone2019-MOT-train calibration-8 | PAPER 1 CALIBRATION | 8 sequences 3282 frames 4 folds | DATASETS_AND_SPLITS.md |
+| Checkpoint: YOLO11m VisDrone dronefreak | FROZEN | sha256 c6f98247 AGPL-3.0 VisDrone-DET trained; Paper 1 detector | REPRODUCIBILITY.md |
+| Tracker: SparseTrack | HOST | IEEE TCSVT 2025 two-stage development host 499844f | EXPERIMENT_REGISTRY.md |
+| Tracker: BoostTrack | HOST | MVA 2024 two-stage development host fb5bfc3 | EXPERIMENT_REGISTRY.md |
+| Tracker: OC-SORT | HOST | CVPR 2023 single-stage host | EXPERIMENT_REGISTRY.md |
+| Tracker: PD-SORT | HOST | IEEE TCE 2025 single-stage predeclared external af21db6 | EXPERIMENT_REGISTRY.md |
+| Tracker: Hybrid-SORT | HOST | AAAI 2024 two-stage predeclared external 396f8d3 | EXPERIMENT_REGISTRY.md |
+| Tracker: C-TWiX | HOST | Pattern Recognition 2025 recent external 3cff9cc | EXPERIMENT_REGISTRY.md |
+| Tracker: TOPICTrack | HOST | IEEE TIP 2025 recent external e7b260f | EXPERIMENT_REGISTRY.md |
+| Tracker: TrackTrack | HOST | CVPR 2025 recent external ee7f1c5 | EXPERIMENT_REGISTRY.md |
+| Commit: 0af0066 | HISTORY | Paper 1 second val read of frozen v3 | EXPERIMENT_REGISTRY.md |
+| Commit: 309dca5 | HISTORY | Paper 1 v3 controller freeze | EXPERIMENT_REGISTRY.md |
+| Commit: 488df9a | HISTORY | V7f freeze commit | VERSION_HISTORY.md |
+| Decision: D-030 paper registry and venues | ACTIVE | PAPERS.md canonical; Paper 1 JAIS; Paper 2 JRTIP | DECISIONS.md |
+| Decision: D-031 Paper 2 audit fixes | ACTIVE | Paper2_V11 not submitted until audit items fixed | DECISIONS.md |
 
 ## Relations
 | Subject | Relation | Object |
@@ -170,8 +301,8 @@ Edit this file when the project state changes, then rebuild the graph.
 | Project: Universal AC-MOT | HAS_VERSION | Version: V4 |
 | Project: Universal AC-MOT | HAS_VERSION | Version: V5 learned controller |
 | Project: Universal AC-MOT | HAS_VERSION | Version: V5-TF |
-| Project: Universal AC-MOT | CURRENT_VERSION | Version: V6-TF |
-| Project: Universal AC-MOT | FINAL_TARGET | Version: V6-TF |
+| Project: Universal AC-MOT | CURRENT_VERSION | Version: V7 |
+| Project: Universal AC-MOT | FINAL_TARGET | Version: V7 |
 | Project: Universal AC-MOT | HAS_VERSION | Version: V6-TF |
 | Project: Universal AC-MOT | BASELINE_ONLY | Version: V4 |
 | Component: Universal AC Controller | HAS_CANDIDATE_RULE | Rule: F5 scene-adaptive resolution R-res |
@@ -189,13 +320,13 @@ Edit this file when the project state changes, then rebuild the graph.
 | Decision: D-023 E39 C5 blockers | SUPPORTED_BY | Experiment: E39 constant audit |
 | Decision: D-023 E39 C5 blockers | REQUIRES | Experiment: E41 exact-Otsu family |
 | Decision: D-024 live replay parity | SUPPORTED_BY | Experiment: E40 F3 live replay parity |
-| Constraint: C0 final target V6-TF | APPLIES_TO | Version: V6-TF |
-| Constraint: C0 final target V6-TF | APPLIES_TO | Version: V4 |
-| Constraint: C0 final target V6-TF | DERIVED_FROM | Decision: D-018 final target V5-TF |
+| Constraint: C0 final target V7 | APPLIES_TO | Version: V6-TF |
+| Constraint: C0 final target V7 | APPLIES_TO | Version: V4 |
+| Constraint: C0 final target V7 | DERIVED_FROM | Decision: D-018 final target V5-TF |
 | Protocol: Amendment 7 | GOVERNS | Version: V5-TF |
 | Protocol: Amendment 7 | GOVERNS | Experiment: E39 constant audit |
 | Experiment: E39 constant audit | EVALUATES | Version: V5-TF |
-| Project: Universal AC-MOT | LATEST_FROZEN_VERSION | Version: V6-TF |
+| Project: Universal AC-MOT | LATEST_FROZEN_VERSION | Version: V7 |
 | Project: Universal AC-MOT | NEXT_EXPERIMENT | Experiment: E48 confirmation-16 |
 | Version: V1 | SUPERSEDES | Version: Legacy AC-MOT |
 | Version: V3 | SUPERSEDES | Version: V1 |
@@ -392,9 +523,200 @@ Edit this file when the project state changes, then rebuild the graph.
 | Version: V6-TF | USES_COMPONENT | Component: Nested Otsu Bands |
 | Version: V6-TF | USES_COMPONENT | Component: ECDF Normaliser |
 | Protocol: Amendment 9 | GOVERNS | Version: V6-TF |
-| Constraint: C0 final target V6-TF | DERIVED_FROM | Decision: D-026 E41 rejected V6-TF target |
+| Constraint: C0 final target V7 | DERIVED_FROM | Decision: D-026 E41 rejected V6-TF target |
 | Experiment: E54 SparseTrack external transfer | EVALUATES | Version: V6-TF |
 | Decision: D-029 external transfer negative | RECORDED_IN | Protocol: Amendment 9 |
+| Project: Universal AC-MOT | HAS_VERSION | Version: V7 |
+| Version: V7 | FOLLOWS | Version: V6-TF |
+| Version: V7 | FROZEN_AS | Tag: universal-acmot-v7-freeze |
+| Version: V7 | LOCKED_BY | Lock: V7_POLICY_LOCK |
+| Project: Universal AC-MOT | HAS_PAPER | Paper: Paper 0 ICMISI survey |
+| Project: Universal AC-MOT | HAS_PAPER | Paper: Paper 1 AC-MOT JAIS |
+| Project: Universal AC-MOT | HAS_PAPER | Paper: Paper 2 SCL JRTIP |
+| Paper: Paper 0 ICMISI survey | PUBLISHED_IN | Venue: IEEE ICMISI 2026 |
+| Paper: Paper 1 AC-MOT JAIS | SUBMITTED_TO | Venue: Journal of Aerospace Information Systems |
+| Paper: Paper 2 SCL JRTIP | TARGETS | Venue: Journal of Real-Time Image Processing |
+| Paper: Paper 1 AC-MOT JAIS | HAS_SUBMISSION | Submission: JAIS 2026-10-I012138 |
+| Submission: JAIS 2026-10-I012138 | USES_MANUSCRIPT | Manuscript: Paper1_V12_JAIS |
+| Paper: Paper 1 AC-MOT JAIS | LATEST_VERSION | Manuscript: Paper1_V13_JAIS |
+| Manuscript: Paper1_V13_JAIS | REVISES | Manuscript: Paper1_V12_JAIS |
+| Manuscript: Paper1_V12_JAIS | REVISES | Manuscript: Paper1_V6 Springer |
+| Manuscript: Paper1_V6 Springer | REVISES | Manuscript: Paper1_V5 Springer |
+| Paper: Paper 1 AC-MOT JAIS | DESCRIBES | Method: AC-MOT operating-point controller |
+| Paper: Paper 1 AC-MOT JAIS | EVIDENCE_FROM | Tag: acmot-v3-exp-2026-10-04-freeze |
+| Paper: Paper 1 AC-MOT JAIS | EVALUATED_ON | Dataset: VisDrone2019-MOT |
+| Paper: Paper 1 AC-MOT JAIS | EVALUATED_ON | Dataset: UAVDT |
+| Paper: Paper 1 AC-MOT JAIS | USES_TRACKER | Tracker: ByteTrack |
+| Paper: Paper 1 AC-MOT JAIS | USES_TRACKER | Tracker: OATrack |
+| Paper: Paper 2 SCL JRTIP | DESCRIBES | Method: SCL self-calibrating control layer |
+| Method: SCL self-calibrating control layer | IS_FROZEN_POLICY | Version: V7 |
+| Paper: Paper 2 SCL JRTIP | LATEST_VERSION | Manuscript: Paper2_V11 |
+| Manuscript: Paper2_V11 | REVISES | Manuscript: Paper2_V10 |
+| Review: Paper2_V11 internal audit | AUDITS | Manuscript: Paper2_V11 |
+| Paper: Paper 2 SCL JRTIP | CITES | Paper: Paper 1 AC-MOT JAIS |
+| Paper: Paper 2 SCL JRTIP | EVALUATED_ON | Dataset: MOT17 |
+| Paper: Paper 2 SCL JRTIP | EVALUATED_ON | Dataset: KITTI tracking |
+| Paper: Paper 2 SCL JRTIP | DEVELOPED_ON | Dataset: VisDrone2019-MOT |
+| Paper: Paper 2 SCL JRTIP | USES_DETECTOR | Detector: YOLOv8n |
+| Paper: Paper 2 SCL JRTIP | USES_DETECTOR | Detector: RT-DETR-L |
+| Paper: Paper 2 SCL JRTIP | USES_TRACKER | Tracker: ByteTrack |
+| Paper: Paper 2 SCL JRTIP | USES_TRACKER | Tracker: BoT-SORT |
+| Person: Ahmed Gouda Ismail | AUTHOR_OF | Paper: Paper 0 ICMISI survey |
+| Person: Ahmed Gouda Ismail | AUTHOR_OF | Paper: Paper 1 AC-MOT JAIS |
+| Person: Ahmed Gouda Ismail | AUTHOR_OF | Paper: Paper 2 SCL JRTIP |
+| Person: Mohamed S. Mohamed | SUPERVISES | Paper: Paper 1 AC-MOT JAIS |
+| Person: Mohamed S. Mohamed | SUPERVISES | Paper: Paper 2 SCL JRTIP |
+| Person: Tarek Ahmed Mahmoud | SUPERVISES | Paper: Paper 1 AC-MOT JAIS |
+| Person: Tarek Ahmed Mahmoud | SUPERVISES | Paper: Paper 2 SCL JRTIP |
+| Rule: Paper versioning and testing | GOVERNS | Paper: Paper 1 AC-MOT JAIS |
+| Rule: Paper versioning and testing | GOVERNS | Paper: Paper 2 SCL JRTIP |
+| Decision: D-032 V7f approved final version | SELECTS | Version: V7 |
+| Decision: D-032 V7f approved final version | RECORDED_IN | Protocol: Amendment 10 |
+| Constraint: C0 final target V7 | DERIVED_FROM | Decision: D-032 V7f approved final version |
+| Constraint: C0 final target V7 | APPLIES_TO | Version: V7 |
+| Version: V7 | SUPERSEDES | Version: V6-TF |
+| Decision: D-032 V7f approved final version | SUPERSEDES | Decision: D-026 E41 rejected V6-TF target |
+| Line: Universal AC-MOT layer | HAS_VERSION | Version: V7 |
+| Line: Universal AC-MOT layer | HAS_VERSION | Version: V6-TF |
+| Line: Universal AC-MOT layer | HAS_VERSION | Version: V7a-V7d |
+| Version: V7 | SUPERSEDES | Version: V7a-V7d |
+| Version: V7a-V7d | FOLLOWS | Version: V6-TF |
+| Line: legacy thesis AC-MOT | HAS_VERSION | Version: Legacy AC-MOT |
+| Line: compute layers on V7f | HAS_VERSION | Version: C1 SCI plus V7f |
+| Line: compute layers on V7f | HAS_VERSION | Version: G1 constant compute plus V7f |
+| Line: compute layers on V7f | HAS_VERSION | Version: G2 compute adaptation |
+| Version: C1 SCI plus V7f | BUILDS_ON | Version: V7 |
+| Version: G1 constant compute plus V7f | BUILDS_ON | Version: V7 |
+| Version: G2 compute adaptation | BUILDS_ON | Version: V7 |
+| Line: Paper 1 operating-point controller | HAS_VERSION | Version: AC-MOT v3 controller |
+| Paper: Paper 1 AC-MOT JAIS | DESCRIBES_VERSION | Version: AC-MOT v3 controller |
+| Paper: Paper 2 SCL JRTIP | DESCRIBES_VERSION | Version: V7 |
+| Version: V7 | USES_MECHANISM | Mechanism: nested Otsu bands |
+| Mechanism: nested Otsu bands | IMPLEMENTED_BY | Module: acmot_v7.py V7Layer |
+| Version: V7 | USES_MECHANISM | Mechanism: clean noisy mode |
+| Mechanism: clean noisy mode | IMPLEMENTED_BY | Module: acmot_v7.py V7Layer |
+| Version: V7 | USES_MECHANISM | Mechanism: background check |
+| Mechanism: background check | IMPLEMENTED_BY | Module: acmot_v7.py V7Layer |
+| Version: V7 | USES_MECHANISM | Mechanism: rank score remap |
+| Mechanism: rank score remap | IMPLEMENTED_BY | Module: acmot_v7.py V7Layer |
+| Version: V7 | USES_MECHANISM | Mechanism: crowd-safe duplicates |
+| Mechanism: crowd-safe duplicates | IMPLEMENTED_BY | Module: acmot_v7.py V7Layer |
+| Version: V7 | USES_MECHANISM | Mechanism: continuation rescue |
+| Mechanism: continuation rescue | IMPLEMENTED_BY | Module: acmot_v7.py V7Layer |
+| Version: V7 | USES_MECHANISM | Mechanism: motion tolerance |
+| Mechanism: motion tolerance | IMPLEMENTED_BY | Module: acmot_v7.py V7Layer |
+| Version: V7 | USES_MECHANISM | Mechanism: host contract |
+| Mechanism: host contract | IMPLEMENTED_BY | Module: acmot_v7.py V7Layer |
+| Version: V6-TF | USES_MECHANISM | Mechanism: nested Otsu bands |
+| Version: V6-TF | USES_MECHANISM | Mechanism: motion tolerance |
+| Version: AC-MOT v3 controller | USES_MECHANISM | Mechanism: SCI scene index |
+| Mechanism: SCI scene index | IMPLEMENTED_BY | Module: acmot_sci.py SceneLayer |
+| Version: C1 SCI plus V7f | USES_MECHANISM | Mechanism: adaptive resolution before detector |
+| Failure: FX-26 SCI plus V7f | REJECTS | Mechanism: adaptive resolution before detector |
+| Version: V7 | IMPLEMENTED_IN_MODULE | Module: acmot_v7.py V7Layer |
+| Version: C1 SCI plus V7f | IMPLEMENTED_IN_MODULE | Module: acmot_sci.py SceneLayer |
+| Version: C1 SCI plus V7f | IMPLEMENTED_IN_MODULE | Module: acmot_sci_v7.py LevelSource |
+| Version: G1 constant compute plus V7f | IMPLEMENTED_IN_MODULE | Module: acmot_sci_v7.py LevelSource |
+| Version: G2 compute adaptation | IMPLEMENTED_IN_MODULE | Module: acmot_g2.py G2Pipeline |
+| Version: V6-TF | IMPLEMENTED_IN_MODULE | Module: online_calibration.py |
+| Version: AC-MOT v3 controller | IMPLEMENTED_IN_MODULE | Module: acmot_sci.py SceneLayer |
+| Version: AC-MOT v3 controller | IMPLEMENTED_IN_MODULE | Module: run_v3_joint_search.py |
+| Version: AC-MOT v3 controller | FROZEN_AT | Commit: 309dca5 |
+| Version: V7 | FROZEN_AT | Commit: 488df9a |
+| Experiment: V7-E16 whole-stream mode | LED_TO | Version: V7 |
+| Experiment: V7-E17 continuation rescue | LED_TO | Version: V7 |
+| Experiment: V7-E18 background check | LED_TO | Version: V7 |
+| Experiment: V7-E16 whole-stream mode | SUPPORTS | Mechanism: clean noisy mode |
+| Experiment: V7-E17 continuation rescue | SUPPORTS | Mechanism: continuation rescue |
+| Experiment: V7-E18 background check | SUPPORTS | Mechanism: background check |
+| Experiment: V7-E20 host-relative band | REJECTED_BY_EVIDENCE | Version: V7a-V7d |
+| Failure: FX-20 V6-TF external negative | MOTIVATED | Version: V7a-V7d |
+| Experiment: V7-STRESS-L score shifts | EVALUATES | Version: V7 |
+| Experiment: V7-POST-ST SparseTrack | EVALUATES | Version: V7 |
+| Experiment: V7-POST-PD PD-SORT external | EVALUATES | Version: V7 |
+| Experiment: V7-POST-HS Hybrid-SORT external | EVALUATES | Version: V7 |
+| Experiment: V7-POST-CTW C-TWiX external | EVALUATES | Version: V7 |
+| Experiment: V7-POST-TOP TOPICTrack external | EVALUATES | Version: V7 |
+| Experiment: V7-POST-TT TrackTrack external | EVALUATES | Version: V7 |
+| Experiment: V7-POST-VD VisDrone val-7 | EVALUATES | Version: V7 |
+| Experiment: V7-POST-RT runtime | EVALUATES | Version: V7 |
+| Experiment: V7-E19 KITTI motion rule | EVALUATES | Version: V7 |
+| Experiment: V7-E19 KITTI motion rule | USES_MODULE | Module: tools/v7/kitti/kitti_eval.py |
+| Experiment: V7-POST-PD PD-SORT external | USES_MODULE | Module: tools/v7/mot17_eval_v7.py |
+| Experiment: V7-POST-RT runtime | USES_MODULE | Module: tools/v7/benchmark.py |
+| Experiment: V7-POST-VD VisDrone val-7 | USES_MODULE | Module: tools/v7/dev.py |
+| Experiment: V7-STRESS-L score shifts | USES_MODULE | Module: tools/v7/bootstrap.py |
+| Experiment: V7-POST-PD PD-SORT external | USES_TRACKER | Tracker: PD-SORT |
+| Experiment: V7-POST-HS Hybrid-SORT external | USES_TRACKER | Tracker: Hybrid-SORT |
+| Experiment: V7-POST-CTW C-TWiX external | USES_TRACKER | Tracker: C-TWiX |
+| Experiment: V7-POST-TOP TOPICTrack external | USES_TRACKER | Tracker: TOPICTrack |
+| Experiment: V7-POST-TT TrackTrack external | USES_TRACKER | Tracker: TrackTrack |
+| Experiment: V7-POST-ST SparseTrack | USES_TRACKER | Tracker: SparseTrack |
+| Experiment: V7-POST-CTW C-TWiX external | USES_DATASET | Dataset: KITTIMOT val |
+| Experiment: V7-POST-CTW C-TWiX external | USES_DATASET | Dataset: DanceTrack |
+| Experiment: V7-POST-TT TrackTrack external | USES_DATASET | Dataset: DanceTrack |
+| Experiment: V7-POST-PD PD-SORT external | USES_DATASET | Dataset: MOT17 |
+| Experiment: V7-E19 KITTI motion rule | USES_DATASET | Dataset: KITTI tracking |
+| Experiment: V7-POST-VD VisDrone val-7 | USES_DATASET | Split: VisDrone2019-MOT-val |
+| Experiment: V7-POST-CTW C-TWiX external | PRODUCES | Result: V7 recent externals |
+| Experiment: V7-POST-TT TrackTrack external | PRODUCES | Result: V7 recent externals |
+| Experiment: V7-POST-PD PD-SORT external | PRODUCES | Result: V7 main results |
+| Experiment: V7-E19 KITTI motion rule | PRODUCES | Result: V7 KITTI six cells |
+| Failure: FX-24 V7f KITTI YOLOv8n regression | FOUND_IN | Result: V7 KITTI six cells |
+| Failure: FX-25 V7f recent externals | FOUND_IN | Result: V7 recent externals |
+| Experiment: SCI-E1 SCI plus V7f | EVALUATES | Version: C1 SCI plus V7f |
+| Failure: FX-26 SCI plus V7f | FOUND_IN | Experiment: SCI-E1 SCI plus V7f |
+| Experiment: G2 oracle gate | EVALUATES | Version: G2 compute adaptation |
+| Failure: FX-27 G2 gate | FOUND_IN | Experiment: G2 oracle gate |
+| Experiment: P1-BASE baseline systems | EVALUATES | Version: AC-MOT v3 controller |
+| Experiment: P1-A Phase A searches | EVALUATES | Version: AC-MOT v3 controller |
+| Experiment: P1-B V3 joint search | EVALUATES | Version: AC-MOT v3 controller |
+| Experiment: P1-SHUF shuffled control | EVALUATES | Version: AC-MOT v3 controller |
+| Experiment: P1-STATIC first val read | EVALUATES | Version: AC-MOT v3 controller |
+| Experiment: P1-V3 second val read | EVALUATES | Version: AC-MOT v3 controller |
+| Experiment: P1-UAVDT transfer | EVALUATES | Version: AC-MOT v3 controller |
+| Experiment: P1-RT runtime | EVALUATES | Version: AC-MOT v3 controller |
+| Experiment: P1-LEGACY U2MOT SparseTrack | EVALUATES | Version: Legacy AC-MOT |
+| Experiment: P1-V3 second val read | PRODUCES | Result: Paper 1 VisDrone second read |
+| Experiment: P1-BASE baseline systems | PRODUCES | Result: Paper 1 VisDrone second read |
+| Experiment: P1-UAVDT transfer | PRODUCES | Result: Paper 1 UAVDT transfer |
+| Experiment: P1-V3 second val read | USES_MODULE | Module: run_v3_second_val_read.py |
+| Experiment: P1-V3 second val read | USES_MODULE | Module: tools/v6/eval_official.py |
+| Experiment: P1-V3 second val read | USES_MODULE | Module: adapters/trackers/oatrack.py |
+| Experiment: P1-V3 second val read | RECORDED_AT | Commit: 0af0066 |
+| Experiment: P1-V3 second val read | USES_DATASET | Split: VisDrone2019-MOT-val |
+| Experiment: P1-B V3 joint search | USES_DATASET | Split: VisDrone2019-MOT-train calibration-8 |
+| Experiment: P1-UAVDT transfer | USES_DATASET | Split: UAVDT test |
+| Experiment: P1-V3 second val read | USES_CHECKPOINT | Checkpoint: YOLO11m VisDrone dronefreak |
+| Failure: FX-28 Paper 1 Phase A null | FOUND_IN | Experiment: P1-A Phase A searches |
+| Failure: FX-29 Paper 1 shuffled control | FOUND_IN | Experiment: P1-SHUF shuffled control |
+| Claim: P2 single-stage HOTA plus 0.9 percent | SUPPORTED_BY | Experiment: V7-POST-PD PD-SORT external |
+| Paper: Paper 2 SCL JRTIP | MAKES_CLAIM | Claim: P2 single-stage HOTA plus 0.9 percent |
+| Claim: P2 halved scores recover 97 percent | SUPPORTED_BY | Experiment: V7-STRESS-L score shifts |
+| Paper: Paper 2 SCL JRTIP | MAKES_CLAIM | Claim: P2 halved scores recover 97 percent |
+| Claim: P2 RT-DETR MOTA plus 12.6 and 16.3 percent | SUPPORTED_BY | Experiment: V7-E19 KITTI motion rule |
+| Paper: Paper 2 SCL JRTIP | MAKES_CLAIM | Claim: P2 RT-DETR MOTA plus 12.6 and 16.3 percent |
+| Claim: P2 external validation | SUPPORTED_BY | Experiment: V7-POST-CTW C-TWiX external |
+| Paper: Paper 2 SCL JRTIP | MAKES_CLAIM | Claim: P2 external validation |
+| Claim: P2 real-time | SUPPORTED_BY | Experiment: V7-POST-RT runtime |
+| Paper: Paper 2 SCL JRTIP | MAKES_CLAIM | Claim: P2 real-time |
+| Claim: P1 ByteTrack HOTA plus 7.1 percent | SUPPORTED_BY | Experiment: P1-V3 second val read |
+| Paper: Paper 1 AC-MOT JAIS | MAKES_CLAIM | Claim: P1 ByteTrack HOTA plus 7.1 percent |
+| Claim: P1 UAVDT OATrack MOTA plus 16.7 percent | SUPPORTED_BY | Experiment: P1-UAVDT transfer |
+| Paper: Paper 1 AC-MOT JAIS | MAKES_CLAIM | Claim: P1 UAVDT OATrack MOTA plus 16.7 percent |
+| Claim: P1 4.2 ms on T4 | SUPPORTED_BY | Experiment: P1-RT runtime |
+| Paper: Paper 1 AC-MOT JAIS | MAKES_CLAIM | Claim: P1 4.2 ms on T4 |
+| Paper: Paper 2 SCL JRTIP | HAS_FIGURE | Figure: Paper 2 fig3 forest |
+| Paper: Paper 2 SCL JRTIP | HAS_FIGURE | Figure: Paper 2 fig4 fig5 |
+| Conflict: CF-02 BoT-SORT 0020 caption | AFFECTS | Manuscript: Paper2_V11 |
+| Conflict: CF-03 KITTI cells omitted | AFFECTS | Manuscript: Paper2_V11 |
+| Conflict: CF-04 recent externals omitted | AFFECTS | Manuscript: Paper2_V11 |
+| Conflict: CF-07 Paper 1 second val read | AFFECTS | Manuscript: Paper1_V12_JAIS |
+| Conflict: CF-05 aerial val README | AFFECTS | Experiment: V7-POST-VD VisDrone val-7 |
+| Review: Paper2_V11 internal audit | RECORDS | Conflict: CF-04 recent externals omitted |
+| Decision: D-030 paper registry and venues | GOVERNS | Paper: Paper 1 AC-MOT JAIS |
+| Decision: D-031 Paper 2 audit fixes | GOVERNS | Manuscript: Paper2_V11 |
+| Decision: D-031 Paper 2 audit fixes | SUPPORTED_BY | Review: Paper2_V11 internal audit |
 
 ## Code links
 | Entity | Relation | Code file |
@@ -433,3 +755,20 @@ Edit this file when the project state changes, then rebuild the graph.
 | Component: Nested Otsu Bands | IMPLEMENTED_IN | universal_policy_pipeline.py |
 | Experiment: E43 V6 development X1-X5 | IMPLEMENTED_IN | tools/v6/dev.py |
 | Experiment: E54 SparseTrack external transfer | IMPLEMENTED_IN | tools/v6/external/sparsetrack_v6.py |
+| Method: SCL self-calibrating control layer | IMPLEMENTED_IN | acmot_v7.py |
+| Version: V7 | IMPLEMENTED_IN | acmot_v7.py |
+| Method: AC-MOT operating-point controller | IMPLEMENTED_IN | acmot_sci.py |
+| Module: acmot_v7.py V7Layer | IMPLEMENTED_IN | acmot_v7.py |
+| Module: acmot_sci.py SceneLayer | IMPLEMENTED_IN | acmot_sci.py |
+| Module: acmot_sci_v7.py LevelSource | IMPLEMENTED_IN | acmot_sci_v7.py |
+| Module: acmot_g2.py G2Pipeline | IMPLEMENTED_IN | acmot_g2.py |
+| Module: online_calibration.py | IMPLEMENTED_IN | online_calibration.py |
+| Module: tools/v7/dev.py | IMPLEMENTED_IN | tools/v7/dev.py |
+| Module: tools/v7/bootstrap.py | IMPLEMENTED_IN | tools/v7/bootstrap.py |
+| Module: tools/v7/kitti/kitti_eval.py | IMPLEMENTED_IN | tools/v7/kitti/kitti_eval.py |
+| Module: tools/v7/mot17_eval_v7.py | IMPLEMENTED_IN | tools/v7/mot17_eval_v7.py |
+| Module: tools/v7/benchmark.py | IMPLEMENTED_IN | tools/v7/benchmark.py |
+| Module: tools/v6/eval_official.py | IMPLEMENTED_IN | tools/v6/eval_official.py |
+| Module: adapters/trackers/oatrack.py | IMPLEMENTED_IN | adapters/trackers/oatrack.py |
+| Module: run_v3_joint_search.py | IMPLEMENTED_IN | research/acmot_paper_v2/controller_search/run_v3_joint_search.py |
+| Module: run_v3_second_val_read.py | IMPLEMENTED_IN | research/acmot_paper_v2/run_v3_second_val_read.py |
