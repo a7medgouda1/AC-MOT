@@ -1093,6 +1093,21 @@
       "commit": "5a991405ccaf844ceffe36d7ace2405cf476b3c7",
       "tree": "2862287207ad5a95cdc775f42335a3bbc9280fb8",
       "evidence": "committed results/evidence/frozen config (immutable since R2, 2026-10-20); new files may be added, existing ones never change"
+    },
+    {
+      "id": "paper2/V12",
+      "family": "paper2",
+      "version": 12,
+      "label": "PAPER2_V7F_JRTIP_challenge_rev12",
+      "kind": "version_dir",
+      "path": "JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev12",
+      "status": "ACTIVE",
+      "parent": "paper2/V11",
+      "parent_commit": "dbf162ca364886c49b083801f0f559e5f56ffac1",
+      "parent_tree": "924cd261e4c188416458e9598f02219f50425882",
+      "created": "2026-10-21",
+      "created_at_head": "e17709ba7c36ce341e964d2581978b1fba5a0569",
+      "evidence": "copy of paper2/V11 (dbf162ca3) by tools/version_registry.py"
     }
   ]
 }

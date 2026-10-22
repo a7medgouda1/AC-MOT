@@ -1,5 +1,8 @@
 # NEW SESSION PROMPT (copy everything inside the fence)
 
+Full state reconstruction, for an owner-requested state review only. Routine tasks follow the fast
+workflow in AGENTS.md (D-038) and do not run these steps.
+
 ```text
 Before doing anything, reconstruct the Universal AC-MOT project state from the
 repository (owner's Mac: /Users/ahmedgouda/Desktop/Universal-ACMOT; paper

@@ -6,11 +6,10 @@
 1. Paper 1 (JAIS 2026-10-I012138): confirm both co-authors completed the
    ScholarOne confirmation; record the declarations as entered; wait for
    reviews; revise from Paper1_V13_JAIS in a new version folder.
-2. Paper 2: owner answers (funding, code availability, new baselines now or at
-   revision) -> build Paper2_V12 fixing the 9 audit items in PAPERS.md
-   (data table, all 6 KITTI cells, BoT-SORT 0020 failure, contract values,
-   rank memory, real-time wording, Hybrid-SORT cause, external scope, Springer
-   declarations and reference rule) -> supervisor -> JRTIP submission.
+2. Paper 2 (D-036, D-037, D-039): Paper2_V23 (challenge copy without VisDrone, journal submission layout, with the E57/E58 positive cells) and Paper2_V24 (same content, two columns), now Paper2_V36 (V35 without the declarations section, which must be added back for submission; 15 pages, track paths in the KITTI figure; condensed from Paper2_V34/V33, 25 pages; positives-only challenge copy of Paper2_V31, which holds the review wording fixes; V29 content in Paper 1's section structure and style: two columns, ACT comparison E59/E60, IDS in every table and in the text, plain-English terms table, metric equations in the text, figures to the journal artwork rules, score-groups figure and KITTI example frame, short discussion) go to the supervisor; Paper2_V19 (all results) is the submission candidate, then to The
+   Visual Computer. Declarations confirmed (no funding, code on request); owner adds the author photos
+   (black and white, passport size). On push: commit V12 and its registry entry first, then register V13,
+   V14 to V21 in separate commits (checked registry edit; one new version per family per change).
 3. Paper2_V11 (JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev11) is not pushed yet.
 4. Knowledge base (2026-10-20): resolve the OPEN conflicts CF-02, CF-03, CF-04, CF-07
    (RESULTS_CANONICAL.md) in the next manuscript versions; restore the missing artifacts listed in

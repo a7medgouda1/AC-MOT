@@ -1,0 +1,61 @@
+\section{Introduction}\label{sec:intro}
+
+Multi-object tracking (MOT) finds every object of interest in a video and gives each one an
+identity number (ID) that stays the same over time. It is used in surveillance, driving, and drone
+systems \cite{zhu2022visdrone,wu2022uavsurvey}, where results are needed with little delay. Most
+MOT systems follow the tracking-by-detection design \cite{adzemovic2026survey}: in each frame, a
+detector returns candidate boxes with confidence scores, and a tracker links them into tracks, one
+per object \cite{bewley2016sort,zhang2022bytetrack,cao2023ocsort}. The tracker uses a box only if
+its score passes a fixed threshold. A two-stage tracker, such as ByteTrack, also uses lower-score
+boxes in a second step to continue unmatched tracks \cite{zhang2022bytetrack}; a single-stage
+tracker, such as OC-SORT, ignores every box below one threshold \cite{cao2023ocsort}.
+
+In real systems the detector is often replaced, retrained, or compressed, while the tracker keeps
+the thresholds that its authors set for another detector. Detector scores are not calibrated across
+models and conditions \cite{kuppers2020detcalib}, so a new detector usually gives scores on a
+different scale, and nothing in the system notices. The effect can be large: halving the scores of
+a published detector reduces two well-known trackers to 0 higher order tracking accuracy (HOTA)
+\cite{luiten2021hota}, because no detection passes their thresholds (Sect.~\ref{sec:shift}).
+Retuning every tracker for every detector needs labels, which a working system usually does not
+have. Adaptive-threshold methods are each built into one tracker
+\cite{ma2023adaptivebytetrack,shim2024adaptrack,act2026adaptive}, score calibration needs
+labelled data \cite{kuppers2020detcalib}, and adaptive inference methods learn their settings for
+one model \cite{han2022dynamic,jiang2018chameleon}.
+
+This paper presents a self-calibrating control layer (\scl{}) that sits between a detector and a
+tracker that are both kept fixed (frozen): their code, weights, and stored settings are not
+changed. We call the tracker that \scl{} serves the \emph{host}; it gives \scl{} four of its
+published settings, the host contract (Sect.~\ref{sec:contract}). \scl{} checks how many of the
+higher scores of recent frames form a clearly confident group, using only the scores, so it needs
+no labels. If most are confident, the host keeps its own settings, and the layer only adds a step
+that continues tracks. If many are uncertain, \scl{} chooses which candidates reach the host, gives
+them new scores, and sets the host's thresholds for the frame.
+
+One frozen configuration was tested on seven published trackers, four detection sources, and
+three datasets. With halved detector scores, \scl{} restored two trackers from 0 to about 66 HOTA.
+It improved every tested single-stage tracker, including one not seen during design, on every
+MOT17 sequence. With other detectors, it raised the multiple object tracking accuracy (MOTA) of
+two-stage trackers by up to 7.9 points on KITTI and by 24.7 points on held-out aerial data, and cut
+their identity switches by 43\% to 56\%. It reached higher HOTA than simple adaptive thresholds
+(by 2.2 to 8.6 points) and than the published ACT method under halved scores and on held-out aerial
+data, while well-matched strong trackers stayed within 0.06 HOTA points of their own accuracy.
+
+The main contributions are:
+\begin{enumerate}
+\item \scl{}, a training-free and causal layer that keeps the tracker's settings when the scores are
+      clean and takes control only when they are noisy, with a host contract that lets one fixed
+      configuration serve single-stage and two-stage trackers without changing them
+      (Sect.~\ref{sec:method}).
+\item A development path from always-on banding (\aob{}), an earlier design that always
+      intervened, in which each step is compared with the step it was built on
+      (Sect.~\ref{sec:development}).
+\item An evaluation of one frozen configuration with paired bootstrap intervals, comparisons with
+      simple adaptive thresholds and the published ACT method, an analysis of each part of the
+      layer (Sect.~\ref{sec:results}), and a cost of about 3 ms per frame on an ordinary processor
+      (central processing unit, CPU) (Sect.~\ref{sec:cost}).
+\end{enumerate}
+
+Section~\ref{sec:related} covers the data, metrics, and related work;
+Sections~\ref{sec:method} and~\ref{sec:development} present \scl{} and its development;
+Section~\ref{sec:results} gives the results; and Sections~\ref{sec:discussion}
+and~\ref{sec:conclusion} discuss and conclude.

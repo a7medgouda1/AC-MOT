@@ -339,9 +339,11 @@ def test_graph_rebuild_leaves_completed_versions_unchanged(repo):
 def test_real_registry_verifies_and_numbers():
     reg = VR.load("HEAD") if VR.exists_at("HEAD", VR.REG_REL) else VR.load(None)
     assert not VR.verify(reg, "HEAD")
-    assert VR.next_number("paper1", reg) == 14
-    assert VR.next_number("paper2", reg) == 12
-    assert VR.next_number("universal-acmot", reg) == 8
+    # the next number is always one above every number already used (registry, Git, disk)
+    for fam, floor in (("paper1", 14), ("paper2", 12), ("universal-acmot", 8)):
+        used = VR.family_numbers(reg["families"][fam], reg, fam, "HEAD") | \
+            VR.family_numbers(reg["families"][fam], reg, fam, None)
+        assert VR.next_number(fam, reg) == max(used) + 1 >= floor, fam
     ids = {e["id"]: e["status"] for e in reg["entries"]}
     assert ids["paper1/V12"] == ids["paper1/V13"] == ids["paper2/V11"] == "COMPLETED"
     assert ids["universal-acmot/V7"] == "FROZEN"

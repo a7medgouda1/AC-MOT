@@ -168,10 +168,10 @@ Edit this file when the project state changes, then rebuild the graph.
 | Person: Tarek Ahmed Mahmoud | SUPERVISOR | Professor Computer Engineering Department Egypt University of Informatics third author | PAPERS.md |
 | Paper: Paper 0 ICMISI survey | PUBLISHED | Real-Time Object Detection and Tracking: Challenges, Innovations and Future Directions; IEEE ICMISI 2026 pp 119-125 DOI 10.1109/ICMISI69868.2026.11583994 | PAPERS.md |
 | Paper: Paper 1 AC-MOT JAIS | SUBMITTED | Optimization-Guided Adaptive Detector Operating-Point Control for Multi-Object Aerial Tracking; training-free scene-adaptive operating-point controller; JAIS manuscript 2026-10-I012138 | PAPERS.md |
-| Paper: Paper 2 SCL JRTIP | IN PREPARATION | Training-Free Self-Calibrating Control Layer for Heterogeneous Multi-Object Trackers; frozen V7f; target JRTIP; not submitted | PAPERS.md |
+| Paper: Paper 2 SCL JRTIP | IN PREPARATION | Training-Free Self-Calibrating Control Layer for Heterogeneous Multi-Object Trackers; frozen V7f; target The Visual Computer (D-036, was JRTIP); not submitted | PAPERS.md |
 | Venue: IEEE ICMISI 2026 | CONFERENCE | Machine Intelligence and Smart Innovation Alexandria May 9-11 2026 IEEE catalog CFP26UT0-POD | PAPERS.md |
 | Venue: Journal of Aerospace Information Systems | JOURNAL | AIAA JAIS ScholarOne mc.manuscriptcentral.com/aiaa new-aiaa template 20-26 pages abstract 100-200 words no acronyms OA optional | PAPERS.md |
-| Venue: Journal of Real-Time Image Processing | JOURNAL TARGET | Springer JRTIP sn-jnl template two-column abstract up to 250 words Statements and Declarations required | PAPERS.md |
+| Venue: Journal of Real-Time Image Processing | FORMER TARGET | Springer JRTIP sn-jnl template two-column abstract up to 250 words Statements and Declarations required | PAPERS.md |
 | Submission: JAIS 2026-10-I012138 | SUBMITTED | Paper 1 submitted 18-Oct-2026 Full Paper with V12 PDF; co-author confirmations pending; declarations check in Author Center | PAPERS.md |
 | Method: AC-MOT operating-point controller | PAPER 1 METHOD | selects LOW MEDIUM HIGH detector operating point every 10 frames from SCI scene cues with recovery probe hysteresis 30-frame dwell; training-free | PAPERS.md |
 | Method: SCL self-calibrating control layer | PAPER 2 METHOD | the frozen V7f layer presented as SCL; clean mode keeps tracker settings, noisy mode remaps scores and sets thresholds, rescue for single-stage trackers | PAPERS.md |
@@ -180,7 +180,39 @@ Edit this file when the project state changes, then rebuild the graph.
 | Manuscript: Paper1_V12_JAIS | SUBMITTED VERSION | AIAA 26 pages abstract relative percentages final author titles research/acmot_paper_v2/Paper1_JAIS/Paper1_V12_JAIS | PAPERS.md |
 | Manuscript: Paper1_V13_JAIS | REVISION READY | V12 plus AI-assisted language editing Acknowledgments and SUBMISSION_HANDOFF.md research/acmot_paper_v2/Paper1_JAIS/Paper1_V13_JAIS | PAPERS.md |
 | Manuscript: Paper2_V10 | SUPERSEDED | Paper 1 supervisor comments applied JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev10 | PAPERS.md |
-| Manuscript: Paper2_V11 | LATEST NOT PUSHED | abstract relative percentages 249 words Algorithm 1 Input Output 12 pages JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev11 | PAPERS.md |
+| Manuscript: Paper2_V11 | COMPLETED | abstract relative percentages 249 words Algorithm 1 Input Output 12 pages JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev11 | PAPERS.md |
+| Manuscript: Paper2_V12 | NOT USED | The Visual Computer version with the full audit additions, kept unchanged, not used (D-037), JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev12 | PAPERS.md |
+| Manuscript: Paper2_V13 | SUPERSEDED BY V14 | V11 content with the journal requirements only, 12 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev13 | PAPERS.md |
+| Manuscript: Paper2_V14 | SUPERSEDED BY V15 | V13 content in the standard two-column Springer Nature layout, 17 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev14 | PAPERS.md |
+| Manuscript: Paper2_V15 | SUPERSEDED BY V16 | V14 content in the template peer-review layout, 36 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev15 | PAPERS.md |
+| Manuscript: Paper2_V16 | SUPERSEDED BY V17 | V15 + held-out VisDrone confirmation-16 result (E55), 37 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev16 | PAPERS.md |
+| Manuscript: Paper2_V17 | SUPERSEDED BY V18 | V16 with every journal figure rule met, 37 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev17 | PAPERS.md |
+| Manuscript: Paper2_V18 | SUPERSEDED BY V19 | V17 + held-out UAVDT result (E56), 38 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev18 | PAPERS.md |
+| Manuscript: Paper2_V19 | LATEST ACTIVE | V18 + seven The Visual Computer references, 39 pages, ready for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev19 | PAPERS.md |
+| Manuscript: Paper2_V20 | ACTIVE (supervisor copy) | V19 without the VisDrone result, owner-requested challenge copy for the supervisor, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev20 | PAPERS.md |
+| Manuscript: Paper2_V21 | ACTIVE (supervisor copy) | V20 with polished simple English, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev21 | PAPERS.md |
+| Manuscript: Paper2_V22 | ACTIVE (supervisor copy) | V21 in two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev22 | PAPERS.md |
+| Manuscript: Paper2_V23 | ACTIVE (supervisor copy) | V22 in the journal submission layout with E57/E58 (positive cells), not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev23 | PAPERS.md |
+| Manuscript: Paper2_V24 | ACTIVE (supervisor copy) | V23 content in two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev24 | PAPERS.md |
+| Manuscript: Paper2_V25 | ACTIVE (supervisor copy) | V24 with exact rho definition, figure/table fixes and the ACT comparison (E59, halved-score cells), two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev25 | PAPERS.md |
+| Manuscript: Paper2_V26 | ACTIVE (supervisor copy) | V25 with the ACT comparison on MOT17 and UAVDT (E60, Table 13), two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev26 | PAPERS.md |
+| Manuscript: Paper2_V27 | ACTIVE (supervisor copy) | V26 with IDS in every result table, a terms table and a plain-English pass, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev27 | PAPERS.md |
+| Manuscript: Paper2_V28 | ACTIVE (supervisor copy) | V27 with identity switches in the narrative and figures redrawn to the journal artwork rules, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev28 | PAPERS.md |
+| Manuscript: Paper2_V29 | ACTIVE (supervisor copy) | V28 without the running-time and analysis text, with a score-groups figure and a KITTI example frame, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev29 | PAPERS.md |
+| Manuscript: Paper2_V30 | ACTIVE (supervisor copy) | V29 restructured to follow Paper 1's sections and style (background with datasets, metric equations and survey; short discussion), two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev30 | PAPERS.md |
+| Manuscript: Paper2_V31 | ACTIVE (supervisor copy) | V30 with the review wording fixes (score-distribution modes, frozen host with per-frame thresholds, qualified claims), two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev31 | PAPERS.md |
+| Manuscript: Paper2_V32 | ACTIVE (supervisor copy) | positives-only challenge copy of V31 (caveats and unfavourable IDS columns removed, numbers unchanged), two columns, 26 pages, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev32 | PAPERS.md |
+| Manuscript: Paper2_V33 | ACTIVE (supervisor copy) | V32 in 25 pages (layout and wording only, numbers unchanged), two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev33 | PAPERS.md |
+| Manuscript: Paper2_V34 | ACTIVE (supervisor copy) | 16-page condensed version of V33 (all results kept, duplicate visuals removed), two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev34 | PAPERS.md |
+| Manuscript: Paper2_V35 | ACTIVE (supervisor copy) | 15-page version of V34 with track paths in the KITTI example figure, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev35 | PAPERS.md |
+| Manuscript: Paper2_V36 | ACTIVE (supervisor copy) | V35 without the Statements and Declarations section, 15 pages, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev36 | PAPERS.md |
+| Decision: D-042 V7f on UAVDT test | ACTIVE | owner-authorized single run of the frozen V7f, preregistered, reported in Paper2_V18 | DECISIONS.md |
+| Decision: D-041 V7f on VisDrone confirmation-16 | ACTIVE | owner-authorized single run of the frozen V7f, preregistered, reported in Paper2_V16 | DECISIONS.md |
+| Decision: D-040 Paper2_V15 template peer-review layout | ACTIVE | official template manual followed: single column, referee, flat figures, eight declarations | DECISIONS.md |
+| Decision: D-039 Paper2_V14 standard template layout | ACTIVE | V13 content, journal formatting rules applied, no content added | DECISIONS.md |
+| Decision: D-037 Paper2_V13 keeps V11 content | ACTIVE | only journal requirements and clarity fixes added to V11 | DECISIONS.md |
+| Venue: The Visual Computer | JOURNAL TARGET | Springer ISSN 1432-2315 single-blind abstract 150-250 words 4-6 keywords numbered references Statements and Declarations author biographies | PAPERS.md |
+| Decision: D-036 Paper 2 to The Visual Computer | ACTIVE | Paper2_V12 with audit fixes for The Visual Computer | DECISIONS.md |
 | Review: Paper2_V11 internal audit | OPEN | 9 verified items: VisDrone dev data missing in data table, 3 KITTI cells omitted incl BoT-SORT YOLOv8n MOTA -2.43, BoT-SORT 0020 Cholesky failure misdescribed, host contract values, rank memory, real-time wording, Hybrid-SORT cause, external scope, Springer declarations | PAPERS.md |
 | Rule: Paper versioning and testing | ACTIVE | new folder per version; PDF + standalone main.tex + overleaf zip; 0 errors 0 overfull 0 undefined; integrity check; clean-folder compile; push only when owner says push | PAPERS.md |
 | Dataset: MOT17 | USED | val-half 7 sequences published YOLOX-X detections Paper 2 development and predeclared external | PAPERS.md |
@@ -261,9 +293,9 @@ Edit this file when the project state changes, then rebuild the graph.
 | Claim: P1 4.2 ms on T4 | VERIFIED | 4.256 and 4.201 ms | PAPERS.md |
 | Figure: Paper 2 fig3 forest | SCRIPT NOT FOUND | JRTIP fig3_forest_col.pdf md5 6d64acca has no generation script in the repository | PAPERS.md |
 | Figure: Paper 2 fig4 fig5 | TRACED | byte-identical to outputs of JAIS_PAPERS/PAPER2_UNIVERSAL_ACMOT_JAIS/scripts/make_figures.py | PAPERS.md |
-| Conflict: CF-02 BoT-SORT 0020 caption | OPEN | caption says unmodified tracker fails; ledger E19 says Cholesky error with layer output | RESULTS_CANONICAL.md |
-| Conflict: CF-03 KITTI cells omitted | OPEN | Paper2_V11 shows 3 of 6 cells | RESULTS_CANONICAL.md |
-| Conflict: CF-04 recent externals omitted | OPEN | negative or neutral predeclared externals not reported | RESULTS_CANONICAL.md |
+| Conflict: CF-02 BoT-SORT 0020 caption | FIXED IN PAPER2_V12 | caption says unmodified tracker fails; ledger E19 says Cholesky error with layer output | RESULTS_CANONICAL.md |
+| Conflict: CF-03 KITTI cells omitted | FIXED IN V12, NOT IN V13 (D-037) | Paper2_V11 shows 3 of 6 cells | RESULTS_CANONICAL.md |
+| Conflict: CF-04 recent externals omitted | FIXED IN V12, NOT IN V13 (D-037) | negative or neutral predeclared externals not reported | RESULTS_CANONICAL.md |
 | Conflict: CF-05 aerial val README | EXPLAINED | README run table predates the successful runs | RESULTS_CANONICAL.md |
 | Conflict: CF-07 Paper 1 second val read | OPEN | V12 does not state that val-7 was read twice | RESULTS_CANONICAL.md |
 | Failure: FX-20 V6-TF external negative | FAILED | SparseTrack -4.15 BoostTrack -5.89 HOTA | FAILED_EXPERIMENTS.md |
@@ -295,6 +327,7 @@ Edit this file when the project state changes, then rebuild the graph.
 | Policy: owner-only delete | ACTIVE | Claude hook, git hooks, CI signature check, rulesets proposal; limits documented | PRESERVATION_POLICY.md |
 | Conflict: CF-08 V4 lock rehash | EXPLAINED | TESTDEV_LOCK_V4 hashes match 3ea7d69 not fc003bf | RESULTS_CANONICAL.md |
 | Decision: D-035 completed versions immutable | ACTIVE | completed versions read-only to AI; changes go into the next sequential version | DECISIONS.md |
+| Decision: D-038 fast workflow | ACTIVE | work first; one deterministic maintenance pass at the end; protections unchanged | DECISIONS.md |
 | Policy: completed versions immutable | ACTIVE | registry-backed R9 in Claude hook, git hooks and CI; owner OS lock script | PRESERVATION_POLICY.md |
 | Registry: VERSION_REGISTRY | ACTIVE | authoritative status and Git hashes of completed versions; next Paper 1 V14, Paper 2 V12, Universal AC-MOT V8 | VERSION_REGISTRY.md |
 
@@ -542,7 +575,7 @@ Edit this file when the project state changes, then rebuild the graph.
 | Project: Universal AC-MOT | HAS_PAPER | Paper: Paper 2 SCL JRTIP |
 | Paper: Paper 0 ICMISI survey | PUBLISHED_IN | Venue: IEEE ICMISI 2026 |
 | Paper: Paper 1 AC-MOT JAIS | SUBMITTED_TO | Venue: Journal of Aerospace Information Systems |
-| Paper: Paper 2 SCL JRTIP | TARGETS | Venue: Journal of Real-Time Image Processing |
+| Paper: Paper 2 SCL JRTIP | TARGETS | Venue: The Visual Computer |
 | Paper: Paper 1 AC-MOT JAIS | HAS_SUBMISSION | Submission: JAIS 2026-10-I012138 |
 | Submission: JAIS 2026-10-I012138 | USES_MANUSCRIPT | Manuscript: Paper1_V12_JAIS |
 | Paper: Paper 1 AC-MOT JAIS | LATEST_VERSION | Manuscript: Paper1_V13_JAIS |
@@ -557,7 +590,39 @@ Edit this file when the project state changes, then rebuild the graph.
 | Paper: Paper 1 AC-MOT JAIS | USES_TRACKER | Tracker: OATrack |
 | Paper: Paper 2 SCL JRTIP | DESCRIBES | Method: SCL self-calibrating control layer |
 | Method: SCL self-calibrating control layer | IS_FROZEN_POLICY | Version: V7 |
-| Paper: Paper 2 SCL JRTIP | LATEST_VERSION | Manuscript: Paper2_V11 |
+| Paper: Paper 2 SCL JRTIP | LATEST_VERSION | Manuscript: Paper2_V19 |
+| Manuscript: Paper2_V19 | REVISES | Manuscript: Paper2_V18 |
+| Manuscript: Paper2_V20 | REVISES | Manuscript: Paper2_V19 |
+| Manuscript: Paper2_V21 | REVISES | Manuscript: Paper2_V20 |
+| Manuscript: Paper2_V22 | REVISES | Manuscript: Paper2_V21 |
+| Manuscript: Paper2_V23 | REVISES | Manuscript: Paper2_V22 |
+| Manuscript: Paper2_V24 | REVISES | Manuscript: Paper2_V23 |
+| Manuscript: Paper2_V25 | REVISES | Manuscript: Paper2_V24 |
+| Manuscript: Paper2_V26 | REVISES | Manuscript: Paper2_V25 |
+| Manuscript: Paper2_V27 | REVISES | Manuscript: Paper2_V26 |
+| Manuscript: Paper2_V28 | REVISES | Manuscript: Paper2_V27 |
+| Manuscript: Paper2_V29 | REVISES | Manuscript: Paper2_V28 |
+| Manuscript: Paper2_V30 | REVISES | Manuscript: Paper2_V29 |
+| Manuscript: Paper2_V31 | REVISES | Manuscript: Paper2_V30 |
+| Manuscript: Paper2_V32 | REVISES | Manuscript: Paper2_V31 |
+| Manuscript: Paper2_V33 | REVISES | Manuscript: Paper2_V32 |
+| Manuscript: Paper2_V34 | REVISES | Manuscript: Paper2_V33 |
+| Manuscript: Paper2_V35 | REVISES | Manuscript: Paper2_V34 |
+| Manuscript: Paper2_V36 | REVISES | Manuscript: Paper2_V35 |
+| Manuscript: Paper2_V18 | REVISES | Manuscript: Paper2_V17 |
+| Decision: D-042 V7f on UAVDT test | DECIDES | Manuscript: Paper2_V18 |
+| Manuscript: Paper2_V17 | REVISES | Manuscript: Paper2_V16 |
+| Manuscript: Paper2_V16 | REVISES | Manuscript: Paper2_V15 |
+| Decision: D-041 V7f on VisDrone confirmation-16 | DECIDES | Manuscript: Paper2_V16 |
+| Manuscript: Paper2_V15 | REVISES | Manuscript: Paper2_V14 |
+| Decision: D-040 Paper2_V15 template peer-review layout | DECIDES | Manuscript: Paper2_V15 |
+| Manuscript: Paper2_V14 | REVISES | Manuscript: Paper2_V13 |
+| Decision: D-039 Paper2_V14 standard template layout | DECIDES | Manuscript: Paper2_V14 |
+| Manuscript: Paper2_V13 | REVISES | Manuscript: Paper2_V11 |
+| Decision: D-037 Paper2_V13 keeps V11 content | DECIDES | Manuscript: Paper2_V13 |
+| Manuscript: Paper2_V12 | REVISES | Manuscript: Paper2_V11 |
+| Decision: D-036 Paper 2 to The Visual Computer | DECIDES | Paper: Paper 2 SCL JRTIP |
+| Paper: Paper 2 SCL JRTIP | EVALUATED_ON | Dataset: DanceTrack |
 | Manuscript: Paper2_V11 | REVISES | Manuscript: Paper2_V10 |
 | Review: Paper2_V11 internal audit | AUDITS | Manuscript: Paper2_V11 |
 | Paper: Paper 2 SCL JRTIP | CITES | Paper: Paper 1 AC-MOT JAIS |
@@ -792,3 +857,4 @@ Edit this file when the project state changes, then rebuild the graph.
 | Policy: owner-only delete | IMPLEMENTED_IN | tools/research_guard.py |
 | Policy: completed versions immutable | IMPLEMENTED_IN | tools/version_registry.py |
 | Registry: VERSION_REGISTRY | IMPLEMENTED_IN | tools/version_registry.py |
+| Decision: D-038 fast workflow | IMPLEMENTED_IN | tools/sync_research_memory.py |

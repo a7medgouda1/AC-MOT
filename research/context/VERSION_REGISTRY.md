@@ -11,7 +11,7 @@ entries are read-only to AI agents; changes go into the next version created wit
 | archives | completed results, evidence and frozen configuration files | fileset | `` | — (no sequence) |
 | legacy-manuscripts | earlier manuscript drafts (no sequential number) | version_dir | `` | — (no sequence) |
 | paper1 | Paper 1 AC-MOT operating-point controller (JAIS) | version_dir | `Paper1_V{n}_JAIS` | V14 |
-| paper2 | Paper 2 SCL / frozen V7f (JRTIP) | version_dir | `PAPER2_V7F_JRTIP_challenge_rev{n}` | V12 |
+| paper2 | Paper 2 SCL / frozen V7f (JRTIP) | version_dir | `PAPER2_V7F_JRTIP_challenge_rev{n}` | V37 |
 | policy-locks | policy locks of frozen systems | lock | `` | — (no sequence) |
 | tags | other frozen git tags | tag | `` | — (no sequence) |
 | universal-acmot | Universal AC-MOT system (frozen tags) | tag | `universal-acmot-v{n}-freeze` | V8 |
@@ -107,6 +107,7 @@ entries are read-only to AI agents; changes go into the next version created wit
 | archives/research/TRANSFER_LOCK_V6TF.json | COMPLETED | fileset | `research/TRANSFER_LOCK_V6TF.json` | 5a991405c |  | committed results/evidence/frozen config (immutable since R2, 2026-10-20); new files may be added, existing ones never change |
 | archives/research/V5TF_POLICY_LOCK.json | COMPLETED | fileset | `research/V5TF_POLICY_LOCK.json` | 5a991405c |  | committed results/evidence/frozen config (immutable since R2, 2026-10-20); new files may be added, existing ones never change |
 | archives/research/acmot_paper_v2/experiments/ACMOT_EXP_V3_2026-10-04/artifacts/research/TRANSFER_LOCK_UAVDT.json | COMPLETED | fileset | `research/acmot_paper_v2/experiments/ACMOT_EXP_V3_2026-10-04/artifacts/research/TRANSFER_LOCK_UAVDT.json` | 5a991405c |  | committed results/evidence/frozen config (immutable since R2, 2026-10-20); new files may be added, existing ones never change |
+| paper2/V12 | ACTIVE | version_dir | `JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev12` |  | paper2/V11 | copy of paper2/V11 (dbf162ca3) by tools/version_registry.py |
 
 Not registered (completion status NOT decided; owner to classify): `THESIS/`, `notebooks/`,
 presentations, root-level research scripts outside the locks.

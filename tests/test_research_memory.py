@@ -200,3 +200,29 @@ def test_rollback_tools_are_non_destructive():
         body = (ROOT / f).read_text()
         for bad in ["reset --hard", "rm -rf", "push --force", "push -f", "clean -f", "tag -d"]:
             assert bad not in body, (f, bad)
+
+
+# ---------------------------------------------------------------- fast workflow (D-038)
+def test_sync_runs_only_the_tests_that_match_the_change():
+    import sync_research_memory as SYNC
+    assert SYNC.tests_for(["JAIS_PAPERS/PAPER2_X_rev1/main.tex", "research/context/PAPERS.md"], False) == []
+    assert SYNC.tests_for(["tools/research_guard.py"], False) == SYNC.PROTECTION_TESTS
+    assert SYNC.tests_for([".claude/settings.json"], False) == SYNC.PROTECTION_TESTS
+    assert SYNC.tests_for(["tools/sync_research_memory.py"], False) == ["tests/test_research_memory.py"]
+    assert SYNC.tests_for(["JAIS_PAPERS/PAPER2_X_rev1/main.tex"], True) == SYNC.PROTECTION_TESTS
+    assert not SYNC.graph_relevant("JAIS_PAPERS/PAPER2_X_rev1/sections/01.tex")
+    assert SYNC.graph_relevant("research/context/PAPERS.md") and SYNC.graph_relevant("AGENTS.md")
+
+
+def test_sync_is_non_destructive_and_dry_run_writes_nothing():
+    body = (ROOT / "tools" / "sync_research_memory.py").read_text()
+    for bad in ["unlink", "rmtree", "os.remove", "git rm", "reset --hard", "push", "commit -", "cmd_complete",
+                "cmd_new", "\"complete\"", "\"new\""]:
+        assert bad not in body.split('"""', 2)[2], bad
+    before = git("status", "--porcelain", "--untracked-files=all")
+    stamp = (CTX / "GIT_STATE.md").stat().st_mtime
+    out = subprocess.run([sys.executable, "tools/sync_research_memory.py", "--dry-run"], cwd=ROOT,
+                         capture_output=True, text=True)
+    assert out.returncode == 0, out.stdout + out.stderr
+    assert git("status", "--porcelain", "--untracked-files=all") == before
+    assert (CTX / "GIT_STATE.md").stat().st_mtime == stamp

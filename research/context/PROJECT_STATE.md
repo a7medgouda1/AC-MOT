@@ -1,16 +1,16 @@
 # PROJECT STATE — read this first
 
 <!-- AUTO:BEGIN (tools/update_project_context.py — do not edit by hand) -->
-LAST VERIFIED COMMIT: 5a991405ccaf844ceffe36d7ace2405cf476b3c7
+LAST VERIFIED COMMIT: e17709ba7c36ce341e964d2581978b1fba5a0569
 CURRENT BRANCH: sci-v7f-general-layer-dev (upstream origin/sci-v7f-general-layer-dev, ahead 0, behind 0)
-LAST CONTEXT UPDATE: 2026-10-20 12:48 UTC
+LAST CONTEXT UPDATE: 2026-10-22 19:49 UTC
 LATEST FROZEN TAG (git): universal-acmot-v7-freeze → 488df9a
-WORKING TREE: 36 uncommitted path(s) — see GIT_STATE.md
+WORKING TREE: 20 uncommitted path(s) — see GIT_STATE.md
 <!-- AUTO:END -->
 
 FINAL TARGET: V7 — the approved final version and contribution, frozen policy V7f (Amendment 10, owner decision 2026-10-20). V6-TF = frozen history; V4 = historical baseline / ablation ONLY, never a fallback.
 CURRENT RESEARCH VERSION: V7 (frozen V7f, tag universal-acmot-v7-freeze → 488df9a; the policy behind Paper 2)
-CURRENT PHASE: publication — V7f frozen (2026-09-28) and approved (Amendment 10); post-freeze external evaluations done (research/final/V7_*.md); Paper 1 under review at JAIS; Paper 2 needs the Paper2_V12 audit fixes before JRTIP submission. Previous phase text (V6-TF freeze → post-freeze evaluations) is history.
+CURRENT PHASE: publication — V7f frozen (2026-09-28) and approved (Amendment 10); post-freeze external evaluations done (research/final/V7_*.md); Paper 1 under review at JAIS; Paper 2: Paper2_V19 (UAVDT E56, VisDrone E55, journal references) ready for the supervisor and The Visual Computer (D-036); declarations to be confirmed by the owner. Previous phase text (V6-TF freeze → post-freeze evaluations) is history.
 
 ## Papers (registry: PAPERS.md)
 - Paper 0, survey: PUBLISHED, IEEE ICMISI 2026, DOI 10.1109/ICMISI69868.2026.11583994.

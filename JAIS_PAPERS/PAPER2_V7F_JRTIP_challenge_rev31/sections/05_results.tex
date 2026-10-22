@@ -1,0 +1,181 @@
+\section{Results}\label{sec:results}
+
+The experiments test whether adding the frozen \scl{} between an unchanged detector and an
+unchanged tracker keeps or improves tracking, on MOT17 and KITTI, on two external trackers, and,
+without retuning, on UAVDT. Three outcomes are expected from the design. A tracker that already fits
+its detector should keep its accuracy. A tracker that does not fit, because it has no continuation
+step or because the detector or its score scale changed, should gain. Both should hold on trackers
+and data that were not seen during design.
+
+All experiments use the hosts and detectors of Sect.~\ref{sec:hosts}, each with the authors' code
+and published configuration, and the contract of each host is given in Table~\ref{tab:contracts}.
+For each host, two systems are compared. The baseline is the host alone (the host-only baseline),
+called Host in the tables:
+the published tracker without \scl{}, run by us with its published configuration and the same
+detections. The second system adds the frozen \scl{} of Sect.~\ref{sec:method} and changes nothing
+else. Both runs use the same environment. Where the authors report their own numbers, these are
+listed next to our reproduction of the host. Uncertainty is estimated with the paired bootstrap of
+Sect.~\ref{sec:metrics}. Figure~\ref{fig:forest} shows the HOTA difference between each host with
+\scl{} and the host alone for every tested cell, and the next subsections give the results of each
+part of the evaluation.
+
+\begin{figure}[tp]
+\centering
+\includegraphics{Fig5.pdf}
+\caption{Difference in HOTA, host with \scl{} minus host alone, in points, for
+every tested cell. The circle is the difference and the horizontal line its 95\%
+paired-bootstrap interval. Filled circles: interval above zero; open circles:
+interval contains zero, or identical output}
+\label{fig:forest}
+\end{figure}
+
+\subsection{MOT17 evaluation across trackers}\label{sec:tracker}
+The MOT17 evaluation tests whether \scl{} leaves well-matched trackers at their own accuracy and
+helps a tracker that lacks a continuation step, with the published YOLOX-X detections.
+Table~\ref{tab:mot17} compares the development trackers with their hosts on MOT17 val-half. The
+two-stage trackers with well-matched detections stayed at the accuracy of their hosts. BoostTrack,
+online and with GBI, and ByteTrack at floor 0.1 gave exactly the same output as without the layer,
+and ByteTrack at floor 0.01 and SparseTrack stayed within 0.06 HOTA points of their hosts
+($-0.014$ and $+0.055$). This is the self-limiting behavior of the clean mode
+(Sect.~\ref{sec:regimes}), which the earlier design did not have (Table~\ref{tab:prior}).
+
+The single-stage OC-SORT improved at both emission floors. Its HOTA rose by 0.61 points
+($[+0.36,+1.24]$) at floor 0.01 and by 0.46 points ($[+0.27,+1.09]$) at floor 0.1, and its MOTA by
+1.27 and 1.26 points. Its identity switches also fell, by 8 at floor 0.01 ($[-15,-2]$) and by 14 at
+floor 0.1. HOTA was higher on 7 of 7 sequences in both settings (Fig.~\ref{fig:perseq}). The gain
+comes from the continuation rescue. OC-SORT drops every detection below its single threshold, and
+the layer passes it the foreground candidates that continue a track that would otherwise stay
+unmatched.
+
+\input{tables/tab3_mot17}
+
+\begin{figure*}[tp]
+\centering
+\includegraphics{Fig6.pdf}
+\caption{HOTA difference, host with \scl{} minus host alone, in points, for each
+MOT17 val-half sequence (columns) and each development or predeclared tracker
+(rows). Each cell prints its value; the shade grows with the size of the
+difference, and 0 means identical output}
+\label{fig:perseq}
+\end{figure*}
+
+\subsection{KITTI evaluation with other detectors}\label{sec:detector}
+The KITTI evaluation tests what happens when the detector is replaced while each tracker keeps the
+thresholds that were set for another detector. Table~\ref{tab:kitti} reports the results with the
+two other detectors. With the noisy RT-DETR-L detector, the two-stage trackers gained in MOTA and
+IDF1. ByteTrack gained 5.98 MOTA points ($[+1.16,+9.94]$), 3.87 IDF1 points, and 0.91 HOTA points
+($[+0.22,+1.55]$). BoT-SORT gained 7.86 MOTA points ($[+2.21,+13.44]$) and 3.10 IDF1 points. Both
+also had fewer identity switches: 297 fewer for ByteTrack and 226 fewer for BoT-SORT. With YOLOv8n,
+the single-stage OC-SORT gained 7.91 HOTA points ($[+5.47,+9.98]$), 9.40 MOTA points, and 9.60 IDF1
+points. It had 79 more identity switches, because it now followed many more objects: its missed
+objects (FN) fell from 21,886 to 16,576, and its IDF1, which measures how well identities are kept,
+rose. Figure~\ref{fig:example} shows one frame of this cell: OC-SORT alone tracked 6 of the 10
+labelled objects, and with \scl{} it tracked 9, including parked cars further down the street.
+
+\input{tables/tab4_kitti}
+
+\begin{figure*}[tp]
+\centering
+\includegraphics{Fig7.pdf}
+\caption{Example frame from KITTI tracking training \cite{geiger2012kitti} (sequence 0001, frame
+102), OC-SORT with YOLOv8n detections: (a) the tracker alone, (b) with \scl{}. Solid boxes with
+numbers: the tracks output for this frame and their IDs; dashed boxes: labelled cars and
+pedestrians that no output box covers. The sequence is the one with the median HOTA gain of the
+21 sequences, and the frame is the first one in it with the largest gain in tracked objects}
+\label{fig:example}
+\end{figure*}
+
+\subsection{Evaluation under shifted detector scores}\label{sec:shift}
+The shifted scores test the case for which \scl{} was built: the detector keeps its boxes, but its
+score scale changes. Table~\ref{tab:shift} and Fig.~\ref{fig:shift} show the trackers under the four
+score transforms of Sect.~\ref{sec:data}. Halving the scores reduced ByteTrack (official setting)
+and OC-SORT to 0 HOTA, because no detection reached their thresholds. With the layer they reached
+66.17 and 66.72. Cubing reduced them to 60.92 and 58.34, and the layer restored them to 65.81 and
+66.60. BoostTrack rose from 61.33 to 64.84 under cubing. With temperature $T=2$, the layer raised
+ByteTrack and OC-SORT by 1.11 and 1.24 points. The library setting of ByteTrack, whose low
+thresholds already accept the changed scores, stayed within 0.14 points in all four transforms.
+Over the 14 conditions, the layer raised HOTA significantly in 7 and lowered it significantly in
+none. When a transform made a host lose most of its detections, the host also had few identity
+switches, because it followed few objects; under halved scores it followed none, so it had 0.
+
+\input{tables/tab_shift}
+
+\begin{figure*}[tp]
+\centering
+\includegraphics{Fig8.pdf}
+\caption{Shifted detector scores on MOT17 val-half: HOTA of each published
+tracker with its published thresholds, alone and with \scl{}, after
+four monotone transforms of the detector scores ($s^3$, $0.5\,s$, and
+temperatures $T=2$ and $T=0.5$). (a) ByteTrack, official setting;
+(b) ByteTrack, library setting; (c) OC-SORT; (d) BoostTrack, online. Plain bars: the
+tracker alone; hatched bars: with \scl{}}
+\label{fig:shift}
+\end{figure*}
+
+\subsection{Comparison with adaptive-threshold methods}\label{sec:baselines}
+A simpler way to follow the detector scores is to set the tracker's thresholds from them directly.
+Two such baselines were built on the same input and with the same window of the last 10 frames.
+They set the tracker's matching and birth thresholds in every frame to the first or the second Otsu
+split of the recent logits, $t_1$ or $t_2$, and pass the scores unchanged, without the mode
+decision, the new scores, or the rescue. Table~\ref{tab:baselines} compares them with \scl{} on
+KITTI, for OC-SORT with YOLOv8n and for both trackers under halved scores. \scl{} reached the
+highest HOTA in all three cells, 2.2 to 8.6 points above the two baselines, and its paired-bootstrap
+intervals against the $t_2$ baseline lie above zero in every cell. Adaptive thresholds alone
+therefore do not explain the gains; the other parts of the layer add to them. With OC-SORT and
+YOLOv8n, \scl{} also had fewer identity switches than both baselines (170 against 1,545 and 250).
+Under halved scores, ByteTrack with \scl{} had more (501 against 273 and 275), while it missed far
+fewer objects (FN 7,750 against 12,357 with the $t_2$ baseline).
+
+\emph{Comparison with a published method.} ACT \cite{act2026adaptive} sets the high and low
+thresholds of a two-stage tracker in every frame from the first quartile and the number of the
+current scores, using fixed score levels. It was run with its published parameters on the same
+detections as \scl{}, in three settings (Table~\ref{tab:act}): KITTI with halved scores, for
+ByteTrack and, with its high threshold as the single threshold, for OC-SORT; its own setting, MOT17
+val-half with ByteTrack's official setting and the YOLOX-X detections; and the held-out UAVDT test
+split with ByteTrack. \scl{} reached higher HOTA than ACT in every row of Table~\ref{tab:act}. The
+difference was significant under halved scores ($+2.01$ and $+10.06$ points) and with YOLOv8n on
+UAVDT ($+1.82$ points, with $+4.00$ points of IDF1). In the setting of ACT itself, the two were
+close ($+0.22$ and $+0.23$ points). With RT-DETR-L on UAVDT, \scl{} reached a MOTA of 27.99 against
+5.34 for ACT (difference $+22.65$, [$+9.03$, $+47.21$]): the host produced many false positives,
+and the fixed levels of ACT removed few of them (178,219 false positives, against 78,975 with
+\scl{}). \scl{} also had fewer identity switches than ACT on MOT17 and UAVDT, significantly with
+RT-DETR-L on UAVDT (418 fewer). Under halved scores on KITTI it had more (240 and 214 more), because
+it followed many more objects: it missed 7,750 objects against 12,326 for ACT with ByteTrack, and
+13,547 against 21,887 with OC-SORT. The levels of ACT are fixed scores, so they do not move when the
+scores shift, while the splits of \scl{} are computed on the scores themselves.
+
+\emph{Contribution of each part.} Removing one part of the frozen \scl{} at a time shows where the
+gains come from, on the KITTI cells. Without the continuation rescue, the HOTA of OC-SORT fell by
+3.34 points with YOLOv8n and by 1.16 points under halved scores. Using the clean mode in every
+frame, that is, without the mode decision, lowered HOTA by 0.90 points for ByteTrack with RT-DETR-L
+and by 2.40 and 2.44 points for the two trackers under halved scores. Without the new scores of the
+noisy mode, HOTA fell by 1.67 and 0.61 points under halved scores.
+
+\input{tables/tab_baselines}
+\input{tables/tab_act}
+
+\subsection{Frozen evaluation on external trackers}\label{sec:external}
+The external evaluation tests whether the frozen \scl{} helps trackers that were not seen during
+design. Table~\ref{tab:external} gives the two predeclared external systems. PD-SORT
+\cite{wang2025pdsort} was reproduced exactly as in the authors' released output. With \scl{}, its
+HOTA rose by 0.61 points ($[+0.27,+1.65]$), its MOTA by 1.13 points ($[+0.27,+3.03]$), and its IDF1
+by 0.82 points ($[+0.43,+1.94]$), with higher HOTA on 7 of 7 sequences (Fig.~\ref{fig:perseq}). FN
+fell by 1,291, FP rose by 681, and the identity switches stayed almost the same (131 against 129).
+PD-SORT is a single-stage tracker, and its gain comes from the same step as for OC-SORT; unlike
+OC-SORT, it was not seen during design. Hybrid-SORT \cite{yang2024hybridsort}, a two-stage tracker,
+gave identical output, as predicted before the run.
+
+\input{tables/tab5_external}
+
+\subsection{Frozen UAVDT transfer}\label{sec:visdrone}
+The UAVDT transfer tests whether the frozen \scl{} still helps on aerial data that was not used
+during design, with none of its values changed. It uses the 20 test sequences of
+Sect.~\ref{sec:data}, and each cell was run once with the frozen configuration.
+Table~\ref{tab:visdrone} gives the results. \scl{} raised the HOTA of the YOLOv8n stream by 1.77
+points ($[+0.70,+2.94]$) and its IDF1 by 3.97 points ($[+1.88,+6.17]$), and identity switches fell
+by 45\% (from 719 to 393). With RT-DETR-L, the host produced many false positives (MOTA 3.29); with
+\scl{}, its MOTA rose by 24.70 points ($[+10.06,+51.08]$) and its IDF1 by 5.74 points
+($[+0.13,+13.11]$): false positives fell by 58\% and identity switches by 56\% (from 1,041 to 455).
+HOTA did not fall with either detector.
+
+\input{tables/tab_visdrone}

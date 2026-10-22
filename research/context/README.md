@@ -3,8 +3,9 @@
 FINAL TARGET = V7 (frozen V7f, Amendment 10). V4 = historical baseline / ablation only (HARD_CONSTRAINTS C0).
 
 The chat history is NOT the project memory. This directory, git and the
-machine-readable outputs are. Any new session reconstructs the state from
-here before doing work (prompt: NEW_SESSION_PROMPT.md).
+machine-readable outputs are. A routine task reads only the files it needs (fast workflow in
+AGENTS.md, D-038); a full state reconstruction (prompt: NEW_SESSION_PROMPT.md) is for an owner-requested
+state review or when the session brief shows a contradiction.
 
 ## Start here (any agent: Codex, Claude Code, Copilot, MCP clients, humans)
 1. PROJECT_STATE.md — current state, FINAL TARGET, papers.
@@ -108,21 +109,24 @@ VisDrone2019-MOT-train confirmation-16, UAVDT test.
 - `graphify query "<question>"`, `graphify explain "<node>"`,
   `graphify path "<A>" "<B>"` — querying.
 
-## Maintenance workflow (every substantive task; part of the task, not optional)
-1. Identify the affected components (version, experiment, paper, dataset, code module).
-2. Make the requested change.
-3. Update the owning documents (one owner per fact, table above): PROJECT_STATE, VERSION_HISTORY,
-   EXPERIMENT_REGISTRY (+ FAILED_EXPERIMENTS), RESULTS_CANONICAL, PAPERS, REPRODUCIBILITY,
-   CODE_ARCHITECTURE, DATASETS_AND_SPLITS as applicable.
-4. Register any new experiment (stable ID), result file, version, or decision (append D-xxx; never edit old ones).
-5. Link the change to code (path + symbol) and evidence (file + key); flag missing evidence as
+## Maintenance workflow (once per task, at the end; D-038 fast workflow)
+Do the requested work first, without maintenance in between. Then, in one pass:
+1. Update only the owning documents the task affected (one owner per fact, table above): PROJECT_STATE,
+   VERSION_HISTORY, EXPERIMENT_REGISTRY (+ FAILED_EXPERIMENTS), RESULTS_CANONICAL, PAPERS, REPRODUCIBILITY,
+   CODE_ARCHITECTURE, DATASETS_AND_SPLITS — whichever apply, usually one or two.
+2. Register any new experiment (stable ID), result file or decision (append D-xxx; never edit old ones).
+   New versions are registered by `python3 tools/version_registry.py new <family>` when they are created.
+3. Link the change to code (path + symbol) and evidence (file + key); flag missing evidence as
    NEEDS VERIFICATION instead of filling it in.
-6. Update version relations and paper claim / figure maps.
-7. Add a dated line to CHANGELOG.md.
-8. `python3 tools/build_code_inventory.py` (if code changed) and `python3 tools/update_project_context.py`.
-9. Rebuild the graph: `<graphify python> tools/build_context_graph.py`; skip only for wording-only edits.
-10. `python3 tools/context_health_check.py --queries` and 2–3 `graphify query` checks on the changed topic.
-11. Report the documentation status (files changed, checks) in the final task report.
+4. Add one dated line to CHANGELOG.md.
+5. `python3 tools/sync_research_memory.py --changed-only` does the deterministic rest and skips what is
+   current: code inventory (only if code changed), VERSION_REGISTRY.md view, PROJECT_STATE auto block and
+   GIT_STATE.md, graph rebuild (only if graph-relevant files are newer than the graph), then one validation
+   pass (registry verify, research_guard --worktree, health check without graph queries, only the tests that
+   match the change). It warns about an unregistered version folder or a missing CHANGELOG line. `--full` adds
+   the graph queries and the three protection test suites: use it after guard, hook, permission or
+   versioning changes. `--dry-run` prints the plan.
+6. Report the documentation status in one or two lines in the final task report.
 Never: create a version or call an experiment validated without evidence; edit frozen code, locks,
 results or old decisions; commit secrets or large generated outputs. `graphify-out/` stays git-ignored.
 

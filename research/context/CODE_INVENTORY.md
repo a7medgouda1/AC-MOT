@@ -813,7 +813,7 @@ Modules indexed: 197.
 - def `main` L27
 
 ### `tools/claude_tool_guard.py`
-- 711 lines; last commit untracked; Claude Code PreToolUse hook (.claude/settings.json) for the AC-MOT owner-only-delete
+- 711 lines; last commit e17709b 2026-10-20; Claude Code PreToolUse hook (.claude/settings.json) for the AC-MOT owner-only-delete
 - def `regs` L56: Registry at HEAD and in the working tree: an immutable status in either one wins,
 - def `completed` L65
 - def `active_version` L72: Inside a registered ACTIVE/DRAFT version that was accepted before (in HEAD) or is new.
@@ -858,7 +858,7 @@ Modules indexed: 197.
 - def `main` L47
 
 ### `tools/context_health_check.py`
-- 349 lines; last commit 52b78ce 2026-10-20; Consistency checks for the canonical project memory (stdlib only).
+- 349 lines; last commit e17709b 2026-10-20; Consistency checks for the canonical project memory (stdlib only).
 - def `report` L67
 - def `git` L71
 - def `read` L76
@@ -947,7 +947,7 @@ Modules indexed: 197.
 - def `main` L14
 
 ### `tools/research_guard.py`
-- 550 lines; last commit untracked; Research guard: enforce the AC-MOT owner-only-delete policy and the version-preserving
+- 550 lines; last commit e17709b 2026-10-20; Research guard: enforce the AC-MOT owner-only-delete policy and the version-preserving
 - def `git` L106
 - def `match` L113
 - def `version_folder` L117: Manuscript version folder that contains `path`, if any (deepest root wins).
@@ -1025,7 +1025,7 @@ Modules indexed: 197.
 - def `main` L80
 
 ### `tools/update_project_context.py`
-- 125 lines; last commit 8e3ab87 2026-09-27; Refresh FACTUAL metadata in research/context (stdlib only):
+- 125 lines; last commit e17709b 2026-10-20; Refresh FACTUAL metadata in research/context (stdlib only):
 - def `git` L24
 - def `git_facts` L29
 - def `lock_statuses` L51
@@ -1115,7 +1115,7 @@ Modules indexed: 197.
 - def `main` L71
 
 ### `tools/version_registry.py`
-- 527 lines; last commit untracked; Completed-version registry for AC-MOT (owner rule D-035: every completed version is
+- 527 lines; last commit e17709b 2026-10-20; Completed-version registry for AC-MOT (owner rule D-035: every completed version is
 - def `git` L51
 - def `obj` L58: Object id of path at ref (tree or blob), None when absent.
 - def `exists_at` L65
@@ -1287,7 +1287,7 @@ Modules indexed: 197.
 - def `to_detection_objects` L76
 
 ### `tests/test_completed_versions.py`
-- 365 lines; last commit untracked; Tests for the completed-version rule (D-035): completed versions are immutable to AI agents;
+- 367 lines; last commit e17709b 2026-10-20; Tests for the completed-version rule (D-035): completed versions are immutable to AI agents;
 - def `vdir` L28
 - def `run` L32
 - def `snapshot` L39
@@ -1304,10 +1304,10 @@ Modules indexed: 197.
 - def `test_delete_approval_does_not_authorise_changing_a_completed_version` L289
 - def `test_graph_rebuild_leaves_completed_versions_unchanged` L328
 - def `test_real_registry_verifies_and_numbers` L339
-- def `test_real_repo_hook_protects_completed_versions` L350
+- def `test_real_repo_hook_protects_completed_versions` L352
 
 ### `tests/test_deletion_guard.py`
-- 417 lines; last commit untracked; Tests for the AC-MOT owner-only-delete policy (research/context/PRESERVATION_POLICY.md).
+- 417 lines; last commit e17709b 2026-10-20; Tests for the AC-MOT owner-only-delete policy (research/context/PRESERVATION_POLICY.md).
 - def `decide` L30
 - def `bash` L34
 - def `test_claude_guard_blocks_deletion_routes` L107
@@ -1366,7 +1366,7 @@ Modules indexed: 197.
 - def `main` L245
 
 ### `tests/test_research_memory.py`
-- 202 lines; last commit untracked; Tests for the AC-MOT research-memory and preservation system. Standard library +
+- 228 lines; last commit e17709b 2026-10-20; Tests for the AC-MOT research-memory and preservation system. Standard library +
 - def `git` L23
 - def `blob_sha` L27
 - def `test_every_documented_tag_resolves_to_its_recorded_commit` L33
@@ -1388,6 +1388,8 @@ Modules indexed: 197.
 - def `test_knowledge_graph_relations_resolve` L175
 - def `test_reproducibility_records_point_to_existing_code_and_configs` L188
 - def `test_rollback_tools_are_non_destructive` L197
+- def `test_sync_runs_only_the_tests_that_match_the_change` L206
+- def `test_sync_is_non_destructive_and_dry_run_writes_nothing` L217
 
 ### `tests/test_rtdetr_universal_pipeline_smoke.py`
 - 108 lines; last commit 33ca6a2 2026-09-26

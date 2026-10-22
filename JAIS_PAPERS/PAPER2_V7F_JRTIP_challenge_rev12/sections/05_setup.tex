@@ -1,0 +1,29 @@
+\section{Experimental Setup}\label{sec:setup}
+
+The experiments test three expectations from the design. A tracker that
+already fits its detector should keep its accuracy. A tracker that does not
+fit, because it has no continuation step or because the detector or its
+score scale changed, should gain. Both should hold on trackers and data that
+were not seen during design.
+
+\label{sec:hosts}Nine published trackers serve as hosts: ByteTrack
+\cite{zhang2022bytetrack}, BoT-SORT \cite{aharon2022botsort}, OC-SORT
+\cite{cao2023ocsort}, SparseTrack \cite{liu2025sparsetrack}, BoostTrack
+\cite{stanojevic2024boosttrack}, PD-SORT \cite{wang2025pdsort},
+Hybrid-SORT \cite{yang2024hybridsort}, C-TWiX \cite{miah2025twix}, and
+TrackTrack \cite{shim2025tracktrack}. Each host uses the authors' code and
+published configuration, and its contract is given in
+Table~\ref{tab:contracts}. A tenth system, TOPICTrack
+\cite{cao2025topictrack}, was selected under the post-freeze protocol, but
+its reproduction failed (67.54 against the authors' 69.6 HOTA on MOT17
+val-half), so it is excluded from the analysis.
+
+In every comparison the baseline is the host alone: the published tracker,
+run by us with its published configuration and the same detections. The
+second run adds the frozen \scl{} and changes nothing else. Both runs use the
+same environment and the same detections. Where the authors report their own
+numbers, these are listed next to our reproduction of the host. All tracking
+runs used a CPU only, without a graphics processing unit (GPU).
+Where this changed the numerical precision or the software environment of an
+external system, the difference is given with its reproduction
+(Sect.~\ref{sec:external}).

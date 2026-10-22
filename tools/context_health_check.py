@@ -36,7 +36,7 @@ KNOWLEDGE_PROBES = [
     ("Paper 2 external validation claim recent externals", "Claim: P2 external validation", "PAPERS.md", "C-TWiX"),
     ("V6-TF external negative SparseTrack BoostTrack", "negative external transfer D-029", "FAILED_EXPERIMENTS.md", "SparseTrack −4.15, BoostTrack −5.89 HOTA"),
     ("Paper 1 UAVDT transfer result", "Result: Paper 1 UAVDT transfer", "RESULTS_CANONICAL.md", "UAVDT_TRANSFER_RESULT.json"),
-    ("open conflicts recent externals omitted", "Conflict: CF-04 recent externals omitted", "RESULTS_CANONICAL.md", "CF-04"),
+    ("conflict CF-04 recent externals omitted", "Conflict: CF-04 recent externals omitted", "RESULTS_CANONICAL.md", "CF-04"),
     ("who may delete files owner approval signed", "Policy: owner-only delete", "PRESERVATION_POLICY.md", "Fail closed"),
     ("next manuscript version number completed versions", "Registry: VERSION_REGISTRY", "VERSION_REGISTRY.md", "| paper1 |"),
 ]

@@ -393,3 +393,77 @@ SUPERSEDED are immutable; ACTIVE/DRAFT are editable until explicitly completed. 
 is authoritative, backed by Git hashes; numbers never reused, overwritten or skipped without a documented
 reason; existing names (V7f, Paper2_V11) are kept. Changing a completed version needs a separate
 owner-signed approval; a deletion approval never covers it. Implementation: PRESERVATION_POLICY.md section 6.
+
+### D-036 — Paper 2 targets The Visual Computer; Paper2_V12 (2026-10-21)
+Owner decision: Paper 2 is submitted to The Visual Computer (Springer, ISSN 1432-2315), the Springer journal of
+the owner's list, instead of JRTIP. Paper2_V12 (`JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev12`, an exact copy of
+V11 via `tools/version_registry.py new paper2`) uses the general Springer Nature template the journal asks for
+and fixes the audit items of D-031, including the full reporting of every predeclared external system (CF-04).
+The folder name keeps the paper2 family pattern (D-035). No new experiment was run; every number comes from
+research/final. Statements written as defaults (no funding, code on request, new baselines as a limitation)
+await the owner's confirmation before submission.
+
+### D-037 — Paper2_V13: V11 content with only the journal requirements (2026-10-21)
+Owner decision: the version for the supervisor and The Visual Computer keeps the content of Paper2_V11 (the
+supervisor challenge copy) and adds nothing that V11 did not have, except what the journal requires or what
+strengthens the paper. Paper2_V13 = exact copy of V11 + Statements and Declarations, the submitted AC-MOT paper
+in the text instead of the reference list, `CPU` spelled out in the abstract, numeric host contracts, and a
+corrected KITTI caption (sequence 0020). Paper2_V12 (the D-036 version with the full audit additions) is kept
+unchanged and is not used. The audit items that V13 does not address (CF-03, CF-04 and items 1, 5-8, 10 of the
+Paper2_V11 audit) remain recorded in PAPERS.md and RESULTS_CANONICAL.md.
+
+### D-038 — Fast workflow: work first, one deterministic maintenance pass at the end (2026-10-21)
+Owner instruction. Agents (Claude Code, Codex, others) read only the context a task needs, create the next
+version with `tools/version_registry.py new` when the latest one is completed, do the requested work directly,
+and defer all research-memory maintenance to one pass at the end: the affected hand-written records plus
+`python3 tools/sync_research_memory.py --changed-only`, which regenerates only stale generated files (inventory,
+registry view, context facts, graph), validates once (registry verify, research_guard, health check, tests that
+match the change) and remembers a passing state so a repeat run does nothing. The three protection test suites
+run only for guard, hook, permission or versioning changes (`--full`). Unchanged: owner-only deletion (D-033,
+D-034), immutable completed versions (D-035), Git hooks and CI. The command never creates, completes or freezes
+a version, commits, pushes or removes anything. AGENTS.md and README.md (Maintenance workflow) carry the rule.
+
+### D-039 — Paper2_V14: V13 content in the standard Springer Nature layout (2026-10-21)
+Owner instruction: check the paper against The Visual Computer submission guidelines and deliver the version
+to submit, with the content of the challenge version only. Owner confirmed: no funding; code available on
+request. Paper2_V14 (copy of V13) removes the custom margins, font sizes and heading spacing that compressed
+V11 to 12 pages (the journal has no page limit and asks for the generic template formatting), and applies the
+guideline rules without adding content: two tables narrowed to the standard column width, CPU, GPU and GBI
+defined at first use, tables cited in numerical order, no period at the end of figure captions, DOIs for the
+three arXiv references. The delivered PDF is compiled from the Overleaf main.tex, so PDF and zip are the same.
+
+### D-040 — Paper2_V15: the Springer Nature template's peer-review layout (2026-10-21)
+Owner asked whether Paper2_V14 is fully on the required template. The template files were checked against the
+official package downloaded from springernature.com (Version 3.1, December 2024): sn-jnl.cls and
+sn-mathphys-num.bst are byte-identical. The package's user manual, however, asks for a single-column layout
+unless the journal requires two columns (The Visual Computer does not), the referee option (double line spacing)
+for peer review, figure files on the same level as the LaTeX file (the submission system does not find
+subfolders), and, when a journal requires declarations, all eight headings with "Not applicable" where they do
+not apply. Paper2_V15 (copy of V14) applies exactly these points, uses the template's algorithm package and
+drops the float-tuning commands; tables and Fig. 1 are fitted to the 131 mm text width without content change.
+
+### D-041 — Frozen V7f evaluated once on VisDrone confirmation-16 for Paper 2 (2026-10-21)
+Owner authorization (explicit, 2026-10-21): open the protected split confirmation-16 (P1) once to evaluate the
+frozen V7f for Paper 2. Protocol written and hashed before the run (research/final/V7_CONF16_PREREGISTRATION.md):
+ByteTrack host alone vs host + frozen V7f, cached YOLOv8n and RT-DETR-L detections, official-compatible VisDrone
+metrics, paired bootstrap (10,000, seed 42). The official annotations were taken from a public mirror and accepted
+only because their fingerprint equals the one in TRAIN_SPLIT_V5.json. Result E55 (research/final/V7_CONF16_RESULT.json)
+is reported in Paper2_V16 as it came out; no redesign follows. The split had been used once before (E48, V6-TF)
+but not in the V7 development, so it is held-out data for V7f; the split is now closed.
+
+### D-042 — Frozen V7f evaluated once on UAVDT test for Paper 2 (2026-10-21)
+Owner authorization (explicit, 2026-10-21): evaluate the frozen V7f once on UAVDT test (P4). The owner decided in
+advance that the result would enter the manuscript only if it was favourable; it is recorded here and in
+E56 in every case. Protocol written and hashed before the run (research/final/V7_UAVDT_PREREGISTRATION.md):
+ByteTrack host alone vs host + frozen V7f, cached YOLOv8n and RT-DETR-L detections, the project's UAVDT protocol,
+paired bootstrap (10,000, seed 42). The official GT came from a public mirror and was accepted because its
+per-sequence box counts equal the Paper 1 record (20/20). Both predictions held; the result enters Paper2_V18.
+
+### D-043 — ACT compared with the frozen V7f in ACT's original setting and on UAVDT test (2026-10-21)
+Owner instruction (explicit, 2026-10-21): run the published adaptive-threshold method ACT (Gwon & Lee 2026) in its
+original conditions and on the held-out UAVDT data. This authorizes one ACT run on UAVDT test (P4, closed for V7
+after E56): only ACT is run, with its published parameters; the frozen V7f is not re-run and its E56 outputs are the
+comparison arm. ACT's original conditions are MOT17 val-half with ByteTrack's official setting and the published
+YOLOX-X detections (development data). Plan written and hashed before the runs
+(research/final/V7_ACT_ORIGINAL_UAVDT_PLAN.md); result E60, recorded in every case.
+

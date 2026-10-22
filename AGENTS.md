@@ -3,18 +3,25 @@
 The repository — not chat history — is the project memory. Canonical files:
 `research/context/` (start with `research/context/README.md`).
 
-Every new coding/research session MUST, before modifying code or running experiments:
-1. read `research/context/PROJECT_STATE.md`
-2. read `research/context/HARD_CONSTRAINTS.md`
-3. read `research/context/NEXT_STEPS.md`
-4. read `research/context/PROTECTED_EVALUATIONS.md`
-4b. for version, paper or experiment work: `research/context/VERSION_HISTORY.md`,
-    `research/context/PAPERS.md`, `research/context/EXPERIMENT_REGISTRY.md`,
-    `research/context/REPRODUCIBILITY.md`, `research/context/CODE_ARCHITECTURE.md`
-5. inspect git: `git status --short`, `git rev-parse --abbrev-ref HEAD`, `git log --oneline -10`, `git tag`
-6. query Graphify for the relevant architecture / decision / experiment context
-   (`graphify query "<question>"`, `graphify explain "<node>"`)
-7. only then modify code or run experiments.
+Fast workflow (owner decision D-038; Claude Code, Codex and any other agent). For every task:
+1. Read only what the task needs. The session brief (SessionStart hook / `python3 tools/research_guard.py
+   --session-brief`) gives branch, phase and rules; read a context file only when the task touches it
+   (experiments/evaluation → `HARD_CONSTRAINTS.md` + `PROTECTED_EVALUATIONS.md` first; a paper →
+   its `PAPERS.md` row; code → `CODE_ARCHITECTURE.md` section). No full-repository survey.
+2. Find the latest relevant version (`python3 tools/version_registry.py list <family>`). If it is COMPLETED,
+   FROZEN or SUPERSEDED, run `python3 tools/version_registry.py new <family> [--from <id>]` (one quick
+   command) and work in the new ACTIVE folder; an ACTIVE version is edited directly.
+3. Do the requested work directly. During the work do NOT rebuild Graphify, rerun the health check, regenerate
+   inventories or rewrite research documentation, and do not stop for routine confirmations.
+4. Once, at the end: update only the affected hand-written records (the paper's `PAPERS.md` row, a new
+   `DECISIONS.md` / `EXPERIMENT_REGISTRY.md` entry when one is made, one `CHANGELOG.md` line), then run
+   `python3 tools/sync_research_memory.py --changed-only`. It regenerates what is stale (inventory, registry
+   view, context facts, graph), skips what is not, validates once (registry, preservation guard, health check,
+   only the tests that match the change) and warns about an unregistered version or a missing CHANGELOG line.
+   Add `--full` only for changes to guards, hooks, permissions or versioning, or when CI requires it.
+5. Report briefly: what was done, the new version, what changed, memory updated (yes/no), validation result,
+   and anything that needs the owner (deletion, completing/freezing a version, push).
+Never complete or freeze a version, commit or push without the owner's explicit instruction.
 
 Single writer (applies to Claude AND Codex, interactive or not): if
 `outputs/autonomous_v5tf/repo_writer.lock/pid` names a live process, do NOT
@@ -53,15 +60,11 @@ If evidence remains ambiguous, mark the fact UNKNOWN or NEEDS VERIFICATION.
 Never invent metrics, experiment status, commit SHAs, dataset leakage status,
 parameter justification or frozen state.
 
-Research-memory maintenance is part of every substantive task: follow the
-"Maintenance workflow" in `research/context/README.md` (update the owning
-documents, register experiments/results/decisions, CHANGELOG entry →
-`python3 tools/build_code_inventory.py` if code changed →
-`python3 tools/update_project_context.py` → rebuild the graph →
-`python3 tools/context_health_check.py --queries` → report documentation
-status). Evidence ranking and conflict handling: same README.
+Research-memory maintenance happens once per task, at the end (step 4 above); the full checklist in
+`research/context/README.md` ("Maintenance workflow") is the reference for what each record owns. Evidence
+ranking and conflict handling: same README.
 
-Graph rebuild (code + canonical context, deterministic, no LLM):
+Graph rebuild by hand (normally done by the sync command; deterministic, no LLM):
 `$(cat graphify-out/.graphify_python 2>/dev/null || echo ~/.local/share/uv/tools/graphifyy/bin/python) tools/build_context_graph.py`
 
 ## graphify
@@ -71,8 +74,8 @@ This project has a knowledge graph at graphify-out/ with god nodes, community st
 When the user types `/graphify`, use the installed graphify skill or instructions before doing anything else.
 
 Rules:
-- For codebase questions, first run `graphify query "<question>"` when graphify-out/graph.json exists. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
+- For architecture questions you cannot answer with one targeted file read, run `graphify query "<question>"` (small `--budget`) when graphify-out/graph.json exists; never load the full graph or GRAPH_REPORT.md into the conversation for a routine task. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
 - Dirty graphify-out/ files are expected after hooks or incremental updates; dirty graph files are not a reason to skip graphify. Only skip graphify if the task is about stale or incorrect graph output, or the user explicitly says not to use it.
 - If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
 - Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
-- After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost). It preserves the context nodes; after editing `research/context/KNOWLEDGE_GRAPH.md`, rerun `tools/build_context_graph.py` instead.
+- Do not update the graph during a task: `tools/sync_research_memory.py` rebuilds it once at the end, only when graph-relevant files changed.

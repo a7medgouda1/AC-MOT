@@ -1,0 +1,43 @@
+\section{Discussion}\label{sec:discussion}
+
+\emph{The score scale is part of the MOT system.} The same detections and trackers give very
+different results when only the scale of the scores changes: halving the scores reduced ByteTrack
+(official setting) and OC-SORT from 67.70 and 66.43 HOTA to 0, and with RT-DETR-L on UAVDT, ByteTrack
+reached a MOTA of only 3.29 because of its many false positives. The fixed thresholds of a tracker
+hold only for the detector they were tuned for. The results therefore suggest that the score scale
+of the detector is a first-order variable of a tracking-by-detection system and deserves the same
+attention as the association method.
+
+\emph{Self-limiting by design.} In the clean mode the layer keeps the tracker's thresholds and
+scores, so a tracker with a low-score step and well-matched detections receives its normal input.
+This is the main difference from the earlier design \aob{}, which lowered the HOTA of the same
+strong trackers by 4.15 to 5.89 points (Table~\ref{tab:prior}). The layer therefore does not need
+to know in advance whether a tracker needs help; it infers the operating mode from the score
+distribution.
+
+\emph{Tracker dependence.} Single-stage trackers drop every detection below one threshold, so a
+track can be lost when its object receives low scores for a few frames. The continuation rescue
+fills exactly these gaps, and OC-SORT and the external PD-SORT gained HOTA on 7 of 7 MOT17 sequences.
+Two-stage trackers already continue tracks with low-score boxes, so they keep their own accuracy
+with well-matched detections and gain when the detector is noisy, as ByteTrack and BoT-SORT did with
+RT-DETR-L. The observed gains are thus strongly associated with the host and with how well its
+thresholds fit the detector scores, although scene and dataset properties, such as object density,
+motion, and occlusion, may also influence them.
+
+\emph{Identity switches.} The layer cut identity switches where it removed false boxes: by 43\% and
+47\% for ByteTrack and BoT-SORT with RT-DETR-L on KITTI, by 45\% and 56\% on the held-out aerial
+data, and by 8 and 14 for OC-SORT on MOT17. Where it let a tracker follow many more objects, the
+count rose with the number of followed objects: for OC-SORT with YOLOv8n on KITTI, 79 more switches
+came with 5,310 fewer missed objects and 9.60 more IDF1 points. Identities were therefore kept
+better overall in this cell too.
+
+\emph{Deployment.} \scl{} needs no training, no GPU, and no access to the inside of the detector or
+the tracker. It reads four contract values from the tracker's published configuration and, at run
+time, the candidate list, one small grayscale image for the motion cue, and the tracks of the
+previous frame. On a CPU it takes 2.95 ms per frame, which is small next to the 42 ms of the
+detector, and the tracker itself ran faster with it, from 2.04 to 1.43 ms per frame
+(Table~\ref{tab:runtime} and Fig.~\ref{fig:runtime}). The end-to-end time rose by 4.5\%, so the
+layer adds a low overhead. Whether a whole pipeline meets a real-time target depends on the
+detector, the hardware, and the required frame rate; in this CPU test the full pipeline ran at
+60.44 ms per frame, of which the detector took most. A new tracker is added through its published
+contract values and an adapter, without changes to the rules.

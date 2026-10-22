@@ -84,6 +84,7 @@ frame ─► UniversalACMOT (universal_acmot.py) ─► UniversalPolicyPipeline 
 | research/acmot_paper_v2/run_v3_second_val_read.py, run_baseline_systems.py, run_final_acmot_systems.py, run_uavdt_transfer.py, run_uavdt_bootstrap.py | Paper 1 final runs | P1 | P1-V3, P1-BASE, P1-STATIC, P1-UAVDT |
 | tools/cache_detections.py | detector caches for replay | all | — |
 | JAIS_PAPERS/CODEX_HANDOFF/tools/{make_standalone,check_integrity}.py | manuscript standalone builder and integrity check | papers | PAPERS.md |
+| tools/sync_research_memory.py | one end-of-task maintenance pass: runs the four tools below only when needed, validates once (D-038) | — | README.md |
 | tools/build_context_graph.py, tools/context_health_check.py, tools/update_project_context.py, tools/build_code_inventory.py | knowledge-base maintenance | — | README.md |
 
 ## 5. Tests
