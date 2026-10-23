@@ -206,6 +206,11 @@ Edit this file when the project state changes, then rebuild the graph.
 | Manuscript: Paper2_V34 | ACTIVE (supervisor copy) | 16-page condensed version of V33 (all results kept, duplicate visuals removed), two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev34 | PAPERS.md |
 | Manuscript: Paper2_V35 | ACTIVE (supervisor copy) | 15-page version of V34 with track paths in the KITTI example figure, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev35 | PAPERS.md |
 | Manuscript: Paper2_V36 | ACTIVE (supervisor copy) | V35 without the Statements and Declarations section, 15 pages, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev36 | PAPERS.md |
+| Manuscript: Paper2_V37 | ACTIVE (supervisor copy) | V36 with the three-frame tracking figure (colours per track ID, track paths), 15 pages, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev37 | PAPERS.md |
+| Manuscript: Paper2_V38 | ACTIVE (supervisor copy) | V37 with the review wording fixes (positives-only), 15 pages, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev38 | PAPERS.md |
+| Manuscript: Paper2_V39 | ACTIVE (supervisor copy) | V38 without Sect. 3.7 (algorithm and runtime table kept), 15 pages, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev39 | PAPERS.md |
+| Manuscript: Paper2_V40 | ACTIVE (supervisor copy) | V39 without the running-time table, 15 pages, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev40 | PAPERS.md |
+| Manuscript: Paper2_V41 | ACTIVE (supervisor copy) | V40 with the abstract below 250 words, 15 pages, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev41 | PAPERS.md |
 | Decision: D-042 V7f on UAVDT test | ACTIVE | owner-authorized single run of the frozen V7f, preregistered, reported in Paper2_V18 | DECISIONS.md |
 | Decision: D-041 V7f on VisDrone confirmation-16 | ACTIVE | owner-authorized single run of the frozen V7f, preregistered, reported in Paper2_V16 | DECISIONS.md |
 | Decision: D-040 Paper2_V15 template peer-review layout | ACTIVE | official template manual followed: single column, referee, flat figures, eight declarations | DECISIONS.md |
@@ -609,6 +614,11 @@ Edit this file when the project state changes, then rebuild the graph.
 | Manuscript: Paper2_V34 | REVISES | Manuscript: Paper2_V33 |
 | Manuscript: Paper2_V35 | REVISES | Manuscript: Paper2_V34 |
 | Manuscript: Paper2_V36 | REVISES | Manuscript: Paper2_V35 |
+| Manuscript: Paper2_V37 | REVISES | Manuscript: Paper2_V36 |
+| Manuscript: Paper2_V38 | REVISES | Manuscript: Paper2_V37 |
+| Manuscript: Paper2_V39 | REVISES | Manuscript: Paper2_V38 |
+| Manuscript: Paper2_V40 | REVISES | Manuscript: Paper2_V39 |
+| Manuscript: Paper2_V41 | REVISES | Manuscript: Paper2_V40 |
 | Manuscript: Paper2_V18 | REVISES | Manuscript: Paper2_V17 |
 | Decision: D-042 V7f on UAVDT test | DECIDES | Manuscript: Paper2_V18 |
 | Manuscript: Paper2_V17 | REVISES | Manuscript: Paper2_V16 |
