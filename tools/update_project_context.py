@@ -39,7 +39,9 @@ def git_facts() -> dict:
     for t in git("tag", "--sort=creatordate").splitlines():
         tags.append((t, git("rev-list", "-n1", t),
                      git("log", "-1", "--format=%cs", t)))
-    status = git("status", "--porcelain").splitlines()
+    # Tracked changes only: untracked local files (scratch scripts, build output) are
+    # machine-specific and must not enter shared documentation.
+    status = git("status", "--porcelain", "--untracked-files=no").splitlines()
     log = git("log", "--format=%h %cs %s", "-15").splitlines()
     return dict(head=head, branch=branch, upstream=upstream, ahead=ahead,
                 behind=behind, tags=tags, status=status, log=log,

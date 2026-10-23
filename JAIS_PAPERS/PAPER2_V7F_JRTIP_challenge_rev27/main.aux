@@ -1,0 +1,261 @@
+\relax 
+\bibstyle{sn-mathphys-num}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zhu2022visdrone,wu2022uavsurvey}
+\citation{adzemovic2026survey}
+\citation{bewley2016sort,zhang2022bytetrack,cao2023ocsort}
+\Newlabel{3}{3}
+\Newlabel{4}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.3}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.3}{}}
+\citation{zhang2022bytetrack}
+\citation{cao2023ocsort}
+\citation{kuppers2020detcalib}
+\citation{luiten2021hota}
+\citation{ma2023adaptivebytetrack,shim2024adaptrack,act2026adaptive}
+\citation{kuppers2020detcalib}
+\citation{han2022dynamic,jiang2018chameleon}
+\citation{otsu1979}
+\citation{milan2016mot16}
+\citation{ge2021yolox}
+\citation{geiger2012kitti}
+\citation{jocher2023yolov8}
+\citation{zhao2024rtdetr}
+\citation{du2018uavdt}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main terms of this paper in plain words.}}{3}{table.5}\protected@file@percent }
+\newlabel{tab:terms}{{1}{3}{Main terms of this paper in plain words}{table.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Data and Evaluation}{3}{section.10}\protected@file@percent }
+\newlabel{sec:data-eval}{{2}{3}{Data and Evaluation}{section.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Detectors and data}{3}{subsection.11}\protected@file@percent }
+\newlabel{sec:data}{{2.1}{3}{Detectors and data}{subsection.11}{}}
+\citation{dendorfer2021motchallenge}
+\citation{bernardin2008clear}
+\citation{ristani2016idf1}
+\citation{luiten2021hota}
+\citation{efron1993bootstrap}
+\citation{bewley2016sort}
+\citation{zhang2022bytetrack}
+\citation{cao2023ocsort}
+\citation{ge2021yolox}
+\citation{adzemovic2026survey}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Evaluation roles and metrics}{4}{subsection.14}\protected@file@percent }
+\newlabel{sec:roles}{{2.2}{4}{Evaluation roles and metrics}{subsection.14}{}}
+\newlabel{sec:metrics}{{2.2}{4}{Evaluation roles and metrics}{subsection.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Related Work}{4}{section.17}\protected@file@percent }
+\newlabel{sec:related}{{3}{4}{Related Work}{section.17}{}}
+\citation{li2024fdbtrack}
+\citation{bao2024graphmatching,zhang2025sinkhorn}
+\citation{ding2025remot}
+\citation{liang2024motiontrack}
+\citation{sun2026bsr}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Evaluation cells and their role. A cell is one combination of data, detector, and tracker. Development cells were looked at while the layer was designed; predeclared and held-out cells were chosen in advance and run once with the frozen layer.}}{5}{table.13}\protected@file@percent }
+\newlabel{tab:data}{{2}{5}{Evaluation cells and their role. A cell is one combination of data, detector, and tracker. Development cells were looked at while the layer was designed; predeclared and held-out cells were chosen in advance and run once with the frozen layer}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Tracking metrics used in this paper. GT is the number of ground-truth boxes; FP, FN, and IDS are the false positives, missed objects (false negatives), and identity switches, summed over all frames. For IDF1, each ground-truth track is first matched to at most one output track, and IDTP, IDFP, and IDFN are the true-positive, false-positive, and false-negative boxes under this matching. For HOTA, at a localization threshold $\alpha $, $\mathrm  {TP}_\alpha $, $\mathrm  {FN}_\alpha $, and $\mathrm  {FP}_\alpha $ are the matched, missed, and unmatched boxes, and $\mathcal  {A}(c)$ is the association accuracy of a matched pair $c$. HOTA, MOTA, and IDF1 are given in percent.}}{5}{table.16}\protected@file@percent }
+\newlabel{tab:metrics}{{3}{5}{Tracking metrics used in this paper. GT is the number of ground-truth boxes; FP, FN, and IDS are the false positives, missed objects (false negatives), and identity switches, summed over all frames. For IDF1, each ground-truth track is first matched to at most one output track, and IDTP, IDFP, and IDFN are the true-positive, false-positive, and false-negative boxes under this matching. For HOTA, at a localization threshold $\alpha $, $\mathrm {TP}_\alpha $, $\mathrm {FN}_\alpha $, and $\mathrm {FP}_\alpha $ are the matched, missed, and unmatched boxes, and $\mathcal {A}(c)$ is the association accuracy of a matched pair $c$. HOTA, MOTA, and IDF1 are given in percent}{table.16}{}}
+\citation{ge2021yolox}
+\citation{jocher2023yolov8}
+\citation{wang2024yolov9}
+\citation{carion2020detr}
+\citation{zhao2024rtdetr}
+\citation{kuppers2020detcalib}
+\citation{otsu1979}
+\citation{ma2023adaptivebytetrack}
+\citation{shim2024adaptrack}
+\citation{act2026adaptive}
+\citation{jung2024conftrack}
+\citation{solano2025utrack}
+\citation{kim2026plugtrack}
+\citation{han2022dynamic}
+\citation{jiang2018chameleon}
+\citation{ma2023adaptivebytetrack}
+\citation{jung2024conftrack}
+\citation{shim2024adaptrack}
+\citation{solano2025utrack}
+\citation{act2026adaptive}
+\citation{kim2026plugtrack}
+\citation{kuppers2020detcalib}
+\citation{jiang2018chameleon}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{6}{section.20}\protected@file@percent }
+\newlabel{sec:method}{{4}{6}{Method}{section.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Comparison of SCL{} with recent adaptive methods for tracking (BT: ByteTrack; ReID: re-identification network; NMS: non-maximum suppression).}}{7}{table.19}\protected@file@percent }
+\newlabel{tab:related}{{4}{7}{Comparison of \scl {} with recent adaptive methods for tracking (BT: ByteTrack; ReID: re-identification network; NMS: non-maximum suppression)}{table.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces SCL{} between a frozen detector and a frozen tracker. The statistics use earlier frames only. The host contract holds the tracker's published settings. The tracker receives the chosen candidates, their scores, and its thresholds for the frame}}{7}{figure.22}\protected@file@percent }
+\newlabel{fig:arch}{{1}{7}{\scl {} between a frozen detector and a frozen tracker. The statistics use earlier frames only. The host contract holds the tracker's published settings. The tracker receives the chosen candidates, their scores, and its thresholds for the frame}{figure.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Inputs and outputs}{7}{subsection.23}\protected@file@percent }
+\newlabel{sec:problem}{{4.1}{7}{Inputs and outputs}{subsection.23}{}}
+\newlabel{eq:logit}{{1}{7}{Inputs and outputs}{equation.24}{}}
+\citation{otsu1979}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Main symbols of the method.}}{8}{table.27}\protected@file@percent }
+\newlabel{tab:symbols}{{5}{8}{Main symbols of the method}{table.27}{}}
+\newlabel{eq:layer}{{2}{8}{Inputs and outputs}{equation.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Self-calibration from detector scores}{8}{subsection.28}\protected@file@percent }
+\newlabel{sec:calib}{{4.2}{8}{Self-calibration from detector scores}{subsection.28}{}}
+\newlabel{eq:rho}{{3}{8}{Self-calibration from detector scores}{equation.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Clean and noisy modes}{9}{subsection.30}\protected@file@percent }
+\newlabel{sec:regimes}{{4.3}{9}{Clean and noisy modes}{subsection.30}{}}
+\newlabel{eq:clean}{{4}{9}{Clean and noisy modes}{equation.31}{}}
+\newlabel{eq:remap}{{5}{9}{Clean and noisy modes}{equation.32}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Track continuation and camera motion}{9}{subsection.33}\protected@file@percent }
+\newlabel{sec:rescue}{{4.4}{9}{Track continuation and camera motion}{subsection.33}{}}
+\citation{reddy1996phasecorr}
+\citation{milan2016mot16}
+\newlabel{eq:motion}{{6}{10}{Track continuation and camera motion}{equation.34}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Host contract and adapters}{10}{subsection.35}\protected@file@percent }
+\newlabel{sec:contract}{{4.5}{10}{Host contract and adapters}{subsection.35}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Fixed constants}{10}{subsection.38}\protected@file@percent }
+\newlabel{sec:constants}{{4.6}{10}{Fixed constants}{subsection.38}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Per-frame steps and cost}{10}{subsection.41}\protected@file@percent }
+\newlabel{sec:cost}{{4.7}{10}{Per-frame steps and cost}{subsection.41}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Development of the Method}{10}{section.43}\protected@file@percent }
+\newlabel{sec:development}{{5}{10}{Development of the Method}{section.43}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Starting point: always-on banding}{10}{subsection.44}\protected@file@percent }
+\newlabel{sec:prior}{{5.1}{10}{Starting point: always-on banding}{subsection.44}{}}
+\citation{liu2025sparsetrack}
+\citation{stanojevic2024boosttrack}
+\citation{stanojevic2024boosttrack}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Host contracts: the published settings of each tracker, as used by the layer.}}{11}{table.37}\protected@file@percent }
+\newlabel{tab:contracts}{{6}{11}{Host contracts: the published settings of each tracker, as used by the layer}{table.37}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Fixed constants of SCL{}.}}{11}{table.40}\protected@file@percent }
+\newlabel{tab:constants}{{7}{11}{Fixed constants of \scl {}}{table.40}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Design steps}{11}{subsection.49}\protected@file@percent }
+\newlabel{sec:steps}{{5.2}{11}{Design steps}{subsection.49}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Baseline comparison of the development stage on MOT17 val-half (published YOLOX-X detections). Host: the tracker alone, without any layer (our run of the published tracker). $\Delta $: tracker with the earlier design AOB{} or with SCL{} minus host, with 95\% paired-bootstrap interval (10,000 resamples, seed 42). Bold intervals exclude zero. IDS: identity switches, a count (lower is better).}}{11}{table.46}\protected@file@percent }
+\newlabel{tab:prior}{{8}{11}{Baseline comparison of the development stage on MOT17 val-half (published YOLOX-X detections). Host: the tracker alone, without any layer (our run of the published tracker). $\Delta $: tracker with the earlier design \aob {} or with \scl {} minus host, with 95\% paired-bootstrap interval (10,000 resamples, seed 42). Bold intervals exclude zero. IDS: identity switches, a count (lower is better)}{table.46}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces SCL{} for frame $t$. The window holds the logits of frames $t-W$ to $t-1$, so the decision for frame $t$ uses no future frame.}}{12}{algorithm.42}\protected@file@percent }
+\newlabel{alg:layer}{{1}{12}{Per-frame steps and cost}{algorithm.42}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces HOTA on MOT17 val-half of strong published trackers (SparseTrack and BoostTrack in two settings) alone, with AOB{}, and with SCL{}. The labels give the change caused by AOB{}}}{12}{figure.48}\protected@file@percent }
+\newlabel{fig:prior}{{2}{12}{HOTA on MOT17 val-half of strong published trackers (SparseTrack and BoostTrack in two settings) alone, with \aob {}, and with \scl {}. The labels give the change caused by \aob {}}{figure.48}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Freezing and testing}{12}{subsection.52}\protected@file@percent }
+\newlabel{sec:freeze}{{5.3}{12}{Freezing and testing}{subsection.52}{}}
+\citation{zhang2022bytetrack}
+\citation{aharon2022botsort}
+\citation{cao2023ocsort}
+\citation{liu2025sparsetrack}
+\citation{stanojevic2024boosttrack}
+\citation{wang2025pdsort}
+\citation{yang2024hybridsort}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Design steps from AOB{} to SCL{} on development data (HOTA, \%), and versions that were tested and rejected. The floor of ByteTrack and OC-SORT is given in parentheses.}}{13}{table.51}\protected@file@percent }
+\newlabel{tab:ablation}{{9}{13}{Design steps from \aob {} to \scl {} on development data (HOTA, \%), and versions that were tested and rejected. The floor of ByteTrack and OC-SORT is given in parentheses}{table.51}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experimental Setup}{13}{section.53}\protected@file@percent }
+\newlabel{sec:setup}{{6}{13}{Experimental Setup}{section.53}{}}
+\newlabel{sec:hosts}{{6}{13}{Experimental Setup}{section.53}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Results and Analysis}{13}{section.54}\protected@file@percent }
+\newlabel{sec:results}{{7}{13}{Results and Analysis}{section.54}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Difference in HOTA (host with SCL{} minus host alone) with 95\% paired-bootstrap interval for every tested cell. Filled blue circles: interval above zero; open gray circles: interval contains zero, or identical output}}{13}{figure.56}\protected@file@percent }
+\newlabel{fig:forest}{{3}{13}{Difference in HOTA (host with \scl {} minus host alone) with 95\% paired-bootstrap interval for every tested cell. Filled blue circles: interval above zero; open gray circles: interval contains zero, or identical output}{figure.56}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Results across trackers}{13}{subsection.57}\protected@file@percent }
+\newlabel{sec:tracker}{{7.1}{13}{Results across trackers}{subsection.57}{}}
+\citation{liu2025sparsetrack}
+\citation{stanojevic2024boosttrack}
+\citation{stanojevic2024boosttrack}
+\citation{zhang2022bytetrack}
+\citation{zhang2022bytetrack}
+\citation{cao2023ocsort}
+\citation{cao2023ocsort}
+\citation{zhang2022bytetrack}
+\citation{aharon2022botsort}
+\citation{cao2023ocsort}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Per-sequence HOTA differences (host with SCL{} minus host alone) on MOT17 val-half for the development and predeclared trackers}}{14}{figure.61}\protected@file@percent }
+\newlabel{fig:perseq}{{4}{14}{Per-sequence HOTA differences (host with \scl {} minus host alone) on MOT17 val-half for the development and predeclared trackers}{figure.61}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Results with other detectors}{14}{subsection.62}\protected@file@percent }
+\newlabel{sec:detector}{{7.2}{14}{Results with other detectors}{subsection.62}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Baseline comparison of the development trackers on MOT17 val-half (published YOLOX-X detections). Paper: number reported by the tracker's authors. Host: the tracker alone, without SCL{} (our run of the published tracker). $\Delta $: host with SCL{} minus host, with 95\% paired-bootstrap interval (10,000 resamples, seed 42); bold intervals exclude zero. The floor is the lowest detector score emitted. IDS: identity switches, a count (lower is better); --: not reported by the authors.}}{14}{table.59}\protected@file@percent }
+\newlabel{tab:mot17}{{10}{14}{Baseline comparison of the development trackers on MOT17 val-half (published YOLOX-X detections). Paper: number reported by the tracker's authors. Host: the tracker alone, without \scl {} (our run of the published tracker). $\Delta $: host with \scl {} minus host, with 95\% paired-bootstrap interval (10,000 resamples, seed 42); bold intervals exclude zero. The floor is the lowest detector score emitted. IDS: identity switches, a count (lower is better); --: not reported by the authors}{table.59}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Results under shifted detector scores}{14}{subsection.65}\protected@file@percent }
+\newlabel{sec:shift}{{7.3}{14}{Results under shifted detector scores}{subsection.65}{}}
+\citation{zhang2022bytetrack}
+\citation{zhang2022bytetrack}
+\citation{cao2023ocsort}
+\citation{stanojevic2024boosttrack}
+\citation{act2026adaptive}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Baseline comparison under a detector change on KITTI tracking training (official HOTA, car and pedestrian averaged). Host: the tracker alone, without SCL{}, with the same detections. $\Delta $: host with SCL{} minus host, with 95\% paired-bootstrap interval; bold intervals exclude zero. IDS: identity switches, a count (lower is better).}}{15}{table.64}\protected@file@percent }
+\newlabel{tab:kitti}{{11}{15}{Baseline comparison under a detector change on KITTI tracking training (official HOTA, car and pedestrian averaged). Host: the tracker alone, without \scl {}, with the same detections. $\Delta $: host with \scl {} minus host, with 95\% paired-bootstrap interval; bold intervals exclude zero. IDS: identity switches, a count (lower is better)}{table.64}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Comparison with adaptive-threshold methods}{15}{subsection.70}\protected@file@percent }
+\newlabel{sec:baselines}{{7.4}{15}{Comparison with adaptive-threshold methods}{subsection.70}{}}
+\citation{act2026adaptive}
+\citation{wang2025pdsort}
+\citation{yang2024hybridsort}
+\citation{wang2025pdsort}
+\citation{yang2024hybridsort}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Baseline comparison under shifted detector scores on MOT17 val-half. The detector scores are transformed before the tracker, whose published thresholds stay fixed; $T$ is a logit temperature, $\sigma (z/T)$. Host: the tracker alone, without SCL{}. $\Delta $: with SCL{} minus host, with 95\% paired-bootstrap interval (10,000 resamples, seed 42); bold intervals exclude zero. IDS: identity switches, a count (lower is better). A host that loses most detections also has few identity switches, because it follows few objects (for example 0 HOTA and 0 IDS under halved scores). Emission floor 0.01 (BoostTrack 0.1).}}{16}{table.67}\protected@file@percent }
+\newlabel{tab:shift}{{12}{16}{Baseline comparison under shifted detector scores on MOT17 val-half. The detector scores are transformed before the tracker, whose published thresholds stay fixed; $T$ is a logit temperature, $\sigma (z/T)$. Host: the tracker alone, without \scl {}. $\Delta $: with \scl {} minus host, with 95\% paired-bootstrap interval (10,000 resamples, seed 42); bold intervals exclude zero. IDS: identity switches, a count (lower is better). A host that loses most detections also has few identity switches, because it follows few objects (for example 0 HOTA and 0 IDS under halved scores). Emission floor 0.01 (BoostTrack 0.1)}{table.67}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Shifted detector scores on MOT17 val-half: HOTA of each published tracker with its published thresholds, alone and with SCL{}, after four monotone transforms of the detector scores ($s^3$, $0.5\,s$, and temperatures $T=2$ and $T=0.5$). (a) ByteTrack, official setting; (b) ByteTrack, library setting; (c) OC-SORT; (d) BoostTrack, online. Hatched bars: host with SCL{}}}{16}{figure.69}\protected@file@percent }
+\newlabel{fig:shift}{{5}{16}{Shifted detector scores on MOT17 val-half: HOTA of each published tracker with its published thresholds, alone and with \scl {}, after four monotone transforms of the detector scores ($s^3$, $0.5\,s$, and temperatures $T=2$ and $T=0.5$). (a) ByteTrack, official setting; (b) ByteTrack, library setting; (c) OC-SORT; (d) BoostTrack, online. Hatched bars: host with \scl {}}{figure.69}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Results on external trackers}{16}{subsection.75}\protected@file@percent }
+\newlabel{sec:external}{{7.5}{16}{Results on external trackers}{subsection.75}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6}Results on held-out aerial data}{16}{subsection.78}\protected@file@percent }
+\newlabel{sec:visdrone}{{7.6}{16}{Results on held-out aerial data}{subsection.78}{}}
+\citation{zhang2022bytetrack,zhao2024rtdetr}
+\citation{zhang2022bytetrack,jocher2023yolov8}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces HOTA and identity switches of SCL{} and of two simple adaptive-threshold baselines on KITTI tracking training (official HOTA, car and pedestrian averaged). Host: the tracker alone, without any layer. Adaptive $t_1$, $t_2$: the tracker's matching and birth thresholds are set in every frame to the first or second Otsu split of the logits of the last 10 frames, and the scores are passed unchanged. $\Delta $: SCL{} minus the adaptive $t_2$ baseline, with 95\% paired-bootstrap interval; bold intervals exclude zero. IDS: identity switches, a count (lower is better); a host with 0 HOTA follows no object, so it also has 0 IDS.}}{17}{table.72}\protected@file@percent }
+\newlabel{tab:baselines}{{13}{17}{HOTA and identity switches of \scl {} and of two simple adaptive-threshold baselines on KITTI tracking training (official HOTA, car and pedestrian averaged). Host: the tracker alone, without any layer. Adaptive $t_1$, $t_2$: the tracker's matching and birth thresholds are set in every frame to the first or second Otsu split of the logits of the last 10 frames, and the scores are passed unchanged. $\Delta $: \scl {} minus the adaptive $t_2$ baseline, with 95\% paired-bootstrap interval; bold intervals exclude zero. IDS: identity switches, a count (lower is better); a host with 0 HOTA follows no object, so it also has 0 IDS}{table.72}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces HOTA of ACT \cite  {act2026adaptive} and of SCL{} on the same detections, and the differences SCL{} minus ACT in HOTA, IDF1, and identity switches (IDS, a count; lower is better), with 95\% paired-bootstrap interval below each value; bold intervals exclude zero. ACT: published parameters, no tuning. KITTI: official HOTA, car and pedestrian averaged; MOT17: val-half, ACT's own setting; UAVDT: the protocol of Table~\ref {tab:visdrone}.}}{17}{table.74}\protected@file@percent }
+\newlabel{tab:act}{{14}{17}{HOTA of ACT \cite {act2026adaptive} and of \scl {} on the same detections, and the differences \scl {} minus ACT in HOTA, IDF1, and identity switches (IDS, a count; lower is better), with 95\% paired-bootstrap interval below each value; bold intervals exclude zero. ACT: published parameters, no tuning. KITTI: official HOTA, car and pedestrian averaged; MOT17: val-half, ACT's own setting; UAVDT: the protocol of Table~\ref {tab:visdrone}}{table.74}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.7}Running time}{17}{subsection.81}\protected@file@percent }
+\newlabel{sec:latency}{{7.7}{17}{Running time}{subsection.81}{}}
+\newlabel{sec:latency-setup}{{7.7}{17}{Running time}{subsection.81}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Mean per-frame time by stage for the host pipeline alone and with SCL{} (4-vCPU Intel Xeon, no GPU). The labels give the measured end-to-end time}}{17}{figure.85}\protected@file@percent }
+\newlabel{fig:runtime}{{6}{17}{Mean per-frame time by stage for the host pipeline alone and with \scl {} (4-vCPU Intel Xeon, no GPU). The labels give the measured end-to-end time}{figure.85}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Baseline comparison on the predeclared external systems (MOT17 val-half, authors' released detections), each evaluated once with the frozen SCL{}. Paper: number reported by the authors (for PD-SORT, their released output). Host: the tracker alone, without SCL{} (our run of the published tracker). Reproduction class against the authors' number (EXACT: $|\Delta \mathrm  {HOTA}|\le 0.2$; CLOSE: $\le 1.0$ with a documented, untuned cause). $\Delta $: host with SCL{} minus host, with 95\% paired-bootstrap interval; bold intervals exclude zero. IDS: identity switches, a count (lower is better); --: not reported.}}{18}{table.77}\protected@file@percent }
+\newlabel{tab:external}{{15}{18}{Baseline comparison on the predeclared external systems (MOT17 val-half, authors' released detections), each evaluated once with the frozen \scl {}. Paper: number reported by the authors (for PD-SORT, their released output). Host: the tracker alone, without \scl {} (our run of the published tracker). Reproduction class against the authors' number (EXACT: $|\Delta \mathrm {HOTA}|\le 0.2$; CLOSE: $\le 1.0$ with a documented, untuned cause). $\Delta $: host with \scl {} minus host, with 95\% paired-bootstrap interval; bold intervals exclude zero. IDS: identity switches, a count (lower is better); --: not reported}{table.77}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Baseline comparison on the held-out UAVDT test split (20 aerial sequences, not used during design), evaluated once with the frozen SCL{}. Host: ByteTrack alone, without SCL{}, with its published setting. $\Delta $: host with SCL{} minus host, with 95\% paired-bootstrap interval; bold intervals exclude zero. IDS: identity switches, a count (lower is better).}}{18}{table.80}\protected@file@percent }
+\newlabel{tab:visdrone}{{16}{18}{Baseline comparison on the held-out UAVDT test split (20 aerial sequences, not used during design), evaluated once with the frozen \scl {}. Host: ByteTrack alone, without \scl {}, with its published setting. $\Delta $: host with \scl {} minus host, with 95\% paired-bootstrap interval; bold intervals exclude zero. IDS: identity switches, a count (lower is better)}{table.80}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.8}Analysis}{18}{subsection.86}\protected@file@percent }
+\newlabel{sec:discussion}{{7.8}{18}{Analysis}{subsection.86}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Baseline comparison of the per-frame time on a 4-vCPU Intel Xeon (2.10 GHz, no GPU) with a live YOLOv8n detector (736 pixels) and ByteTrack on three KITTI sequences (2,279 timed frames per arm). Host alone: the same pipeline without SCL{}. Mean / 95th percentile in milliseconds.}}{18}{table.83}\protected@file@percent }
+\newlabel{tab:runtime}{{17}{18}{Baseline comparison of the per-frame time on a 4-vCPU Intel Xeon (2.10 GHz, no GPU) with a live YOLOv8n detector (736 pixels) and ByteTrack on three KITTI sequences (2,279 timed frames per arm). Host alone: the same pipeline without \scl {}. Mean / 95th percentile in milliseconds}{table.83}{}}
+\bibdata{references}
+\bibcite{zhu2022visdrone}{{1}{2022}{{Zhu et~al.}}{{}}}
+\bibcite{wu2022uavsurvey}{{2}{2022}{{Wu et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{19}{section.87}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{19}{Conclusion}{section.87}{}}
+\@writefile{toc}{\contentsline {subparagraph}{Funding}{19}{section*.89}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Competing interests}{19}{section*.90}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Ethics approval and consent to participate}{19}{section*.91}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Consent for publication}{19}{section*.92}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Data availability}{19}{section*.93}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Materials availability}{19}{section*.94}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Code availability}{19}{section*.95}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Author contributions}{19}{section*.96}\protected@file@percent }
+\bibcite{adzemovic2026survey}{{3}{2026}{{Ad{\v {z}}emovi{\'c}}}{{}}}
+\bibcite{bewley2016sort}{{4}{2016}{{Bewley et~al.}}{{}}}
+\bibcite{zhang2022bytetrack}{{5}{2022}{{Zhang et~al.}}{{}}}
+\bibcite{cao2023ocsort}{{6}{2023}{{Cao et~al.}}{{}}}
+\bibcite{kuppers2020detcalib}{{7}{2020}{{K{\"u}ppers et~al.}}{{}}}
+\bibcite{luiten2021hota}{{8}{2021}{{Luiten et~al.}}{{}}}
+\bibcite{ma2023adaptivebytetrack}{{9}{2023}{{Ma et~al.}}{{}}}
+\bibcite{shim2024adaptrack}{{10}{2024}{{Shim et~al.}}{{}}}
+\bibcite{act2026adaptive}{{11}{2026}{{Gwon and Lee}}{{}}}
+\bibcite{han2022dynamic}{{12}{2022}{{Han et~al.}}{{}}}
+\bibcite{jiang2018chameleon}{{13}{2018}{{Jiang et~al.}}{{}}}
+\bibcite{otsu1979}{{14}{1979}{{Otsu}}{{}}}
+\bibcite{milan2016mot16}{{15}{2016}{{Milan et~al.}}{{}}}
+\bibcite{ge2021yolox}{{16}{2021}{{Ge et~al.}}{{}}}
+\bibcite{geiger2012kitti}{{17}{2012}{{Geiger et~al.}}{{}}}
+\bibcite{jocher2023yolov8}{{18}{2023}{{Jocher et~al.}}{{}}}
+\bibcite{zhao2024rtdetr}{{19}{2024}{{Zhao et~al.}}{{}}}
+\bibcite{du2018uavdt}{{20}{2018}{{Du et~al.}}{{}}}
+\bibcite{dendorfer2021motchallenge}{{21}{2021}{{Dendorfer et~al.}}{{}}}
+\bibcite{bernardin2008clear}{{22}{2008}{{Bernardin and Stiefelhagen}}{{}}}
+\bibcite{ristani2016idf1}{{23}{2016}{{Ristani et~al.}}{{}}}
+\bibcite{efron1993bootstrap}{{24}{1993}{{Efron and Tibshirani}}{{}}}
+\bibcite{li2024fdbtrack}{{25}{2024}{{Li et~al.}}{{}}}
+\bibcite{bao2024graphmatching}{{26}{2024}{{Bao et~al.}}{{}}}
+\bibcite{zhang2025sinkhorn}{{27}{2025}{{Zhang et~al.}}{{}}}
+\bibcite{ding2025remot}{{28}{2025}{{Ding et~al.}}{{}}}
+\bibcite{liang2024motiontrack}{{29}{2024}{{Liang et~al.}}{{}}}
+\bibcite{sun2026bsr}{{30}{2026}{{Sun et~al.}}{{}}}
+\bibcite{wang2024yolov9}{{31}{2024}{{Wang et~al.}}{{}}}
+\bibcite{carion2020detr}{{32}{2020}{{Carion et~al.}}{{}}}
+\bibcite{jung2024conftrack}{{33}{2024}{{Jung et~al.}}{{}}}
+\bibcite{solano2025utrack}{{34}{2025}{{Solano-Carrillo et~al.}}{{}}}
+\bibcite{kim2026plugtrack}{{35}{2026}{{Kim et~al.}}{{}}}
+\bibcite{reddy1996phasecorr}{{36}{1996}{{Reddy and Chatterji}}{{}}}
+\bibcite{liu2025sparsetrack}{{37}{2025}{{Liu et~al.}}{{}}}
+\bibcite{stanojevic2024boosttrack}{{38}{2024}{{Stanojevic and Todorovic}}{{}}}
+\bibcite{aharon2022botsort}{{39}{2022}{{Aharon et~al.}}{{}}}
+\bibcite{wang2025pdsort}{{40}{2025}{{Wang et~al.}}{{}}}
+\bibcite{yang2024hybridsort}{{41}{2024}{{Yang et~al.}}{{}}}
+\gdef \@abspage@last{22}

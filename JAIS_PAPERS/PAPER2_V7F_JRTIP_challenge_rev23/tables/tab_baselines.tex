@@ -1,0 +1,20 @@
+\begin{table}[t]
+\caption{HOTA of \scl{} and of two simple adaptive-threshold baselines on KITTI
+tracking training (official HOTA, car and pedestrian averaged). Adaptive $t_1$,
+$t_2$: the tracker's matching and birth thresholds are set in every frame to the
+first or second Otsu split of the logits of the last 10 frames, and the scores
+are passed unchanged. $\Delta$: \scl{} minus the adaptive $t_2$ baseline, with
+95\% paired-bootstrap interval; bold intervals exclude zero.}
+\label{tab:baselines}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrl@{}}
+\toprule
+Cell & Host & Adapt.\ $t_1$ & Adapt.\ $t_2$ & \scl{} & $\Delta$ [95\% CI]\\
+\midrule
+\twol{OC-SORT, YOLOv8n}{} & 36.27 & 39.97 & 41.09 & 44.17 & {\boldmath $+3.09$ [$+2.00$, $+4.03$]}\\
+\twol{ByteTrack, RT-DETR-L,}{halved scores} & 49.50 & 49.58 & 49.50 & 51.78 & {\boldmath $+2.29$ [$+0.28$, $+4.96$]}\\
+\twol{OC-SORT, YOLOv8n,}{halved scores} & 0.00 & 37.68 & 43.56 & 46.30 & {\boldmath $+2.74$ [$+1.32$, $+3.34$]}\\
+\bottomrule
+\end{tabular}
+\end{table}

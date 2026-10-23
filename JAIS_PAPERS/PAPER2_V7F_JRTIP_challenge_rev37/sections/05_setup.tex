@@ -1,0 +1,25 @@
+\section{Experimental Setup}\label{sec:setup}
+
+The experiments test three expectations from the design. A tracker that
+already fits its detector should keep its accuracy. A tracker that does not
+fit, because it has no continuation step or because the detector or its
+score scale changed, should gain. Both should hold on trackers and data that
+were not seen during design.
+
+\label{sec:hosts}Seven published trackers serve as hosts: ByteTrack
+\cite{zhang2022bytetrack}, BoT-SORT \cite{aharon2022botsort}, OC-SORT
+\cite{cao2023ocsort}, SparseTrack \cite{liu2025sparsetrack}, BoostTrack
+\cite{stanojevic2024boosttrack}, PD-SORT \cite{wang2025pdsort}, and
+Hybrid-SORT \cite{yang2024hybridsort}. Each host uses the authors' code and
+published configuration, and its contract is given in
+Table~\ref{tab:contracts}. ByteTrack is used in two published settings: the
+official setting, with the thresholds that its authors used on MOT17, and the
+library setting, with the default thresholds of the widely used Ultralytics
+library, which also provides the BoT-SORT host.
+
+In every comparison the baseline is the host alone, called Host in the
+tables: the published tracker without \scl{}, run by us with its published
+configuration and the same detections. The
+second run adds the frozen \scl{} and changes nothing else. Both runs use the
+same environment. Where the authors report their own numbers, these are
+listed next to our reproduction of the host.

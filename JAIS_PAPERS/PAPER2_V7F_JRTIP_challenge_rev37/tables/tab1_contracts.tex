@@ -1,0 +1,22 @@
+\begin{table}[t]
+\caption{Host contracts: the published settings of each tracker, as used by the layer: matching
+(association) threshold $a$, birth threshold $b$, low threshold $\ell$, and match tolerance $m_0$.
+For every tracker, the layer's decision is passed on as thresholds, candidates, and scores.}
+\label{tab:contracts}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{27mm}lcccc@{}}
+\toprule
+Tracker (setting) & Type & $a$ & $b$ & $\ell$ & $m_0$\\
+\midrule
+ByteTrack (official MOT17) & two-stage & 0.6 & 0.7 & 0.1 & 0.8\\
+ByteTrack (library default) & two-stage & 0.25 & 0.25 & 0.1 & 0.8\\
+BoT-SORT (library default) & two-stage & 0.25 & 0.25 & 0.1 & 0.8\\
+SparseTrack & two-stage & 0.6 & 0.7 & 0.1 & 0.85\\
+BoostTrack & two-stage & 0.6 & 0.6 & 0.1 & 0.7\\
+Hybrid-SORT & two-stage & 0.6 & 0.6 & 0.1 & 0.75\\
+OC-SORT & single-stage & 0.6 & 0.6 & 0.6 & 0.7\\
+PD-SORT & single-stage & 0.6 & 0.6 & 0.6 & 0.7\\
+\bottomrule
+\end{tabular}
+\end{table}

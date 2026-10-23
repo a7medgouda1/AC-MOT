@@ -1,0 +1,514 @@
+{
+ "experiment_ids": [
+  "E57 adaptive-threshold baselines",
+  "E58 component ablation of V7f"
+ ],
+ "date": "2026-10-21",
+ "plan": "research/final/V7_REVIEWER_BASELINES_ABLATION_PLAN.md (written before the runs)",
+ "data": "KITTI tracking training (development, non-protected), official KITTI HOTA car/pedestrian average; paired bootstrap 10,000, seed 42; values [diff, ci_lo, ci_hi]",
+ "cells": {
+  "C1": "ByteTrack, RT-DETR-L",
+  "C3": "OC-SORT, YOLOv8n",
+  "C4": "ByteTrack, RT-DETR-L, halved scores",
+  "C5": "OC-SORT, YOLOv8n, halved scores"
+ },
+ "excluded": {
+  "C2": "BoT-SORT, RT-DETR-L: NOT VALID in this run. BoT-SORT reads the real frames for camera-motion compensation; the KITTI frames (training/image_02) were not on the machine (2.3 GB free, 8 GB needed), so the new BoT-SORT variants ran without images while the earlier host/V7f runs had them. All @trk:botsort variant outputs of 2026-10-21 under outputs/v7/kitti are invalid and are not reported."
+ },
+ "setup_note": "KITTI GT labels re-extracted from the local official data_tracking_label_2.zip into ~/acmot_work/kitti/training/label_02; a fresh evaluation reproduced the paper's C1 numbers exactly (host 50.728, V7f 51.640).",
+ "variants": {
+  "OTSU-1": "NATIVE@regime=noisy@noisy_primary=t1@noisy_ext=host",
+  "OTSU-2": "NATIVE@regime=noisy@noisy_primary=t2@noisy_ext=host",
+  "-rescue": "V7f@rescue=none",
+  "-motion": "V7f@motion=0",
+  "-remap": "V7f@scores=raw",
+  "-bgcheck": "V7f@bg_check=0",
+  "dup=iou": "V7f@dup=iou",
+  "always noisy": "V7f@regime=noisy",
+  "always clean": "V7f@regime=clean"
+ },
+ "points": {
+  "c1|host": {
+   "HOTA": 50.728,
+   "MOTA": 47.265,
+   "IDF1": 64.983,
+   "IDS": 686.0
+  },
+  "c1|V7f": {
+   "HOTA": 51.64,
+   "MOTA": 53.241,
+   "IDF1": 68.856,
+   "IDS": 389.0
+  },
+  "c1|OTSU-1": {
+   "HOTA": 51.231,
+   "MOTA": 49.368,
+   "IDF1": 66.265,
+   "IDS": 686.0
+  },
+  "c1|OTSU-2": {
+   "HOTA": 52.161,
+   "MOTA": 56.091,
+   "IDF1": 69.693,
+   "IDS": 406.0
+  },
+  "c1|-rescue": {
+   "HOTA": 51.64,
+   "MOTA": 53.241,
+   "IDF1": 68.856,
+   "IDS": 389.0
+  },
+  "c1|-motion": {
+   "HOTA": 51.652,
+   "MOTA": 53.415,
+   "IDF1": 68.865,
+   "IDS": 424.0
+  },
+  "c1|-remap": {
+   "HOTA": 52.035,
+   "MOTA": 54.856,
+   "IDF1": 69.476,
+   "IDS": 392.0
+  },
+  "c1|-bgcheck": {
+   "HOTA": 51.64,
+   "MOTA": 53.241,
+   "IDF1": 68.856,
+   "IDS": 389.0
+  },
+  "c1|dup=iou": {
+   "HOTA": 51.602,
+   "MOTA": 53.185,
+   "IDF1": 68.775,
+   "IDS": 401.0
+  },
+  "c1|always noisy": {
+   "HOTA": 51.446,
+   "MOTA": 54.265,
+   "IDF1": 69.404,
+   "IDS": 304.0
+  },
+  "c1|always clean": {
+   "HOTA": 50.736,
+   "MOTA": 47.189,
+   "IDF1": 65.06,
+   "IDS": 690.0
+  },
+  "c3|host": {
+   "HOTA": 36.266,
+   "MOTA": 33.986,
+   "IDF1": 50.457,
+   "IDS": 91.0
+  },
+  "c3|V7f": {
+   "HOTA": 44.175,
+   "MOTA": 43.389,
+   "IDF1": 60.054,
+   "IDS": 170.0
+  },
+  "c3|OTSU-1": {
+   "HOTA": 39.965,
+   "MOTA": 31.28,
+   "IDF1": 49.596,
+   "IDS": 1545.0
+  },
+  "c3|OTSU-2": {
+   "HOTA": 41.087,
+   "MOTA": 40.639,
+   "IDF1": 56.176,
+   "IDS": 250.0
+  },
+  "c3|-rescue": {
+   "HOTA": 40.828,
+   "MOTA": 39.316,
+   "IDF1": 56.218,
+   "IDS": 156.0
+  },
+  "c3|-motion": {
+   "HOTA": 44.075,
+   "MOTA": 43.21,
+   "IDF1": 60.009,
+   "IDS": 168.0
+  },
+  "c3|-remap": {
+   "HOTA": 44.176,
+   "MOTA": 43.362,
+   "IDF1": 60.183,
+   "IDS": 175.0
+  },
+  "c3|-bgcheck": {
+   "HOTA": 44.152,
+   "MOTA": 43.327,
+   "IDF1": 60.002,
+   "IDS": 169.0
+  },
+  "c3|dup=iou": {
+   "HOTA": 44.232,
+   "MOTA": 43.447,
+   "IDF1": 60.072,
+   "IDS": 172.0
+  },
+  "c3|always noisy": {
+   "HOTA": 44.253,
+   "MOTA": 43.02,
+   "IDF1": 60.205,
+   "IDS": 169.0
+  },
+  "c3|always clean": {
+   "HOTA": 44.324,
+   "MOTA": 44.916,
+   "IDF1": 59.665,
+   "IDS": 271.0
+  },
+  "c4|host": {
+   "HOTA": 49.502,
+   "MOTA": 54.409,
+   "IDF1": 65.45,
+   "IDS": 279.0
+  },
+  "c4|V7f": {
+   "HOTA": 51.785,
+   "MOTA": 49.971,
+   "IDF1": 67.861,
+   "IDS": 501.0
+  },
+  "c4|OTSU-1": {
+   "HOTA": 49.582,
+   "MOTA": 54.393,
+   "IDF1": 66.142,
+   "IDS": 273.0
+  },
+  "c4|OTSU-2": {
+   "HOTA": 49.5,
+   "MOTA": 54.213,
+   "IDF1": 65.85,
+   "IDS": 275.0
+  },
+  "c4|-rescue": {
+   "HOTA": 51.84,
+   "MOTA": 50.012,
+   "IDF1": 67.908,
+   "IDS": 496.0
+  },
+  "c4|-motion": {
+   "HOTA": 51.747,
+   "MOTA": 50.276,
+   "IDF1": 68.024,
+   "IDS": 541.0
+  },
+  "c4|-remap": {
+   "HOTA": 50.113,
+   "MOTA": 54.847,
+   "IDF1": 66.856,
+   "IDS": 240.0
+  },
+  "c4|-bgcheck": {
+   "HOTA": 51.866,
+   "MOTA": 49.938,
+   "IDF1": 67.942,
+   "IDS": 496.0
+  },
+  "c4|dup=iou": {
+   "HOTA": 51.911,
+   "MOTA": 50.057,
+   "IDF1": 68.14,
+   "IDS": 495.0
+  },
+  "c4|always noisy": {
+   "HOTA": 52.029,
+   "MOTA": 50.225,
+   "IDF1": 68.318,
+   "IDS": 489.0
+  },
+  "c4|always clean": {
+   "HOTA": 49.383,
+   "MOTA": 54.179,
+   "IDF1": 65.595,
+   "IDS": 287.0
+  },
+  "c5|host": {
+   "HOTA": 0.0,
+   "MOTA": 0.0,
+   "IDF1": 0.0,
+   "IDS": 0.0
+  },
+  "c5|V7f": {
+   "HOTA": 46.3,
+   "MOTA": 47.199,
+   "IDF1": 62.419,
+   "IDS": 308.0
+  },
+  "c5|OTSU-1": {
+   "HOTA": 37.681,
+   "MOTA": 23.679,
+   "IDF1": 45.538,
+   "IDS": 1975.0
+  },
+  "c5|OTSU-2": {
+   "HOTA": 43.558,
+   "MOTA": 45.618,
+   "IDF1": 58.176,
+   "IDS": 492.0
+  },
+  "c5|-rescue": {
+   "HOTA": 45.142,
+   "MOTA": 46.819,
+   "IDF1": 61.395,
+   "IDS": 279.0
+  },
+  "c5|-motion": {
+   "HOTA": 46.163,
+   "MOTA": 46.985,
+   "IDF1": 62.227,
+   "IDS": 307.0
+  },
+  "c5|-remap": {
+   "HOTA": 45.688,
+   "MOTA": 46.9,
+   "IDF1": 61.432,
+   "IDS": 336.0
+  },
+  "c5|-bgcheck": {
+   "HOTA": 46.454,
+   "MOTA": 47.195,
+   "IDF1": 62.717,
+   "IDS": 301.0
+  },
+  "c5|dup=iou": {
+   "HOTA": 46.266,
+   "MOTA": 47.124,
+   "IDF1": 62.322,
+   "IDS": 314.0
+  },
+  "c5|always noisy": {
+   "HOTA": 47.153,
+   "MOTA": 47.242,
+   "IDF1": 63.99,
+   "IDS": 241.0
+  },
+  "c5|always clean": {
+   "HOTA": 43.861,
+   "MOTA": 45.384,
+   "IDF1": 57.692,
+   "IDS": 530.0
+  }
+ },
+ "bootstrap": {
+  "C1": {
+   "V7f-OTSU2": {
+    "HOTA": [
+     -0.52,
+     -1.51,
+     0.09
+    ],
+    "MOTA": [
+     -2.85,
+     -9.86,
+     -0.69
+    ],
+    "IDF1": [
+     -0.84,
+     -3.09,
+     0.72
+    ]
+   },
+   "V7f-OTSU1": {
+    "HOTA": [
+     0.41,
+     -0.19,
+     1.05
+    ],
+    "MOTA": [
+     3.87,
+     -0.74,
+     6.54
+    ],
+    "IDF1": [
+     2.59,
+     0.54,
+     3.8
+    ]
+   },
+   "OTSU2-host": {
+    "HOTA": [
+     1.43,
+     0.78,
+     2.39
+    ],
+    "MOTA": [
+     8.83,
+     6.08,
+     16.84
+    ],
+    "IDF1": [
+     4.71,
+     3.17,
+     5.77
+    ]
+   }
+  },
+  "C3": {
+   "V7f-OTSU2": {
+    "HOTA": [
+     3.09,
+     2.0,
+     4.03
+    ],
+    "MOTA": [
+     2.75,
+     1.0,
+     4.28
+    ],
+    "IDF1": [
+     3.88,
+     2.25,
+     5.24
+    ]
+   },
+   "V7f-OTSU1": {
+    "HOTA": [
+     4.21,
+     1.61,
+     6.16
+    ],
+    "MOTA": [
+     12.11,
+     6.38,
+     33.85
+    ],
+    "IDF1": [
+     10.46,
+     5.72,
+     13.08
+    ]
+   },
+   "OTSU2-host": {
+    "HOTA": [
+     4.82,
+     2.52,
+     6.94
+    ],
+    "MOTA": [
+     6.65,
+     -0.67,
+     9.37
+    ],
+    "IDF1": [
+     5.72,
+     2.52,
+     8.28
+    ]
+   }
+  },
+  "C4": {
+   "V7f-OTSU2": {
+    "HOTA": [
+     2.29,
+     0.28,
+     4.96
+    ],
+    "MOTA": [
+     -4.24,
+     -19.65,
+     -0.4
+    ],
+    "IDF1": [
+     2.01,
+     -0.73,
+     6.23
+    ]
+   },
+   "V7f-OTSU1": {
+    "HOTA": [
+     2.2,
+     -0.23,
+     4.92
+    ],
+    "MOTA": [
+     -4.42,
+     -19.86,
+     -0.71
+    ],
+    "IDF1": [
+     1.72,
+     -1.33,
+     6.22
+    ]
+   },
+   "OTSU2-host": {
+    "HOTA": [
+     0.0,
+     -0.26,
+     0.29
+    ],
+    "MOTA": [
+     -0.2,
+     -0.49,
+     0.27
+    ],
+    "IDF1": [
+     0.4,
+     -0.1,
+     1.21
+    ]
+   }
+  },
+  "C5": {
+   "V7f-OTSU2": {
+    "HOTA": [
+     2.74,
+     1.32,
+     3.34
+    ],
+    "MOTA": [
+     1.58,
+     -5.32,
+     3.2
+    ],
+    "IDF1": [
+     4.24,
+     1.07,
+     5.46
+    ]
+   },
+   "V7f-OTSU1": {
+    "HOTA": [
+     8.62,
+     5.59,
+     10.52
+    ],
+    "MOTA": [
+     23.52,
+     17.44,
+     46.16
+    ],
+    "IDF1": [
+     16.88,
+     11.8,
+     19.27
+    ]
+   },
+   "OTSU2-host": {
+    "HOTA": [
+     43.56,
+     40.88,
+     46.36
+    ],
+    "MOTA": [
+     45.62,
+     31.62,
+     50.3
+    ],
+    "IDF1": [
+     58.18,
+     53.0,
+     61.92
+    ]
+   }
+  }
+ },
+ "summary": {
+  "baselines": "HOTA: V7f is significantly above the stronger simple baseline (OTSU-2) in C3, C4, C5 (+3.09, +2.29, +2.74) and not significantly different in C1 (-0.52 [-1.51, +0.09]). MOTA: OTSU-2 is significantly higher than V7f in C1 (-2.85) and C4 (-4.24); V7f higher in C3 (+2.75); C5 n.s. In C4 V7f also has lower MOTA than the host (49.97 vs 54.41).",
+  "ablation": "HOTA (C1/C3/C4/C5): the continuation rescue matters for OC-SORT (-3.34, -1.16 without it); the mode decision matters on the RT-DETR-L and halved-score cells (always clean: -0.90, -2.40, -2.44); remap helps under halved scores (-1.67, -0.61 without it) but costs 0.39 on C1; motion tolerance, background check and the duplicate rule change HOTA by at most 0.15 on KITTI; always noisy is within -0.19..+0.85 of V7f on KITTI (its cost on strong MOT17 trackers is the AOB result, Table 7)."
+ }
+}

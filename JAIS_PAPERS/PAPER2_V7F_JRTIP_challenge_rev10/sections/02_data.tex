@@ -1,0 +1,53 @@
+\section{Data and Evaluation}\label{sec:data-eval}
+
+\subsection{Detectors and data}\label{sec:data}
+Table~\ref{tab:data} lists the evaluation cells. A cell is one combination of
+data, detector, and tracker (the trackers are introduced in
+Sect.~\ref{sec:setup}). On MOT17 val-half \cite{milan2016mot16} the trackers
+use the published YOLOX-X detections \cite{ge2021yolox}. The emission floor is
+the lowest detector score that is passed on; it is 0.01 or 0.1
+(Table~\ref{tab:mot17}). On KITTI tracking training \cite{geiger2012kitti},
+the trackers run with two detectors that differ from the MOT17 detector:
+YOLOv8n \cite{jocher2023yolov8} and RT-DETR-L \cite{zhao2024rtdetr}. To study
+the score problem directly, the published MOT17 scores were also changed
+before the tracker by four monotone transforms: cubing ($s^3$), halving ($0.5\,s$),
+and logit temperatures $T=2$ and $T=0.5$, $\sigma(z/T)$. A temperature
+divides the logit $z$ of each score by $T$ before turning it back into a
+score: $T=2$ pulls all scores toward 0.5, and $T=0.5$ pushes them toward 0
+and 1. The trackers kept their published thresholds. The external systems use the detections released
+by their authors on MOT17 val-half.
+
+\input{tables/tab2_data}
+
+\subsection{Evaluation roles and metrics}\label{sec:roles}
+Every cell has one of two roles (Table~\ref{tab:data}). Development cells
+were visible while \scl{} was designed: MOT17 with four trackers, KITTI with
+two other detectors, and the score transforms. The predeclared external systems,
+PD-SORT and Hybrid-SORT, were chosen and declared before they were run, and
+they were run once with the frozen configuration. For each external tracker,
+our reproduction is compared with the authors' number and marked EXACT
+(within 0.2 HOTA) or CLOSE (within 1.0 HOTA, with a documented cause that was
+not tuned).
+
+\label{sec:metrics}Table~\ref{tab:metrics} gives the three tracking metrics,
+HOTA, multiple object tracking accuracy (MOTA), and identity F1 score (IDF1),
+and their definitions. They are built from three error counts: false
+positives (FP), missed objects or false negatives (FN), and identity switches
+(IDS). They are computed with the TrackEval library (commit
+12c8791) and the official ground truth of each benchmark, following
+MOTChallenge practice \cite{dendorfer2021motchallenge}. On KITTI tracking,
+HOTA is the official value averaged over cars and pedestrians.
+
+\input{tables/tab_metrics}
+
+All comparisons are paired: each tracker is run with and without \scl{} on
+the same sequences. Differences are pooled over sequences, and their 95\%
+intervals come from a percentile bootstrap over sequences
+\cite{efron1993bootstrap} with 10,000 resamples and seed 42. A difference is
+called significant when its interval does not include zero. As a simple
+check that does not depend on any distribution, we also count the sequences
+where HOTA rose, stayed the same ($|\Delta\mathrm{HOTA}|<0.01$), or fell.
+
+HOTA, MOTA, and IDF1 are given in percent, and higher values are better. FP,
+FN, and IDS are counts, and lower values are better. Runtime is given in
+milliseconds (ms) per frame, and lower values are better.
