@@ -1,0 +1,47 @@
+\begin{table}[!tb]
+\caption{MOT17 val-half with the published YOLOX-X detections: each development tracker alone and with \scl{}. Host: the tracker alone; Host+\scl{}: the same tracker with \scl{}, on the same detections. Change: Host+\scl{} minus Host, with its 95\% bootstrap interval in brackets; bold: the interval does not include zero, so the change is reliable. $\uparrow$: higher is better; $\downarrow$: lower is better (IDS: identity switches, a count). Paper: the number reported by the tracker's authors (--: not reported). Floor: the lowest detector score emitted.}
+\label{tab:mot17}
+\centering\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lrrrl@{}}
+\toprule
+Metric & Paper & Host & \begin{tabular}[b]{@{}r@{}}Host\\+\scl{}\end{tabular} & Change [95\% CI]\\
+\midrule
+\multicolumn{5}{@{}l}{\textit{SparseTrack} \cite{liu2025sparsetrack}}\\
+\quad HOTA$\uparrow$ & 69.2 & 68.88 & 68.93 & $+0.06$ [$-0.01$, $+0.25$]\\
+\quad MOTA$\uparrow$ & 76.8 & 77.85 & 77.93 & $+0.08$ [$-0.03$, $+0.30$]\\
+\quad IDF1$\uparrow$ & 81.4 & 81.97 & 82.13 & $+0.16$ [$-0.02$, $+0.70$]\\
+\quad IDS$\downarrow$ & -- & 124 & 131 & $+7$ [$0$, $+19$]\\
+\multicolumn{5}{@{}l}{\textit{BoostTrack, online} \cite{stanojevic2024boosttrack}}\\
+\quad HOTA$\uparrow$ & 68.37 & 68.49 & 68.49 & 0 (identical)\\
+\quad MOTA$\uparrow$ & 75.56 & 75.50 & 75.50 & 0 (identical)\\
+\quad IDF1$\uparrow$ & 81.35 & 81.41 & 81.41 & 0 (identical)\\
+\quad IDS$\downarrow$ & 118 & 113 & 113 & 0 (identical)\\
+\multicolumn{5}{@{}l}{\textit{BoostTrack, + GBI} \cite{stanojevic2024boosttrack}}\\
+\quad HOTA$\uparrow$ & 71.33 & 71.73 & 71.73 & 0 (identical)\\
+\quad MOTA$\uparrow$ & 80.55 & 81.03 & 81.03 & 0 (identical)\\
+\quad IDF1$\uparrow$ & 83.84 & 84.16 & 84.16 & 0 (identical)\\
+\quad IDS$\downarrow$ & 106 & 97 & 97 & 0 (identical)\\
+\multicolumn{5}{@{}l}{\textit{ByteTrack, floor 0.01} \cite{zhang2022bytetrack}}\\
+\quad HOTA$\uparrow$ & -- & 67.70 & 67.68 & $-0.014$ [$-0.058$, $+0.009$]\\
+\quad MOTA$\uparrow$ & 76.6 & 77.60 & 77.66 & $+0.06$ [$-0.15$, $+0.34$]\\
+\quad IDF1$\uparrow$ & 79.3 & 79.47 & 79.44 & $-0.031$ [$-0.135$, $+0.035$]\\
+\quad IDS$\downarrow$ & -- & 214 & 218 & $+4$ [$-2$, $+13$]\\
+\multicolumn{5}{@{}l}{\textit{ByteTrack, floor 0.1} \cite{zhang2022bytetrack}}\\
+\quad HOTA$\uparrow$ & -- & 67.70 & 67.70 & 0 (identical)\\
+\quad MOTA$\uparrow$ & 76.6 & 77.60 & 77.60 & 0 (identical)\\
+\quad IDF1$\uparrow$ & 79.3 & 79.47 & 79.47 & 0 (identical)\\
+\quad IDS$\downarrow$ & -- & 214 & 214 & 0 (identical)\\
+\multicolumn{5}{@{}l}{\textit{OC-SORT, floor 0.01} \cite{cao2023ocsort}}\\
+\quad HOTA$\uparrow$ & 66.5 & 66.43 & 67.04 & {\boldmath $+0.61$ [$+0.36$, $+1.24$]}\\
+\quad MOTA$\uparrow$ & 74.9 & 74.67 & 75.94 & {\boldmath $+1.27$ [$+0.17$, $+3.01$]}\\
+\quad IDF1$\uparrow$ & 77.7 & 78.05 & 78.71 & $+0.66$ [$-0.25$, $+1.60$]\\
+\quad IDS$\downarrow$ & -- & 211 & 203 & {\boldmath $-8$ [$-15$, $-2$]}\\
+\multicolumn{5}{@{}l}{\textit{OC-SORT, floor 0.1} \cite{cao2023ocsort}}\\
+\quad HOTA$\uparrow$ & 66.5 & 66.44 & 66.91 & {\boldmath $+0.46$ [$+0.27$, $+1.09$]}\\
+\quad MOTA$\uparrow$ & 74.9 & 74.67 & 75.93 & {\boldmath $+1.26$ [$+0.37$, $+3.34$]}\\
+\quad IDF1$\uparrow$ & 77.7 & 78.05 & 78.33 & {\boldmath $+0.287$ [$+0.003$, $+0.838$]}\\
+\quad IDS$\downarrow$ & -- & 213 & 199 & $-14$ [$-38$, $+6$]\\
+\bottomrule
+\end{tabular}
+\end{table}

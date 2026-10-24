@@ -216,6 +216,24 @@ Edit this file when the project state changes, then rebuild the graph.
 | Manuscript: Paper2_V44 | ACTIVE (supervisor copy) | V43 with tables kept inside their sections (float barriers), 16 pages, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev44 | PAPERS.md |
 | Manuscript: Paper2_V45 | ACTIVE (supervisor copy) | V44 without large blank spaces, all tables before Conclusion and References, 15 pages, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev45 | PAPERS.md |
 | Manuscript: Paper2_V46 | ACTIVE (supervisor copy) | V45 with a clear SCL block diagram (numbered steps, labelled inputs and outputs), 15 pages, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev46 | PAPERS.md |
+| Manuscript: Paper2_V47 | ACTIVE (supervisor copy) | V46 with Sect. 3 explained step by step following the Fig. 1 block diagram (input and output of each step), 15 pages, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev47 | PAPERS.md |
+| Manuscript: Paper2_V48 | ACTIVE (supervisor copy) | V47 with plainer Sect. 3/4 headings matching the Fig. 1 blocks and 36 references (all The Visual Computer ones kept), 15 pages, two columns, not for submission, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev48 | PAPERS.md |
+| Manuscript: Paper2_V49 | ACTIVE (anonymous copy) | V48 without author names, e-mails and affiliations, 15 pages, two columns, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev49 | PAPERS.md |
+| Manuscript: Paper2_V50 | ACTIVE (anonymous copy) | V49 with the supervisor notes applied (headings, novelty, comparison table, ablation and sensitivity E61, limitations), 17 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev50 | PAPERS.md |
+| Manuscript: Paper2_V51 | ACTIVE (anonymous copy) | V50 with a restructured abstract, 17 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev51 | PAPERS.md |
+| Manuscript: Paper2_V52 | ACTIVE (anonymous copy) | V51 with the abstract checked and corrected, 17 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev52 | PAPERS.md |
+| Manuscript: Paper2_V53 | ACTIVE (anonymous copy) | V52 with the supervisor's red-text corrections (Sect. 1 organization, Sects. 4 and 5 openings), 17 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev53 | PAPERS.md |
+| Manuscript: Paper2_V54 | ACTIVE (anonymous copy) | V53 with the Sect. 3 opening rewritten as a roadmap, 17 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev54 | PAPERS.md |
+| Manuscript: Paper2_V55 | ACTIVE (anonymous copy) | V54 with the Sect. 3 opening from the supervisor's file word for word (text identical to V53), 17 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev55 | PAPERS.md |
+| Manuscript: Paper2_V56 | ACTIVE (anonymous copy) | V55 with the owner's new Sect. 3 opening paragraph, 17 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev56 | PAPERS.md |
+| Manuscript: Paper2_V57 | ACTIVE (anonymous copy) | V56 with easier figures and tables (both runs shown, simple captions), 18 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev57 | PAPERS.md |
+| Manuscript: Paper2_V58 | ACTIVE (anonymous copy) | V57 with Section 3 explained step by step with real numbers and sources, 19 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev58 | PAPERS.md |
+| Manuscript: Paper2_V59 | ACTIVE (anonymous copy) | V58 with the supervisor's handwritten corrections (decision diamond in Fig. 1, clearer Figs. 2 and 4, full-width AOB table, half-up rounding, ACT UAVDT panel, title-case references), 19 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev59 | PAPERS.md |
+| Manuscript: Paper2_V60 | ACTIVE (anonymous copy) | V59 in 16 pages, same content, layout only (taller text block, smaller reference font, tighter spacing), JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev60 | PAPERS.md |
+| Manuscript: Paper2_V61 | ACTIVE (named copy) | V60 with authors and affiliations as marked by the supervisor (Ismail 1*, Mahmoud 1, Mohamed 2; 1 = EUI, 2 = MTC), 16 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev61 | PAPERS.md |
+| Manuscript: Paper2_V62 | ACTIVE (named copy) | V61 with affiliations as in Paper 1 and the ICMISI survey (Ismail 1*, Mahmoud 2, Mohamed 1; 1 = MTC, 2 = EUI), 16 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev62 | PAPERS.md |
+| Manuscript: Paper2_V63 | ACTIVE (named copy) | V62 with the supervisor's affiliation numbering and the first author at MTC (Ismail 2*, Mahmoud 1, Mohamed 2; 1 = EUI, 2 = MTC), 16 pages, the named copy to use, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev63 | PAPERS.md |
+| Manuscript: Paper2_V64 | ACTIVE (named copy) | V63 with the original thin Fig. 4 boxes and labels, 16 pages, the named copy to use, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev64 | PAPERS.md |
 | Manuscript: Thesis V2 | ACTIVE (owner copy) | M.Sc. thesis in the faculty prototype layout, content of Paper1_V13 and Paper2_V45, 83 pages, THESIS_V2/word/Thesis_Ahmed_Gouda_Ismail.pdf | PAPERS.md |
 | Decision: D-042 V7f on UAVDT test | ACTIVE | owner-authorized single run of the frozen V7f, preregistered, reported in Paper2_V18 | DECISIONS.md |
 | Decision: D-041 V7f on VisDrone confirmation-16 | ACTIVE | owner-authorized single run of the frozen V7f, preregistered, reported in Paper2_V16 | DECISIONS.md |
@@ -630,6 +648,24 @@ Edit this file when the project state changes, then rebuild the graph.
 | Manuscript: Paper2_V44 | REVISES | Manuscript: Paper2_V43 |
 | Manuscript: Paper2_V45 | REVISES | Manuscript: Paper2_V44 |
 | Manuscript: Paper2_V46 | REVISES | Manuscript: Paper2_V45 |
+| Manuscript: Paper2_V47 | REVISES | Manuscript: Paper2_V46 |
+| Manuscript: Paper2_V48 | REVISES | Manuscript: Paper2_V47 |
+| Manuscript: Paper2_V49 | REVISES | Manuscript: Paper2_V48 |
+| Manuscript: Paper2_V50 | REVISES | Manuscript: Paper2_V49 |
+| Manuscript: Paper2_V51 | REVISES | Manuscript: Paper2_V50 |
+| Manuscript: Paper2_V52 | REVISES | Manuscript: Paper2_V51 |
+| Manuscript: Paper2_V53 | REVISES | Manuscript: Paper2_V52 |
+| Manuscript: Paper2_V54 | REVISES | Manuscript: Paper2_V53 |
+| Manuscript: Paper2_V55 | REVISES | Manuscript: Paper2_V54 |
+| Manuscript: Paper2_V56 | REVISES | Manuscript: Paper2_V55 |
+| Manuscript: Paper2_V57 | REVISES | Manuscript: Paper2_V56 |
+| Manuscript: Paper2_V58 | REVISES | Manuscript: Paper2_V57 |
+| Manuscript: Paper2_V59 | REVISES | Manuscript: Paper2_V58 |
+| Manuscript: Paper2_V60 | REVISES | Manuscript: Paper2_V59 |
+| Manuscript: Paper2_V61 | REVISES | Manuscript: Paper2_V60 |
+| Manuscript: Paper2_V62 | REVISES | Manuscript: Paper2_V61 |
+| Manuscript: Paper2_V63 | REVISES | Manuscript: Paper2_V62 |
+| Manuscript: Paper2_V64 | REVISES | Manuscript: Paper2_V63 |
 | Manuscript: Thesis V2 | USES | Manuscript: Paper2_V45 |
 | Manuscript: Paper2_V18 | REVISES | Manuscript: Paper2_V17 |
 | Decision: D-042 V7f on UAVDT test | DECIDES | Manuscript: Paper2_V18 |

@@ -11,7 +11,7 @@ entries are read-only to AI agents; changes go into the next version created wit
 | archives | completed results, evidence and frozen configuration files | fileset | `` | — (no sequence) |
 | legacy-manuscripts | earlier manuscript drafts (no sequential number) | version_dir | `` | — (no sequence) |
 | paper1 | Paper 1 AC-MOT operating-point controller (JAIS) | version_dir | `Paper1_V{n}_JAIS` | V14 |
-| paper2 | Paper 2 SCL / frozen V7f (JRTIP) | version_dir | `PAPER2_V7F_JRTIP_challenge_rev{n}` | V47 |
+| paper2 | Paper 2 SCL / frozen V7f (JRTIP) | version_dir | `PAPER2_V7F_JRTIP_challenge_rev{n}` | V65 |
 | policy-locks | policy locks of frozen systems | lock | `` | — (no sequence) |
 | tags | other frozen git tags | tag | `` | — (no sequence) |
 | universal-acmot | Universal AC-MOT system (frozen tags) | tag | `universal-acmot-v{n}-freeze` | V8 |

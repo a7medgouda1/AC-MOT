@@ -1,0 +1,39 @@
+\section{Discussion and Practical Implications}\label{sec:discussion}
+
+\emph{The score scale is part of the MOT system.} Halving the scores reduced ByteTrack and OC-SORT
+from 67.70 and 66.43 HOTA to 0, and with RT-DETR-L on UAVDT ByteTrack reached a MOTA of only 3.29.
+The fixed thresholds of a tracker hold only for the detector they were tuned for, so the score
+scale deserves the same attention as the association method.
+
+\emph{Self-limiting by design.} In the clean mode the layer keeps the tracker's thresholds and
+scores, so a well-matched tracker receives its normal input; \aob{}, which always intervened,
+lowered the same trackers by 4.15 to 5.89 HOTA points. Single-stage trackers gain through the
+recovery of weak detections, and two-stage trackers when the detector is noisy.
+
+\emph{Deployment.} \scl{} needs no training, no GPU, and no access to the inside of the detector or
+the tracker. On a CPU it takes 2.95 ms per frame, small next to the 42 ms of the detector, and the
+tracker itself ran faster with it (1.43 against 2.04 ms per frame); the end-to-end time rose by
+only 4.5\% (4-vCPU Intel Xeon at 2.10 GHz, no GPU, YOLOv8n and ByteTrack on three KITTI sequences,
+2,279 timed frames). Because the mode and the confident share
+$\rho$ need no labels, they can also be logged as a running check of whether a new or retrained
+detector still fits the tracker it feeds.
+
+\emph{Operational assumptions.} The layer relies on five conditions. (i) The detector's score
+orders its candidates by confidence; the splits move exactly with a stretch or shift of the
+logits, and approximately with other order-preserving changes such as cubing, under which the
+layer still restored the trackers (Sect.~\ref{sec:shift}). (ii) Clutter gives more candidates
+than objects do; when it does not, the background check treats the window as clean. (iii) The
+classes of one detector share a score scale, as the splits pool the scores of all classes. (iv)
+The tracker uses score thresholds that an adapter can set before each update, and its four
+contract values are published. (v) The camera-motion cue measures a global image shift, so it
+reflects the motion of the camera rather than that of single objects.
+
+\emph{Limitations.} The mode is a property of the whole stream, so after a lasting change of the
+detector within one stream the rescoring of the noisy mode follows with a delay
+(Sect.~\ref{sec:regimes}); the splits and the clean-mode thresholds adapt within 10 frames. The
+rules and their values are fixed, not learned; the sensitivity analysis found HOTA within 0.62
+points for the tested values, but other values, such as the mode threshold of one half, were not
+varied. The evaluation covers seven trackers, four detection sources, and three datasets of people
+and vehicles; other object types, other detector families, and trackers without score thresholds,
+such as end-to-end trackers, were not tested, and the running time was measured on one processor
+type.

@@ -1,9 +1,9 @@
 # PROJECT STATE — read this first
 
 <!-- AUTO:BEGIN (tools/update_project_context.py — do not edit by hand) -->
-LAST VERIFIED COMMIT: 63cf644a6fc42fd2338df75bf48ca0c0b8101639
+LAST VERIFIED COMMIT: 26ffdada7f96ba23b25b196eb7e8a3d00d9a2e3e
 CURRENT BRANCH: sci-v7f-general-layer-dev (upstream origin/sci-v7f-general-layer-dev, ahead 0, behind 0)
-LAST CONTEXT UPDATE: 2026-10-23 15:04 UTC
+LAST CONTEXT UPDATE: 2026-10-24 23:22 UTC
 LATEST FROZEN TAG (git): universal-acmot-v7-freeze → 488df9a
 WORKING TREE: 8 uncommitted path(s) — see GIT_STATE.md
 <!-- AUTO:END -->

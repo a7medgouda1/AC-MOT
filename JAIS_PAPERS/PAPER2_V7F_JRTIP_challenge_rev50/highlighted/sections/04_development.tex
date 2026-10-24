@@ -1,0 +1,41 @@
+\section[SCL Development and Refinement]{\hl{SCL Development and Refinement}}\label{sec:development}
+
+\scl{} was developed in three stages on the development data of Sect.~\ref{sec:data}: a starting
+point, design steps that each removed one cause found before them (Table~\ref{tab:ablation}), and a
+freeze before any external test. \hl{The section reports this history as it was recorded at the time:
+the steps, their order, and their numbers are those measured before the freeze, and later results
+did not change them.}
+
+\input{tables/tab6_ablation}
+\input{tables/tab_prior}
+\subsection[Initial Design and Limitations]{\hl{Initial Design and Limitations}}\label{sec:prior}
+The earlier \hl{design,} \hl{always-on banding (\aob{}),} computed the same nested Otsu groups but treated every stream as noisy:
+in every frame it applied the groups, removed every weaker candidate that overlapped a stronger one
+with IoU above one half, and rescored all candidates by rank. Table~\ref{tab:prior} compares \aob{}
+and \scl{} with strong published trackers on MOT17. \aob{} lowered the HOTA of SparseTrack by 4.15
+points and of BoostTrack by 5.89 points online and 5.37 points with its gap-filling post-processing
+(GBI), for two reasons: removing overlapping boxes deleted people hidden behind others in crowds,
+and its thresholds were stricter than the trackers' own. With the same trackers, \scl{} changed
+HOTA by $+0.06$ for SparseTrack and left both BoostTrack versions identical to the host. A layer
+that acts in every frame therefore cannot be placed safely in front of an unknown tracker, and the
+next steps let the layer decide from the scores whether to act at all.
+
+
+\subsection[Incremental Design Improvements]{\hl{Incremental Design Improvements}}\label{sec:steps}
+Each step was compared with the step before it (Table~\ref{tab:ablation}). The \emph{mode gate}
+added the mode check, the clean mode that keeps the tracker's scores and thresholds, and the crowd-safe duplicate
+rule; it restored SparseTrack from 64.72 to 68.93 HOTA and BoostTrack from 62.61 to 68.37. The
+\emph{whole-stream mode} removed mode changes in the middle of streams and raised ByteTrack from
+67.561 to 67.702 and OC-SORT from 65.697 to 66.071. The \emph{continuation rescue} added 0.2 to 0.4
+points for OC-SORT. The \emph{background check} completed \scl{}: ByteTrack and BoostTrack returned
+to output identical to the host, and OC-SORT rose to 67.04 and 66.91 at the two floors. Four other
+variants were tested and not kept.
+
+
+\subsection[Configuration Freezing and Validation]{\hl{Configuration Freezing and Validation}}\label{sec:freeze}
+The final configuration was frozen before any external test as a version-control tag, protected
+by a lock file with a cryptographic hash of the layer, its configuration, and the evaluation
+scripts. Sixty-one automated tests check, among others, that the layer uses no future data and
+passes clean streams unchanged. \hl{All results of Sect.~\ref{sec:results} come from this frozen}
+\hl{configuration; the comparisons, the ablation, and the sensitivity analysis were run after the
+freeze, through run-time options of the evaluation scripts, and changed none of its values.}
