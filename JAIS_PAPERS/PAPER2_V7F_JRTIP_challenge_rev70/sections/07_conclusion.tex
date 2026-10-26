@@ -1,0 +1,14 @@
+\section{Conclusion}\label{sec:conclusion}
+
+This paper treated the compatibility between a detector's score scale and a tracker's thresholds
+as a property that can be checked and restored online, without labels and without changing either
+component. \scl{} checks it with nested Otsu splits of recent logits and a whole-stream majority
+rule, leaves compatible pairs as they are, and restores incompatible ones through the tracker's own
+published settings. The frozen layer was tested on seven trackers and four
+detection sources. Under halved scores, it restored two trackers from 0 to about 66 HOTA; with a
+mismatched detector on held-out aerial data, it raised MOTA by up to 24.70 points; well-matched
+trackers kept their own accuracy; and it took 2.95 ms per frame on average on a CPU.
+Detector--tracker compatibility can therefore be managed as part of the tracking system, so a
+detector can be replaced or retrained without retuning the tracker. Future work will extend the
+layer to end-to-end trackers, which learn detection and association jointly, and use the label-free
+mode and confident share as a running check when the detector of a deployed system is updated.

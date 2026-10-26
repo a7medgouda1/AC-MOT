@@ -1,0 +1,17 @@
+\begin{table*}[!tp]
+\caption{How \scl{} was built from \aob{} on development data. Each row adds one change to the row above; Effect gives the HOTA (\%) before and after that change (``A to B'') or compared with the tracker alone (host). The number in parentheses after ByteTrack and OC-SORT is the lowest emitted detector score.}
+\label{tab:ablation}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{30mm}>{\raggedright\arraybackslash}p{48mm}>{\raggedright\arraybackslash}p{74mm}@{}}
+\toprule
+Step & Change & Effect\\
+\midrule
+\aob{} emulated & always-noisy bands, overlap deduplication, rank remap & ByteTrack (0.1) 56.41 vs host 67.70; OC-SORT (0.1) 45.72 vs 66.44\\
++ mode gate & mode statistic, host-anchored clean mode, crowd-safe duplicates & SparseTrack 64.72 to 68.93 (host 68.88); BoostTrack 62.61 to 68.37 (host 68.49)\\
++ whole-stream mode & mode from all past frames & ByteTrack (0.1) 67.561 to 67.702; OC-SORT (0.1) 65.697 to 66.071\\
++ continuation rescue & foreground track-consistent rescue & OC-SORT (0.01) 66.405 to 66.619; OC-SORT (0.1) 66.071 to 66.469\\
++ background check = \scl{} & no background mode gives no evidence against the host & ByteTrack/BoostTrack (0.1) identical to host; OC-SORT 67.041 (0.01), 66.907 (0.1)\\
+\bottomrule
+\end{tabular}
+\end{table*}

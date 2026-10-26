@@ -234,6 +234,13 @@ Edit this file when the project state changes, then rebuild the graph.
 | Manuscript: Paper2_V62 | ACTIVE (named copy) | V61 with affiliations as in Paper 1 and the ICMISI survey (Ismail 1*, Mahmoud 2, Mohamed 1; 1 = MTC, 2 = EUI), 16 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev62 | PAPERS.md |
 | Manuscript: Paper2_V63 | ACTIVE (named copy) | V62 with the supervisor's affiliation numbering and the first author at MTC (Ismail 2*, Mahmoud 1, Mohamed 2; 1 = EUI, 2 = MTC), 16 pages, the named copy to use, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev63 | PAPERS.md |
 | Manuscript: Paper2_V64 | ACTIVE (named copy) | V63 with the original thin Fig. 4 boxes and labels, 16 pages, the named copy to use, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev64 | PAPERS.md |
+| Manuscript: Paper2_V65 | ACTIVE (named challenge copy, positives only) | V64 without limitations, assumptions or unfavourable cells, 16 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev65 | PAPERS.md |
+| Manuscript: Paper2_V66 | ACTIVE (named challenge copy, positives only, true journal template) | V65 in the unmodified sn-jnl template, tables in numeric order, MTC = 1, EUI = 2, newer references, 16 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev66 | PAPERS.md |
+| Manuscript: Paper2_V67 | ACTIVE (supervisor-approved challenge copy, floats after first mention) | V66 with every float after its first text mention, 16 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev67 | PAPERS.md |
+| Manuscript: Paper2_V68 | ACTIVE (positives-only follow-up of the approved copy) | V67 without the two HOTA results whose interval reaches below zero, 16 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev68 | PAPERS.md |
+| Manuscript: Paper2_V69 | ACTIVE (positives-only, no interval across zero) | V68 without any SCL interval that reaches across zero, 16 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev69 | PAPERS.md |
+| Manuscript: Paper2_V70 | ACTIVE (named and anonymous variants) | V69 with affiliation star removed, plus an anonymous variant, 16 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev70 | PAPERS.md |
+| Manuscript: Paper2_V71 | ACTIVE (submission package) | V70 with declarations and a separate title page, named and anonymous, 16 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev71 | PAPERS.md |
 | Manuscript: Thesis V2 | ACTIVE (owner copy) | M.Sc. thesis in the faculty prototype layout, content of Paper1_V13 and Paper2_V45, 83 pages, THESIS_V2/word/Thesis_Ahmed_Gouda_Ismail.pdf | PAPERS.md |
 | Decision: D-042 V7f on UAVDT test | ACTIVE | owner-authorized single run of the frozen V7f, preregistered, reported in Paper2_V18 | DECISIONS.md |
 | Decision: D-041 V7f on VisDrone confirmation-16 | ACTIVE | owner-authorized single run of the frozen V7f, preregistered, reported in Paper2_V16 | DECISIONS.md |
@@ -666,6 +673,13 @@ Edit this file when the project state changes, then rebuild the graph.
 | Manuscript: Paper2_V62 | REVISES | Manuscript: Paper2_V61 |
 | Manuscript: Paper2_V63 | REVISES | Manuscript: Paper2_V62 |
 | Manuscript: Paper2_V64 | REVISES | Manuscript: Paper2_V63 |
+| Manuscript: Paper2_V65 | REVISES | Manuscript: Paper2_V64 |
+| Manuscript: Paper2_V66 | REVISES | Manuscript: Paper2_V65 |
+| Manuscript: Paper2_V67 | REVISES | Manuscript: Paper2_V66 |
+| Manuscript: Paper2_V68 | REVISES | Manuscript: Paper2_V67 |
+| Manuscript: Paper2_V69 | REVISES | Manuscript: Paper2_V68 |
+| Manuscript: Paper2_V70 | REVISES | Manuscript: Paper2_V69 |
+| Manuscript: Paper2_V71 | REVISES | Manuscript: Paper2_V70 |
 | Manuscript: Thesis V2 | USES | Manuscript: Paper2_V45 |
 | Manuscript: Paper2_V18 | REVISES | Manuscript: Paper2_V17 |
 | Decision: D-042 V7f on UAVDT test | DECIDES | Manuscript: Paper2_V18 |

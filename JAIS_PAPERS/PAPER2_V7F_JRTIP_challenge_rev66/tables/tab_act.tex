@@ -1,0 +1,34 @@
+\begin{table*}[!tp]
+\caption{ACT \cite{act2026adaptive}, with its published parameters, and \scl{} on the same detections and tracker. (a) HOTA with each method, and \scl{} $-$ ACT in HOTA and IDF1 with its 95\% bootstrap interval. (b) MOTA and identity switches on UAVDT. A positive HOTA, IDF1, or MOTA difference and a negative IDS difference favour \scl{}; bold: a reliable difference. KITTI: HOTA averaged over cars and pedestrians; MOT17: val-half, the setting ACT was designed for; UAVDT: test split.}
+\label{tab:act}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+{\textit{(a) HOTA and IDF1}}\par\smallskip
+\begin{tabular}{@{}lllrrll@{}}
+\toprule
+Data & Detector & Tracker & ACT & \scl{} & \scl{} $-$ ACT, HOTA [95\% CI] & \scl{} $-$ ACT, IDF1 [95\% CI]\\
+\midrule
+KITTI, halved & RT-DETR-L & ByteTrack & 49.77 & 51.79 & {\boldmath $+2.01$ [$+0.01$, $+4.76$]} & $+1.70$ [$-1.13$, $+6.80$]\\
+KITTI, halved & YOLOv8n & OC-SORT & 36.24 & 46.30 & {\boldmath $+10.06$ [$+6.88$, $+12.01$]} & {\boldmath $+12.03$ [$+6.85$, $+14.69$]}\\
+\addlinespace[2pt]
+MOT17, floor 0.01 & YOLOX-X & ByteTrack (official) & 67.46 & 67.68 & $+0.22$ [$-0.43$, $+0.88$] & $+0.57$ [$-0.68$, $+2.12$]\\
+MOT17, floor 0.1 & YOLOX-X & ByteTrack (official) & 67.46 & 67.70 & $+0.23$ [$-0.40$, $+0.90$] & $+0.60$ [$-0.55$, $+2.10$]\\
+\addlinespace[2pt]
+UAVDT test & YOLOv8n & ByteTrack & 29.01 & 30.83 & {\boldmath $+1.82$ [$+0.65$, $+3.00$]} & {\boldmath $+4.00$ [$+1.85$, $+6.22$]}\\
+UAVDT test & RT-DETR-L & ByteTrack & 40.14 & 42.37 & $+2.23$ [$-0.97$, $+6.32$] & $+5.35$ [$-0.03$, $+12.47$]\\
+\bottomrule
+\end{tabular}
+
+\medskip
+{\textit{(b) MOTA and identity switches on UAVDT (test split, ByteTrack)}}\par\smallskip
+\begin{tabular}{@{}lrrlrrl@{}}
+\toprule
+ & \multicolumn{3}{c}{MOTA$\uparrow$} & \multicolumn{3}{c}{IDS$\downarrow$}\\
+\cmidrule(lr){2-4}\cmidrule(l){5-7}
+Detector & ACT & \scl{} & \scl{} $-$ ACT [95\% CI] & ACT & \scl{} & \scl{} $-$ ACT [95\% CI]\\
+\midrule
+YOLOv8n & 16.59 & 17.29 & $+0.71$ [$-1.42$, $+2.52$] & 578 & 393 & $-185$ [$-480$, $+13$]\\
+RT-DETR-L & 5.34 & 27.99 & {\boldmath $+22.65$ [$+9.03$, $+47.21$]} & 873 & 455 & {\boldmath $-418$ [$-718$, $-123$]}\\
+\bottomrule
+\end{tabular}
+\end{table*}

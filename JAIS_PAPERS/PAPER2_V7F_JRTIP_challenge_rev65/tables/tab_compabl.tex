@@ -1,0 +1,25 @@
+\begin{table}[!tb]
+\caption{What each part and each fixed value of \scl{} contributes, on the three KITTI cells (HOTA, \%, higher is better): (a) OC-SORT, YOLOv8n; (b) ByteTrack, RT-DETR-L, halved scores; (c) OC-SORT, YOLOv8n, halved scores. Middle part: one part of \scl{} removed at a time; the largest HOTA loss it causes, in points, and the cell where it occurs. Lower part: one fixed value changed at a time (frozen value in brackets); the largest HOTA change over the tested values and the three cells, in points, which shows how little the result depends on each value.}
+\label{tab:compabl}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrc@{}}
+\toprule
+\multicolumn{3}{@{}l}{Frozen \scl{}, HOTA: (a) 44.18, (b) 51.79, (c) 46.30}\\
+\midrule
+Part removed & Largest loss & Cell\\
+\midrule
+Weak detection recovery & 3.35 & (a)\\
+Noisy mode (always clean) & 2.44 & (c)\\
+Remap (raw scores) & 1.67 & (b)\\
+Motion tolerance & 0.14 & (c)\\
+\midrule
+Value changed (frozen) & Largest change & Tested\\
+\midrule
+Window $W$ (10 frames) & 0.56 & 5, 20\\
+Mode median frames (all) & 0.36 & last 100, 300\\
+Duplicate/recovery IoU (0.5) & 0.62 & 0.4, 0.6\\
+Motion history (100 frames) & 0.09 & 50, 200\\
+\bottomrule
+\end{tabular}
+\end{table}
