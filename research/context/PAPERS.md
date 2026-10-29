@@ -365,6 +365,20 @@ source table); no new experiments. Checks: LaTeX build 0 errors / 0 undefined; 1
 list entries on the right page; Office schema validation passed against the template; no template
 text left. The prototype .docx (another student's thesis) is not stored in the repository.
 
+Thesis V3 (2026-10-29, owner request: thesis updated to the latest papers plus a separate Word file
+with the table of contents): THESIS_V3/ is a copy of THESIS_V2 with the SCL sections of Ch.3 and Ch.4
+replaced by the content of the submitted Paper2_V71 (symbols table, host contracts with their published
+settings, worked examples, Fig. architecture/score groups/forest/KITTI example from V71, AOB comparison,
+MOT17/KITTI/shift/external/UAVDT tables, adaptive-threshold baselines, ACT on KITTI and UAVDT, component
+ablation and sensitivity), the V71 references (goh2018otsu, tong2019fourier, efron2016casi) and
+Publications item 3 "The Visual Computer, submitted (under review)". AC-MOT content stays Paper1_V13
+(V13 = submitted V12 plus acknowledgments). Word build: word/build_docx_v3.py uses the V2 Word file as
+template (front pages kept, contents and lists rebuilt); word/build_toc_docx.py writes
+word/Thesis_Table_of_Contents.docx from the index pass. Deliverables: THESIS_V3/word/Thesis_Ahmed_Gouda_Ismail.docx
+and .pdf (83 pages) and Thesis_Table_of_Contents.docx (3 pages). Checks: LaTeX 0 errors / 0 undefined;
+every figure, table and algorithm after its first mention in the source; 129/129 contents and list
+entries on the right page; 31 tables and 10 figures as in the LaTeX build.
+
 ## Version numbering (D-035)
 Completed manuscript versions are read-only; the next version is created with
 `python3 tools/version_registry.py new paper1|paper2` (exact copy of the latest completed version, parent and

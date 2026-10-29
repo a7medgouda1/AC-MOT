@@ -242,6 +242,7 @@ Edit this file when the project state changes, then rebuild the graph.
 | Manuscript: Paper2_V70 | ACTIVE (named and anonymous variants) | V69 with affiliation star removed, plus an anonymous variant, 16 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev70 | PAPERS.md |
 | Manuscript: Paper2_V71 | ACTIVE (submission package) | V70 with declarations and a separate title page, named and anonymous, 16 pages, JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev71 | PAPERS.md |
 | Manuscript: Thesis V2 | ACTIVE (owner copy) | M.Sc. thesis in the faculty prototype layout, content of Paper1_V13 and Paper2_V45, 83 pages, THESIS_V2/word/Thesis_Ahmed_Gouda_Ismail.pdf | PAPERS.md |
+| Manuscript: Thesis V3 | ACTIVE (owner copy) | Thesis V2 updated to Paper1_V13 and the submitted Paper2_V71, 83 pages, separate table-of-contents Word file, THESIS_V3/word/ | PAPERS.md |
 | Decision: D-042 V7f on UAVDT test | ACTIVE | owner-authorized single run of the frozen V7f, preregistered, reported in Paper2_V18 | DECISIONS.md |
 | Decision: D-041 V7f on VisDrone confirmation-16 | ACTIVE | owner-authorized single run of the frozen V7f, preregistered, reported in Paper2_V16 | DECISIONS.md |
 | Decision: D-040 Paper2_V15 template peer-review layout | ACTIVE | official template manual followed: single column, referee, flat figures, eight declarations | DECISIONS.md |

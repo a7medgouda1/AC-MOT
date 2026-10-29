@@ -1,0 +1,32 @@
+% Arabic summary of the thesis (text source of the Arabic summary page of the Word thesis).
+% Build with LuaLaTeX: lualatex arabic_summary.tex
+\documentclass[12pt,a4paper]{article}
+\usepackage[bidi=basic,layout=tabular]{babel}
+\babelprovide[import,main]{english}
+\babelprovide[import]{arabic}
+\babelfont{rm}{Latin Modern Roman}
+\directlua{luaotfload.add_fallback("arabicfallback", {"lmroman10-regular:mode=node;"})}
+\babelfont[arabic]{rm}[Path=../../THESIS/arabic/fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,Scale=1.05,RawFeature={fallback=arabicfallback}]{NotoNaskhArabic}
+\usepackage[a4paper,left=3.0cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\pagestyle{empty}
+\setlength{\emergencystretch}{3em}
+
+\begin{document}
+\begin{otherlanguage}{arabic}
+\section*{\LARGE ملخص الرسالة}
+\thispagestyle{empty}
+
+يحدد تتبع الأجسام المتعددة كل جسم مهم في الفيديو ويمنحه هوية ثابتة عبر الزمن. وفي أسلوب التتبع بالاعتماد على الكشف يعطي الكاشف في كل إطار صناديق مصحوبة بدرجات ثقة، ثم يربطها المتتبع في مسارات. ويعمل كلا الجزأين بإعدادات ثابتة تسمى نقطة التشغيل، مع أن المشهد يتغير داخل الفيديو الواحد، ولا سيما في فيديو الطائرات دون طيار، ومع أن الكاشف يُستبدل أو يُعاد تدريبه دون إعادة ضبط المتتبع. وتقترح هذه الرسالة متحكمَين لا يحتاجان إلى تدريب ولا يستخدمان إلا المعلومات المتاحة حتى الإطار الحالي، يكيّفان نقاط التشغيل أثناء التشغيل دون بيانات معنونة ودون تعديل الكاشف أو المتتبع.
+
+المتحكم الأول (\foreignlanguage{english}{AC-MOT}) يضبط عتبة الثقة وعتبة إخماد الصناديق المتداخلة ودقة الإدخال للكاشف؛ ففي كل عشرة إطارات يكوّن مؤشراً لتعقيد المشهد من إشارات منخفضة التكلفة، ويختار إحدى ثلاث نقاط تشغيل عبر متحكم ثلاثي الحالات، وقد اختيرت قيمه بالتحقق المتقاطع على تسلسلات معايرة منفصلة ثم جُمّدت. وعلى سبعة تسلسلات من \foreignlanguage{english}{VisDrone2019-MOT} رفع دقة \foreignlanguage{english}{HOTA} بمقدار \foreignlanguage{english}{2.937} نقطة مع \foreignlanguage{english}{ByteTrack} و\foreignlanguage{english}{1.325} نقطة مع \foreignlanguage{english}{OATrack}، ورفع دقة \foreignlanguage{english}{MOTA} بمقدار \foreignlanguage{english}{17.995} و\foreignlanguage{english}{6.318} نقطة، وعلى قاعدة \foreignlanguage{english}{UAVDT} دون إعادة ضبط رفع \foreignlanguage{english}{MOTA} بمقدار \foreignlanguage{english}{17.601} و\foreignlanguage{english}{3.267} نقطة، بتكلفة نحو \foreignlanguage{english}{4.2} مللي ثانية لكل إطار.
+
+أما المتحكم الثاني فطبقة تحكم ذاتية المعايرة (\foreignlanguage{english}{SCL}) تقع بين كاشف ومتتبع دون تغيير أي منهما؛ إذ تقسم لوغاريتمات الأرجحية لدرجات الإطارات الأخيرة مرتين بطريقة أوتسو، فتحتفظ بدرجات المتتبع وعتباته عندما يكون توزيع الدرجات نظيفاً، وتختار في غير ذلك المرشحين وتعطيهم درجات جديدة وتضبط العتبات. وقد اختُبر إعداد واحد مجمَّد على سبعة متتبعات منشورة وأربعة مصادر للكشوف وثلاث قواعد بيانات؛ فأعاد متتبعَين من دقة صفرية إلى نحو \foreignlanguage{english}{66} عند تنصيف الدرجات، وحسّن المتتبعَين أحاديي المرحلة على كل تسلسلات \foreignlanguage{english}{MOT17}، ورفع \foreignlanguage{english}{MOTA} بما يصل إلى \foreignlanguage{english}{24.70} نقطة مع كاشف مشوش على بيانات جوية محجوزة، وحقق دقة أعلى من العتبات التكيفية البسيطة ومن طريقة \foreignlanguage{english}{ACT} المنشورة، بتكلفة \foreignlanguage{english}{2.95} مللي ثانية لكل إطار على معالج عادي.
+
+ويُظهر المتحكمان معاً أن نقطة تشغيل الكاشف ومقياس الدرجات الذي يتلقاه المتتبع جزءان من منظومة التتبع يمكن التحكم فيهما أثناء التشغيل بتكلفة منخفضة ودون تدريب.
+
+
+\clearpage
+\end{otherlanguage}
+\end{document}

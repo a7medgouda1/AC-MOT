@@ -1,0 +1,45 @@
+\chapter{Conclusions and Future Work}\label{ch:conclusions}
+
+\section{Conclusions}\label{sec:conc-conclusion}
+This thesis started from a simple observation about tracking-by-detection systems: the settings that connect the detector and the tracker, the detector operating point and the score thresholds of the tracker, are usually fixed once for one detector and one kind of scene, although the scene changes within a video and the detector changes during the life of a system. The research problem was to adapt these settings online, from information that is available while the video is processed, without labels, without training, and with the detector and the tracker left unchanged (Section~\ref{sec:intro-problem}).
+
+The published survey \cite{ismail2026realtime} provided the starting point. It reviewed the detectors, trackers, datasets, and metrics of real-time detection and tracking, showed that tracking by detection remains the dominant paradigm, and pointed to the dependence between detection accuracy and association reliability under real-time constraints. Together with the review of related work in Chapter~\ref{ch:background}, it identified the gap addressed by the thesis: existing adaptive methods either learn a policy for one detector, adapt one tracker from inside, or need labelled data.
+
+The first controller, AC-MOT (Chapter~\ref{ch:acmot}), answered RQ1 for UAV video. It adapts the confidence threshold, the NMS threshold, and the input resolution of the detector every ten frames from inexpensive scene cues, through a scene complexity index and a three-state controller with recovery, hysteresis, and dwell rules, and its values were selected by cross-validation on separate calibration sequences and then frozen. On seven VisDrone2019-MOT sequences it improved HOTA by 2.937 points with ByteTrack and 1.325 points with OATrack, and MOTA by 17.995 and 6.318 points, with fewer identity switches and false positives; paired bootstrap analysis supports these gains. On UAVDT it improved MOTA by 17.601 and 3.267 points without retuning, and it adds about 4.2 ms per frame on a Tesla T4.
+
+The second controller, SCL (Chapter~\ref{ch:scl}), answered RQ2. It reads the score distribution of recent frames with nested Otsu splits and a whole-stream majority rule, keeps the tracker's scores and, where they fit, its thresholds on clean scores, and chooses the candidates, rescores them, and sets the thresholds on noisy scores; a track-guided recovery gives single-stage trackers the continuation step they lack, and a host contract of four published settings lets one configuration serve different trackers. One frozen configuration restored two trackers from 0 to about 66 HOTA under halved scores, improved both single-stage trackers, including one not seen during design, on every MOT17 sequence, raised MOTA by up to 24.70 points with a noisy detector on held-out aerial data, cut the identity switches of two-stage trackers by 43\% to 56\% with replacement detectors, and kept well-matched trackers at their own accuracy. It reached higher HOTA than simple adaptive thresholds, by 2.2 to 8.6 points, and than the published ACT method, and it takes 2.95 ms per frame on an ordinary processor.
+
+Both controllers kept their effect on data, trackers, or detectors that were not used to design them, at a cost of a few milliseconds per frame, which answers RQ3 for the tested settings: AC-MOT on UAVDT without retuning, and SCL on two predeclared external trackers and on the held-out UAVDT test split. Table~\ref{tab:conc-summary} summarizes the two controllers and their main results.
+
+\begin{table}[tbp]
+\centering
+\caption{Summary of the two proposed controllers and their main results; all changes are relative to the same pipeline without the controller.}
+\label{tab:conc-summary}
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.7cm}>{\raggedright\arraybackslash}p{5.6cm}>{\raggedright\arraybackslash}p{5.6cm}}
+\toprule
+Aspect & AC-MOT & SCL\\
+\midrule
+Question & RQ1: adapt the detector operating point to the scene & RQ2: restore the compatibility of score scale and tracker thresholds\\
+Acts on & detector operating point & tracker input and thresholds\\
+Evaluated on & VisDrone2019-MOT and UAVDT with ByteTrack and OATrack & MOT17, KITTI, and UAVDT with seven published trackers\\
+Main results & VisDrone: HOTA $+2.937$ and $+1.325$, MOTA $+17.995$ and $+6.318$; UAVDT: MOTA $+17.601$ and $+3.267$ & halved scores: 0 to 66.17 and 66.72 HOTA; KITTI: MOTA $+5.98$ and $+7.86$; UAVDT: MOTA $+24.70$\\
+Cost & 4.26 and 4.20 ms per frame (Tesla T4) & 2.95 ms per frame (CPU)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Taken together, the two studies advance the understanding of robust tracking in two ways. First, they show that the operating point of the detector and the score scale that the tracker receives are parts of the tracking system that deserve the same attention as the association method: with the detector and the tracker unchanged, each of them moved MOTA or HOTA by many points. Second, they show that both can be controlled from outside the detector and the tracker, with rules whose values were fixed before the final evaluation: AC-MOT selects the detector settings that suit the current aerial scene, and SCL makes the scores of a given detector usable by different trackers and leaves a well-matched pair unchanged.
+
+\emph{Practical implications.} Neither controller needs training, labels, or access to the inside of the detector or the tracker. AC-MOT changes three arguments of the detector call, and SCL sets the published thresholds and the input of the tracker for each frame. A system integrator can therefore keep a tuned tracker when the scenes change or when the detector is replaced or retrained, and the label-free mode of SCL can be logged as a running check that a new detector still fits its tracker.
+
+\emph{Scope of the findings.} The conclusions hold for the settings that were tested. AC-MOT was evaluated with one detector, two trackers, and two aerial datasets, with three operating points from a fixed grid, and it keeps the tracker thresholds unchanged. SCL was evaluated with tracking-by-detection trackers that publish their score thresholds, four detection sources, and three datasets, and its runtime was measured on one processor. The two controllers were developed and evaluated separately; their joint use in one pipeline was not part of the evaluation.
+
+\section{Future Work}\label{sec:conc-future}
+The results suggest several directions for further work:
+\begin{enumerate}
+\item \emph{Wider validation of AC-MOT.} Testing the controller with more detectors, trackers, and aerial video datasets, and with operating points beyond the current grid of input sizes, NMS values, and score thresholds.
+\item \emph{End-to-end trackers.} Extending SCL to trackers that learn detection and association jointly and keep their thresholds inside the network, which the host contract does not yet cover.
+\item \emph{Monitoring of detector updates.} Using the label-free mode and the confident share of SCL as a running check when the detector of a deployed system is updated, retrained, or compressed.
+\item \emph{A combined pipeline.} Using both controllers in one pipeline, with AC-MOT setting the detector operating point and SCL adapting the tracker input to the resulting scores, and evaluating their interaction.
+\item \emph{Onboard deployment.} Measuring both controllers on the low-power processors used on board UAVs, where the cost of the detector input matters most.
+\end{enumerate}

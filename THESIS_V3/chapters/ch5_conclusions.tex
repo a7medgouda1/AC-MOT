@@ -1,0 +1,25 @@
+\chapter{Conclusions and Future Work}\label{ch:conclusions}
+
+\section{Conclusion}\label{sec:conc-conclusion}
+This thesis studied the operating point of tracking-by-detection systems: the settings of the detector and the thresholds of the tracker that decide which boxes are used, and which are usually fixed for one detector and one type of scene. It proposed two training-free and causal controllers that adapt these settings online, from information that is available while the video is processed, with the detector and the tracker left unchanged. The main findings and contributions are summarized as follows:
+\begin{enumerate}
+\item The detector operating point is a first-order variable of aerial MOT. With the same frozen detector and trackers, moving away from a fixed operating point changed MOTA by up to 17.995 points on VisDrone, mainly by removing false positives and identity-confusing boxes.
+\item AC-MOT adapts the confidence threshold, the NMS threshold, and the input resolution of the detector every ten frames from cheap scene cues, through a scene complexity index and a three-state controller with recovery, hysteresis, and dwell rules. Its values were selected by cross-validation on separate calibration sequences and then frozen.
+\item On seven VisDrone2019-MOT sequences, AC-MOT improved HOTA by 2.937 points with ByteTrack and 1.325 points with OATrack, and MOTA by 17.995 and 6.318 points, with fewer identity switches; paired bootstrap analysis supports these gains. On UAVDT it improved MOTA by 17.601 and 3.267 points without retuning. It adds about 4.2 ms per frame on a Tesla T4.
+\item The score scale of the detector is also part of the tracking system. Halving the scores of a published detector reduced two well-known trackers from 67.70 and 66.43 HOTA to 0, because their fixed thresholds no longer fit the scores.
+\item SCL reads the score distribution of recent frames with nested Otsu splits, keeps the tracker's scores and, where they fit, its thresholds on clean scores, and chooses the candidates, rescores them, and sets the thresholds on noisy scores; a continuation rescue gives single-stage trackers the step they lack, and a host contract of four published settings lets one configuration serve different trackers.
+\item One frozen SCL configuration restored two trackers from 0 to about 66 HOTA under halved scores, improved both single-stage trackers, including one not seen during design, on every MOT17 sequence, raised MOTA by up to 24.70 points on held-out aerial data, and cut identity switches by 43\% to 56\% with a noisy detector, while well-matched trackers kept their own accuracy.
+\item SCL reached higher HOTA than simple adaptive thresholds, by 2.2 to 8.6 points, and than the published ACT method, and it takes 2.95 ms per frame on an ordinary processor.
+\end{enumerate}
+
+Overall, the results show that the operating point of the detector and the score scale that the tracker receives should be treated as parts of the tracking system rather than as fixed settings, and that both can be controlled online, cheaply, and without training.
+
+\section{Future Work}\label{sec:conc-future}
+The proposed controllers can be extended in several directions:
+\begin{enumerate}
+\item Testing both controllers with more detectors, trackers, and aerial and ground-level video datasets.
+\item Combining the two controllers in one pipeline, with AC-MOT setting the detector operating point and SCL adapting the tracker input to the resulting scores.
+\item Extending the action map of AC-MOT with more operating points and other settings of the detection stage.
+\item Measuring both controllers on the low-power processors used on board UAVs, where the cost of the detector input is most important.
+\item Extending the host contract of SCL to trackers that use appearance features or learned association, and to methods whose thresholds are internal to the network.
+\end{enumerate}
