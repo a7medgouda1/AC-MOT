@@ -1,0 +1,296 @@
+{
+ "experiment": "V7f on UAVDT test (P4), single post-freeze evaluation",
+ "experiment_id": "E56",
+ "date": "2026-10-21",
+ "decision": "D-042",
+ "owner_authorized": true,
+ "preregistration": {
+  "path": "research/final/V7_UAVDT_PREREGISTRATION.md",
+  "sha256": "a370bdacb64987316f5c7ef19a70f82c7e5d18026289bd42bf1688d53da52614",
+  "written_before_run": true
+ },
+ "split": {
+  "protocol": "research/uavdt_protocol/UAVDT_EXTERNAL_PROTOCOL_FREEZE.json + UAVDT_ADAPTER_V1_FREEZE.json",
+  "sequences": 20,
+  "frames": 16592,
+  "gt_source": "huggingface.co/datasets/vanthanh/UAVDT-Benchmark-M UAV-benchmark-MOTD_v1.0.zip",
+  "gt_check": "after the protocol filters, GT box count of all 20 sequences equals research/acmot_paper_v2/UAVDT_TRANSFER_RESULT.json per_sequence num_objects (20/20); frames 16592 = protocol"
+ },
+ "frozen_policy": {
+  "system": "V7f",
+  "tag": "universal-acmot-v7-freeze",
+  "tag_commit": "488df9a95472b839cb75b72fb243c7ab3f826df7",
+  "acmot_v7_sha256": "98d90fac222e35373a362ce4f279030ac87a82f909a261ff376324be74604bcb",
+  "systems_py_sha256": "4dd099cc91f76eb2eb39c0fd9191694b797cd8f4e036f9e7391dee9c7cc79edd",
+  "identical_to_tag": true
+ },
+ "host": "ByteTrack, published setting (NATIVE)",
+ "detectors": [
+  "YOLOv8n (yolov8)",
+  "RT-DETR-L (rtdetr)"
+ ],
+ "input_size": 736,
+ "protocol": "project UAVDT protocol: single vehicle class, class-agnostic, ignore regions applied (tools/seqstats.py), as E50 and Paper 1",
+ "bootstrap": {
+  "split": "uavdt",
+  "A": "NATIVE",
+  "B": "V7f",
+  "protocol": "internal",
+  "n": 10000,
+  "seed": 42,
+  "per_det": {
+   "yolov8": {
+    "MOTA": {
+     "A": 16.26665415099764,
+     "B": 17.29098343824984,
+     "diff": 1.0243292872522005,
+     "ci_lo": -1.0581712412856068,
+     "ci_hi": 2.8553347142756653,
+     "p_le0": 0.1542,
+     "p_ge0": 0.8459,
+     "dz": -0.1386104323437762,
+     "delta_over_bootsd": 1.0263901107626885,
+     "seq_wins": 11,
+     "seq_losses": 9
+    },
+    "HOTA": {
+     "A": 29.053554361835577,
+     "B": 30.827232046244717,
+     "diff": 1.7736776844091402,
+     "ci_lo": 0.6950474102460068,
+     "ci_hi": 2.943918543650987,
+     "p_le0": 0.0001,
+     "p_ge0": 0.9999,
+     "dz": 0.9013735819400676,
+     "delta_over_bootsd": 3.0897759272105083,
+     "seq_wins": 19,
+     "seq_losses": 1
+    },
+    "IDF1": {
+     "A": 34.52440740809633,
+     "B": 38.492530237156146,
+     "diff": 3.9681228290598156,
+     "ci_lo": 1.8841950437700257,
+     "ci_hi": 6.16570507221388,
+     "p_le0": 0.0,
+     "p_ge0": 1.0,
+     "dz": 0.9608449896808939,
+     "delta_over_bootsd": 3.624337269298886,
+     "seq_wins": 18,
+     "seq_losses": 1
+    },
+    "IDS": {
+     "A": 719.0,
+     "B": 393.0,
+     "diff": -326.0,
+     "ci_lo": -691.0,
+     "ci_hi": -73.0,
+     "p_le0": 0.9994,
+     "p_ge0": 0.0008,
+     "dz": -0.43807841575721845,
+     "delta_over_bootsd": -1.994135650154098,
+     "seq_wins": 6,
+     "seq_losses": 13
+    },
+    "FP": {
+     "A": 43385.0,
+     "B": 47710.0,
+     "diff": 4325.0,
+     "ci_lo": -5529.2,
+     "ci_hi": 13764.149999999998,
+     "p_le0": 0.1889,
+     "p_ge0": 0.8112,
+     "dz": 0.19409926515652914,
+     "delta_over_bootsd": 0.8739903867160503,
+     "seq_wins": 13,
+     "seq_losses": 7
+    },
+    "FN": {
+     "A": 241348.0,
+     "B": 233857.0,
+     "diff": -7491.0,
+     "ci_lo": -15018.175,
+     "ci_hi": -384.450000000008,
+     "p_le0": 0.9811,
+     "p_ge0": 0.0189,
+     "dz": -0.43682248535515555,
+     "delta_over_bootsd": -1.9998026872050467,
+     "seq_wins": 5,
+     "seq_losses": 14
+    }
+   },
+   "rtdetr": {
+    "MOTA": {
+     "A": 3.288296480554753,
+     "B": 27.987480419822475,
+     "diff": 24.699183939267723,
+     "ci_lo": 10.062317361115934,
+     "ci_hi": 51.082798521959894,
+     "p_le0": 0.0,
+     "p_ge0": 1.0,
+     "dz": 0.7619671415248057,
+     "delta_over_bootsd": 2.3387780353072696,
+     "seq_wins": 18,
+     "seq_losses": 2
+    },
+    "HOTA": {
+     "A": 40.074024232819816,
+     "B": 42.3734468961651,
+     "diff": 2.2994226633452826,
+     "ci_lo": -1.046061987915292,
+     "ci_hi": 6.545409056666482,
+     "p_le0": 0.0923,
+     "p_ge0": 0.9077,
+     "dz": 0.7825037638552855,
+     "delta_over_bootsd": 1.1862636787723397,
+     "seq_wins": 17,
+     "seq_losses": 2
+    },
+    "IDF1": {
+     "A": 48.58512813531728,
+     "B": 54.3295859241797,
+     "diff": 5.744457788862427,
+     "ci_lo": 0.13042812377334378,
+     "ci_hi": 13.107871106606188,
+     "p_le0": 0.0232,
+     "p_ge0": 0.9768,
+     "dz": 0.893377261388243,
+     "delta_over_bootsd": 1.7287880147982153,
+     "seq_wins": 17,
+     "seq_losses": 2
+    },
+    "IDS": {
+     "A": 1041.0,
+     "B": 455.0,
+     "diff": -586.0,
+     "ci_lo": -951.0,
+     "ci_hi": -248.0,
+     "p_le0": 0.9999,
+     "p_ge0": 0.0001,
+     "dz": -0.7209919361437902,
+     "delta_over_bootsd": -3.27232762256831,
+     "seq_wins": 4,
+     "seq_losses": 15
+    },
+    "FP": {
+     "A": 187041.0,
+     "B": 78975.0,
+     "diff": -108066.0,
+     "ci_lo": -175321.1,
+     "ci_hi": -54743.45000000001,
+     "p_le0": 1.0,
+     "p_ge0": 0.0,
+     "dz": -0.7636111560742416,
+     "delta_over_bootsd": -3.4870095405688635,
+     "seq_wins": 3,
+     "seq_losses": 17
+    },
+    "FN": {
+     "A": 141614.0,
+     "B": 166065.0,
+     "diff": 24451.0,
+     "ci_lo": 6777.975,
+     "ci_hi": 46879.149999999994,
+     "p_le0": 0.0004,
+     "p_ge0": 0.9996,
+     "dz": 0.5192281491402223,
+     "delta_over_bootsd": 2.35668082538773,
+     "seq_wins": 16,
+     "seq_losses": 3
+    }
+   }
+  },
+  "pooled_cells": {
+   "MOTA": {
+    "A": 9.777475315776197,
+    "B": 22.639231929036153,
+    "diff": 12.861756613259956,
+    "ci_lo": 5.313657663983306,
+    "ci_hi": 24.928480360097968,
+    "p_le0": 0.0,
+    "p_ge0": 1.0,
+    "dz": 0.45906601720612644,
+    "delta_over_bootsd": 2.5250327856252186,
+    "seq_wins": 29,
+    "seq_losses": 11
+   },
+   "HOTA": {
+    "A": 35.84990807507779,
+    "B": 37.2877383021891,
+    "diff": 1.4378302271113057,
+    "ci_lo": -0.5988770811444597,
+    "ci_hi": 3.6483142543389957,
+    "p_le0": 0.0751,
+    "p_ge0": 0.9249,
+    "dz": 0.7710878028439196,
+    "delta_over_bootsd": 1.3414135030434409,
+    "seq_wins": 36,
+    "seq_losses": 3
+   },
+   "IDF1": {
+    "A": 42.967645621127446,
+    "B": 47.13042250136878,
+    "diff": 4.162776880241331,
+    "ci_lo": 0.811091427920997,
+    "ci_hi": 8.091410416854623,
+    "p_le0": 0.0081,
+    "p_ge0": 0.9919,
+    "dz": 0.8361393289401874,
+    "delta_over_bootsd": 2.270257647436167,
+    "seq_wins": 35,
+    "seq_losses": 3
+   },
+   "IDS": {
+    "A": 1760.0,
+    "B": 848.0,
+    "diff": -912.0,
+    "ci_lo": -1426.0,
+    "ci_hi": -466.97500000000036,
+    "p_le0": 1.0,
+    "p_ge0": 0.0,
+    "dz": -0.5843524216542364,
+    "delta_over_bootsd": -3.7234328068963665,
+    "seq_wins": 10,
+    "seq_losses": 28
+   },
+   "FP": {
+    "A": 230426.0,
+    "B": 126685.0,
+    "diff": -103741.0,
+    "ci_lo": -182406.525,
+    "ci_hi": -42652.325000000026,
+    "p_le0": 1.0,
+    "p_ge0": 0.0,
+    "dz": -0.4508273883086267,
+    "delta_over_bootsd": -2.8942133934430614,
+    "seq_wins": 16,
+    "seq_losses": 24
+   },
+   "FN": {
+    "A": 382962.0,
+    "B": 399922.0,
+    "diff": 16960.0,
+    "ci_lo": -3852.05,
+    "ci_hi": 42828.025,
+    "p_le0": 0.0661,
+    "p_ge0": 0.9339,
+    "dz": 0.22003810376425104,
+    "delta_over_bootsd": 1.408898194381834,
+    "seq_wins": 21,
+    "seq_losses": 17
+   }
+  }
+ },
+ "predictions": {
+  "safety_no_significant_HOTA_loss": "CONFIRMED",
+  "rtdetr_gains_more_MOTA_than_yolov8": {
+   "result": "CONFIRMED",
+   "MOTA_diff": {
+    "yolov8": 1.0243292872522005,
+    "rtdetr": 24.699183939267723
+   }
+  }
+ },
+ "previous_use": "UAVDT test was evaluated before for other systems (legacy AC-MOT line 2026-09-12, E50 V6-TF, Paper 1 P1-UAVDT); never for V7 or in the V7 development",
+ "outputs": "outputs/v7/uavdt/{NATIVE,V7f}/{yolov8,rtdetr}/*.pkl (local, git-ignored)"
+}

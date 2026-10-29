@@ -1,0 +1,31 @@
+\begin{table}[!tb]
+\caption{Generalization, each run once with the frozen \scl{}; columns as in Table~\ref{tab:mot17}. (a) The two external trackers, chosen before the run and not used during design (MOT17 val-half, the authors' detections); Paper: the authors' number (for PD-SORT, their released output); EXACT: Host within 0.2 HOTA of it; CLOSE: within 1.0. (b) The held-out UAVDT test split (20 drone videos, not used during design), ByteTrack with its published setting.}
+\label{tab:external}
+\centering\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lrrrl@{}}
+\toprule
+Metric & Paper & Host & \begin{tabular}[b]{@{}r@{}}Host\\+\scl{}\end{tabular} & Change [95\% CI]\\
+\midrule
+\multicolumn{5}{@{}l}{(a) \textit{PD-SORT} \cite{wang2025pdsort}\textit{, EXACT}}\\
+\quad HOTA$\uparrow$ & 68.01 & 68.01 & 68.62 & {\boldmath $+0.61$ [$+0.27$, $+1.65$]}\\
+\quad MOTA$\uparrow$ & 75.19 & 75.19 & 76.31 & {\boldmath $+1.13$ [$+0.27$, $+3.03$]}\\
+\quad IDF1$\uparrow$ & 81.03 & 81.03 & 81.85 & {\boldmath $+0.82$ [$+0.43$, $+1.94$]}\\
+\multicolumn{5}{@{}l}{\textit{Hybrid-SORT} \cite{yang2024hybridsort}\textit{, CLOSE}}\\
+\quad HOTA$\uparrow$ & 67.1 & 66.70 & 66.70 & 0 (identical)\\
+\quad MOTA$\uparrow$ & 75.8 & 75.52 & 75.52 & 0 (identical)\\
+\quad IDF1$\uparrow$ & 78.0 & 77.56 & 77.56 & 0 (identical)\\
+\quad IDS$\downarrow$ & -- & 259 & 259 & 0 (identical)\\
+\midrule
+\multicolumn{5}{@{}l}{(b) \textit{ByteTrack, RT-DETR-L} \cite{zhang2022bytetrack,zhao2024rtdetr}}\\
+\quad MOTA$\uparrow$ &  & 3.29 & 27.99 & {\boldmath $+24.70$ [$+10.06$, $+51.08$]}\\
+\quad IDF1$\uparrow$ &  & 48.59 & 54.33 & {\boldmath $+5.74$ [$+0.13$, $+13.11$]}\\
+\quad IDS$\downarrow$ &  & 1041 & 455 & {\boldmath $-586$ [$-951$, $-248$]}\\
+\multicolumn{5}{@{}l}{\textit{ByteTrack, YOLOv8n} \cite{zhang2022bytetrack,jocher2023yolov8}}\\
+\quad HOTA$\uparrow$ &  & 29.05 & 30.83 & {\boldmath $+1.77$ [$+0.70$, $+2.94$]}\\
+\quad MOTA$\uparrow$ &  & 16.27 & 17.29 & $+1.02$ [$-1.06$, $+2.86$]\\
+\quad IDF1$\uparrow$ &  & 34.52 & 38.49 & {\boldmath $+3.97$ [$+1.88$, $+6.17$]}\\
+\quad IDS$\downarrow$ &  & 719 & 393 & {\boldmath $-326$ [$-691$, $-73$]}\\
+\bottomrule
+\end{tabular}
+\end{table}

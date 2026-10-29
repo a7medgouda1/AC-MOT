@@ -1,0 +1,22 @@
+\section{Conclusion}\label{sec:conclusion}
+
+This paper presented \scl{}, a control layer that needs no training, adjusts
+itself from a detector's scores, and adapts a frozen tracker through a
+declared host contract. The layer splits the logits of recent frames with
+nested Otsu thresholds and decides whether the stream is clean or noisy. On
+clean streams it keeps the tracker's settings; on noisy streams it chooses
+the candidates, assigns them new scores, and sets the thresholds. A
+continuation rescue gives single-stage trackers the step they lack.
+
+\scl{} was developed from always-on banding (\aob{}), an earlier design that
+acted in every frame, and each step was compared with that baseline. One
+frozen configuration was then tested on seven published trackers, four
+detection sources, and two datasets with development and predeclared
+external roles. It raised the HOTA of OC-SORT and of the predeclared
+external PD-SORT by 0.61 points, restored trackers whose thresholds no longer
+matched a shifted score scale, raised the MOTA of two-stage trackers with a
+noisy detector by 6.0 and 7.9 points, and kept well-matched two-stage
+pipelines at their own accuracy. It costs 2.95 ms per frame on a CPU. These
+results support placing a self-calibrating layer between the detector and
+the tracker in systems where the detector changes while the tracker stays
+the same.

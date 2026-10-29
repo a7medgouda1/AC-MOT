@@ -1,0 +1,25 @@
+\begin{table}[t]
+\caption{Baseline comparison on the held-out UAVDT test split (20 aerial
+sequences, not used during design), evaluated once with the frozen \scl{}. Host: ByteTrack alone, without \scl{}, with its published setting. $\Delta$: host
+with \scl{} minus host, with 95\% paired-bootstrap interval; bold intervals
+exclude zero. IDS: identity switches, a count (lower is better).}
+\label{tab:visdrone}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrl@{}}
+\toprule
+Metric & Host & $\Delta$ [95\% CI]\\
+\midrule
+\multicolumn{3}{@{}l}{\textit{ByteTrack, RT-DETR-L} \cite{zhang2022bytetrack,zhao2024rtdetr}}\\
+\quad HOTA & 40.07 & $+2.30$ [$-1.05$, $+6.55$]\\
+\quad MOTA & 3.29 & {\boldmath $+24.70$ [$+10.06$, $+51.08$]}\\
+\quad IDF1 & 48.59 & {\boldmath $+5.74$ [$+0.13$, $+13.11$]}\\
+\quad IDS & 1041 & {\boldmath $-586$ [$-951$, $-248$]}\\
+\multicolumn{3}{@{}l}{\textit{ByteTrack, YOLOv8n} \cite{zhang2022bytetrack,jocher2023yolov8}}\\
+\quad HOTA & 29.05 & {\boldmath $+1.77$ [$+0.70$, $+2.94$]}\\
+\quad MOTA & 16.27 & $+1.02$ [$-1.06$, $+2.86$]\\
+\quad IDF1 & 34.52 & {\boldmath $+3.97$ [$+1.88$, $+6.17$]}\\
+\quad IDS & 719 & {\boldmath $-326$ [$-691$, $-73$]}\\
+\bottomrule
+\end{tabular}
+\end{table}

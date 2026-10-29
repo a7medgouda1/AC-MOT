@@ -1,0 +1,22 @@
+\begin{table}[!tb]
+\caption{The held-out UAVDT test split (20 drone videos, not used during design), run once with the frozen \scl{}; ByteTrack with its published setting. Host: the tracker alone; Host+\scl{}: the same tracker with \scl{}, on the same detections. Change: Host+\scl{} minus Host, with its 95\% bootstrap interval in brackets; bold: the interval does not include zero, so the change is reliable. $\uparrow$: higher is better; $\downarrow$: lower is better (IDS: identity switches, a count).}
+\label{tab:visdrone}
+\centering\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+Metric & Host & \begin{tabular}[b]{@{}r@{}}Host\\+\scl{}\end{tabular} & Change [95\% CI]\\
+\midrule
+\multicolumn{4}{@{}l}{\textit{ByteTrack, RT-DETR-L} \cite{zhang2022bytetrack,zhao2024rtdetr}}\\
+\quad HOTA$\uparrow$ & 40.07 & 42.37 & $+2.30$ [$-1.05$, $+6.55$]\\
+\quad MOTA$\uparrow$ & 3.29 & 27.99 & {\boldmath $+24.70$ [$+10.06$, $+51.08$]}\\
+\quad IDF1$\uparrow$ & 48.59 & 54.33 & {\boldmath $+5.74$ [$+0.13$, $+13.11$]}\\
+\quad IDS$\downarrow$ & 1041 & 455 & {\boldmath $-586$ [$-951$, $-248$]}\\
+\multicolumn{4}{@{}l}{\textit{ByteTrack, YOLOv8n} \cite{zhang2022bytetrack,jocher2023yolov8}}\\
+\quad HOTA$\uparrow$ & 29.05 & 30.83 & {\boldmath $+1.77$ [$+0.70$, $+2.94$]}\\
+\quad MOTA$\uparrow$ & 16.27 & 17.29 & $+1.02$ [$-1.06$, $+2.86$]\\
+\quad IDF1$\uparrow$ & 34.52 & 38.49 & {\boldmath $+3.97$ [$+1.88$, $+6.17$]}\\
+\quad IDS$\downarrow$ & 719 & 393 & {\boldmath $-326$ [$-691$, $-73$]}\\
+\bottomrule
+\end{tabular}
+\end{table}

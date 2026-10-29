@@ -1,0 +1,77 @@
+\documentclass[pdflatex,sn-mathphys-num,iicol]{sn-jnl}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+\algrenewcommand{\algorithmiccomment}[1]{\hfill(#1)}
+\usepackage{booktabs}
+\usepackage{placeins}
+\usepackage{flafter}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usetikzlibrary{arrows.meta,calc,positioning,patterns}
+\hypersetup{hypertexnames=false}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\dbltopfraction}{0.9}
+\renewcommand{\dblfloatpagefraction}{0.8}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{5}
+\setcounter{dbltopnumber}{3}
+\newcommand{\ci}[3]{\begin{tabular}[c]{@{}c@{}}$#1$\\{}[$#2$, $#3$]\end{tabular}}
+\newcommand{\cib}[3]{{\boldmath\ci{#1}{#2}{#3}}}
+\newcommand{\cit}[3]{\begin{tabular}[t]{@{}c@{}}$#1$\\{}[$#2$, $#3$]\end{tabular}}
+\newcommand{\cibt}[3]{{\boldmath\cit{#1}{#2}{#3}}}
+\newcommand{\scl}{SCL}
+\newcommand{\aob}{AOB}
+\newcommand{\priorctl}{our earlier controller, AC-MOT (submitted),}
+\newcommand{\twol}[2]{\begin{tabular}[c]{@{}l@{}}#1\\#2\end{tabular}}
+
+\makeatletter
+\def\email#1{\global\advance\emailcnt by 1\relax
+\if@corauemail
+  \ifx\corrauthemail\@empty\g@addto@macro\corrauthemail{\textcolor{blue}{#1}}%
+  \else\g@addto@macro\corrauthemail{;\ \textcolor{blue}{#1}}\fi
+\else
+  \ifx\authemail\@empty\g@addto@macro\authemail{\textcolor{blue}{#1}}%
+  \else\g@addto@macro\authemail{;\ \textcolor{blue}{#1}}\fi
+\fi}
+\makeatother
+
+\begin{document}
+\title[Self-Calibrating Control Layer for Multi-Object Trackers]{Training-Free Self-Calibrating Control Layer for Heterogeneous Multi-Object Trackers}
+
+\author*[1]{\fnm{Ahmed Gouda} \sur{Ismail}}\email{a7medgouda1@gmail.com}
+\author[2]{\fnm{Tarek Ahmed} \sur{Mahmoud}}\email{tarek.mohamed@eui.edu.eg}
+\author[1]{\fnm{Mohamed S.} \sur{Mohamed}}\email{mohamedms@mtc.edu.eg}
+
+\affil[1]{\orgdiv{Computer Engineering and Artificial Intelligence Department}, \orgname{Military Technical College}, \orgaddress{\city{Cairo}, \country{Egypt}}}
+\affil[2]{\orgdiv{Computer Engineering Department}, \orgname{Egypt University of Informatics}, \orgaddress{\city{Cairo}, \country{Egypt}}}
+
+
+\abstract{Title page for the anonymous manuscript ``Training-Free Self-Calibrating Control Layer for Heterogeneous Multi-Object Trackers''.}
+
+\maketitle
+
+\bmhead{Author contributions}
+Ahmed Gouda Ismail: conceptualization, methodology, software, investigation, formal analysis, and
+writing of the original draft. Tarek Ahmed Mahmoud and Mohamed S. Mohamed: supervision, and review
+and editing of the manuscript. All authors read and approved the final manuscript.
+
+\bmhead{Funding}
+The authors did not receive support from any organization for the submitted work.
+
+\bmhead{Competing interests}
+The authors have no competing interests to declare that are relevant to the content of this
+article.
+
+\end{document}

@@ -1,0 +1,159 @@
+\section{Results and Analysis}\label{sec:results}
+
+Figure~\ref{fig:forest} shows the HOTA difference between each host with
+\scl{} and the host alone for every tested cell. The next subsections give
+the baseline comparison for each part of the evaluation, in the order of the
+three expectations of Sect.~\ref{sec:setup}: well-matched trackers, trackers
+that do not fit their detector, and systems not seen during design.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig3_forest_col.pdf}
+\caption{Difference in HOTA (host with \scl{} minus host alone) with
+95\% paired-bootstrap interval for every tested cell. Filled blue circles:
+interval above zero; open gray circles: interval contains zero, or identical
+output}
+\label{fig:forest}
+\end{figure}
+
+\subsection{Results across trackers}\label{sec:tracker}
+Table~\ref{tab:mot17} compares the development trackers with their hosts on
+MOT17. The two-stage trackers with well-matched detections stayed at the
+accuracy of their hosts. BoostTrack, online and with GBI, and
+ByteTrack at floor 0.1 gave identical output, and ByteTrack at floor 0.01 and
+SparseTrack stayed within 0.06 HOTA points of their hosts ($-0.014$ and
+$+0.055$). This is the
+self-limiting behavior of the clean mode (Sect.~\ref{sec:regimes}), which
+the earlier design did not have (Table~\ref{tab:prior}).
+
+The single-stage OC-SORT improved at both emission floors. Its HOTA rose by
+0.61 points ($[+0.36,+1.24]$) at floor 0.01 and by 0.46 points
+($[+0.27,+1.09]$) at floor 0.1, and its MOTA by 1.27 and 1.26 points. HOTA
+was higher on 7 of 7 sequences in both settings (Fig.~\ref{fig:perseq}). The
+gain comes from the continuation rescue. OC-SORT drops every detection
+below its single threshold, and the layer passes it the foreground candidates
+that continue a track that would otherwise stay unmatched.
+
+\input{tables/tab3_mot17}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig4_per_sequence.pdf}
+\caption{Per-sequence HOTA differences (host with \scl{} minus host
+alone) on MOT17 val-half for the development and predeclared trackers}
+\label{fig:perseq}
+\end{figure}
+
+\subsection{Results with other detectors}\label{sec:detector}
+Table~\ref{tab:kitti} reports the KITTI results with the two other detectors. With
+the noisy RT-DETR-L detector, the two-stage trackers gained in MOTA and IDF1.
+ByteTrack gained 5.98 MOTA points ($[+1.16,+9.94]$), 3.87 IDF1 points, and
+0.91 HOTA points ($[+0.22,+1.55]$). BoT-SORT gained 7.86 MOTA points
+($[+2.21,+13.44]$) and 3.10 IDF1 points. With YOLOv8n, the single-stage
+OC-SORT gained 7.91 HOTA points ($[+5.47,+9.98]$), 9.40 MOTA points, and 9.60
+IDF1 points.
+
+\input{tables/tab4_kitti}
+
+\subsection{Results under shifted detector scores}\label{sec:shift}
+Table~\ref{tab:shift} and Fig.~\ref{fig:shift} show the trackers under the
+four score transforms. Halving the scores reduced ByteTrack (official setting)
+and OC-SORT to 0 HOTA, because no detection reached their thresholds. With the
+layer they reached 66.17 and 66.72. Cubing reduced them to 60.92 and 58.34,
+and the layer restored them to 65.81 and 66.60. BoostTrack rose from 61.33 to
+64.84 under cubing. With temperature $T=2$, the layer raised ByteTrack and
+OC-SORT by 1.11 and 1.24 points. The library setting of ByteTrack, whose low
+thresholds already accept the changed scores, stayed within 0.14 points in all
+four transforms. Over the 14 conditions, the layer raised HOTA significantly
+in 7 and lowered it significantly in none.
+
+\input{tables/tab_shift}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{fig5_calibration_shift.pdf}
+\caption{Shifted detector scores on MOT17 val-half: HOTA of each published
+tracker with its published thresholds, alone and with \scl{}, after
+four monotone transforms of the detector scores (pow3: $s^3$; scale05:
+$0.5\,s$; temp2 and temp05: $T=2$ and $T=0.5$). (a) ByteTrack, official setting;
+(b) ByteTrack, library setting; (c) OC-SORT; (d) BoostTrack, online. Hatched bars:
+host with \scl{}}
+\label{fig:shift}
+\end{figure*}
+
+\subsection{Comparison with simple adaptive thresholds}\label{sec:baselines}
+A simpler way to follow the detector scores is to set the tracker's
+thresholds from them directly. Two such baselines were built on the same
+input and with the same window of the last 10 frames. They set the tracker's
+matching and birth thresholds in every frame to the first or the second Otsu
+split of the recent logits, $t_1$ or $t_2$, and pass the scores unchanged,
+without the mode decision, the new scores, or the rescue.
+Table~\ref{tab:baselines} compares them with \scl{} on KITTI, for OC-SORT
+with YOLOv8n and for both trackers under halved scores. \scl{} reached the
+highest HOTA in all three cells, 2.2 to 8.6 points above the two baselines,
+and its paired-bootstrap intervals against the $t_2$ baseline lie
+above zero in every cell. Adaptive thresholds alone therefore do not explain
+the gains; the other parts of the layer add to them.
+
+\emph{Contribution of each part.} Removing one part of the frozen \scl{} at
+a time shows where the gains come from, on the KITTI cells. Without the
+continuation rescue, the HOTA of OC-SORT fell by 3.34 points with YOLOv8n and
+by 1.16 points under halved scores. Using the clean mode in every frame,
+that is, without the mode decision, lowered HOTA by 0.90 points
+for ByteTrack with RT-DETR-L and by 2.40 and 2.44 points for the two trackers
+under halved scores. Without the new scores of the noisy mode, HOTA fell by
+1.67 and 0.61 points under halved scores.
+
+\input{tables/tab_baselines}
+
+\subsection{Results on external trackers}\label{sec:external}
+Table~\ref{tab:external} gives the two predeclared external systems. PD-SORT
+\cite{wang2025pdsort} was reproduced exactly as in the authors' released
+output. With \scl{}, its HOTA rose by 0.61 points ($[+0.27,+1.65]$), its
+MOTA by 1.13 points ($[+0.27,+3.03]$), and its IDF1 by 0.82 points
+($[+0.43,+1.94]$), with higher HOTA on 7 of 7 sequences
+(Fig.~\ref{fig:perseq}). FN fell by 1,291, and FP rose by 681. PD-SORT is a single-stage tracker, and its gain comes from the same
+step as for OC-SORT; unlike OC-SORT, it was not seen during design.
+Hybrid-SORT \cite{yang2024hybridsort}, a two-stage tracker, gave identical
+output, as predicted before the run.
+
+\input{tables/tab5_external}
+
+\subsection{Results on held-out aerial data}\label{sec:visdrone}
+Table~\ref{tab:visdrone} gives the held-out UAVDT test split. \scl{} raised the HOTA of the YOLOv8n stream by 1.77 points
+($[+0.70,+2.94]$) and its IDF1 by 3.97 points ($[+1.88,+6.17]$), and
+identity switches fell by 45\%. With RT-DETR-L, the host produced many false
+positives (MOTA 3.29); with \scl{}, its MOTA rose by 24.70 points
+($[+10.06,+51.08]$) and its IDF1 by 5.74 points ($[+0.13,+13.11]$): false
+positives fell by 58\% and identity switches by 56\%. HOTA did not fall with either
+detector.
+
+\input{tables/tab_visdrone}
+
+\subsection{Running time}\label{sec:latency}
+\label{sec:latency-setup}Running time was measured after the freeze on one cloud machine with a 4-vCPU
+Intel Xeon processor at 2.10 GHz, 15 GB of memory, and no graphics processing unit (GPU). A live YOLOv8n
+detector (32-bit floats, 736 pixels, batch 1) feeds ByteTrack on three KITTI
+tracking sequences (0001, 0009, and 0019). Both runs use the same frames
+one after the other, and the first ten frames of each sequence are excluded,
+which leaves 2,279 timed frames per run. The time of the layer includes the
+motion cue, the per-frame step, and saving the tracker output.
+
+Table~\ref{tab:runtime} and Fig.~\ref{fig:runtime} compare the time per frame
+of the host pipeline with and without \scl{}. \scl{} took 2.95 ms per
+frame on average and 4.39 ms at the 95th percentile, including the
+phase-correlation motion cue. The total time rose from 57.85 to 60.44 ms
+per frame, by 4.5\%. The tracker became faster, from 2.04 to 1.43 ms per
+frame, because it received fewer candidates. The detector takes most of each
+frame, about 42 ms, so the layer adds only a small part of the total time.
+
+\input{tables/tab7_runtime}
+
+\begin{figure}[t]
+\centering
+\input{figures/fig_runtime}
+\caption{Mean per-frame time by stage for the host pipeline alone and with
+\scl{} (4-vCPU Intel Xeon, no GPU). The labels give the measured
+end-to-end time}
+\label{fig:runtime}
+\end{figure}

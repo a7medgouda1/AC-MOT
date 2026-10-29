@@ -1,0 +1,9 @@
+#!/bin/sh
+# AC-MOT owner-only-delete policy. The commit message is never trusted as approval:
+# an owner-approval trailer counts only inside a commit signed by an owner key, and that
+# is verified by CI and pre-push (tools/research_guard.py --range), not here.
+# This hook only reminds the author when a trailer is present.
+if grep -qiE '^owner-approved-(delete|change):' "$1" 2>/dev/null; then
+  echo "commit-msg: note: approval trailers are verified only from owner-signed commits (CI / pre-push)." >&2
+fi
+exit 0

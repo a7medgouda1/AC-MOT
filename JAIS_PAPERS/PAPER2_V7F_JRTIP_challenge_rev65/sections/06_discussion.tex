@@ -1,0 +1,25 @@
+\section{Discussion and Practical Implications}\label{sec:discussion}
+
+\emph{The score scale is part of the MOT system.} Halving the scores reduced ByteTrack and OC-SORT
+from 67.70 and 66.43 HOTA to 0, and with RT-DETR-L on UAVDT ByteTrack reached a MOTA of only 3.29.
+The fixed thresholds of a tracker hold only for the detector they were tuned for, so the score
+scale deserves the same attention as the association method.
+
+\emph{Self-limiting by design.} In the clean mode the layer keeps the tracker's thresholds and
+scores, so a well-matched tracker receives its normal input; \aob{}, which always intervened,
+lowered the same trackers by 4.15 to 5.89 HOTA points. Single-stage trackers gain through the
+recovery of weak detections, and two-stage trackers when the detector is noisy.
+
+\emph{Deployment.} \scl{} needs no training, no GPU, and no access to the inside of the detector or
+the tracker. On a CPU it takes 2.95 ms per frame, small next to the 42 ms of the detector, and the
+tracker itself ran faster with it (1.43 against 2.04 ms per frame); the end-to-end time rose by
+only 4.5\% (4-vCPU Intel Xeon at 2.10 GHz, no GPU, YOLOv8n and ByteTrack on three KITTI sequences,
+2,279 timed frames). Because the mode and the confident share
+$\rho$ need no labels, they can also be logged as a running check of whether a new or retrained
+detector still fits the tracker it feeds.
+
+\emph{Wide applicability.} One frozen configuration served seven trackers of both kinds, four
+detection sources, and three datasets of people and vehicles, filmed from the ground, from a car,
+and from drones. The splits move exactly with a stretch or shift of the logits, and the layer also
+restored the trackers under cubed scores (Sect.~\ref{sec:shift}), so it follows the common ways in
+which the score scale of a detector changes.

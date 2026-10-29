@@ -1,0 +1,23 @@
+\begin{table*}[t]
+\caption{HOTA of ACT \cite{act2026adaptive} and of \scl{} on the same detections, and the
+differences \scl{} minus ACT in HOTA and IDF1, with 95\% paired-bootstrap interval; bold intervals
+exclude zero. ACT: published parameters, no tuning. KITTI: official HOTA, car and pedestrian averaged;
+MOT17: val-half, ACT's own setting; UAVDT: the protocol of Table~\ref{tab:visdrone}.}
+\label{tab:act}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lllrrll@{}}
+\toprule
+Data & Detector & Tracker & ACT & \scl{} & $\Delta$HOTA [95\% CI] & $\Delta$IDF1 [95\% CI]\\
+\midrule
+KITTI, halved scores & RT-DETR-L & ByteTrack & 49.77 & 51.78 & {\boldmath $+2.01$ [$+0.01$, $+4.76$]} & $+1.70$ [$-1.13$, $+6.80$]\\
+KITTI, halved scores & YOLOv8n & OC-SORT & 36.24 & 46.30 & {\boldmath $+10.06$ [$+6.88$, $+12.01$]} & {\boldmath $+12.03$ [$+6.85$, $+14.69$]}\\
+\addlinespace[3pt]
+MOT17, floor 0.01 & YOLOX-X & ByteTrack (official) & 67.46 & 67.68 & $+0.22$ [$-0.43$, $+0.88$] & $+0.57$ [$-0.68$, $+2.12$]\\
+MOT17, floor 0.1 & YOLOX-X & ByteTrack (official) & 67.46 & 67.70 & $+0.23$ [$-0.40$, $+0.90$] & $+0.60$ [$-0.55$, $+2.10$]\\
+\addlinespace[3pt]
+UAVDT test & YOLOv8n & ByteTrack & 29.01 & 30.83 & {\boldmath $+1.82$ [$+0.65$, $+3.00$]} & {\boldmath $+4.00$ [$+1.85$, $+6.22$]}\\
+UAVDT test & RT-DETR-L & ByteTrack & 40.14 & 42.37 & $+2.23$ [$-0.97$, $+6.32$] & $+5.35$ [$-0.03$, $+12.47$]\\
+\bottomrule
+\end{tabular}
+\end{table*}

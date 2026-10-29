@@ -1,0 +1,35 @@
+\begin{table}[!tb]
+\caption{\protect\hlnew Component ablation and parameter sensitivity of the frozen \scl{} on KITTI (HOTA, \%),
+one change at a time, all other values frozen. (a) OC-SORT, YOLOv8n; (b) ByteTrack, RT-DETR-L,
+halved scores; (c) OC-SORT, YOLOv8n, halved scores. Below the first row: difference from the
+frozen \scl{}, in points.}
+\label{tab:compabl}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Variant & (a) & (b) & (c)\\
+\midrule
+\scl{} (frozen) & 44.17 & 51.78 & 46.30\\
+\addlinespace[2pt]
+\multicolumn{4}{@{}l}{\textit{Ablation: one part removed}}\\
+No weak detection recovery & $-3.35$ & $+0.06$ & $-1.16$\\
+No remap (raw scores) & $0.00$ & $-1.67$ & $-0.61$\\
+Always clean (no noisy mode) & $+0.15$ & $-2.40$ & $-2.44$\\
+Always noisy (no clean mode) & $+0.08$ & $+0.24$ & $+0.85$\\
+No background check & $-0.02$ & $+0.08$ & $+0.15$\\
+Overlap-only duplicate rule & $+0.06$ & $+0.13$ & $-0.03$\\
+No motion tolerance & $-0.10$ & $-0.04$ & $-0.14$\\
+\addlinespace[2pt]
+\multicolumn{4}{@{}l}{\textit{Sensitivity: one value changed (frozen value)}}\\
+Window $W=5$ (10) & $+0.22$ & $-0.47$ & $-0.48$\\
+Window $W=20$ (10) & $+0.56$ & $-0.04$ & $+0.26$\\
+Mode median, last 100 frames (all) & $+0.18$ & $-0.19$ & $0.00$\\
+Mode median, last 300 frames (all) & $+0.07$ & $+0.12$ & $+0.36$\\
+Duplicate and recovery IoU 0.4 (0.5) & $+0.19$ & $+0.16$ & $-0.35$\\
+Duplicate and recovery IoU 0.6 (0.5) & $-0.62$ & $-0.34$ & $-0.46$\\
+Motion history 50 (100 frames) & $-0.05$ & $+0.06$ & $-0.09$\\
+Motion history 200 (100 frames) & $+0.02$ & $+0.08$ & $+0.04$\\
+\bottomrule
+\end{tabular}
+\end{table}

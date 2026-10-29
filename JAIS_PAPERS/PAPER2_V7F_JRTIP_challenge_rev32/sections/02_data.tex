@@ -1,0 +1,83 @@
+\section{Data and Evaluation}\label{sec:data-eval}
+
+\subsection{Detectors and data}\label{sec:data}
+Table~\ref{tab:data} lists the evaluation cells. A cell is one combination of
+data, detector, and tracker (the trackers are introduced in
+Sect.~\ref{sec:setup}). Three public datasets are used. MOT17
+\cite{milan2016mot16} shows people in city scenes. As is common, each of its
+training videos is split in time, and the second half, called val-half, is
+used for evaluation. On MOT17 the trackers use the published detections of
+the YOLOX-X detector \cite{ge2021yolox}, so every tracker sees exactly the
+same boxes. A detector drops the boxes whose score is below a small value
+before it passes them on; we call this value the emission floor. The two
+published MOT17 detection sets have floors of 0.01 and 0.1
+(Sect.~\ref{sec:tracker}). KITTI tracking \cite{geiger2012kitti} shows cars
+and pedestrians seen from a driving car. On its training set the trackers run
+with two detectors that differ from the MOT17 detector: YOLOv8n
+\cite{jocher2023yolov8}, a small and fast model, and RT-DETR-L
+\cite{zhao2024rtdetr}, a larger transformer model. UAVDT \cite{du2018uavdt}
+shows vehicles seen from drones. Its test split, 20 sequences with 16,592
+frames, was not used during the design; ByteTrack runs on it with the same two
+detectors, restricted to their vehicle classes.
+
+To study the score problem directly, the published MOT17 scores were also
+changed before the tracker by four monotone transforms, which change the
+score values but keep their order: cubing ($s^3$), halving ($0.5\,s$), and
+logit temperatures $T=2$ and $T=0.5$, $\sigma(z/T)$, where $\sigma$ turns a
+logit back into a score. A temperature divides the logit $z$ of each score by
+$T$ before turning it back into a score: $T=2$ pulls all scores toward 0.5,
+and $T=0.5$ pushes them toward 0 and 1. These transforms imitate the score
+changes that a new or retrained detector can cause. The trackers kept their
+published thresholds. The external systems use the detections released by
+their authors on MOT17 val-half.
+
+\input{tables/tab2_data}
+
+\subsection{Evaluation roles and metrics}\label{sec:roles}
+Every cell has one of two roles (Table~\ref{tab:data}). Development cells
+were looked at while \scl{} was designed: MOT17 with four trackers, KITTI
+with two other detectors, and the score transforms. The other cells test
+\scl{} on trackers and data that it had never seen. The two predeclared
+external trackers, PD-SORT and Hybrid-SORT, were chosen and named before they
+were run, and they were run once with the frozen configuration. The held-out
+UAVDT test split was also run once with the frozen configuration, after a
+written plan. To check that each external tracker was run correctly, our run
+of the tracker alone is compared with the number reported by its authors and
+marked EXACT (within 0.2 HOTA points) or CLOSE (within 1.0 HOTA point, with a
+known cause that was not tuned).
+
+\label{sec:metrics}Table~\ref{tab:metrics} gives the tracking metrics and
+their definitions. They are built from four counts: false positives (FP),
+boxes where there is no object; false negatives (FN), objects that were
+missed; identity switches (IDS), cases where an object's ID changes; and the
+number of ground-truth boxes (GT). HOTA is the main metric, because it
+balances finding the objects and keeping their identities. MOTA counts errors
+and reacts mostly to FP and FN, and the identity F1 score (IDF1) measures how
+long each object keeps its correct ID. IDS should be read together with FN: a
+tracker that follows more objects has more chances to switch identities, so
+IDS can rise while the tracking as a whole becomes better. The metrics are
+computed with the TrackEval library (commit 12c8791) and the official ground
+truth of each benchmark, following MOTChallenge practice
+\cite{dendorfer2021motchallenge}. On KITTI tracking, HOTA is the official
+value averaged over cars and pedestrians. On UAVDT, all vehicles form one
+class, and predictions inside the regions that the dataset marks as ignored
+are removed.
+
+\input{tables/tab_metrics}
+
+All comparisons are paired: each tracker runs twice on the same sequences and
+detections, once alone and once with \scl{}, and nothing else changes. The
+difference is computed over all sequences together. To show how
+certain a difference is, we use a bootstrap \cite{efron1993bootstrap}: the
+sequences are drawn again at random, with repetition, 10,000 times (with the
+fixed random seed 42, so that the result can be repeated),
+the difference is computed again each time, and the middle 95\% of these
+values gives the 95\% interval. A difference is called significant when its
+interval does not include zero; bold intervals in the tables mark such
+differences. As a simple check that needs no statistics, we also count the
+sequences where HOTA rose, stayed the same ($|\Delta\mathrm{HOTA}|<0.01$), or
+fell.
+
+HOTA, MOTA, and IDF1 are given in percent, and higher values are better. FP,
+FN, and IDS are counts, and lower values are better. Runtime is given in
+milliseconds (ms) per frame, and lower values are better.

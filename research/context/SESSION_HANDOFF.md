@@ -4,8 +4,19 @@ Repo: `/Users/ahmedgouda/Desktop/Universal-ACMOT`, branch
 `universal-adapters-v1`, remote github.com/AhmedCode110/AC-MOT.
 Current HEAD / dirty state: see GIT_STATE.md (auto-generated) — verify with git.
 
+## Papers (start here for publication work)
+Read PAPERS.md. Paper 0 published (ICMISI 2026). Paper 1 submitted to JAIS
+(2026-10-I012138, file Paper1_V12_JAIS; handoff
+research/acmot_paper_v2/Paper1_JAIS/Paper1_V13_JAIS/SUBMISSION_HANDOFF.md).
+Paper 2 (SCL = frozen V7f) not submitted; latest Paper2_V11 in
+JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev11; fix the 9 audit items (D-031)
+in Paper2_V12. Working branch for papers: sci-v7f-general-layer-dev.
+Knowledge base: README.md "Start here"; VERSION_HISTORY.md, CODE_ARCHITECTURE.md (+ CODE_INVENTORY.md),
+REPRODUCIBILITY.md, CHANGELOG.md; open conflicts CF-xx in RESULTS_CANONICAL.md.
+
 ## Direction
-FINAL TARGET = V6-TF (Amendment 9, HARD_CONSTRAINTS C0). V4 = historical
+FINAL TARGET = V7, frozen V7f (Amendment 10, 2026-10-20, HARD_CONSTRAINTS C0);
+V6-TF below is history. Previously: FINAL TARGET = V6-TF (Amendment 9). V4 = historical
 baseline / ablation ONLY. V5-TF (F1–F5, E41) = rejected development
 history (E41 audit: FX-18). V6-TF is training-free, online self-calibrating,
 causal, detector-/tracker-agnostic: IoU-0.5 duplicate suppression +

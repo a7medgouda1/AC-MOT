@@ -1,0 +1,26 @@
+\begin{table*}[t]
+\caption{HOTA and identity switches of \scl{} and of two simple adaptive-threshold baselines on
+KITTI tracking training (official HOTA, car and pedestrian averaged). Host: the tracker alone,
+without any layer. Adaptive $t_1$, $t_2$: the
+tracker's matching and birth thresholds are set in every frame to the first or second Otsu split of
+the logits of the last 10 frames, and the scores are passed unchanged. $\Delta$: \scl{} minus the
+adaptive $t_2$ baseline, with 95\% paired-bootstrap interval; bold intervals exclude zero. IDS:
+identity switches, a count (lower is better); a host with 0 HOTA follows no object, so it also has
+0 IDS.}
+\label{tab:baselines}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrlrrrr@{}}
+\toprule
+ & \multicolumn{5}{c}{HOTA (\%)} & \multicolumn{4}{c}{IDS}\\
+\cmidrule(lr){2-6}\cmidrule(l){7-10}
+Cell & Host & Adapt.\ $t_1$ & Adapt.\ $t_2$ & \scl{} & $\Delta$ [95\% CI] & Host & Adapt.\ $t_1$ & Adapt.\ $t_2$ & \scl{}\\
+\midrule
+\twol{OC-SORT, YOLOv8n}{} & 36.27 & 39.97 & 41.09 & 44.17 & {\boldmath $+3.09$ [$+2.00$, $+4.03$]} & 91 & 1545 & 250 & 170\\
+\addlinespace[4pt]
+\twol{ByteTrack, RT-DETR-L,}{halved scores} & 49.50 & 49.58 & 49.50 & 51.78 & {\boldmath $+2.29$ [$+0.28$, $+4.96$]} & 279 & 273 & 275 & 501\\
+\addlinespace[4pt]
+\twol{OC-SORT, YOLOv8n,}{halved scores} & 0.00 & 37.68 & 43.56 & 46.30 & {\boldmath $+2.74$ [$+1.32$, $+3.34$]} & 0 & 1975 & 492 & 308\\
+\bottomrule
+\end{tabular}
+\end{table*}

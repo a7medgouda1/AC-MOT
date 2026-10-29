@@ -1,0 +1,54 @@
+\section{Introduction}\label{sec:intro}
+
+Multi-object tracking (MOT) finds every object of interest in a video and gives each one an
+identity number (ID) that stays the same over time, for surveillance, driving, and drone systems
+\cite{zhu2022visdrone}. In the tracking-by-detection design \cite{adzemovic2026survey}, a detector
+returns candidate boxes with confidence scores, and a tracker links them into tracks
+\cite{bewley2016sort,zhang2022bytetrack,cao2023ocsort}, using a box only if its score passes a fixed
+threshold. A two-stage tracker, such as ByteTrack, also uses lower-score boxes in a second step to
+continue tracks \cite{zhang2022bytetrack}; a single-stage tracker, such as OC-SORT, ignores every box
+below one threshold \cite{cao2023ocsort}.
+
+In real systems the detector is often replaced, retrained, or compressed, while the tracker keeps
+thresholds set for another detector. Detector scores are not calibrated across models
+\cite{kuppers2020detcalib}, so a new detector usually gives scores on a different scale. ByteTrack in
+its official setting starts a track only from a box with a score of at least 0.7; when the scores
+are halved, a car scored 0.9 gets 0.45, no track starts, and the higher order tracking accuracy
+(HOTA) \cite{luiten2021hota} falls from 67.70 to 0 (Sect.~\ref{sec:shift}). Retuning every tracker
+for every detector needs labels, adaptive-threshold methods are each built into one tracker
+\cite{ma2023adaptivebytetrack,shim2024adaptrack,act2026adaptive}, score calibration needs labelled
+data \cite{kuppers2020detcalib}, and adaptive inference methods learn their settings for one model
+\cite{han2022dynamic}.
+
+This paper presents a self-calibrating control layer (\scl{}) between a detector and a tracker that
+are both kept fixed (frozen): their code, weights, and stored settings are unchanged. We call the
+tracker that \scl{} serves the \emph{host}. The novelty of \scl{} is \emph{selective, host-aware
+adaptation}. It is selective because it first decides, from the detector scores alone, whether the
+stream fits the host: when most higher scores of recent frames form a clearly confident group, the
+stream is clean and the host keeps its scores and thresholds; only when many scores are uncertain
+does \scl{} choose the candidates, give them new scores, and set the thresholds. It is host-aware
+because every action is expressed through four published settings of the host, the host contract
+(Sect.~\ref{sec:contract}), so the same frozen rules serve single-stage and two-stage trackers.
+With halved scores, \scl{} restored ByteTrack and OC-SORT from 0 to about 66 HOTA; with other
+detectors, it raised the multiple object tracking accuracy (MOTA) of two-stage trackers by up to
+24.7 points and cut their identity switches by 43\% to 56\%, while well-matched strong trackers
+stayed within 0.06 HOTA points of their own accuracy. The main contributions are:
+\begin{enumerate}
+\item \emph{Selective adaptation:} a label-free, causal compatibility test (nested Otsu splits of
+      recent logits and a whole-stream majority rule) that leaves a well-matched system as it is
+      and corrects a mismatched one (Sects.~\ref{sec:calib}--\ref{sec:choice}).
+\item \emph{Host-aware adaptation:} a host contract of four published values through which one
+      fixed configuration serves unchanged single-stage and two-stage trackers, with a track-guided
+      recovery of weak detections (Sects.~\ref{sec:rescue}--\ref{sec:contract}).
+\item \emph{Evidence:} one frozen configuration evaluated on seven trackers, four detection sources,
+      and three datasets, with paired bootstrap intervals, adaptive-threshold baselines, the
+      published ACT method, an ablation, and a sensitivity analysis (Sect.~\ref{sec:results}), at
+      about 3 ms per frame on a central processing unit (CPU) (Sect.~\ref{sec:discussion}).
+\end{enumerate}
+
+Section~\ref{sec:related} presents the datasets, evaluation metrics, and related work.
+Section~\ref{sec:method} describes the proposed \scl{} framework, while
+Section~\ref{sec:development} details its development and refinement. Section~\ref{sec:results}
+presents the experimental results and evaluation. Finally, Sections~\ref{sec:discussion}
+and~\ref{sec:conclusion} discuss the practical implications and summarize the main findings and
+future research directions, respectively.

@@ -1,0 +1,244 @@
+\section{Background and Related Work}\label{sec:related}
+This section introduces the datasets and evaluation metrics used in this study, followed by a
+review of related work on MOT.
+
+\subsection{Dataset Description}\label{sec:data}
+Three publicly available video datasets, MOT17 \cite{milan2016mot16}, KITTI tracking
+\cite{geiger2012kitti}, and UAVDT \cite{du2018uavdt}, are used to develop and evaluate the
+proposed \scl{}. They differ in their objects, their cameras, and their recording conditions, and
+they are used with different detectors. Using these datasets allows us to examine \scl{} with
+well-matched detections, with other detectors, and on aerial videos that were not used during the
+design. Table~\ref{tab:data} lists the evaluation cells; a cell is one combination of data,
+detector, and tracker.
+
+\subsubsection{MOT17}
+MOT17 is a widely used benchmark for tracking people \cite{milan2016mot16}. It contains 14 video
+sequences, 7 for training and 7 for testing, filmed in public places with static and moving
+cameras. As is common, each of the seven training videos is split in time, and the second half,
+called val-half, is used for evaluation \cite{zhang2022bytetrack}; it has 2,652 frames. On MOT17
+the trackers use the published detections of the YOLOX-X detector \cite{ge2021yolox}, so every
+tracker sees exactly the same boxes. A detector drops the boxes whose score is below a small value
+before it passes them on; we call this value the emission floor. The two published MOT17 detection
+sets have floors of 0.01 and 0.1. These detections fit the published trackers well, so MOT17 shows
+whether \scl{} leaves a well-matched tracker unchanged.
+
+To study the score problem directly, the published MOT17 scores were also changed before the
+tracker by four monotone transforms, which change the score values but keep their order: cubing
+($s^3$), halving ($0.5\,s$), and logit temperatures $T=2$ and $T=0.5$, $\sigma(z/T)$, where
+$\sigma$ turns a logit back into a score. A temperature divides the logit $z$ of each score by $T$
+before turning it back into a score: $T=2$ pulls all scores toward 0.5, and $T=0.5$ pushes them
+toward 0 and 1. These transforms imitate the score changes that a new or retrained detector can
+cause. The trackers kept their published thresholds.
+
+\subsubsection{KITTI tracking}
+KITTI tracking is a benchmark recorded from a car that drives in and around Karlsruhe, Germany
+\cite{geiger2012kitti}. Its training set has 21 sequences with 8,008 frames, and its official
+evaluation scores cars and pedestrians. In this study the trackers run on KITTI with two detectors
+that differ from the MOT17 detector: YOLOv8n \cite{jocher2023yolov8}, a small and fast model, and
+RT-DETR-L \cite{zhao2024rtdetr}, a larger transformer model. The trackers keep the thresholds that
+were set for other detectors, so KITTI shows what happens when the detector is replaced.
+
+\subsubsection{UAVDT}
+UAVDT is a benchmark designed for object detection and MOT in videos from unmanned aerial
+vehicles (UAVs), with a particular focus on vehicles \cite{du2018uavdt}. It consists of 100 video
+sequences selected from more than 10 hours of video recorded at urban locations such as squares,
+arterial streets, toll stations, highways, crossings, and T-junctions, at 30 frames per second and
+a resolution of $1080\times540$ pixels. The sequences are recorded under different weather
+conditions, flying altitudes, and camera viewing angles. The test set contains 20 sequences for the
+MOT task, with 16,592 frames, and these 20 sequences are used in this study. They were not used
+during the design, and ByteTrack runs on them with YOLOv8n and RT-DETR-L, restricted to their
+vehicle classes.
+
+The datasets serve different purposes in the evaluation. Development cells were looked at while
+\scl{} was designed: MOT17 with four trackers, KITTI with two other detectors, and the score
+transforms. The other cells test \scl{} on trackers and data that it had never seen. The two
+predeclared external trackers, PD-SORT and Hybrid-SORT, were chosen and named before they were
+run, and they were run once with the frozen configuration on the detections released by their
+authors on MOT17 val-half. The held-out UAVDT test split was also run once with the frozen
+configuration, after a written plan. To check that each external tracker was run correctly, our run
+of the tracker alone is compared with the number reported by its authors and marked EXACT (within
+0.2 HOTA points) or CLOSE (within 1.0 HOTA point, with a known cause that was not tuned).
+
+\input{tables/tab2_data}
+
+\subsection{MOT Evaluation Metrics}\label{sec:metrics}
+To evaluate \scl{}, six commonly used MOT metrics are considered: Higher Order Tracking Accuracy
+(HOTA), Multiple Object Tracking Accuracy (MOTA), Identity F1 Score (IDF1), identity switches
+(IDS), false positives (FP), and false negatives (FN). These metrics measure different aspects of
+tracking performance, including detection accuracy, object identity consistency, and the ability to
+track objects across consecutive frames \cite{dendorfer2021motchallenge,luiten2021hota}. They are
+defined below, starting from the errors counted in each frame and ending with the scores that
+combine them.
+
+\emph{Detection errors.} The first metrics count the errors made frame by frame. In each frame
+$t$, output boxes are matched one to one to ground-truth boxes with an intersection over union
+(IoU) of at least 0.5. Let $\mathrm{GT}_t$ be the number of ground-truth boxes, $\mathrm{TP}_t$ the
+number of matched pairs, $\mathrm{FP}_t$ the number of output boxes without a match (false
+positives), and $\mathrm{FN}_t$ the number of ground-truth boxes without a match (false negatives,
+or missed objects). Over all frames,
+\begin{align}
+\mathrm{GT}&=\sum_t \mathrm{GT}_t,\qquad \mathrm{TP}=\sum_t \mathrm{TP}_t,\label{eq:gt}\\
+\mathrm{FP}&=\sum_t \mathrm{FP}_t,\qquad \mathrm{FN}=\sum_t \mathrm{FN}_t,\label{eq:fpfn}
+\end{align}
+so that $\mathrm{TP}=\mathrm{GT}-\mathrm{FN}$.
+
+\emph{Identity switches.} The counts above treat each frame separately, so they do not show
+whether an object keeps the same track over time. Identity switches measure this. Let
+$\phi_t(i)$ be the output track matched to ground-truth object $i$ in frame $t$, and
+$\phi_{\mathrm{prev}}(i)$ the output track to which object $i$ was last matched before $t$. An
+identity switch is counted whenever these two tracks differ:
+\begin{equation}
+\mathrm{IDS}=\sum_t\sum_{i}\mathbf{1}\!\left[\phi_t(i)\neq\phi_{\mathrm{prev}}(i)\right],
+\label{eq:ids}
+\end{equation}
+where the inner sum runs over the objects that are matched in frame $t$ and were matched before.
+A tracker that follows more objects has more chances to switch identities, so IDS is read together
+with FN.
+
+\emph{MOTA and IDF1.} These two scores summarize the errors above in a single number each. MOTA
+combines the three error types \cite{bernardin2008clear}, and IDF1 measures how long each object
+keeps the correct identity \cite{ristani2016idf1}:
+\begin{align}
+\mathrm{MOTA}&=1-\frac{\mathrm{FN}+\mathrm{FP}+\mathrm{IDS}}{\mathrm{GT}},\label{eq:mota}\\
+\mathrm{IDF1}&=\frac{2\,\mathrm{IDTP}}{2\,\mathrm{IDTP}+\mathrm{IDFP}+\mathrm{IDFN}}.\label{eq:idf1}
+\end{align}
+For IDF1, each ground-truth track is first matched to at most one output track over the whole
+video. IDTP, IDFP, and IDFN are then the true-positive, false-positive, and false-negative boxes
+under this track-level matching. Because MOTA counts every false positive and every missed object,
+it reacts strongly to how many boxes reach the tracker. IDF1 depends more on whether each object
+keeps one identity.
+
+\emph{HOTA.} MOTA depends mostly on detection errors, and IDF1 mostly on identity errors. HOTA
+balances detection and association in one score \cite{luiten2021hota}, and it is the main metric
+of this paper. At a localization threshold $\alpha$, let $\mathrm{TP}_\alpha$, $\mathrm{FN}_\alpha$,
+and $\mathrm{FP}_\alpha$ be the matched pairs, missed ground-truth boxes, and unmatched output boxes.
+For a matched pair $c$, $\mathrm{TPA}(c)$ is the set of matched pairs with the same ground-truth
+identity and the same output identity as $c$; $\mathrm{FNA}(c)$ is the set of boxes of the same
+ground-truth object that are matched to another output identity or not matched; and
+$\mathrm{FPA}(c)$ is the set of boxes of the same output track that are matched to another object
+or not matched. Then
+\begin{align}
+\mathrm{DetA}_\alpha&=\frac{|\mathrm{TP}_\alpha|}{|\mathrm{TP}_\alpha|+|\mathrm{FN}_\alpha|+|\mathrm{FP}_\alpha|},\label{eq:deta}\\
+\mathcal{A}(c)&=\frac{|\mathrm{TPA}(c)|}{|\mathrm{TPA}(c)|+|\mathrm{FNA}(c)|+|\mathrm{FPA}(c)|},\label{eq:ac}\\
+\mathrm{AssA}_\alpha&=\frac{1}{|\mathrm{TP}_\alpha|}\sum_{c\in\mathrm{TP}_\alpha}\mathcal{A}(c),\label{eq:assa}\\
+\mathrm{HOTA}&=\frac{1}{19}\sum_{\alpha}\sqrt{\mathrm{DetA}_\alpha\,\mathrm{AssA}_\alpha},\label{eq:hota}
+\end{align}
+where $\alpha$ runs over $0.05, 0.10, \dots, 0.95$. DetA measures how well the objects are found,
+and AssA how well their identities are kept.
+
+\emph{Benchmark protocols.} The metrics are computed with the TrackEval library (commit 12c8791)
+and the official ground truth of each benchmark, following MOTChallenge practice
+\cite{dendorfer2021motchallenge}. On KITTI tracking, HOTA is the official value averaged over cars
+and pedestrians. On UAVDT, all vehicles form one class, and predictions inside the regions that the
+dataset marks as ignored are removed.
+
+\emph{Statistical comparison.} All comparisons are paired: each tracker runs twice on the same
+sequences and detections, once alone and once with \scl{}, and nothing else changes. To judge
+whether the difference between the two runs is reliable, paired bootstrap resampling is applied at
+the sequence level \cite{efron1993bootstrap}. Resampling whole sequences keeps the dependence within
+each sequence and gives intervals for the differences. Each resample draws the evaluation sequences
+with replacement, 10,000 times with the fixed random seed 42. The same draw is used for both runs,
+the pooled metrics are recomputed, and their difference is recorded. The 95\% interval is the
+2.5--97.5 percentile range, and a difference is called significant when its interval does not
+include zero. An interval that includes zero does not show that there is no difference; it shows
+only that the tested sequences cannot separate the difference from zero. As a simple check that needs no statistics, we also count the sequences where HOTA
+rose, stayed the same ($|\Delta\mathrm{HOTA}|<0.01$), or fell.
+
+\emph{Units and direction.} HOTA, MOTA, and IDF1 are given in percent, and differences between two
+runs in percentage points (points); relative changes are marked as such. IDS, FP, and FN are counts;
+runtime is given in milliseconds (ms) per frame. Higher values are better for HOTA, MOTA, and IDF1,
+and lower values are better for IDS, FP, FN, and runtime.
+
+\subsection{MOT Literature Survey}\label{sec:survey}
+MOT has been widely studied, with research focusing on better detectors, better association, and
+better tracking under changing conditions. Three lines of this work relate directly to \scl{}.
+Tracking-by-detection methods provide the trackers that \scl{} serves. Adaptive threshold methods
+change thresholds inside a tracker and are the closest alternatives to \scl{}. Detector calibration
+and adaptive inference methods change the detector scores or how a model runs. The following
+subsections review these three lines in this order.
+
+\subsubsection{Tracking-by-Detection Methods in MOT}\label{sec:hosts}
+Tracking-by-detection is one of the most widely used approaches in MOT \cite{adzemovic2026survey}.
+Objects are detected in each frame and then associated across frames to keep their identities.
+SORT predicts where each tracked box will be in the next frame with a Kalman filter, a standard
+motion predictor, and matches these predictions to the new detections by their overlap, using the
+Hungarian method, which finds the best one-to-one matching \cite{bewley2016sort}. ByteTrack added a
+second matching step that uses low-score detections to continue existing tracks
+\cite{zhang2022bytetrack}, and many later trackers kept this two-stage design. Others, such as
+OC-SORT \cite{cao2023ocsort}, use only one score threshold. All these trackers read detector scores
+through fixed thresholds that were tuned for one detector, usually YOLOX \cite{ge2021yolox}. A recent
+survey groups the tracking-by-detection methods into joint detection and embedding, heuristic,
+motion-based, affinity-learning, and offline methods, and compares them across benchmarks
+\cite{adzemovic2026survey}.
+
+Many recent trackers improve their association with parts that are trained or designed for a
+domain: small re-identification networks, which compare the appearance of objects
+\cite{li2024fdbtrack}, learnable graph matching \cite{bao2024graphmatching,zhang2025sinkhorn},
+result-guided feature extraction for faster tracking \cite{ding2025remot}, motion models for
+low-frame-rate surface-vehicle videos \cite{liang2024motiontrack}, and image restoration by blind
+super-resolution before tracking in adverse weather \cite{sun2026bsr}. These methods change or
+retrain the tracker. \scl{} keeps both the tracker and the detector unchanged and acts only on what
+passes between them.
+
+\emph{Trackers and detectors used in this study.} Seven published trackers serve as hosts, that
+is, as the trackers that \scl{} serves: ByteTrack \cite{zhang2022bytetrack}, BoT-SORT
+\cite{aharon2022botsort}, OC-SORT \cite{cao2023ocsort}, SparseTrack \cite{liu2025sparsetrack},
+BoostTrack \cite{stanojevic2024boosttrack}, PD-SORT \cite{wang2025pdsort}, and Hybrid-SORT
+\cite{yang2024hybridsort}. Each host uses the authors' code and published configuration. ByteTrack
+is used in two published settings: the official setting, with the thresholds that its authors used
+on MOT17, and the library setting, with the default thresholds of the widely used Ultralytics
+library, which also provides the BoT-SORT host. The detectors are YOLOX-X \cite{ge2021yolox},
+YOLOv8n \cite{jocher2023yolov8}, and RT-DETR-L \cite{zhao2024rtdetr}. All hosts and detectors are
+used without modification.
+
+\subsubsection{Adaptive Threshold Selection in MOT}
+Several studies adapt the thresholds of a tracker to changing conditions. Adaptive ByteTrack sets
+the score threshold of ByteTrack from the detections of each frame \cite{ma2023adaptivebytetrack}.
+AdapTrack adapts the thresholds of its matching step \cite{shim2024adaptrack}. ACT sets the high and
+low thresholds of each frame from the first quartile of the scores and the number of candidates
+\cite{act2026adaptive}. Other recent trackers use the score or the spread of each detection inside
+the tracker. ConfTrack weights the Kalman update, the Kalman noise, and the matching cost by the
+score of each box \cite{jung2024conftrack}. UTrack measures the spread of the boxes that
+non-maximum suppression (NMS), the detector step that removes overlapping boxes of the same object,
+merges, and uses it as the Kalman noise, so it needs the boxes before this step
+\cite{solano2025utrack}. PlugTrack blends the Kalman filter with learned motion predictors through a
+small network trained with labels \cite{kim2026plugtrack}. These methods are built into the tracker,
+use only the current frame or each box alone, or need extra trained parts or the inside of the
+detector.
+
+\scl{} follows a different approach and differs in four ways. It uses past frames. It decides for
+the whole video whether to act at all, and otherwise keeps the tracker's own settings. It works
+through a host contract, four published settings of each tracker, on several published trackers
+without changing them. And it is tested as one frozen configuration under score changes and on
+external systems.
+
+\subsubsection{Detector Confidence Calibration and Adaptive Inference}
+\input{tables/tab_related}
+Scores do not mean the same thing for every detector. Detectors of different families, such as
+YOLOX \cite{ge2021yolox}, YOLOv8 \cite{jocher2023yolov8}, YOLOv9 \cite{wang2024yolov9}, DETR
+\cite{carion2020detr}, and RT-DETR \cite{zhao2024rtdetr}, give different score distributions. Their
+confidence is not calibrated across models and conditions, and calibration methods for object
+detection learn a mapping from labelled data \cite{kuppers2020detcalib}. A tracker tuned for one
+detector therefore cannot assume that another detector's scores mean the same thing, and labels to
+recalibrate them are rarely available after deployment. Image processing offers a tool that needs
+no labels: Otsu's method picks a threshold from a histogram so that the two resulting groups are as
+separate as possible \cite{otsu1979}. \scl{} applies it to the logits (log-odds) of the detector
+scores of recent frames.
+
+A wider group of methods adapts inference itself. Dynamic neural networks adapt their computation
+to each input \cite{han2022dynamic}, and Chameleon measures again, from time to time, which settings
+of a video analysis system work best \cite{jiang2018chameleon}. These methods learn or measure their
+settings for each model. Our earlier work, AC-MOT (a manuscript submitted for publication), is a
+controller that needs no training and sets the detector operating point (score threshold, NMS
+threshold, and input resolution) while running, from image and track cues. Such a controller is
+tied to the detector it was calibrated with, because a change in the detector's score scale does
+not change the image. \scl{} reads the scores instead and acts on the tracker's input and
+thresholds.
+
+In summary, existing work either adapts thresholds or uses the score of each box inside one
+tracker, calibrates scores with labelled data, or learns its settings for one model. A layer that
+needs no training, adjusts itself from the detector's own scores, works with many unchanged
+trackers, and keeps a well-matched tracker at its own accuracy is missing. \scl{} is designed to
+fill this gap. Table~\ref{tab:related} summarizes the main differences between \scl{} and the
+closest adaptive methods.
+

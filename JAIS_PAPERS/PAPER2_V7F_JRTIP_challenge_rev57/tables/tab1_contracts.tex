@@ -1,0 +1,20 @@
+\begin{table}[!tb]
+\caption{Host contracts: four published settings of each tracker that \scl{} reads. $a$: the score a detection needs to be matched to a track; $b$: the score it needs to start a new track; $\ell$: the lowest score the tracker uses at all; $m_0$: the matching tolerance, one minus the smallest overlap (IoU) that counts as a match. A single-stage tracker has $\ell=\min(a,b)$; a two-stage tracker also uses scores between $\ell$ and $a$ to continue tracks.}
+\label{tab:contracts}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{27mm}lcccc@{}}
+\toprule
+Tracker (setting) & Type & $a$ & $b$ & $\ell$ & $m_0$\\
+\midrule
+ByteTrack (official MOT17) & two-stage & 0.6 & 0.7 & 0.1 & 0.8\\
+ByteTrack (library default) & two-stage & 0.25 & 0.25 & 0.1 & 0.8\\
+BoT-SORT (library default) & two-stage & 0.25 & 0.25 & 0.1 & 0.8\\
+SparseTrack & two-stage & 0.6 & 0.7 & 0.1 & 0.85\\
+BoostTrack & two-stage & 0.6 & 0.6 & 0.1 & 0.7\\
+Hybrid-SORT & two-stage & 0.6 & 0.6 & 0.1 & 0.75\\
+OC-SORT & single-stage & 0.6 & 0.6 & 0.6 & 0.7\\
+PD-SORT & single-stage & 0.6 & 0.6 & 0.6 & 0.7\\
+\bottomrule
+\end{tabular}
+\end{table}
