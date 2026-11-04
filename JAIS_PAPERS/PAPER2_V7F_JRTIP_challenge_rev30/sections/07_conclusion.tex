@@ -1,0 +1,24 @@
+\section{Conclusion}\label{sec:conclusion}
+
+This paper presented \scl{}, a training-free layer that sits between an unchanged detector and an
+unchanged tracker and adapts the tracker's input to the detector's scores, using only the scores of
+recent frames and the tracks of the previous frame. Nested Otsu splits of the recent logits decide
+whether the scores are clean or noisy. On clean scores the layer keeps the tracker's settings; on
+noisy scores it chooses the candidates, gives them new scores, and sets the thresholds; and a
+continuation rescue gives single-stage trackers the step they lack. A host contract of four
+published settings lets one fixed configuration serve many trackers. The layer was developed step
+by step from \aob{} and was then frozen before any external test.
+
+One frozen configuration was tested on seven published trackers, four detection sources, and three
+datasets. With halved detector scores, it restored two trackers from 0 to about 66 HOTA. It raised
+the HOTA of both single-stage trackers, including the external PD-SORT, on every MOT17 sequence.
+With RT-DETR-L on KITTI, it raised the MOTA of ByteTrack and BoT-SORT by 5.98 and 7.86 points and
+cut their identity switches by 43\% and 47\%, and on held-out aerial data it raised MOTA by 24.70
+points and cut identity switches by up to 56\%. It reached higher HOTA than simple adaptive
+thresholds on the same scores and than the published ACT method under halved scores and on
+held-out aerial data, kept well-matched two-stage trackers at their own accuracy, showed no
+statistically significant HOTA loss in any tested cell, and took 2.95 ms per frame on a CPU.
+
+Overall, the results show that the score scale of the detector should be treated as part of the
+tracking system rather than as a fixed setting of the tracker. Future work will test the layer with
+more detectors, trackers, and datasets.

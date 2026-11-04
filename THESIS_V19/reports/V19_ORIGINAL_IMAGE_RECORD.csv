@@ -1,0 +1,16 @@
+archive_file,sha256,bytes,width_px,height_px,thesis_figure,section,page,status,docx_media,docx_byte_identical
+image1.png,394a349fb768e21caff1b54c877a3e8955c2b8f63c0a3d2b074ef850d39190f7,182931,728,486,2.7,2.3.1,23,newly inserted,word/media/image16.png,yes
+image2.png,ff1a16420e7174fea1affd3c9eabe18ae1d25e35d10632ce84fc1a82c5b49f7f,247643,702,376,2.1,2.2.1,15,replaced,word/media/image10.png,yes
+image3.png,a6004339fcb59022e7ffb38575fb1178f056af0409555dce1250ab6eeaa8625c,353566,810,540,2.2,2.2.2,16,replaced,word/media/image11.png,yes
+image4.png,a724b1ffc1c665097dc22255c8461a3f543f64bfce4352cdf1d799e2aa243c59,466125,535,709,2.3,2.2.3,18,replaced,word/media/image12.png,yes
+image5.png,9674d00fea92adfae20467661d280eee7848db4ff2be2e099b34b683ec7e9bde,376843,618,583,2.4,2.2.4,19,replaced,word/media/image13.png,yes
+image6.png,96f1d0a0b0bf7bbc0785b468d2fd130220e7ad5a551b311871f937215fc1a250,422644,673,623,2.5,2.2.5,20,replaced,word/media/image14.png,yes
+image7.png,0d4aacc4e3a27d06ebe56b161bab907c6e41b3b57880f09d2615eae955e295d1,499498,768,682,2.6,2.2.6,21,replaced,word/media/image15.png,yes
+image8.png,e8d67b043d9498efadd432c3fdbd59d02368b8364edb0f49f61c1b37a0ba9356,408287,722,471,,,,not used,,
+image9.png,4ea782ef5c973c4471fc198cec88b54e176e0c32fc398ee37a3c7ec397e14728,443596,718,485,2.8,2.3.3,26,newly inserted,word/media/image17.png,yes
+image10.png,8450770c902ce94d377e6b4918b6e2885717cc4c64e125d3cbbd23f4b408bebb,358607,746,439,2.9,2.3.3,27,newly inserted,word/media/image18.png,yes
+image11.png,b126d5ee6466c917467f860fcb2b5d4b95ace2144b84f5facc9c257fa81b082d,58028,556,319,,,,not used,,
+image12.png,88284ac8b4a40407e4566124df15aab47404d62a13c190160d1e69628e87cd88,241618,569,569,2.10,2.3.4,28,newly inserted,word/media/image19.png,yes
+image13.png,0d3bfff87cf44b6946b9837c9334db53bee0bb60c1053b6c3b96b911c2099b85,161849,769,309,,,,not used,,
+image14.png,099c56b9c25f94015d285a717e1e3c4bb3c5f2103abddf84153f987e33b69561,299851,703,626,,,,not used,,
+image15.png,ffe21c161ae20e51c8f89bc896467fe4271d7e6228f02c0e1d656d5bd8a2daf2,148395,985,750,,,,not used,,

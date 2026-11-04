@@ -1,0 +1,70 @@
+\section{Introduction}\label{sec:intro}
+
+Multi-object tracking (MOT) finds every object of interest in a video and gives each one an
+identity number (ID) that stays the same over time. It is used in surveillance, driving, and drone
+systems \cite{zhu2022visdrone}, where results are needed with little delay. Most
+MOT systems follow the tracking-by-detection design \cite{adzemovic2026survey}: in each frame, a
+detector returns candidate boxes with confidence scores, and a tracker links them into tracks, one
+per object \cite{bewley2016sort,zhang2022bytetrack,cao2023ocsort}. The tracker uses a box only if
+its score passes a fixed threshold. A two-stage tracker, such as ByteTrack, also uses lower-score
+boxes in a second step to continue unmatched tracks \cite{zhang2022bytetrack}; a single-stage
+tracker, such as OC-SORT, ignores every box below one threshold \cite{cao2023ocsort}.
+
+In real systems the detector is often replaced, retrained, or compressed, while the tracker keeps
+the thresholds that their authors set for another detector. Detector scores are not calibrated across
+models and conditions \cite{kuppers2020detcalib}, so a new detector usually gives scores on a
+different scale, and nothing in the system notices. The effect can be large: halving the scores of
+a published detector reduces the higher order tracking accuracy (HOTA) \cite{luiten2021hota} of two
+well-known trackers to 0, because no detection passes their thresholds (Sect.~\ref{sec:shift}). For example, ByteTrack in
+its official setting starts a track only from a box with a score of at least 0.7; a car that the
+original detector scored 0.9 now gets 0.45, so ByteTrack never starts a track, and its HOTA falls
+from 67.70 to 0. \scl{} finds from the scores themselves that the confident group now begins
+lower and lets it reach the tracker again, and ByteTrack reaches 66.17 HOTA again, with no labels and no change to its code.
+Retuning every tracker for every detector needs labels, which a working system usually does not
+have. Adaptive-threshold methods are each built into one tracker
+\cite{ma2023adaptivebytetrack,shim2024adaptrack,act2026adaptive}, score calibration needs
+labelled data \cite{kuppers2020detcalib}, and adaptive inference methods learn their settings for
+one model \cite{han2022dynamic}.
+
+This paper presents a self-calibrating control layer (\scl{}) that sits between a detector and a
+tracker that are both kept fixed (frozen): their code, weights, and stored settings are
+unchanged. We call the tracker that \scl{} serves the \emph{host}. The novelty of \scl{} is
+\emph{selective, host-aware adaptation}. It is selective because it first decides, from the
+detector scores alone and without labels, whether the scores of the stream fit the host at all:
+when most higher scores of recent frames form a clearly confident group, the stream is clean, and
+the host keeps its scores and, unless they would reject the confident group, its thresholds. Only
+when many scores are uncertain does \scl{} take control: it chooses which candidates reach the
+host, gives them new scores, and sets the host's thresholds for the frame. It is host-aware because
+every action is expressed in the host's own terms: four published settings of the host, the host
+contract (Sect.~\ref{sec:contract}), tell the layer where the host's thresholds lie and whether it
+has a low-score step, so the same frozen rules serve single-stage and two-stage trackers.
+
+With halved detector scores, \scl{} restored two trackers from 0 to about 66 HOTA; with other
+detectors, it raised the multiple object tracking accuracy (MOTA) of two-stage trackers by up to
+24.7 points and cut their identity switches by 43\% to 56\%, while well-matched strong trackers
+stayed within 0.06 HOTA points of their own accuracy.
+
+The main contributions are:
+\begin{enumerate}
+\item \emph{Selective adaptation.} A label-free, causal test of detector--tracker compatibility:
+      nested Otsu splits of recent logits and a whole-stream majority rule decide whether to act,
+      so a well-matched system is left as it is and a mismatched one is corrected
+      (Sects.~\ref{sec:calib}--\ref{sec:choice}).
+\item \emph{Host-aware adaptation.} A host contract of four published values through which one
+      fixed configuration sets the thresholds, scores, and matching tolerance of unchanged
+      single-stage and two-stage trackers, with a track-guided recovery of weak detections for
+      trackers that lack a low-score step (Sects.~\ref{sec:rescue}--\ref{sec:contract}).
+\item \emph{Evidence for compatibility.} An evaluation of one frozen configuration on seven
+      trackers, four detection sources, and three datasets, with paired bootstrap intervals,
+      comparisons with adaptive thresholds and the published ACT method, a component ablation and a
+      parameter sensitivity analysis (Sect.~\ref{sec:results}), the recorded development path
+      (Sect.~\ref{sec:development}), and a cost of about 3 ms per frame on an ordinary processor
+      (central processing unit, CPU) (Sect.~\ref{sec:discussion}).
+\end{enumerate}
+
+Section~\ref{sec:related} presents the datasets, evaluation metrics, and related work.
+Section~\ref{sec:method} describes the proposed \scl{} framework, while
+Section~\ref{sec:development} details its development and refinement. Section~\ref{sec:results}
+presents the experimental results and evaluation. Finally, Sections~\ref{sec:discussion}
+and~\ref{sec:conclusion} discuss the practical implications and summarize the main findings and
+future research directions, respectively.

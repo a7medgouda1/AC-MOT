@@ -1,0 +1,13 @@
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+main.pdf
+__pycache__/
+word/build/

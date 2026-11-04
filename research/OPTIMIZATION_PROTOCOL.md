@@ -476,3 +476,17 @@ shared policy, no detector/tracker/sequence-specific logic or constants).
 7. After freeze: external transfer to independently published MOT systems
    with the SAME frozen layer (integration-only adapters), reproduced
    baseline first (owner directive, 2026-09-28).
+
+## Amendment 10 (2026-10-20) — V7f is the approved final version (owner decision)
+1. The owner approves Universal AC-MOT V7 (frozen policy V7f, tag
+   universal-acmot-v7-freeze → 488df9a, config configs/universal_acmot_policy_v7.json,
+   lock research/V7_POLICY_LOCK.json) as THE final version and contribution.
+2. V6-TF (universal-acmot-v6-freeze) becomes frozen history: it is the
+   predecessor whose external transfer was negative (D-029) and that V7f
+   was designed to fix. V4 stays baseline/ablation only; V5-TF/E41 stays
+   rejected history.
+3. Nothing about V7f changes: no retuning, no new constants, the lock is
+   immutable. All other hard constraints (training-free, causal, protected
+   evaluations, honest reporting) apply to V7f unchanged.
+4. Paper 2 (SCL) presents V7f; its open audit items (research/context/PAPERS.md)
+   are reporting fixes, not method changes.

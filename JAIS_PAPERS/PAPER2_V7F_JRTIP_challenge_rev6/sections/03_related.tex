@@ -1,0 +1,85 @@
+\section{Related Work}\label{sec:related}
+
+\scl{} touches four research directions: the trackers it serves, the
+confidence of the detectors that feed them, trackers that adapt their own
+thresholds, and methods that adapt inference at run time. They are reviewed
+below in this order, and Table~\ref{tab:related} compares the closest
+methods with \scl{}.
+
+Most practical trackers follow the tracking-by-detection design. SORT
+predicts each box with a Kalman filter and matches the predictions to new
+detections by overlap with the Hungarian method \cite{bewley2016sort}.
+ByteTrack introduced a second association stage that uses low-confidence
+detections to continue existing tracks \cite{zhang2022bytetrack}, and many
+later trackers kept this two-stage design. Others, such as OC-SORT
+\cite{cao2023ocsort}, use a single confidence threshold. All of these
+trackers read detector scores through fixed thresholds that were tuned for
+one detector, usually YOLOX \cite{ge2021yolox}. Seven published trackers of
+both kinds are used in this paper as hosts and are kept unchanged
+(Sect.~\ref{sec:setup}).
+
+These fixed thresholds are a weak point, because detector scores do not
+carry the same meaning across models. Detectors of different families, such
+as YOLOX \cite{ge2021yolox}, YOLOv8 \cite{jocher2023yolov8}, YOLOv9
+\cite{wang2024yolov9}, DETR \cite{carion2020detr}, and RT-DETR
+\cite{zhao2024rtdetr}, produce different score distributions. Their
+confidence is not calibrated across models and conditions, and calibration
+methods for object detection fit a mapping on labelled data
+\cite{kuppers2020detcalib}. A tracker tuned for one detector therefore
+cannot assume that another detector's scores mean the same thing, and labels
+to recalibrate them are rarely available after deployment. A label-free tool
+for this exists in image processing: Otsu's method selects a threshold from
+a histogram by maximizing the separation between two classes
+\cite{otsu1979}. \scl{} applies it to the logits (log-odds) of the detector
+scores of recent frames.
+
+Some trackers already adapt their own confidence thresholds. Adaptive
+ByteTrack derives the confidence threshold of ByteTrack from the detections
+of each frame \cite{ma2023adaptivebytetrack}. AdapTrack adapts the
+thresholds of its matching step \cite{shim2024adaptrack}. ACT sets the high
+and low thresholds of each frame from the first quartile of the confidence
+scores and the number of candidates \cite{act2026adaptive}. These methods
+are built into one tracker and use statistics of the current frame. \scl{}
+differs in four ways. Its statistics come from past frames. It decides for
+the whole stream whether to intervene at all, and otherwise keeps the
+tracker's own operating point. It acts through a declared host contract on
+several published trackers without modifying them. It is evaluated as one
+frozen policy under confidence shift and on external systems.
+
+A wider family of methods adapts inference itself. Dynamic neural networks
+adapt their computation to each input \cite{han2022dynamic}, and Chameleon
+re-profiles the configuration of video analytics pipelines over time
+\cite{jiang2018chameleon}. These methods learn or profile a policy for each
+model. Our earlier work, AC-MOT \cite{ismail2026acmot}, is a training-free
+controller that sets the detector operating point (score threshold, NMS
+threshold, and input resolution) online from image and track cues. Such a
+controller is tied to the detector it was calibrated with, because a change
+of the detector's score scale leaves the image unchanged. \scl{} reads the
+score stream instead and acts on the tracker's input and thresholds.
+
+In summary, existing methods either adapt thresholds inside one tracker from
+the current frame, calibrate scores with labelled data, or learn a policy for
+one model. A training-free layer that calibrates itself from the detector's
+own score stream, serves many unmodified trackers, and keeps a well-matched
+tracker at its own accuracy is missing. \scl{} is designed to fill this gap.
+Table~\ref{tab:related} summarizes the differences.
+
+\begin{table}[t]
+\caption{Summary of the adaptive methods closest to \scl{} (BT: ByteTrack).}
+\label{tab:related}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{17mm}>{\raggedright\arraybackslash}p{18mm}>{\raggedright\arraybackslash}p{15mm}>{\raggedright\arraybackslash}p{18mm}@{}}
+\toprule
+Method & Adapted & Statistics & Where\\
+\midrule
+Adapt.\ BT \cite{ma2023adaptivebytetrack} & confidence threshold & current frame & inside BT\\
+AdapTrack \cite{shim2024adaptrack} & matching thresholds & current frame & inside the tracker\\
+ACT \cite{act2026adaptive} & high and low thresholds & current frame & inside the tracker\\
+K{\"u}ppers \cite{kuppers2020detcalib} & detector scores & labelled data & detector output\\
+Chameleon \cite{jiang2018chameleon} & pipeline configuration & profiling & analytics pipeline\\
+AC-MOT \cite{ismail2026acmot} & detector operating point & image and track cues & before the detector\\
+\scl{} (this paper) & candidates, scores, thresholds & past frames, no labels & between detector and tracker\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -3,7 +3,11 @@
 Authoritative text: `research/OPTIMIZATION_PROTOCOL.md` (append-only
 amendments). This file summarises; on conflict the protocol file wins.
 
-## CURRENT protocol (Amendment 9, V6-TF = FINAL TARGET)
+## CURRENT (Amendment 10, 2026-10-20): V7 / frozen V7f = FINAL TARGET
+Owner decision; V7f stays frozen and unchanged; evaluation evidence in
+research/final/V7_*.md. The Amendment 9 text below is kept as history.
+
+## PREVIOUS protocol (Amendment 9, V6-TF = FINAL TARGET)
 1. Development sandbox val-7 (iterative); development-40 = robustness check
    of the candidate (not iterated); V4's val-7 numbers are in-sample.
 2. Acceptance priorities (owner): catastrophic cells → FP inflation →

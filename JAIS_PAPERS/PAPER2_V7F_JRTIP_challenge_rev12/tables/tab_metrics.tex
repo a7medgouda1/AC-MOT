@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\caption{Tracking metrics used in this paper. GT is the number of
+ground-truth boxes; FP, FN, and IDS are the false positives, missed objects
+(false negatives), and identity switches, summed over all frames. For IDF1,
+each ground-truth track is first matched to at most one output track, and
+IDTP, IDFP, and IDFN are the true-positive, false-positive, and
+false-negative boxes under this matching. For HOTA, at a localization
+threshold $\alpha$, $\mathrm{TP}_\alpha$, $\mathrm{FN}_\alpha$, and
+$\mathrm{FP}_\alpha$ are the matched, missed, and unmatched boxes, and
+$\mathcal{A}(c)$ is the association accuracy of a matched pair $c$. HOTA,
+MOTA, and IDF1 are given in percent.}
+\label{tab:metrics}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{68mm}>{\raggedright\arraybackslash}p{40mm}@{}}
+\toprule
+Metric & Definition & What it measures\\
+\midrule
+MOTA \cite{bernardin2008clear} & $\displaystyle \mathrm{MOTA}=1-\frac{\mathrm{FN}+\mathrm{FP}+\mathrm{IDS}}{\mathrm{GT}}$ & overall error count; reacts strongly to false positives and missed objects\\
+IDF1 \cite{ristani2016idf1} & $\displaystyle \mathrm{IDF1}=\frac{2\,\mathrm{IDTP}}{2\,\mathrm{IDTP}+\mathrm{IDFP}+\mathrm{IDFN}}$ & how long each object keeps the correct identity\\
+HOTA \cite{luiten2021hota} & $\displaystyle \mathrm{HOTA}=\frac{1}{19}\sum_{\alpha}\sqrt{\mathrm{DetA}_\alpha\,\mathrm{AssA}_\alpha}$,\newline $\displaystyle \mathrm{DetA}_\alpha=\frac{|\mathrm{TP}_\alpha|}{|\mathrm{TP}_\alpha|+|\mathrm{FN}_\alpha|+|\mathrm{FP}_\alpha|}$,\newline $\displaystyle \mathrm{AssA}_\alpha=\frac{1}{|\mathrm{TP}_\alpha|}\sum_{c\in\mathrm{TP}_\alpha}\mathcal{A}(c)$,\newline with $\alpha=0.05,0.10,\dots,0.95$ & balance of detection (DetA) and association (AssA); the main metric of this paper\\
+\bottomrule
+\end{tabular}
+\end{table*}

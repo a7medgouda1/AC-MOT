@@ -1,0 +1,24 @@
+\begin{table*}[!tp]
+\caption{\scl{} compared with adaptive-thresholding and score-calibration methods. ReID:
+re-identification network.}
+\label{tab:compare}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{23mm}>{\raggedright\arraybackslash}p{28mm}>{\raggedright\arraybackslash}p{28mm}>{\raggedright\arraybackslash}p{19mm}>{\raggedright\arraybackslash}p{24mm}>{\raggedright\arraybackslash}p{25mm}@{}}
+\toprule
+Method & What is adapted & Information used & Labels or trained parts & When it acts & Where it works\\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Adaptive thresholding}}\\
+Adaptive ByteTrack \cite{ma2023adaptivebytetrack} & high/low score split & scores of the current frame & none & every frame & inside ByteTrack\\
+AdapTrack \cite{shim2024adaptrack} & matching thresholds & current frame & ReID network & every frame & its own tracker\\
+ACT \cite{act2026adaptive} & high and low thresholds, chosen from preset levels & first quartile and number of the current scores & none & every frame & inside the tracker\\
+ConfTrack \cite{jung2024conftrack} & Kalman update and matching cost & score of each box & ReID network & every box & its own tracker\\
+\addlinespace[3pt]
+\multicolumn{6}{@{}l}{\textit{Score calibration}}\\
+K{\"u}ppers et al.\ \cite{kuppers2020detcalib} & detector scores, mapped to probabilities & labelled data & calibration map & every score & detector output\\
+\addlinespace[3pt]
+\multicolumn{6}{@{}l}{\textit{This paper}}\\
+\scl{} & candidates, scores, thresholds, matching tolerance & logits of past frames; host contract & none & only when the scores are noisy (clean: thresholds capped) & between a detector and unchanged trackers\\
+\bottomrule
+\end{tabular}
+\end{table*}

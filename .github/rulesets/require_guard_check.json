@@ -1,0 +1,21 @@
+{
+  "name": "acmot-require-deletion-guard",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": ["~DEFAULT_BRANCH", "refs/heads/main", "refs/heads/sci-v7f-general-layer-dev"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": false,
+        "required_status_checks": [{ "context": "guard" }]
+      }
+    }
+  ],
+  "bypass_actors": []
+}

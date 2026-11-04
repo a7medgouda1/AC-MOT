@@ -1,0 +1,204 @@
+\section{Proposed SCL Framework}\label{sec:method}
+
+\scl{} is a small, rule-based layer that runs once per frame between the detector and the tracker
+(Fig.~\ref{fig:arch}). It groups the scores of recent frames (Sect.~\ref{sec:calib}), decides
+whether they are clean or noisy (Sect.~\ref{sec:regimes}), acts on this decision, and can pass a
+weak candidate that clearly continues a track (Sect.~\ref{sec:rescue}). The detector and the
+tracker are never changed.
+
+\begin{figure*}[t]
+\centering
+\includegraphics{Fig1.pdf}
+\caption{\scl{} between a frozen detector and a frozen tracker (the host). Boxes are processing
+steps and arrows show what each step passes on. The score statistics use earlier frames only. The
+host contract holds the tracker's published settings. The tracker receives the chosen candidates
+$K_t$, their scores, and its thresholds $a_t$, $b_t$ and tolerance $m_t$ for the frame}
+\label{fig:arch}
+\end{figure*}
+
+\subsection{Inputs and outputs}\label{sec:problem}
+In each frame $t$, the detector gives candidates $D_t=\{(\mathbf{x}_i,s_i,c_i)\}$, each with a box
+$\mathbf{x}_i$, a score $s_i\in(0,1)$, and a class $c_i$. The layer works on the logit
+\begin{equation}
+z_i=\log\frac{s_i}{1-s_i},
+\label{eq:logit}
+\end{equation}
+which spreads out scores close to 0 and 1; the logistic function $\sigma(z)=1/(1+e^{-z})$ turns it
+back into a score. The host gives its contract $h=(a,b,\ell,m_0)$: the score $a$ needed to match a
+track, the score $b$ needed to start one, the lowest score $\ell$ it uses, and its matching
+tolerance $m_0$, one minus the smallest intersection over union (IoU) of two boxes that counts as a
+match. A single-stage tracker has $\ell=\min(a,b)$, a two-stage tracker $\ell<\min(a,b)$. In
+every frame the layer returns
+\begin{equation}
+\left(K_t,\tilde{s},a_t,b_t,m_t\right)=
+\mathcal{L}\left(Z_{<t},D_t,\mathcal{T}_{t-1},g_t;\,h\right):
+\label{eq:layer}
+\end{equation}
+the candidates $K_t$ that the tracker will see, their scores $\tilde{s}$, and its thresholds and
+tolerance for the frame, computed from the logits $Z_{<t}$ of earlier frames, the candidates, the
+tracks $\mathcal{T}_{t-1}$ of the previous frame, and an optional camera-motion measure $g_t$. No
+future frame is used.
+
+\subsection{Self-calibration from detector scores}\label{sec:calib}
+The layer collects the logits $Z_t^W$ of the candidates of the last $W=10$ frames and splits them
+twice with Otsu's method \cite{otsu1979}. The first split, $t_1$, separates background (low
+logits) from foreground; the second, $t_2$, found on the foreground only, divides it into uncertain
+and confident candidates. The share of confident candidates in the foreground,
+\begin{equation}
+\rho_t=\frac{\left|\{z\in Z_t^W: z\ge t_2\}\right|}{\left|\{z\in Z_t^W: z\ge t_1\}\right|},
+\label{eq:rho}
+\end{equation}
+describes the shape of the score distribution and needs no labels: if 30 of 40 foreground
+candidates are confident, $\rho_t=0.75$. Because the splits are made on logits, they move with the
+scores when the whole logit scale is stretched or shifted, and each group keeps the same
+candidates. Figure~\ref{fig:groups} shows the groups for a clean and a noisy stream. When a
+detector emits very few low scores, the first split falls inside the objects; since clutter
+usually gives more candidates than the objects do, a window with fewer candidates below $t_1$ than
+above it counts as clean, $\rho_t=1$ (background check).
+
+\begin{figure}[t]
+\centering
+\includegraphics{Fig2.pdf}
+\caption{What the layer sees: the logits of the candidates of the last 10 frames, just before its
+decision for frame 101, with the Otsu splits $t_1$ (dashed line) and $t_2$ (solid line). Plain
+light bars: background; hatched bars: uncertain; plain dark bars: confident. The top axis gives the
+matching detector score. (a) MOT17-02 with YOLOX-X: most foreground candidates are confident, and
+the stream is clean. (b) KITTI 0001 with RT-DETR-L: many are uncertain, and the stream is noisy.
+Values of the frozen layer in the runs of Sect.~\ref{sec:results}}
+\label{fig:groups}
+\end{figure}
+
+\subsection{Clean and noisy modes}\label{sec:regimes}
+The stream is clean at frame $t$ if the median of all $\rho$ values so far is at least one half,
+a majority rule, and noisy otherwise; before the first valid split it is cold. Because the median
+covers the whole stream, a short drop in confidence does not change the mode, and during
+development this whole-stream rule removed mode changes in the middle of streams that had lowered
+HOTA (Sect.~\ref{sec:steps}).
+
+\emph{Cold and clean modes.} The tracker keeps its own thresholds and scores, and only cross-class
+duplicates are removed. In the clean mode, a threshold so high that it would reject the confident
+group is lowered to the score $\sigma(t_2)$ at which that group begins:
+\begin{equation}
+a_t=\min\!\left(a,\sigma(t_2)\right),\qquad b_t=\min\!\left(b,\sigma(t_2)\right).
+\label{eq:clean}
+\end{equation}
+When the confident group already lies above the tracker's thresholds, the tracker receives exactly
+its normal input. When the scores are halved, for example, no score is above 0.5, and ByteTrack in
+its official setting ($a=0.6$, $b=0.7$) never starts a track; the splits move with the halved
+scores, so Eq.~\eqref{eq:clean} lets the confident candidates reach it again.
+
+\emph{Noisy mode.} Confident candidates ($z\ge t_2$) may start and continue tracks, uncertain ones
+($t_1\le z<t_2$) may only continue tracks, and background candidates are dropped. Each score is
+replaced by its rank $u_i\in[0,1]$ in a remap memory of recent scores (20 past frames, one every 10
+frames),
+\begin{equation}
+\tilde{s}_i=
+\begin{cases}
+0.5+0.5\,u_i, & z_i\ge t_2,\\
+0.1+0.4\,u_i, & t_1\le z_i<t_2,
+\end{cases}
+\label{eq:remap}
+\end{equation}
+and both thresholds are set to $a_t=b_t=0.5$, so uncertain candidates can only reach a tracker's
+low-score step. A weaker candidate that overlaps a stronger one with IoU above one half is removed,
+unless a different track of the previous frame claims it, which keeps people who stand close
+together in a crowd.
+
+\subsection{Track continuation and camera motion}\label{sec:rescue}
+A track can be lost when its object gets low scores for a few frames, above all in single-stage
+trackers, which have no low-score step. The rescue passes such a candidate, with its score raised
+just above the lowest threshold of the frame, when it is in the foreground (or, for a
+single-stage tracker, when there is no background group), overlaps a track of the previous frame
+with IoU of at least one half, no other usable candidate covers that track, and the tracker could
+not see it otherwise. It thus gives single-stage trackers the continuation step they lack.
+
+In noisy frames, the matching tolerance also grows with camera motion. The motion is the shift
+between consecutive grayscale frames at quarter resolution, found by phase correlation
+\cite{reddy1996phasecorr}, and $r_t$ is its ratio to its median over the last 100 frames (after a
+warm-up of 5 frames):
+\begin{equation}
+m_t=\min\!\left(0.95,\;1-\frac{1-m_0}{\max(1,r_t)}\right).
+\label{eq:motion}
+\end{equation}
+With $m_0=0.8$ and twice the usual motion, a match needs an IoU of 0.1 instead of 0.2.
+
+\subsection{Host contract and adapters}\label{sec:contract}
+Table~\ref{tab:contracts} lists the contracts; each value is taken from the tracker's published
+configuration, and none is fitted. For each tracker family, a small adapter writes the layer's
+candidates, scores, thresholds, and tolerance into the tracker's existing parameters before each
+update and then calls the tracker's own update. The matching steps, motion model, track
+management, and any post-processing of the authors run unchanged, so the host stays frozen, and the
+rules are the same for every tracker.
+
+\input{tables/tab1_contracts}
+
+\subsection{Parameter values}\label{sec:constants}
+Table~\ref{tab:constants} lists all values of \scl{}. They were fixed before the external
+evaluation, are the same for every tracker, detector, and dataset, and none was chosen by searching
+over a range of values. They come from standard values (the IoU of 0.5 of MOT evaluation and the
+common thresholds 0.5 and 0.1), from definitions, and from design choices kept fixed in all
+development stages.
+
+\begin{table}[t]
+\caption{Values of \scl{} and their source.}
+\label{tab:constants}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{19mm}>{\raggedright\arraybackslash}p{27mm}>{\raggedright\arraybackslash}p{25mm}@{}}
+\toprule
+Value & Setting & Source\\
+\midrule
+Window $W$ & 10 frames & design choice\\
+Mode rule & clean if median $\rho\ge0.5$ & majority rule\\
+Background check & $\rho=1$ if fewer below $t_1$ than above & rule: no background group\\
+Noisy score ranges & $[0.5,1)$, $[0.1,0.5)$ & common thresholds\\
+Noisy $a_t$, $b_t$ & 0.5 & common threshold\\
+Remap memory & 20 frames, one every 10 & design choice\\
+Duplicate, rescue IoU & 0.5 & MOT evaluation IoU\\
+Rescued score & lowest threshold $+\,0.001$ & just above the threshold\\
+Motion cue & phase correlation, quarter resolution & standard method \cite{reddy1996phasecorr}\\
+Motion history & 100 frames, warm-up 5 & design choice\\
+Tolerance cap & 0.95 & minimum overlap 0.05\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Per-frame steps and cost}\label{sec:cost}
+Algorithm~\ref{alg:layer} gives the steps for one frame. With $n$ candidates and $k$ tracks, the
+cost is $O(Wn\log(Wn)+n^2+nk)$, for sorting the window and comparing candidates with each other and
+with the tracks, plus one phase correlation on a small image. Table~\ref{tab:runtime} gives the
+measured time per frame of a full pipeline on an ordinary processor.
+
+\input{tables/tab7_runtime}
+
+\begin{algorithm}[t]
+\caption{\scl{} for frame $t$. The window holds the logits of frames
+$t-W$ to $t-1$, so the decision for frame $t$ uses no future frame.}\label{alg:layer}
+\begin{algorithmic}[1]
+\Require candidates $D_t$, tracks $\mathcal{T}_{t-1}$, motion cue $g_t$, contract $(a,b,\ell,m_0)$, constants of Table~\ref{tab:constants}
+\Ensure candidates $K_t$, scores $\tilde{s}$, thresholds $a_t,b_t$, tolerance $m_t$
+\State $z_i\gets$ logit of $s_i$ for all $i$ \Comment{Eq.~\eqref{eq:logit}}
+\If{no valid split exists} \Comment{e.g., first frame}
+  \State mode $\gets$ cold; $(a_t,b_t)\gets(a,b)$
+\Else
+  \State $(t_1,t_2)\gets$ nested Otsu on the window \Comment{Sect.~\ref{sec:calib}}
+  \State $\rho_t\gets$ Eq.~\eqref{eq:rho} with the background check
+  \State mode $\gets$ clean if $\mathrm{median}(\rho)\ge0.5$, else noisy
+\EndIf
+\If{mode is cold or clean} \Comment{Sect.~\ref{sec:regimes}}
+  \State remove cross-class duplicates; keep raw scores
+  \If{clean} set $(a_t,b_t)$ by Eq.~\eqref{eq:clean}
+  \EndIf
+\Else \Comment{noisy mode}
+  \State remove duplicates with track context
+  \State drop $z<t_1$; remap scores by Eq.~\eqref{eq:remap}
+  \State $a_t\gets0.5$; $b_t\gets0.5$
+\EndIf
+\State rescue continuations (not cold) \Comment{Sect.~\ref{sec:rescue}}
+\State $m_t\gets$ Eq.~\eqref{eq:motion} if noisy, else $m_0$
+\State pass $K_t$, $\tilde{s}$, $a_t$, $b_t$, $m_t$ to the tracker
+\State add the logits left after duplicate removal to the window
+\State add $g_t$ to the motion history
+\State store the tracks of frame $t$ after the tracker update
+\end{algorithmic}
+\end{algorithm}

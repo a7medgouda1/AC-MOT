@@ -1,0 +1,129 @@
+\section{Background and Related Work}\label{sec:related}
+
+This section first describes the data, the evaluation roles, and the metrics
+used in this study, and then reviews the related work.
+
+\subsection{Detectors and data}\label{sec:data}
+Table~\ref{tab:data} lists the evaluation cells, that is, each combination of
+data, detector, and tracker (the trackers are introduced in Sect.~\ref{sec:setup}). On MOT17 val-half
+\cite{milan2016mot16} the trackers use the published YOLOX-X detections
+\cite{ge2021yolox}. The emission floor, the lowest detector score passed on,
+is 0.01 or 0.1 (Table~\ref{tab:mot17}). On KITTI tracking training \cite{geiger2012kitti}, the trackers run
+with two detectors that differ from the MOT17 detector: YOLOv8n
+\cite{jocher2023yolov8} and RT-DETR-L \cite{zhao2024rtdetr}. To isolate the
+calibration problem, the published MOT17 detections were also transformed
+before the tracker by four monotone maps: cubing ($s^3$), halving ($0.5\,s$),
+and logit temperatures $T=2$ and $T=0.5$, $\sigma(z/T)$. The trackers kept
+their published thresholds. The external systems use the authors' released
+detections on MOT17 val-half.
+
+\input{tables/tab2_data}
+
+\subsection{Evaluation roles}\label{sec:roles}
+Every cell has one of two roles (Table~\ref{tab:data}). Development cells
+were visible while \scl{} was designed: MOT17 with four trackers, KITTI
+with two other detectors, and the score transforms. The predeclared external
+systems, PD-SORT and Hybrid-SORT, were selected and declared before they were
+run, and they were run once with the frozen configuration. For each external
+host, the reproduction against the authors' number is classed as EXACT
+(within 0.2 HOTA) or CLOSE (within 1.0 HOTA with a documented, untuned
+cause).
+
+\subsection{Metrics and statistics}\label{sec:metrics}
+Results are reported as HOTA \cite{luiten2021hota}, MOTA
+\cite{bernardin2008clear}, and IDF1 \cite{ristani2016idf1}. They are computed
+with the TrackEval library (commit 12c8791) and the official ground truth of
+each benchmark, following MOTChallenge practice
+\cite{dendorfer2021motchallenge}. On KITTI tracking, HOTA is the official
+value averaged over cars and pedestrians.
+
+All comparisons are paired. Differences are pooled over sequences, and their
+95\% intervals come from a percentile bootstrap over sequences
+\cite{efron1993bootstrap} with 10,000 resamples and seed 42. A difference is
+called significant when its interval excludes zero. As a distribution-free
+complement, per-sequence wins, ties ($|\Delta\mathrm{HOTA}|<0.01$), and losses
+are also counted.
+
+\subsection{Related work}\label{sec:lit}
+
+Four research directions are related to \scl{}. Tracking-by-detection methods provide the
+trackers that \scl{} serves. Work on detector confidence explains why their
+fixed thresholds break when the detector changes. Adaptive thresholds inside
+trackers and adaptive inference are the closest alternatives to \scl{}.
+
+\subsubsection{Tracking by detection}
+SORT predicts each box with a Kalman filter and matches the predictions to new
+detections by overlap with the Hungarian method \cite{bewley2016sort}.
+ByteTrack introduced a second association stage that uses low-confidence
+detections to continue existing tracks \cite{zhang2022bytetrack}, and many
+later trackers kept this two-stage design. Others, such as OC-SORT
+\cite{cao2023ocsort}, use a single confidence threshold. All of these
+trackers read detector scores through fixed thresholds that were tuned for
+one detector, usually YOLOX \cite{ge2021yolox}. Seven published trackers of
+both kinds are used in this paper as hosts and are kept unchanged
+(Sect.~\ref{sec:setup}).
+
+\subsubsection{Detector confidence and calibration}
+Detectors of different families, such as YOLOX \cite{ge2021yolox}, YOLOv8
+\cite{jocher2023yolov8}, YOLOv9 \cite{wang2024yolov9}, DETR
+\cite{carion2020detr}, and RT-DETR
+\cite{zhao2024rtdetr}, produce different score distributions. Their confidence
+is not calibrated across models and conditions, and calibration methods for
+object detection fit a mapping on labelled data \cite{kuppers2020detcalib}.
+A tracker tuned for one detector therefore cannot assume that another
+detector's scores mean the same thing, and labels to recalibrate them are
+rarely available after deployment. Otsu's method selects a threshold from a histogram without labels by
+maximizing the separation between two classes \cite{otsu1979}. \scl{}
+applies it to the logits (log-odds) of the detector scores of recent frames.
+
+\subsubsection{Adaptive thresholds inside trackers}
+Several trackers adapt their own confidence thresholds. Adaptive ByteTrack
+derives the confidence threshold of ByteTrack from the detections of each
+frame \cite{ma2023adaptivebytetrack}. AdapTrack adapts the thresholds of its
+matching step \cite{shim2024adaptrack}. ACT sets the high and low thresholds
+of each frame from the first quartile of the confidence scores and the number
+of candidates \cite{act2026adaptive}. These methods are built into one tracker
+and use statistics of the current frame. \scl{} differs in
+four ways. Its statistics come from past frames. It decides for the whole
+stream whether to intervene at all, and otherwise keeps the tracker's own
+operating point. It acts through a declared host contract on several
+published trackers without modifying them. It is evaluated as one frozen
+policy under confidence shift and on external systems.
+
+\subsubsection{Adaptive inference}
+Dynamic neural networks adapt their computation to each input
+\cite{han2022dynamic}, and Chameleon re-profiles the configuration of video
+analytics pipelines over time \cite{jiang2018chameleon}. These methods learn or
+profile a policy for each model. Our earlier work, AC-MOT \cite{ismail2026acmot},
+is a training-free controller that sets the detector operating point (score
+threshold, NMS threshold, and input resolution) online from image and track
+cues. Such a controller is tied to the detector it was calibrated with,
+because a change of the detector's score scale leaves the image unchanged.
+\scl{} reads the score stream instead and acts on the
+tracker's input and thresholds. Table~\ref{tab:related} summarizes the
+differences.
+
+In summary, existing methods either adapt thresholds inside one tracker from
+the current frame, calibrate scores with labelled data, or learn a policy for
+one model. A training-free layer that calibrates itself from the detector's
+own score stream, serves many unmodified trackers, and keeps a well-matched
+tracker at its own accuracy is missing. \scl{} is designed to fill this gap.
+
+\begin{table}[t]
+\caption{Adaptive methods closest to \scl{} (BT: ByteTrack).}
+\label{tab:related}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{17mm}>{\raggedright\arraybackslash}p{18mm}>{\raggedright\arraybackslash}p{15mm}>{\raggedright\arraybackslash}p{18mm}@{}}
+\toprule
+Method & Adapted & Statistics & Where\\
+\midrule
+Adapt.\ BT \cite{ma2023adaptivebytetrack} & confidence threshold & current frame & inside BT\\
+AdapTrack \cite{shim2024adaptrack} & matching thresholds & current frame & inside the tracker\\
+ACT \cite{act2026adaptive} & high and low thresholds & current frame & inside the tracker\\
+K{\"u}ppers \cite{kuppers2020detcalib} & detector scores & labelled data & detector output\\
+Chameleon \cite{jiang2018chameleon} & pipeline configuration & profiling & analytics pipeline\\
+\scl{} (this paper) & candidates, scores, thresholds & past frames, no labels & between detector and tracker\\
+\bottomrule
+\end{tabular}
+\end{table}

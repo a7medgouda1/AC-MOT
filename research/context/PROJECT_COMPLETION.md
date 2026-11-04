@@ -1,4 +1,6 @@
-# PROJECT COMPLETION — definition of done for the final system (V6-TF)
+# PROJECT COMPLETION — definition of done for the final system
+
+> Amendment 10 (2026-10-20): the approved final version is V7 (frozen V7f); the V6-TF checklist below is history. Remaining completion work = Paper 2 (PAPERS.md).
 
 FINAL TARGET = Version: V6-TF (Amendment 9; HARD_CONSTRAINTS C0). V4 =
 historical baseline / ablation only. V5-TF/E41 = rejected development

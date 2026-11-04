@@ -1,0 +1,22 @@
+\begin{table}[!tb]
+\caption{The two external trackers, chosen before the run and not used during design (MOT17 val-half, the authors' detections), each run once with the frozen \scl{}. Host: the tracker alone; Host+\scl{}: the same tracker with \scl{}, on the same detections. Change: Host+\scl{} minus Host, with its 95\% bootstrap interval in brackets; bold: the interval does not include zero, so the change is reliable. $\uparrow$: higher is better; $\downarrow$: lower is better (IDS: identity switches, a count). Paper: the number reported by the authors (for PD-SORT, their released output; --: not reported). EXACT: our Host within 0.2 HOTA of the authors' number; CLOSE: within 1.0.}
+\label{tab:external}
+\centering\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lrrrl@{}}
+\toprule
+Metric & Paper & Host & \begin{tabular}[b]{@{}r@{}}Host\\+\scl{}\end{tabular} & Change [95\% CI]\\
+\midrule
+\multicolumn{5}{@{}l}{\textit{PD-SORT} \cite{wang2025pdsort}\textit{, EXACT}}\\
+\quad HOTA$\uparrow$ & 68.01 & 68.01 & 68.62 & {\boldmath $+0.61$ [$+0.27$, $+1.65$]}\\
+\quad MOTA$\uparrow$ & 75.19 & 75.19 & 76.31 & {\boldmath $+1.13$ [$+0.27$, $+3.03$]}\\
+\quad IDF1$\uparrow$ & 81.03 & 81.03 & 81.85 & {\boldmath $+0.82$ [$+0.43$, $+1.94$]}\\
+\quad IDS$\downarrow$ & -- & 129 & 131 & $+2$ [$-9$, $+13$]\\
+\multicolumn{5}{@{}l}{\textit{Hybrid-SORT} \cite{yang2024hybridsort}\textit{, CLOSE}}\\
+\quad HOTA$\uparrow$ & 67.1 & 66.70 & 66.70 & 0 (identical)\\
+\quad MOTA$\uparrow$ & 75.8 & 75.52 & 75.52 & 0 (identical)\\
+\quad IDF1$\uparrow$ & 78.0 & 77.56 & 77.56 & 0 (identical)\\
+\quad IDS$\downarrow$ & -- & 259 & 259 & 0 (identical)\\
+\bottomrule
+\end{tabular}
+\end{table}

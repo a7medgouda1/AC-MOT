@@ -1,0 +1,294 @@
+{
+ "experiment_id": "E61 parameter sensitivity of V7f",
+ "date": "2026-10-23",
+ "plan": "research/final/V7_SENSITIVITY_PLAN.md (sha256 7aad4ba6..., written before the runs)",
+ "data": "KITTI tracking training (development, non-protected), official KITTI HOTA car/pedestrian average",
+ "cells": {
+  "C1": "ByteTrack, RT-DETR-L",
+  "C3": "OC-SORT, YOLOv8n",
+  "C4": "ByteTrack, RT-DETR-L, halved scores",
+  "C5": "OC-SORT, YOLOv8n, halved scores"
+ },
+ "variants": {
+  "window=5": "W=5",
+  "window=20": "W=20",
+  "rho_frames=100": "mode from the median of the last 100 rho values",
+  "rho_frames=300@window=10": "mode from the median of the last 300 rho values (window=10 is the frozen value; added only to give a fresh output folder after a disk-full interruption of the first run)",
+  "dup_iou=0.4": "duplicate and rescue IoU 0.4",
+  "dup_iou=0.6": "duplicate and rescue IoU 0.6",
+  "hist=50": "motion history 50 frames",
+  "hist=200": "motion history 200 frames"
+ },
+ "points": {
+  "C1|V7f": {
+   "HOTA": 51.64,
+   "MOTA": 53.241,
+   "IDF1": 68.856,
+   "IDS": 389
+  },
+  "C1|window=5": {
+   "HOTA": 51.71,
+   "MOTA": 53.453,
+   "IDF1": 68.961,
+   "IDS": 385
+  },
+  "C1|window=20": {
+   "HOTA": 51.579,
+   "MOTA": 53.251,
+   "IDF1": 68.419,
+   "IDS": 401
+  },
+  "C1|rho_frames=100": {
+   "HOTA": 51.403,
+   "MOTA": 52.08,
+   "IDF1": 67.873,
+   "IDS": 454
+  },
+  "C1|rho_frames=300@window=10": {
+   "HOTA": 51.43,
+   "MOTA": 52.505,
+   "IDF1": 68.349,
+   "IDS": 409
+  },
+  "C1|dup_iou=0.4": {
+   "HOTA": 51.585,
+   "MOTA": 53.225,
+   "IDF1": 68.717,
+   "IDS": 404
+  },
+  "C1|dup_iou=0.6": {
+   "HOTA": 51.728,
+   "MOTA": 52.976,
+   "IDF1": 68.861,
+   "IDS": 391
+  },
+  "C1|hist=50": {
+   "HOTA": 51.621,
+   "MOTA": 53.268,
+   "IDF1": 68.816,
+   "IDS": 396
+  },
+  "C1|hist=200": {
+   "HOTA": 51.714,
+   "MOTA": 53.132,
+   "IDF1": 68.99,
+   "IDS": 393
+  },
+  "C3|V7f": {
+   "HOTA": 44.175,
+   "MOTA": 43.389,
+   "IDF1": 60.054,
+   "IDS": 170
+  },
+  "C3|window=5": {
+   "HOTA": 44.397,
+   "MOTA": 43.381,
+   "IDF1": 60.494,
+   "IDS": 171
+  },
+  "C3|window=20": {
+   "HOTA": 44.732,
+   "MOTA": 44.055,
+   "IDF1": 61.066,
+   "IDS": 166
+  },
+  "C3|rho_frames=100": {
+   "HOTA": 44.352,
+   "MOTA": 43.889,
+   "IDF1": 60.111,
+   "IDS": 177
+  },
+  "C3|rho_frames=300@window=10": {
+   "HOTA": 44.242,
+   "MOTA": 43.514,
+   "IDF1": 60.119,
+   "IDS": 174
+  },
+  "C3|dup_iou=0.4": {
+   "HOTA": 44.367,
+   "MOTA": 43.215,
+   "IDF1": 60.064,
+   "IDS": 177
+  },
+  "C3|dup_iou=0.6": {
+   "HOTA": 43.551,
+   "MOTA": 43.348,
+   "IDF1": 58.707,
+   "IDS": 228
+  },
+  "C3|hist=50": {
+   "HOTA": 44.124,
+   "MOTA": 43.359,
+   "IDF1": 59.987,
+   "IDS": 178
+  },
+  "C3|hist=200": {
+   "HOTA": 44.193,
+   "MOTA": 43.357,
+   "IDF1": 60.138,
+   "IDS": 175
+  },
+  "C4|V7f": {
+   "HOTA": 51.785,
+   "MOTA": 49.971,
+   "IDF1": 67.861,
+   "IDS": 501
+  },
+  "C4|window=5": {
+   "HOTA": 51.313,
+   "MOTA": 49.963,
+   "IDF1": 67.318,
+   "IDS": 527
+  },
+  "C4|window=20": {
+   "HOTA": 51.742,
+   "MOTA": 50.275,
+   "IDF1": 67.699,
+   "IDS": 497
+  },
+  "C4|rho_frames=100": {
+   "HOTA": 51.6,
+   "MOTA": 50.77,
+   "IDF1": 67.659,
+   "IDS": 509
+  },
+  "C4|rho_frames=300@window=10": {
+   "HOTA": 51.909,
+   "MOTA": 50.727,
+   "IDF1": 68.174,
+   "IDS": 482
+  },
+  "C4|dup_iou=0.4": {
+   "HOTA": 51.94,
+   "MOTA": 52.077,
+   "IDF1": 68.234,
+   "IDS": 481
+  },
+  "C4|dup_iou=0.6": {
+   "HOTA": 51.444,
+   "MOTA": 48.291,
+   "IDF1": 67.279,
+   "IDS": 522
+  },
+  "C4|hist=50": {
+   "HOTA": 51.841,
+   "MOTA": 49.929,
+   "IDF1": 68.016,
+   "IDS": 508
+  },
+  "C4|hist=200": {
+   "HOTA": 51.865,
+   "MOTA": 49.899,
+   "IDF1": 68.072,
+   "IDS": 502
+  },
+  "C5|V7f": {
+   "HOTA": 46.3,
+   "MOTA": 47.199,
+   "IDF1": 62.419,
+   "IDS": 308
+  },
+  "C5|window=5": {
+   "HOTA": 45.824,
+   "MOTA": 47.002,
+   "IDF1": 61.616,
+   "IDS": 320
+  },
+  "C5|window=20": {
+   "HOTA": 46.562,
+   "MOTA": 47.18,
+   "IDF1": 62.308,
+   "IDS": 299
+  },
+  "C5|rho_frames=100": {
+   "HOTA": 46.297,
+   "MOTA": 47.055,
+   "IDF1": 62.209,
+   "IDS": 325
+  },
+  "C5|rho_frames=300@window=10": {
+   "HOTA": 46.657,
+   "MOTA": 47.076,
+   "IDF1": 63.02,
+   "IDS": 309
+  },
+  "C5|dup_iou=0.4": {
+   "HOTA": 45.949,
+   "MOTA": 46.806,
+   "IDF1": 61.54,
+   "IDS": 316
+  },
+  "C5|dup_iou=0.6": {
+   "HOTA": 45.844,
+   "MOTA": 46.577,
+   "IDF1": 61.649,
+   "IDS": 392
+  },
+  "C5|hist=50": {
+   "HOTA": 46.208,
+   "MOTA": 47.119,
+   "IDF1": 62.225,
+   "IDS": 310
+  },
+  "C5|hist=200": {
+   "HOTA": 46.343,
+   "MOTA": 47.21,
+   "IDF1": 62.447,
+   "IDS": 311
+  }
+ },
+ "hota_delta_vs_V7f": {
+  "C1|window=5": 0.07,
+  "C1|window=20": -0.061,
+  "C1|rho_frames=100": -0.237,
+  "C1|rho_frames=300@window=10": -0.21,
+  "C1|dup_iou=0.4": -0.055,
+  "C1|dup_iou=0.6": 0.088,
+  "C1|hist=50": -0.019,
+  "C1|hist=200": 0.074,
+  "C3|window=5": 0.222,
+  "C3|window=20": 0.557,
+  "C3|rho_frames=100": 0.177,
+  "C3|rho_frames=300@window=10": 0.067,
+  "C3|dup_iou=0.4": 0.192,
+  "C3|dup_iou=0.6": -0.624,
+  "C3|hist=50": -0.051,
+  "C3|hist=200": 0.018,
+  "C4|window=5": -0.472,
+  "C4|window=20": -0.043,
+  "C4|rho_frames=100": -0.185,
+  "C4|rho_frames=300@window=10": 0.124,
+  "C4|dup_iou=0.4": 0.155,
+  "C4|dup_iou=0.6": -0.341,
+  "C4|hist=50": 0.056,
+  "C4|hist=200": 0.08,
+  "C5|window=5": -0.476,
+  "C5|window=20": 0.262,
+  "C5|rho_frames=100": -0.003,
+  "C5|rho_frames=300@window=10": 0.357,
+  "C5|dup_iou=0.4": -0.351,
+  "C5|dup_iou=0.6": -0.456,
+  "C5|hist=50": -0.092,
+  "C5|hist=200": 0.043
+ },
+ "max_abs_hota_delta": 0.624,
+ "prediction": "HOTA within 1 point of V7f for every variant and cell",
+ "outcome": "CONFIRMED: max |dHOTA| = 0.62",
+ "conversion_check": {
+  "note": "Recorded per-frame thresholds in existing outputs: the adaptive Otsu baselines pass sigmoid(t1) or sigmoid(t2) of the logit split to the tracker; V7f passes min(a, sigmoid(t2)) in clean frames and 0.5 in noisy frames.",
+  "otsu_baselines_rtdetr": {
+   "t1": "7987 frames, max |thr - sigmoid(t1)| = 0",
+   "t2": "7987 frames, max err 0",
+   "t2 halved": "7987 frames, max err 0"
+  },
+  "v7f": {
+   "C1": "1568 clean + 6419 noisy frames, max err 0",
+   "C4": "622 clean + 7365 noisy, max err 0",
+   "C3": "1870 clean + 6068 noisy, max err 0",
+   "C5": "3580 clean + 4360 noisy, max err 0"
+  },
+  "act": "ACT works on scores directly (no logit conversion); under halved scores it receives the halved scores (CachedDetector transform)",
+  "otsu_baselines_all": "8 runs (t1, t2) x (C1, C4 RT-DETR-L: 7,987 frames with a split; C3, C5 YOLOv8n: 7,940 frames with a split): max |assoc - sigmoid(split)| = max |birth - sigmoid(split)| = 0"
+ },
+ "code": "frozen acmot_v7.py unchanged; runner overrides of tools/v7/dev.py; evaluation tools/v7/kitti/kitti_eval.py"
+}

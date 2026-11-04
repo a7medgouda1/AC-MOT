@@ -1,0 +1,3498 @@
+{
+"seq": "uav0000117_02622_v",
+"host": "bytetrack",
+"t_med": 0.29747709701135766,
+"t_high": 0.5114928923560124,
+"frames": [
+{
+"frame": 1,
+"level": "LOW",
+"sci": 0.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 2,
+"level": "LOW",
+"sci": 0.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 3,
+"level": "LOW",
+"sci": 0.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 4,
+"level": "LOW",
+"sci": 0.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 5,
+"level": "LOW",
+"sci": 0.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 6,
+"level": "LOW",
+"sci": 0.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 7,
+"level": "LOW",
+"sci": 0.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 8,
+"level": "LOW",
+"sci": 0.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 9,
+"level": "LOW",
+"sci": 0.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 10,
+"level": "LOW",
+"sci": 0.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 11,
+"level": "LOW",
+"sci": 0.5,
+"scene": "night",
+"analysed": true,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 12,
+"level": "LOW",
+"sci": 0.5,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 13,
+"level": "LOW",
+"sci": 0.5,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 14,
+"level": "LOW",
+"sci": 0.5,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 15,
+"level": "LOW",
+"sci": 0.5,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 16,
+"level": "LOW",
+"sci": 0.5,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 17,
+"level": "LOW",
+"sci": 0.5,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 18,
+"level": "LOW",
+"sci": 0.5,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 19,
+"level": "LOW",
+"sci": 0.5,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 20,
+"level": "LOW",
+"sci": 0.5,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 21,
+"level": "LOW",
+"sci": 0.6222222222222222,
+"scene": "night",
+"analysed": true,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 22,
+"level": "LOW",
+"sci": 0.6222222222222222,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 23,
+"level": "LOW",
+"sci": 0.6222222222222222,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 24,
+"level": "LOW",
+"sci": 0.6222222222222222,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 25,
+"level": "LOW",
+"sci": 0.6222222222222222,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 26,
+"level": "LOW",
+"sci": 0.6222222222222222,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 27,
+"level": "LOW",
+"sci": 0.6222222222222222,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 28,
+"level": "LOW",
+"sci": 0.6222222222222222,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 29,
+"level": "LOW",
+"sci": 0.6222222222222222,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 30,
+"level": "LOW",
+"sci": 0.6222222222222222,
+"scene": "night",
+"analysed": false,
+"resolution": 1536,
+"nms": 0.7,
+"conf_floor": 0.1
+},
+{
+"frame": 31,
+"level": "HIGH",
+"sci": 0.7166666666666667,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 32,
+"level": "HIGH",
+"sci": 0.7166666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 33,
+"level": "HIGH",
+"sci": 0.7166666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 34,
+"level": "HIGH",
+"sci": 0.7166666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 35,
+"level": "HIGH",
+"sci": 0.7166666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 36,
+"level": "HIGH",
+"sci": 0.7166666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 37,
+"level": "HIGH",
+"sci": 0.7166666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 38,
+"level": "HIGH",
+"sci": 0.7166666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 39,
+"level": "HIGH",
+"sci": 0.7166666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 40,
+"level": "HIGH",
+"sci": 0.7166666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 41,
+"level": "HIGH",
+"sci": 0.7466666666666667,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 42,
+"level": "HIGH",
+"sci": 0.7466666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 43,
+"level": "HIGH",
+"sci": 0.7466666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 44,
+"level": "HIGH",
+"sci": 0.7466666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 45,
+"level": "HIGH",
+"sci": 0.7466666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 46,
+"level": "HIGH",
+"sci": 0.7466666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 47,
+"level": "HIGH",
+"sci": 0.7466666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 48,
+"level": "HIGH",
+"sci": 0.7466666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 49,
+"level": "HIGH",
+"sci": 0.7466666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 50,
+"level": "HIGH",
+"sci": 0.7466666666666667,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 51,
+"level": "HIGH",
+"sci": 0.7888888888888889,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 52,
+"level": "HIGH",
+"sci": 0.7888888888888889,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 53,
+"level": "HIGH",
+"sci": 0.7888888888888889,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 54,
+"level": "HIGH",
+"sci": 0.7888888888888889,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 55,
+"level": "HIGH",
+"sci": 0.7888888888888889,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 56,
+"level": "HIGH",
+"sci": 0.7888888888888889,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 57,
+"level": "HIGH",
+"sci": 0.7888888888888889,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 58,
+"level": "HIGH",
+"sci": 0.7888888888888889,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 59,
+"level": "HIGH",
+"sci": 0.7888888888888889,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 60,
+"level": "HIGH",
+"sci": 0.7888888888888889,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 61,
+"level": "HIGH",
+"sci": 0.819047619047619,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 62,
+"level": "HIGH",
+"sci": 0.819047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 63,
+"level": "HIGH",
+"sci": 0.819047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 64,
+"level": "HIGH",
+"sci": 0.819047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 65,
+"level": "HIGH",
+"sci": 0.819047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 66,
+"level": "HIGH",
+"sci": 0.819047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 67,
+"level": "HIGH",
+"sci": 0.819047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 68,
+"level": "HIGH",
+"sci": 0.819047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 69,
+"level": "HIGH",
+"sci": 0.819047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 70,
+"level": "HIGH",
+"sci": 0.819047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 71,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 72,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 73,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 74,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 75,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 76,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 77,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 78,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 79,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 80,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 81,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 82,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 83,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 84,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 85,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 86,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 87,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 88,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 89,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 90,
+"level": "HIGH",
+"sci": 0.9619047619047619,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 91,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 92,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 93,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 94,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 95,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 96,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 97,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 98,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 99,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 100,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 101,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 102,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 103,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 104,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 105,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 106,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 107,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 108,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 109,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 110,
+"level": "HIGH",
+"sci": 0.980952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 111,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 112,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 113,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 114,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 115,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 116,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 117,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 118,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 119,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 120,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 121,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 122,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 123,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 124,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 125,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 126,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 127,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 128,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 129,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 130,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 131,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 132,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 133,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 134,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 135,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 136,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 137,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 138,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 139,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 140,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 141,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 142,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 143,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 144,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 145,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 146,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 147,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 148,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 149,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 150,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 151,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 152,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 153,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 154,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 155,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 156,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 157,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 158,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 159,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 160,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 161,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 162,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 163,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 164,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 165,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 166,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 167,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 168,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 169,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 170,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 171,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 172,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 173,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 174,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 175,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 176,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 177,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 178,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 179,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 180,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 181,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 182,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 183,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 184,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 185,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 186,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 187,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 188,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 189,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 190,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 191,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 192,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 193,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 194,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 195,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 196,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 197,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 198,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 199,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 200,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 201,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 202,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 203,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 204,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 205,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 206,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 207,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 208,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 209,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 210,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 211,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 212,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 213,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 214,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 215,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 216,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 217,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 218,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 219,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 220,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 221,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 222,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 223,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 224,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 225,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 226,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 227,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 228,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 229,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 230,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 231,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 232,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 233,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 234,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 235,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 236,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 237,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 238,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 239,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 240,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 241,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 242,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 243,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 244,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 245,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 246,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 247,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 248,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 249,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 250,
+"level": "HIGH",
+"sci": 0.8809523809523808,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 251,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 252,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 253,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 254,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 255,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 256,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 257,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 258,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 259,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 260,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 261,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 262,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 263,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 264,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 265,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 266,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 267,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 268,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 269,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 270,
+"level": "HIGH",
+"sci": 0.880952380952381,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 271,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 272,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 273,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 274,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 275,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 276,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 277,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 278,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 279,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 280,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 281,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 282,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 283,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 284,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 285,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 286,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 287,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 288,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 289,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 290,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 291,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 292,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 293,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 294,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 295,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 296,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 297,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 298,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 299,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 300,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 301,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 302,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 303,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 304,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 305,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 306,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 307,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 308,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 309,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 310,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 311,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 312,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 313,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 314,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 315,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 316,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 317,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 318,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 319,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 320,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 321,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 322,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 323,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 324,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 325,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 326,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 327,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 328,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 329,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 330,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 331,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 332,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 333,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 334,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 335,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 336,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 337,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 338,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 339,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 340,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 341,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": true,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 342,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 343,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 344,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 345,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 346,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 347,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 348,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+},
+{
+"frame": 349,
+"level": "HIGH",
+"sci": 1.0,
+"scene": "night",
+"analysed": false,
+"resolution": 1088,
+"nms": 0.6,
+"conf_floor": 0.4
+}
+]
+}

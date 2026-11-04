@@ -1,0 +1,29 @@
+\begin{table*}[!tp]
+\caption{ACT \cite{act2026adaptive}, with its published parameters, and \scl{} on the same detections and tracker. (a) HOTA with each method, and \scl{} $-$ ACT with its 95\% bootstrap interval. (b) MOTA and identity switches on UAVDT with RT-DETR-L. A positive HOTA or MOTA difference and a negative IDS difference favour \scl{}; bold: a reliable difference. KITTI: HOTA averaged over cars and pedestrians; UAVDT: test split.}
+\label{tab:act}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+{\textit{(a) HOTA}}\par\smallskip
+\begin{tabular}{@{}lllrrl@{}}
+\toprule
+Data & Detector & Tracker & ACT & \scl{} & \scl{} $-$ ACT [95\% CI]\\
+\midrule
+KITTI, halved & RT-DETR-L & ByteTrack & 49.77 & 51.79 & {\boldmath $+2.01$ [$+0.01$, $+4.76$]}\\
+KITTI, halved & YOLOv8n & OC-SORT & 36.24 & 46.30 & {\boldmath $+10.06$ [$+6.88$, $+12.01$]}\\
+\addlinespace[2pt]
+UAVDT test & YOLOv8n & ByteTrack & 29.01 & 30.83 & {\boldmath $+1.82$ [$+0.65$, $+3.00$]}\\
+\bottomrule
+\end{tabular}
+
+\medskip
+{\textit{(b) MOTA and identity switches on UAVDT (test split, ByteTrack, RT-DETR-L)}}\par\smallskip
+\begin{tabular}{@{}lrrlrrl@{}}
+\toprule
+ & \multicolumn{3}{c}{MOTA$\uparrow$} & \multicolumn{3}{c}{IDS$\downarrow$}\\
+\cmidrule(lr){2-4}\cmidrule(l){5-7}
+Detector & ACT & \scl{} & \scl{} $-$ ACT [95\% CI] & ACT & \scl{} & \scl{} $-$ ACT [95\% CI]\\
+\midrule
+RT-DETR-L & 5.34 & 27.99 & {\boldmath $+22.65$ [$+9.03$, $+47.21$]} & 873 & 455 & {\boldmath $-418$ [$-718$, $-123$]}\\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,19 @@
+\section{Conclusion}\label{sec:conclusion}
+
+This paper presented \scl{}, a control layer that needs no training, adjusts
+itself from a detector's scores, and adapts a frozen tracker through a
+declared host contract. The layer splits the logits of recent frames with
+nested Otsu thresholds and decides whether the stream is clean or noisy. On
+clean streams it keeps the tracker's settings; on noisy streams it chooses
+the candidates, assigns them new scores, and sets the thresholds. A
+continuation rescue gives single-stage trackers the step they lack.
+
+One frozen configuration, developed step by step from \aob{}, was tested on
+seven published trackers, four detection sources, and three datasets. It
+improved single-stage trackers and trackers whose detector or score scale had
+changed, raised MOTA by 24.7 points on held-out aerial data, reached higher HOTA than
+simple adaptive thresholds on the same scores, kept well-matched two-stage
+trackers at their own accuracy, showed no statistically significant HOTA loss
+in any tested cell, and took 2.95 ms per frame on a CPU. These results support placing a self-calibrating
+layer between the detector and the tracker in systems where the detector
+changes while the tracker stays the same.

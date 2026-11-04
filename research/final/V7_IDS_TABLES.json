@@ -1,0 +1,267 @@
+{
+ "purpose": "Identity-switch (IDS) counts and paired-bootstrap intervals added to the tables of Paper2_V27; no new run, computed from existing outputs with the frozen evaluators (tools/v7/kitti/kitti_eval.py --boot, tools/v7/mot17_eval_v7.py --boot, tools/v7/bootstrap.py --protocol internal) or read from the recorded result files",
+ "date": "2026-10-22",
+ "values": "[diff, ci_lo, ci_hi]; host count first",
+ "MOT17_dev": {
+  "SparseTrack": [
+   124,
+   [
+    7,
+    0,
+    19
+   ],
+   "research/final/V7_MAIN_RESULTS.json"
+  ],
+  "BoostTrack online": [
+   113,
+   "identical"
+  ],
+  "BoostTrack GBI": [
+   97,
+   "identical"
+  ],
+  "ByteTrack official floor 0.01": [
+   214,
+   [
+    4,
+    -2,
+    13
+   ]
+  ],
+  "ByteTrack official floor 0.1": [
+   214,
+   "identical"
+  ],
+  "OC-SORT floor 0.01": [
+   211,
+   [
+    -8,
+    -15,
+    -2
+   ]
+  ],
+  "OC-SORT floor 0.1": [
+   213,
+   [
+    -14,
+    -38,
+    6
+   ]
+  ],
+  "paper_IDS": {
+   "BoostTrack online": 118,
+   "BoostTrack GBI": 106,
+   "source": "research/final/EXTERNAL_PAPER_TRANSFER.md sect. 7 (authors, GitHub issue #8); others not reported"
+  }
+ },
+ "AOB_prior": {
+  "SparseTrack": [
+   -16,
+   -47,
+   12
+  ],
+  "BoostTrack online": [
+   -38,
+   -81,
+   -1
+  ],
+  "BoostTrack GBI": [
+   -27,
+   -73,
+   11
+  ],
+  "source": "research/final/EXTERNAL_PAPER_TRANSFER.md sect. 14"
+ },
+ "KITTI": {
+  "ByteTrack RT-DETR-L": [
+   686,
+   [
+    -297,
+    -530,
+    -122
+   ]
+  ],
+  "BoT-SORT RT-DETR-L (ex 0020)": [
+   476,
+   [
+    -226,
+    -369,
+    -120
+   ]
+  ],
+  "OC-SORT YOLOv8n": [
+   91,
+   [
+    79,
+    43,
+    125
+   ]
+  ],
+  "FN OC-SORT host -> V7f": [
+   21886,
+   16576
+  ]
+ },
+ "external": {
+  "PD-SORT": [
+   129,
+   [
+    2,
+    -9,
+    13
+   ]
+  ],
+  "Hybrid-SORT": [
+   259,
+   "identical"
+  ],
+  "source": "research/final/V7_EXTERNAL_RESULTS.json"
+ },
+ "UAVDT": {
+  "RT-DETR-L": [
+   1041,
+   [
+    -586,
+    -951,
+    -248
+   ]
+  ],
+  "YOLOv8n": [
+   719,
+   [
+    -326,
+    -691,
+    -73
+   ]
+  ],
+  "source": "research/final/V7_UAVDT_RESULT.json"
+ },
+ "shift_host_to_V7f": {
+  "ByteTrack official": {
+   "pow3": [
+    48,
+    250
+   ],
+   "scale05": [
+    0,
+    298
+   ],
+   "temp2": [
+    97,
+    172
+   ],
+   "temp05": [
+    229,
+    229
+   ]
+  },
+  "ByteTrack library": {
+   "pow3": [
+    240,
+    265
+   ],
+   "scale05": [
+    297,
+    302
+   ],
+   "temp2": [
+    470,
+    470
+   ],
+   "temp05": [
+    387,
+    388
+   ]
+  },
+  "OC-SORT": {
+   "pow3": [
+    98,
+    235
+   ],
+   "scale05": [
+    0,
+    260
+   ],
+   "temp2": [
+    171,
+    154
+   ],
+   "temp05": [
+    223,
+    231
+   ]
+  },
+  "BoostTrack online": {
+   "pow3": [
+    76,
+    166
+   ],
+   "temp2": [
+    119,
+    119
+   ]
+  }
+ },
+ "baselines_E57": {
+  "C3": {
+   "host": 91,
+   "t1": 1545,
+   "t2": 250,
+   "V7f": 170
+  },
+  "C4": {
+   "host": 279,
+   "t1": 273,
+   "t2": 275,
+   "V7f": 501,
+   "FN_V7f": 7750,
+   "FN_t2": 12357
+  },
+  "C5": {
+   "host": 0,
+   "t1": 1975,
+   "t2": 492,
+   "V7f": 308
+  }
+ },
+ "ACT_V7f_minus_ACT": {
+  "KITTI C4": [
+   240,
+   94,
+   401
+  ],
+  "KITTI C5": [
+   214,
+   141,
+   295
+  ],
+  "MOT17 floor 0.01": [
+   -18,
+   -62,
+   12
+  ],
+  "MOT17 floor 0.1": [
+   -22,
+   -61,
+   4
+  ],
+  "UAVDT YOLOv8n": [
+   -185,
+   -480,
+   13
+  ],
+  "UAVDT RT-DETR-L": [
+   -418,
+   -718,
+   -123
+  ],
+  "FN KITTI C4 V7f vs ACT": [
+   7750,
+   12326
+  ],
+  "FN KITTI C5 V7f vs ACT": [
+   13547,
+   21887
+  ]
+ }
+}

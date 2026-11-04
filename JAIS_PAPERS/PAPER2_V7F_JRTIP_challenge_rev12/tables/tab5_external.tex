@@ -1,0 +1,30 @@
+\begin{table*}[t]
+\caption{Baseline comparison on the external systems, each run once with the frozen \scl{}.
+Top: declared at the freeze (MOT17 val-half, authors' released detections). Bottom:
+declared after the freeze under the registered protocol (authors' released detections;
+TrackTrack after its post-processing, as in its paper). Ref.: HOTA reported by the
+authors (for PD-SORT, their released output). Class: reproduction against Ref. (EXACT:
+$|\Delta\mathrm{HOTA}|\le0.2$; CLOSE: $\le1.0$ with a documented, untuned cause).
+Host: HOTA of the published tracker alone (our reproduction). $\Delta$: host with \scl{}
+minus host, with the 95\% paired-bootstrap interval below it; bold intervals exclude zero.
+W/T/L: sequences where HOTA rose, stayed within 0.01, or fell; ped.: pedestrians. TOPICTrack (FAILED
+reproduction) is excluded.}
+\label{tab:external}
+\centering\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+System (class) & Data & \twol{Ref.}{Host} & $\Delta$HOTA & $\Delta$MOTA & $\Delta$IDF1 & W/T/L\\
+\midrule
+\twol{PD-SORT \cite{wang2025pdsort}}{(EXACT)} & MOT17 & \twol{68.01}{68.01} & \cib{+0.61}{+0.27}{+1.65} & \cib{+1.13}{+0.27}{+3.03} & \cib{+0.82}{+0.43}{+1.94} & 7/0/0\\
+\twol{Hybrid-SORT \cite{yang2024hybridsort}}{(CLOSE)} & MOT17 & \twol{67.1}{66.70} & \twol{0}{(identical)} & 0 & 0 & 0/7/0\\
+\midrule
+\twol{C-TWiX \cite{miah2025twix}}{(CLOSE)} & MOT17 & \twol{77.8}{77.55} & \ci{-0.05}{-0.46}{+0.40} & \ci{+0.24}{-0.58}{+1.12} & \ci{+0.18}{-0.47}{+1.14} & 2/1/4\\
+\twol{C-TWiX \cite{miah2025twix}}{(EXACT)} & KITTI cars & \twol{89.3}{89.27} & \cib{-1.52}{-4.05}{-0.13} & \cib{-2.11}{-5.89}{-0.17} & \cib{-1.21}{-3.32}{-0.10} & 2/2/5\\
+\twol{C-TWiX \cite{miah2025twix}}{(CLOSE)} & KITTI ped. & \twol{71.4}{70.77} & \ci{-0.10}{-2.16}{+0.03} & \ci{-0.31}{-4.86}{+0.10} & \ci{-0.01}{-1.90}{+0.08} & 1/7/1\\
+\twol{C-TWiX \cite{miah2025twix}}{(CLOSE)} & DanceTrack & \twol{60.4}{59.62} & \ci{-1.00}{-2.62}{+0.65} & \ci{+0.13}{-0.39}{+0.47} & \ci{-1.55}{-3.76}{+0.52} & 10/3/12\\
+\twol{TrackTrack \cite{shim2025tracktrack}}{(CLOSE)} & DanceTrack & \twol{63.3}{62.96} & \cib{-0.013}{-0.032}{-0.001} & \cib{-0.073}{-0.208}{-0.004} & \ci{+0.009}{-0.001}{+0.028} & 0/21/4\\
+\bottomrule
+\end{tabular}
+\end{table*}

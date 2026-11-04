@@ -1,0 +1,230 @@
+{
+ "experiment_id": "E60 frozen V7f vs ACT in ACT's original setting (MOT17) and on held-out UAVDT test",
+ "date": "2026-10-21",
+ "decision": "D-043 (owner instruction, explicit; UAVDT P4 used for this ACT run only)",
+ "plan": "research/final/V7_ACT_ORIGINAL_UAVDT_PLAN.md (written before the runs; sha256 8dbf759f2b4131340c31a346b0e5931efa0cd94f4f0e72811327f930d40c09f4 at 2026-10-21T20:13:55Z)",
+ "method_compared": "ACT (Gwon & Lee 2026), act_thresholds of tools/v7/act_baseline.py (unchanged since E59), published parameters, no tuning; host birth threshold and matching tolerance unchanged",
+ "v7f_arm": "existing frozen outputs, not re-run: MOT17 BY_official_{st,bt}_V7f (Paper 2 Table 9); UAVDT outputs/v7/uavdt/V7f (E56)",
+ "host_checks": {
+  "MOT17": "tools/v7/external/mot17_act.py --mode HOSTCHK reproduced BY_official_{st,bt}_BASELINE byte for byte (14/14 sequence files)",
+  "UAVDT": "tools/v7/act_external.py HOSTCHK reproduced E56 NATIVE tracks and metrics exactly (40/40)"
+ },
+ "partA_MOT17": {
+  "setting": "MOT17 val-half (7 sequences), published YOLOX-X detections, ByteTrack official MOT17 setting (assoc 0.6, birth 0.7, low 0.1, match 0.8, official output filter); TrackEval via tools/v7/mot17_eval_v7.py",
+  "points_HOTA_MOTA_IDF1": {
+   "floor0.01|host": [
+    67.698,
+    77.604,
+    79.471
+   ],
+   "floor0.01|V7f": [
+    67.684,
+    77.662,
+    79.44
+   ],
+   "floor0.01|ACT": [
+    67.464,
+    77.441,
+    78.871
+   ],
+   "floor0.1|host": [
+    67.698,
+    77.604,
+    79.471
+   ],
+   "floor0.1|V7f": [
+    67.698,
+    77.604,
+    79.471
+   ],
+   "floor0.1|ACT": [
+    67.464,
+    77.441,
+    78.871
+   ]
+  },
+  "note": "ACT's output is identical on both streams (its pre-filter at 0.1 removes the extra floor-0.01 detections)",
+  "bootstrap_V7f_minus_ACT": {
+   "floor0.01": {
+    "HOTA": [
+     0.22,
+     -0.43,
+     0.88
+    ],
+    "MOTA": [
+     0.22,
+     -0.09,
+     0.56
+    ],
+    "IDF1": [
+     0.57,
+     -0.68,
+     2.12
+    ]
+   },
+   "floor0.1": {
+    "HOTA": [
+     0.23,
+     -0.4,
+     0.9
+    ],
+    "MOTA": [
+     0.16,
+     -0.32,
+     0.58
+    ],
+    "IDF1": [
+     0.6,
+     -0.55,
+     2.1
+    ]
+   }
+  },
+  "bootstrap_ACT_minus_host": {
+   "both": {
+    "HOTA": [
+     -0.23,
+     -0.9,
+     0.4
+    ],
+    "MOTA": [
+     -0.16,
+     -0.58,
+     0.32
+    ],
+    "IDF1": [
+     -0.6,
+     -2.1,
+     0.55
+    ]
+   }
+  }
+ },
+ "partB_UAVDT": {
+  "setting": "UAVDT test, 20 sequences, 16,592 frames, project protocol (single vehicle class, ignore regions, tools/seqstats.py), E56 GT and view, cached YOLOv8n / RT-DETR-L, ByteTrack library setting",
+  "points_MOTA_HOTA_IDF1_IDS_FP_FN": {
+   "yolov8|host": [
+    16.27,
+    29.05,
+    34.52,
+    719,
+    43385,
+    241348
+   ],
+   "yolov8|V7f": [
+    17.29,
+    30.83,
+    38.49,
+    393,
+    47710,
+    233857
+   ],
+   "yolov8|ACT": [
+    16.59,
+    29.01,
+    34.49,
+    578,
+    40921,
+    242864
+   ],
+   "rtdetr|host": [
+    3.29,
+    40.07,
+    48.59,
+    1041,
+    187041,
+    141614
+   ],
+   "rtdetr|V7f": [
+    27.99,
+    42.37,
+    54.33,
+    455,
+    78975,
+    166065
+   ],
+   "rtdetr|ACT": [
+    5.34,
+    40.14,
+    48.98,
+    873,
+    178219,
+    143625
+   ]
+  },
+  "bootstrap_V7f_minus_ACT": {
+   "yolov8": {
+    "HOTA": [
+     1.82,
+     0.65,
+     3.0
+    ],
+    "MOTA": [
+     0.71,
+     -1.42,
+     2.52
+    ],
+    "IDF1": [
+     4.0,
+     1.85,
+     6.22
+    ]
+   },
+   "rtdetr": {
+    "HOTA": [
+     2.23,
+     -0.97,
+     6.32
+    ],
+    "MOTA": [
+     22.65,
+     9.03,
+     47.21
+    ],
+    "IDF1": [
+     5.35,
+     -0.03,
+     12.47
+    ]
+   }
+  },
+  "bootstrap_ACT_minus_host": {
+   "yolov8": {
+    "HOTA": [
+     -0.05,
+     -0.32,
+     0.32
+    ],
+    "MOTA": [
+     0.32,
+     -0.03,
+     0.76
+    ],
+    "IDF1": [
+     -0.04,
+     -0.45,
+     0.55
+    ]
+   },
+   "rtdetr": {
+    "HOTA": [
+     0.07,
+     -0.36,
+     0.53
+    ],
+    "MOTA": [
+     2.05,
+     0.88,
+     4.01
+    ],
+    "IDF1": [
+     0.39,
+     -0.31,
+     1.13
+    ]
+   }
+  }
+ },
+ "analysis": "paired bootstrap over sequences, 10,000 resamples, seed 42; values [diff, ci_lo, ci_hi]; a difference counts only if the interval excludes zero",
+ "summary": "MOT17 (ACT's own setting): V7f - ACT HOTA +0.22 / +0.23, n.s.; ACT - host -0.23 n.s. UAVDT: V7f - ACT HOTA +1.82 sig. and IDF1 +4.00 sig. (YOLOv8n); MOTA +22.65 sig., HOTA +2.23 n.s., IDF1 +5.35 n.s. (RT-DETR-L). No cell with V7f significantly below ACT; no directional prediction was made."
+}

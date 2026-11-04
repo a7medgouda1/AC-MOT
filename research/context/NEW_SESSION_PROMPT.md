@@ -1,16 +1,22 @@
 # NEW SESSION PROMPT (copy everything inside the fence)
 
+Full state reconstruction, for an owner-requested state review only. Routine tasks follow the fast
+workflow in AGENTS.md (D-038) and do not run these steps.
+
 ```text
 Before doing anything, reconstruct the Universal AC-MOT project state from the
-repository at /Users/ahmedgouda/Desktop/Universal-ACMOT (branch
-universal-adapters-v1). Do not rely on chat memory.
+repository (owner's Mac: /Users/ahmedgouda/Desktop/Universal-ACMOT; paper
+work branch: sci-v7f-general-layer-dev). Do not rely on chat memory.
 
 1. Read, in this order:
    research/context/PROJECT_STATE.md
    research/context/HARD_CONSTRAINTS.md
    research/context/NEXT_STEPS.md
    research/context/PROTECTED_EVALUATIONS.md
-   (architecture work: also ARCHITECTURE.md, DECISIONS.md;
+   research/context/VERSION_HISTORY.md and research/context/PAPERS.md
+   (code: CODE_ARCHITECTURE.md + generated CODE_INVENTORY.md; experiments:
+    EXPERIMENT_REGISTRY.md + REPRODUCIBILITY.md;
+    architecture work: also ARCHITECTURE.md, DECISIONS.md;
     evaluation work: also VALIDATION_PROTOCOL.md, DATASETS_AND_SPLITS.md;
     results: RESULTS_CANONICAL.md + the machine-readable files it points to)
 2. Inspect git: `git status --short`, `git rev-parse --abbrev-ref HEAD`,
@@ -19,7 +25,9 @@ universal-adapters-v1). Do not rely on chat memory.
 3. Run `python3 tools/context_health_check.py`.
 4. Query Graphify (graphify-out/graph.json; rebuild with
    tools/build_context_graph.py if missing):
-   graphify query "current Universal AC-MOT architecture V5-TF"
+   graphify query "latest frozen version"
+   graphify query "Paper 1 JAIS submission status manuscript ID"
+   graphify query "open conflicts recent externals omitted"
    graphify query "latest decisions training-free constraint"
    graphify query "protected evaluations datasets"
    graphify query "next step experiment pending"

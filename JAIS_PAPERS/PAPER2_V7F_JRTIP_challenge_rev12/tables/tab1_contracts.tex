@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\caption{Host contracts: the published settings of each tracker, as used by
+the layer: association threshold $a$, birth threshold $b$, lowest used score
+$\ell$, and matching tolerance $m_0$ (Sect.~\ref{sec:problem}). A single-stage tracker has $\ell\ge\min(a,b)$. For trackers without
+an overlap gate, $m_0$ is declared but not passed to the tracker.}
+\label{tab:contracts}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{37mm}lcccc>{\raggedright\arraybackslash}p{29mm}@{}}
+\toprule
+Tracker (setting) & Type & $a$ & $b$ & $\ell$ & $m_0$ & Decision passed to\\
+\midrule
+ByteTrack (official MOT17) & two-stage & 0.6 & 0.7 & 0.1 & 0.8 & candidates, scores, thresholds\\
+ByteTrack (library setting; KITTI, VisDrone) & two-stage & 0.25 & 0.25 & 0.1 & 0.8 & same\\
+BoT-SORT (library setting; KITTI) & two-stage & 0.25 & 0.25 & 0.1 & 0.8 & same\\
+SparseTrack & two-stage & 0.6 & 0.7 & 0.1 & 0.85 & same\\
+BoostTrack & two-stage & 0.6 & 0.6 & 0.1 & 0.7 & same\\
+Hybrid-SORT & two-stage & 0.6 & 0.6 & 0.1 & 0.75 & same\\
+TrackTrack (DanceTrack) & two-stage & 0.6 & 0.6 & 0.1 & 0.8 & candidates, scores, $a$ and $b$; both detection views\\
+OC-SORT & single-stage & 0.6 & 0.6 & 0.6 & 0.7 & candidates, scores, thresholds\\
+PD-SORT & single-stage & 0.6 & 0.6 & 0.6 & 0.7 & same\\
+C-TWiX (MOT17 / KITTI / DanceTrack) & single-stage & 0.5 & 0.7 / 0.5 / 0.9 & 0.5 & 0.8 & candidates, scores, $a$ and $b$ (no overlap gate)\\
+\bottomrule
+\end{tabular}
+\end{table*}

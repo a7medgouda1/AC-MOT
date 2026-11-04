@@ -1,0 +1,26 @@
+\begin{table*}[!tp]
+\caption{Tracking metrics used in this paper. GT is the number of
+ground-truth boxes; FP, FN, and IDS are the false positives, missed objects
+(false negatives), and identity switches, summed over all frames. For IDF1,
+each ground-truth track is first matched to at most one output track, and
+IDTP, IDFP, and IDFN are the true-positive, false-positive, and
+false-negative boxes under this matching. For HOTA, at a localization
+threshold $\alpha$, $\mathrm{TP}_\alpha$, $\mathrm{FN}_\alpha$, and
+$\mathrm{FP}_\alpha$ are the matched, missed, and unmatched boxes, and
+$\mathcal{A}(c)$ is the association accuracy of a matched pair $c$. HOTA,
+MOTA, and IDF1 are given in percent.}
+\label{tab:metrics}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{64mm}>{\raggedright\arraybackslash}p{46mm}@{}}
+\toprule
+Metric & Definition & What it measures\\
+\midrule
+FP, FN, IDS & counts summed over all frames & FP: boxes where there is no object; FN: objects that were missed; IDS: times an object's ID changes. Lower is better; IDS is read together with FN, because a tracker that follows more objects has more chances to switch IDs\\
+MOTA \cite{bernardin2008clear} & $\displaystyle \mathrm{MOTA}=1-\frac{\mathrm{FN}+\mathrm{FP}+\mathrm{IDS}}{\mathrm{GT}}$ & one minus the share of errors; reacts mostly to false positives and missed objects\\
+IDF1 \cite{ristani2016idf1} & $\displaystyle \mathrm{IDF1}=\frac{2\,\mathrm{IDTP}}{2\,\mathrm{IDTP}+\mathrm{IDFP}+\mathrm{IDFN}}$ & how long each object keeps its correct ID\\
+HOTA \cite{luiten2021hota} & $\displaystyle \mathrm{HOTA}=\frac{1}{19}\sum_{\alpha}\sqrt{\mathrm{DetA}_\alpha\,\mathrm{AssA}_\alpha}$,\newline $\displaystyle \mathrm{DetA}_\alpha=\frac{|\mathrm{TP}_\alpha|}{|\mathrm{TP}_\alpha|+|\mathrm{FN}_\alpha|+|\mathrm{FP}_\alpha|}$,\quad $\displaystyle \mathrm{AssA}_\alpha=\frac{1}{|\mathrm{TP}_\alpha|}\sum_{c\in\mathrm{TP}_\alpha}\mathcal{A}(c)$,\newline with $\alpha=0.05,0.10,\dots,0.95$ & balance of finding the objects (detection accuracy, DetA) and keeping their identities (association accuracy, AssA); the main metric of this paper\\
+\bottomrule
+\end{tabular}
+\end{table*}

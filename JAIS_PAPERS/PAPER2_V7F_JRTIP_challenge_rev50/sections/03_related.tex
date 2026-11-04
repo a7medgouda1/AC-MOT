@@ -1,0 +1,92 @@
+\section{Related Work}\label{sec:related}
+
+\scl{} is related to four lines of research: the trackers it works with, the
+confidence of the detectors that feed them, trackers that adapt their own
+thresholds, and methods that adapt inference while running. They are
+reviewed below in this order, and Table~\ref{tab:related} compares the
+closest methods with \scl{}.
+
+Most practical trackers follow the tracking-by-detection design. SORT
+predicts where each tracked box will be in the next frame with a Kalman
+filter, a standard motion predictor, and matches these predictions to the new
+detections by their overlap, using the Hungarian method, which finds the best
+one-to-one matching \cite{bewley2016sort}.
+ByteTrack added a second matching step that uses low-score detections to
+continue existing tracks \cite{zhang2022bytetrack}, and many later trackers
+kept this two-stage design. Others, such as OC-SORT \cite{cao2023ocsort}, use
+only one score threshold. All these trackers read detector scores through
+fixed thresholds that were tuned for one detector, usually YOLOX
+\cite{ge2021yolox}. Seven published trackers of both kinds are used in this
+paper as hosts, that is, as the trackers that \scl{} serves, and they are not
+changed (Sect.~\ref{sec:setup}). A recent survey
+groups the tracking-by-detection methods into joint detection and embedding,
+heuristic, motion-based, affinity-learning, and offline methods, and compares
+them across benchmarks \cite{adzemovic2026survey}.
+
+Many recent trackers improve their association with parts that are trained or
+designed for a domain: small re-identification networks, which compare the
+appearance of objects \cite{li2024fdbtrack}, learnable graph matching
+\cite{bao2024graphmatching,zhang2025sinkhorn}, result-guided feature
+extraction for faster tracking \cite{ding2025remot}, motion models for
+low-frame-rate surface-vehicle videos \cite{liang2024motiontrack}, and image
+restoration by blind super-resolution before tracking in adverse weather
+\cite{sun2026bsr}. These methods change or retrain the tracker; \scl{} keeps
+both the tracker and the detector unchanged and acts only on what passes
+between them.
+
+These fixed thresholds are a weak point, because scores do not mean the same
+thing for every detector. Detectors of different families, such as YOLOX
+\cite{ge2021yolox}, YOLOv8 \cite{jocher2023yolov8}, YOLOv9
+\cite{wang2024yolov9}, DETR \cite{carion2020detr}, and RT-DETR
+\cite{zhao2024rtdetr}, give different score distributions. Their confidence
+is not calibrated across models and conditions, and calibration methods for
+object detection learn a mapping from labelled data
+\cite{kuppers2020detcalib}. A tracker tuned for one detector therefore cannot
+assume that another detector's scores mean the same thing, and labels to
+recalibrate them are rarely available after deployment. Image processing
+offers a tool that needs no labels: Otsu's method picks a threshold from a
+histogram so that the two resulting groups are as separate as possible
+\cite{otsu1979}. \scl{} applies it to the logits (log-odds) of the detector
+scores of recent frames.
+
+Some trackers already adapt their own thresholds. Adaptive ByteTrack sets the
+score threshold of ByteTrack from the detections of each frame
+\cite{ma2023adaptivebytetrack}. AdapTrack adapts the thresholds of its
+matching step \cite{shim2024adaptrack}. ACT sets the high and low thresholds
+of each frame from the first quartile of the scores and the number of
+candidates \cite{act2026adaptive}. Other recent trackers use the score or the
+spread of each detection inside the tracker. ConfTrack weights the Kalman
+update, the Kalman noise, and the matching cost by the score of each box
+\cite{jung2024conftrack}. UTrack measures the spread of the boxes that
+non-maximum suppression (NMS), the detector step that removes overlapping boxes
+of the same object, merges, and uses it as the Kalman noise, so it needs the
+boxes before this step \cite{solano2025utrack}. PlugTrack blends the Kalman
+filter with learned motion predictors through a small network trained with
+labels \cite{kim2026plugtrack}. These methods are built into the tracker, use
+only the current frame or each box alone, or need extra trained parts or the
+inside of the detector. \scl{} differs in four ways. It uses past
+frames. It decides for the whole video whether to act at all, and otherwise
+keeps the tracker's own settings. It works through a host contract, four published
+settings of each tracker, on several published trackers without changing them. And it is tested as one
+frozen configuration under score changes and on external systems.
+
+A wider group of methods adapts inference itself. Dynamic neural networks
+adapt their computation to each input \cite{han2022dynamic}, and Chameleon
+measures again, from time to time, which settings of a video analysis system
+work best \cite{jiang2018chameleon}. These methods learn or measure their
+settings for each model. Our earlier work, AC-MOT (a manuscript submitted for publication), is a controller that
+needs no training and sets the detector operating point (score threshold,
+NMS threshold, and input resolution) while running, from image and track
+cues. Such a controller is tied to the detector it was calibrated with,
+because a change in the detector's score scale does not change the image.
+\scl{} reads the scores instead and acts on the tracker's input and
+thresholds.
+
+In summary, current methods either adapt thresholds or use the score of each
+box inside one tracker, calibrate scores with labelled data, or learn their
+settings for one model. What is missing is a layer that needs no training, adjusts itself
+from the detector's own scores, works with many unchanged trackers, and keeps
+a well-matched tracker at its own accuracy. \scl{} is designed to fill this
+gap. Table~\ref{tab:related} summarizes the differences.
+
+\input{tables/tab_related}

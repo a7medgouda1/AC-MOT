@@ -1,0 +1,50 @@
+\subsection{Analysis}\label{sec:discussion}
+
+\emph{When the layer acts.} The effect depends on two properties of the
+pipeline, not on the dataset: whether the tracker has a continuation step,
+and whether the detector's scores match the tracker's thresholds. On MOT17
+with well-matched detections, the two-stage trackers BoostTrack, ByteTrack at
+floor 0.1, and Hybrid-SORT produced output identical to their hosts, while
+the single-stage OC-SORT and PD-SORT gained HOTA on every sequence. When the
+stream fits the tracker, the layer stays out of the way, and when the
+tracker lacks a step, the layer adds it.
+
+\emph{Self-limiting by design.} In the clean mode the layer keeps the
+tracker's thresholds and scores, so a tracker with a low-score step and
+well-matched detections receives its normal input. This is the main
+difference from the earlier design \aob{}, which lowered the HOTA of the same
+strong trackers by 4.15 to 5.89 points (Table~\ref{tab:prior}). The layer
+therefore does not need to know in advance whether a tracker needs help; it
+reads the answer from the scores.
+
+\emph{A continuation step for single-stage trackers.} Single-stage trackers
+drop every detection below one threshold, so a track can be lost when its
+object receives low scores for a few frames. The continuation rescue
+considers only candidates that overlap a track of the previous frame that no
+usable candidate covers, so it targets exactly these gaps. OC-SORT and the
+external PD-SORT gained HOTA on 7 of 7 MOT17 sequences through this step.
+
+\emph{Detector replacement.} When a detector is replaced or its score scale
+shifts, the fixed thresholds of a tracker no longer match the scores. The
+layer adjusts them from the scores without labels. Under halved scores it
+restored two trackers from 0 to about 66 HOTA, with a different detector
+it raised the MOTA of two two-stage trackers by 6.0 and 7.9 points, and on
+held-out aerial data it raised the MOTA of ByteTrack with RT-DETR-L from 3.3
+to 28.0. This is
+the case the layer was built for: a detector that is swapped, retrained, or
+quantized while the tracker stays the same.
+
+\emph{Relation to detector-side control.} Our AC-MOT controller acts
+before the detector and chooses its operating point from the scene. \scl{}
+acts after the detector and adapts the tracker's input to the scores that the
+detector produces. The two layers work on different parts of the pipeline,
+so they could be used together; combining them is left for future work.
+
+\emph{Real-time use.} The layer needs no training, no GPU, and no access to
+the inside of the detector, and it needs only four contract values from the
+tracker's configuration. At run time it reads the candidate list, one small
+grayscale image for the motion cue, and the tracks of the previous frame. On
+a CPU it takes 2.95 ms per frame, adds 4.5\% to the total time, and makes the
+tracker itself faster. \scl{} therefore adds very little delay and is
+suitable for real-time use. New trackers are added through their published
+contract values and an adapter, without changes to the rules.

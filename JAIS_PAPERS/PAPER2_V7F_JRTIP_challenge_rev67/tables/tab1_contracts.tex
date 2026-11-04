@@ -1,0 +1,22 @@
+\begin{table*}[!t]
+\caption{Host contracts: the four published settings $(a,b,\ell,m_0)$ of each tracker that \scl{}
+reads (Sect.~\ref{sec:problem}), and where each value comes from; $\theta$: the published IoU
+threshold, $m_0=1-\theta$.}
+\label{tab:contracts}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llcccc>{\raggedright\arraybackslash}p{84mm}@{}}
+\toprule
+Tracker (setting) & Type & $a$ & $b$ & $\ell$ & $m_0$ & Published settings behind the values\\
+\midrule
+ByteTrack (official) & two-stage & 0.6 & 0.7 & 0.1 & 0.8 & track\_thresh 0.6; new tracks $+$0.1; second step from 0.1; match\_thresh 0.8\\
+ByteTrack (library) & two-stage & 0.25 & 0.25 & 0.1 & 0.8 & Ultralytics bytetrack.yaml: high 0.25, new 0.25, low 0.1, match 0.8\\
+BoT-SORT (library) & two-stage & 0.25 & 0.25 & 0.1 & 0.8 & Ultralytics botsort.yaml: the same four values\\
+SparseTrack & two-stage & 0.6 & 0.7 & 0.1 & 0.85 & track\_thresh 0.6; new tracks $+$0.1; second step from 0.1; match\_thresh 0.85\\
+BoostTrack & two-stage & 0.6 & 0.6 & 0.1 & 0.7 & det\_thresh 0.6; every detection from 0.1 can be boosted; $\theta=0.3$\\
+Hybrid-SORT & two-stage & 0.6 & 0.6 & 0.1 & 0.75 & det\_thresh 0.6; low-score step from 0.1; $\theta=0.25$\\
+OC-SORT & single-stage & 0.6 & 0.6 & 0.6 & 0.7 & det\_thresh 0.6, no low-score step; $\theta=0.3$\\
+PD-SORT & single-stage & 0.6 & 0.6 & 0.6 & 0.7 & det\_thresh 0.6, no low-score step; $\theta=0.3$\\
+\bottomrule
+\end{tabular}
+\end{table*}

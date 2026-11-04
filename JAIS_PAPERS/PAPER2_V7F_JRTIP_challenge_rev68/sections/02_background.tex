@@ -1,0 +1,84 @@
+\section{Background and Related Work}\label{sec:related}
+
+\subsection{Datasets}\label{sec:data}
+\emph{MOT17} \cite{milan2016mot16} contains people filmed with static and moving cameras; as is
+common, the second half of its seven training sequences, val-half (2,652 frames), is used for
+evaluation \cite{zhang2022bytetrack}, with the published YOLOX-X detections \cite{ge2021yolox} at the
+two published emission floors (lowest emitted scores) of 0.01 and 0.1. To study score changes
+directly, these scores were also changed before the tracker by four order-preserving transforms:
+cubing ($s^3$), halving ($0.5\,s$), and logit temperatures $T=2$ and $T=0.5$, which divide the logit
+of each score (Sect.~\ref{sec:problem}) by $T$. \emph{KITTI tracking} \cite{geiger2012kitti} has 21
+training sequences (8,008 frames) recorded from a car, scored on cars and pedestrians, and is used
+with two other detectors, YOLOv8n \cite{jocher2023yolov8} and RT-DETR-L \cite{zhao2024rtdetr}.
+\emph{UAVDT} \cite{du2018uavdt} contains drone videos of vehicles; its 20 test sequences (16,592
+frames) are used with ByteTrack, YOLOv8n, and RT-DETR-L. MOT17 with four trackers, KITTI, and the
+score transforms were development data. Two predeclared external trackers, PD-SORT and Hybrid-SORT,
+were run once with the frozen configuration on their authors' MOT17 val-half detections, and the
+held-out UAVDT test split was run once after a written plan. Each external host was checked against
+its authors' number: EXACT within 0.2 HOTA points, CLOSE within 1.0.
+
+\subsection{Evaluation metrics}\label{sec:metrics}
+HOTA \cite{luiten2021hota}, the main metric, balances finding the objects and keeping their
+identities,
+\begin{equation}
+\mathrm{HOTA}=\frac{1}{19}\sum_{\alpha}\sqrt{\mathrm{DetA}_\alpha\,\mathrm{AssA}_\alpha},
+\label{eq:hota}
+\end{equation}
+where $\mathrm{DetA}_\alpha$ and $\mathrm{AssA}_\alpha$ are the detection and association accuracy
+at the localization threshold $\alpha=0.05,0.10,\dots,0.95$.
+
+MOTA \cite{bernardin2008clear} and IDF1 \cite{ristani2016idf1} are
+\begin{align}
+\mathrm{MOTA}&=1-\frac{\mathrm{FN}+\mathrm{FP}+\mathrm{IDS}}{\mathrm{GT}},\label{eq:mota}\\
+\mathrm{IDF1}&=\frac{2\,\mathrm{IDTP}}{2\,\mathrm{IDTP}+\mathrm{IDFP}+\mathrm{IDFN}},\label{eq:idf1}
+\end{align}
+where FN are missed objects (false negatives), FP false positives, IDS identity switches, and GT the
+number of ground-truth boxes; IDTP, IDFP, and IDFN count boxes after each ground-truth track is
+matched to at most one output track.
+
+All metrics are computed with TrackEval (commit 12c8791) and the official ground truth
+\cite{dendorfer2021motchallenge}; KITTI HOTA is averaged over cars and pedestrians, and on UAVDT all
+vehicles form one class and predictions in ignored regions are removed. HOTA, MOTA, and IDF1 are in
+percent and higher is better ($\uparrow$); IDS is a count and lower is better ($\downarrow$);
+differences are in points. Each tracker runs alone (Host) and with \scl{} (Host+\scl{}) on the same
+sequences and detections, and Change is Host+\scl{} minus Host. Paired bootstrap resampling of whole
+sequences \cite{efron2016casi}, 10,000 times with seed 42, gives a 95\% interval for each
+change, which is significant (bold in the tables) when its interval does not include zero.
+
+\subsection{Related work}\label{sec:survey}
+\emph{Tracking by detection.}\label{sec:hosts} SORT matches Kalman-filter predictions to new
+detections by their overlap \cite{bewley2016sort}; ByteTrack added a second step for low-score
+detections \cite{zhang2022bytetrack}; OC-SORT uses one score threshold \cite{cao2023ocsort}. Their
+thresholds were tuned for one detector, usually YOLOX \cite{ge2021yolox}. Many recent trackers improve
+association with trained or domain-specific parts
+\cite{li2024fdbtrack,bao2024graphmatching,zhang2025sinkhorn,ding2025remot,liang2024motiontrack,sun2026bsr},
+which change or retrain the tracker; \scl{} keeps both unchanged. Seven published trackers serve as
+hosts with the authors' code and configuration: ByteTrack, BoT-SORT \cite{aharon2022botsort},
+OC-SORT, SparseTrack \cite{liu2025sparsetrack}, BoostTrack \cite{stanojevic2024boosttrack}, PD-SORT
+\cite{wang2025pdsort}, and Hybrid-SORT \cite{yang2024hybridsort}. ByteTrack is used with its authors'
+MOT17 thresholds (official setting) and with the Ultralytics defaults, which also serve BoT-SORT
+(library setting).
+
+\emph{Adaptive thresholds.} Adaptive ByteTrack sets ByteTrack's threshold from each frame
+\cite{ma2023adaptivebytetrack}, AdapTrack adapts its matching thresholds \cite{shim2024adaptrack},
+and ACT sets the high and low thresholds from the first quartile and the number of the current
+scores \cite{act2026adaptive}. ConfTrack weights the Kalman update and the matching cost by the
+score \cite{jung2024conftrack}, and PlugTrack blends motion predictors with a trained network
+\cite{kim2026plugtrack}.
+
+\emph{Comparison.} Table~\ref{tab:compare} compares \scl{} with these methods. The
+adaptive-thresholding methods act in every frame, read only the current frame or each box, and are
+built into one tracker; calibration needs labelled data. \scl{} first decides from past scores
+whether to act at all, serves unchanged single-stage and two-stage trackers through their published
+settings, and needs neither labels nor trained parts (Sect.~\ref{sec:choice}).
+
+\input{tables/tab_compare}
+
+
+\emph{Score calibration and adaptive inference.} Detector families such as YOLOX, YOLOv8, and
+RT-DETR give different score distributions, and calibration methods learn a mapping from labelled
+data \cite{kuppers2020detcalib}. Otsu's method picks, without labels, the threshold that best splits a
+histogram into two groups \cite{goh2018otsu}; \scl{} applies it to the logits of recent scores. Dynamic
+networks learn their settings for each model \cite{han2022dynamic}, and our earlier controller,
+AC-MOT (submitted), sets the detector operating point from image and track cues. \scl{} instead
+reads the scores and acts on the tracker's input and thresholds.

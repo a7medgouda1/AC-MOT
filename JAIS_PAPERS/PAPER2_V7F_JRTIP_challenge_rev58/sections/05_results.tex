@@ -1,0 +1,158 @@
+\section{Experimental Results and Evaluation}\label{sec:results}
+
+This section evaluates the effectiveness and generalization of \scl{} against the host trackers
+using identical detections and published tracker configurations. Section~\ref{sec:tracker}
+examines tracking performance across different trackers on MOT17, while Sect.~\ref{sec:detector}
+evaluates detector--tracker compatibility on KITTI. Section~\ref{sec:shift} investigates robustness
+to detection confidence-score shifts, and Sect.~\ref{sec:baselines} compares \scl{} with adaptive
+thresholding methods. Section~\ref{sec:ablation} presents component ablation and parameter
+sensitivity analyses. Finally, Sects.~\ref{sec:external} and~\ref{sec:visdrone} assess
+generalization to previously unseen trackers and the held-out UAVDT dataset, respectively. In all
+comparisons, the baseline is the host tracker operating without \scl{}, and Fig.~\ref{fig:forest}
+summarizes the HOTA differences across the evaluated configurations.
+
+\emph{How to read the result tables.} Each result table compares two runs on the same detections:
+A, the tracker alone (Host), and B, the same tracker with \scl{} (Host+\scl{}). HOTA, MOTA, and
+IDF1 are percentages, and higher is better ($\uparrow$); IDS counts identity switches, and lower is
+better ($\downarrow$). The column Change gives B minus A, so a positive change in HOTA, MOTA, or
+IDF1 and a negative change in IDS mean that \scl{} helped. The brackets give the 95\% bootstrap
+interval of the change: when the whole interval lies on one side of zero, the change is reliable
+and printed in bold; when it includes zero, A and B are not reliably different. ``Identical'' means
+that \scl{} did not change the tracker's output at all. For example, in Table~\ref{tab:kitti}
+ByteTrack with RT-DETR-L has a MOTA of 47.27 alone and 53.24 with \scl{}; the change is $+5.98$
+points, and its interval $[+1.16,+9.94]$ lies above zero, so the gain is reliable. Values are
+rounded separately, so B minus A can differ from the change in the last digit.
+
+\begin{figure}[!t]
+\centering
+\includegraphics{Fig3.pdf}
+\caption{Summary of all HOTA results: for every tested tracker and detector, how much \scl{}
+changes HOTA (tracker with \scl{} minus tracker alone, in points). Dot and number: the change; line:
+its 95\% bootstrap interval. Right of the vertical line at zero, \scl{} is better. Filled dot: a
+reliable gain (the whole interval is above zero); open dot: no reliable change (the interval
+includes zero) or identical output}
+\label{fig:forest}
+\end{figure}
+
+\subsection{Performance Across Trackers on MOT17}\label{sec:tracker}
+Table~\ref{tab:mot17} shows the development trackers on MOT17 val-half. The two-stage trackers with
+well-matched detections stayed at the accuracy of their hosts: BoostTrack, online and with GBI, and
+ByteTrack at floor 0.1 gave exactly the same output, and ByteTrack at floor 0.01 and SparseTrack
+stayed within 0.06 HOTA points, the self-limiting clean mode. The single-stage OC-SORT improved at
+both floors (HOTA from 66.43 to 67.04 and from 66.44 to 66.91, MOTA $+1.27$ and $+1.26$), with fewer identity switches and
+higher HOTA on 7 of 7 sequences, through the continuation rescue.
+
+\input{tables/tab3_mot17}
+
+\subsection{Cross-Detector Evaluation on KITTI}\label{sec:detector}
+\begin{figure*}[t]
+\centering
+\includegraphics{Fig4.pdf}
+\caption{The same video tracked twice: KITTI sequence 0001 \cite{geiger2012kitti} with OC-SORT
+and YOLOv8n, at frames 92, 97, and 102 (rows). (a) The tracker alone; (b) the same tracker with
+\scl{}. Each colour and number is one track (one object identity); its line shows where the object
+was in the previous 20 frames. Dashed boxes: labelled objects that no track follows (missed). At
+frame 102, the tracker alone follows 6 of the 10 labelled objects and with \scl{} 9. IDs are
+numbered separately in each run. This sequence has the median HOTA gain of the 21 sequences, and frame 102 is its first frame with
+the largest gain in tracked objects}
+\label{fig:example}
+\end{figure*}
+Table~\ref{tab:kitti} shows what happens when the detector is replaced. With the noisy RT-DETR-L,
+ByteTrack gained 5.98 MOTA, 3.87 IDF1, and 0.91 HOTA points, and BoT-SORT 7.86 MOTA and 3.10 IDF1
+points, with 297 and 226 fewer identity switches. With YOLOv8n, OC-SORT rose from 36.27 to 44.17
+HOTA ($+7.91$ points, $[+5.47,+9.98]$), 9.40 MOTA points, and 9.60 IDF1 points; it followed many more objects, as
+its missed objects (FN) fell by 5,310, and its identity switches rose with them by 79.
+Figure~\ref{fig:example} follows this cell over three frames: each object keeps its ID,
+and at frame 102 OC-SORT alone tracked 6 of the 10 labelled objects and with \scl{} 9.
+
+\input{tables/tab4_kitti}
+\input{tables/tab_shift}
+\input{tables/tab_baselines}
+\input{tables/tab_act}
+\input{tables/tab_compabl}
+\input{tables/tab5_external}
+\input{tables/tab_visdrone}
+
+\subsection{Robustness to Detection Score Shifts}\label{sec:shift}
+Table~\ref{tab:shift} shows the trackers under the four score transforms. Halving the scores
+reduced ByteTrack (official setting) and OC-SORT to 0 HOTA; with the layer they reached 66.17 and
+66.72. Cubing reduced them to 60.92 and 58.34, and the layer restored them to 65.81 and 66.60;
+BoostTrack rose from 61.33 to 64.84. With $T=2$, the layer raised ByteTrack and OC-SORT by 1.11 and
+1.24 points. The library setting of ByteTrack, whose low thresholds already accept the changed
+scores, stayed within 0.14 points. Over the 14 conditions, the layer raised HOTA significantly in 7
+and lowered it significantly in none.
+
+
+\subsection{Comparison with Adaptive Thresholding Methods}\label{sec:baselines}
+Two simple baselines set the tracker's matching and birth thresholds in every frame to the first or
+second Otsu split of the logits of the last 10 frames, $t_1$ or $t_2$, and pass the scores
+unchanged. On KITTI (Table~\ref{tab:baselines}), \scl{} reached the highest HOTA in all three
+cells, 2.2 to 8.6 points above the baselines, with intervals against the $t_2$ baseline above zero
+in every cell, so adaptive thresholds alone do not explain the gains. With OC-SORT, \scl{} also had
+fewer identity switches than both baselines (170 against 1,545 and 250 with YOLOv8n; 308 against
+1,975 and 492 under halved scores).
+
+\emph{Logit-to-score conversion.} The baselines and \scl{} find their splits on logits, while a
+tracker compares its thresholds with scores, so a split must be converted back with the logistic
+function: the baselines pass $\sigma(t_1)$ or $\sigma(t_2)$ to the tracker, and \scl{} passes
+$\min(a,\sigma(t_2))$ in clean frames (Eq.~\eqref{eq:clean}) and 0.5 with remapped scores in noisy
+frames. The thresholds recorded in every frame matched these values exactly, with zero difference,
+in every frame with a split of all eight baseline runs (7,987 frames with RT-DETR-L and 7,940
+with YOLOv8n per run) and in all clean and noisy frames of \scl{} in the four KITTI cells. The baselines therefore received the thresholds they were meant to have.
+
+\emph{ACT.} ACT \cite{act2026adaptive} is the closest published method: in every frame it sets
+ByteTrack's high and low thresholds from the first quartile and the number of the current scores,
+choosing between preset levels. It works on the scores directly, so it needs no conversion, and
+under halved scores it receives the halved scores, as \scl{} does. It was run with its published
+parameters, without retuning, on the same detections and hosts as \scl{} (Table~\ref{tab:act}):
+its high threshold became the host's matching threshold and its low threshold the lower bound of
+the second step, while the host's birth threshold and matching tolerance stayed unchanged; with
+OC-SORT, which has one threshold, the high threshold served as that threshold. Before the
+comparison, the ACT runner was run with the host's own thresholds and reproduced the output of the
+host alone exactly in all 84 KITTI, 14 MOT17, and 40 UAVDT sequence runs. \scl{} reached higher HOTA
+than ACT in every row, significantly under halved
+scores ($+2.01$ and $+10.06$ points) and with YOLOv8n on UAVDT ($+1.82$), and also in the MOT17
+setting for which ACT was designed. With RT-DETR-L on UAVDT, \scl{} reached a MOTA of 27.99 against
+5.34 ($+22.65$, $[+9.03,+47.21]$), because the fixed score levels of ACT removed few of the host's
+false positives (178,219 against 78,975). \scl{} also had fewer identity switches than ACT on
+MOT17 and UAVDT (up to 418 fewer). In no tested cell, including the two KITTI cells with the
+original scores, was the HOTA of \scl{} significantly below that of ACT.
+
+\subsection{Component Ablation and Parameter Sensitivity}\label{sec:ablation}
+Table~\ref{tab:compabl} removes one part of the frozen \scl{}, or changes one of its values, at a
+time on the three KITTI cells of Table~\ref{tab:baselines}, with the same detections and trackers.
+Each part matters where its step acts. Without the weak detection recovery, the single-stage
+OC-SORT lost 3.35 and 1.16 HOTA points, as it has no low-score step of its own. Without the noisy
+mode (always clean), the halved-score cells lost 2.40 and 2.44 points, and without the remap up to
+1.67 points. Always acting in the noisy mode stayed within 0.85 points of \scl{} on these KITTI
+streams, which are noisy in most of their frames; on well-matched MOT17 trackers, however, always
+acting is the earlier design \aob{}, which lowered HOTA by 4.15 to 5.89 points
+(Table~\ref{tab:prior}). The mode decision is thus what lets one configuration serve both kinds of
+stream. The background check, the duplicate rule, and the motion tolerance changed HOTA by at most
+0.15 points on KITTI.
+
+The sensitivity analysis, planned before the runs, changed the window $W$, the frames whose median
+decides the mode, the IoU of the duplicate and recovery rules, and the motion history. For every
+value and cell, HOTA stayed within 0.62 points of the frozen \scl{}, and within 0.24 points on the
+fourth KITTI cell, ByteTrack with the original RT-DETR-L scores. The frozen values lie on a flat
+part of the response, so none of them needs tuning for these detectors and trackers. The shorter
+median windows, which bound the delay of the mode (Sect.~\ref{sec:regimes}), changed HOTA by at most
+0.36 points on these streams.
+
+
+\subsection{Generalization to Unseen Trackers}\label{sec:external}
+Table~\ref{tab:external} gives the two predeclared external systems. PD-SORT \cite{wang2025pdsort}
+was reproduced exactly. With \scl{}, its HOTA rose from 68.01 to 68.62 ($+0.61$ points, $[+0.27,+1.65]$), its MOTA by
+1.13 ($[+0.27,+3.03]$), and its IDF1 by 0.82 ($[+0.43,+1.94]$), with higher HOTA on 7 of 7
+sequences; like OC-SORT, it is a single-stage tracker, but it was not seen during design.
+Hybrid-SORT \cite{yang2024hybridsort}, a two-stage tracker, gave identical output, as predicted
+before the run.
+
+
+\subsection{Cross-Dataset Generalization on UAVDT}\label{sec:visdrone}
+On the held-out UAVDT test split (Table~\ref{tab:visdrone}), \scl{} raised the HOTA of the YOLOv8n
+stream from 29.05 to 30.83 ($+1.77$ points, $[+0.70,+2.94]$) and its IDF1 by 3.97 points, and cut identity switches by
+45\%. With RT-DETR-L, whose host produced many false positives (MOTA 3.29), \scl{} raised MOTA from 3.29
+to 27.99 ($+24.70$ points, $[+10.06,+51.08]$) and IDF1 by 5.74 points, and cut false positives by 58\% and
+identity switches by 56\%. No HOTA decrease was detected with either detector.
+

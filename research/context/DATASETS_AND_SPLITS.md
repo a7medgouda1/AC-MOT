@@ -61,3 +61,28 @@ occ<2, class-agnostic, IoU 0.5 (internal protocol, not official VisDrone).
   (branch origin/freeze/final-after-uavdt-2026-09-12). Whether any legacy UAVDT
   result informed Universal design: NEEDS VERIFICATION (no evidence found in
   research/). Caches `outputs/det_cache_uavdt*/` exist (caching only).
+
+## Status updates (dated, append-only; the sections above are kept as written)
+- 2026-09-28 → 2026-10-05 (from research/context/EXPERIMENT_REGISTRY.md): confirmation-16 was evaluated ONCE
+  with frozen V6-TF (E48); test-dev post-hoc (E49); UAVDT test by frozen V6-TF (E50) and by the Paper 1
+  AC-MOT v3 controller (P1-UAVDT, different detector and protocol). These sets are no longer untouched for
+  any later version; for the V7f line they stay protected (PROTECTED_EVALUATIONS.md) and were not opened.
+- VisDrone2019-MOT-val (val-7) is also the evaluation set of Paper 1 (read twice: bfa5caf, 0af0066) and a
+  development set of V7 (E6, E20, V7-POST-VD) and of the compute lines (SCI/G1/G2).
+
+## Datasets added after V6-TF (V7f line and Paper 1)
+| Dataset / split | Size | Role | Protocol | Used by | Source / hashes |
+|---|---|---|---|---|---|
+| MOT17 val-half (ByteTrack split: second half of each train sequence) | 7 sequences (02, 04, 05, 09, 10, 11, 13) | V7 development hosts; predeclared externals PD-SORT, Hybrid-SORT; TOPICTrack; C-TWiX (CenterTrack split) | TrackEval 12c8791, MOT17 GT; HOTA/MOTA/IDF1 | V7-E*, V7-POST-* | frames mirrored and verified 2669/2669 sha256 (`MOT17_mirror_manifest.json` per V7_MAIN_RESULTS.md); published YOLOX-X detections per tracker |
+| KITTI tracking training | 21 sequences (BoT-SORT 20; 0020 excluded) | V7 development detector change | official KITTI HOTA, car/ped averaged | V7-E19, P2-KITTI | official zip via `tools/v7/kitti/remotezip.py` |
+| KITTIMOT val | per C-TWiX release | recent external (C-TWiX) | TrackEval, car and pedestrian separately | V7-POST-CTW | released Permatrack detections (hash in V7_RECENT_EXTERNAL_RESULTS.json) |
+| DanceTrack val | 25 sequences | recent externals (C-TWiX, TrackTrack) | TrackEval | V7-POST-CTW, V7-POST-TT | released detections / FastReID (hashes in results JSON) |
+| MOT20 val-half | — | TOPICTrack candidate | — | not completed (see V7_RECENT_EXTERNAL_FAILURES.md) | — |
+| VisDrone2019-MOT-train calibration-8 | 8 sequences, 3282 frames | Paper 1 calibration (4 folds of 2 held-out sequences) | official-compatible VisDrone | P1-A*, P1-B | `research/acmot_paper_v2/DETECTOR_SPLIT.json` |
+| VisDrone2019-DET (third party) | — | training data of the Paper 1 detector checkpoint (not trained by us) | — | P1-DET | `research/acmot_paper_v2/frozen_detector/DETECTOR_PROVENANCE.json` |
+
+Evaluation protocols in use (never mixed in one comparison): internal class-agnostic VisDrone
+(`tools/eval_local.py`); official-compatible VisDrone (`tools/v6/eval_official.py`, Paper 1 and V6/V7
+official rows); TrackEval MOT17 val-half (`tools/v7/mot17_eval_v7.py`); official KITTI HOTA
+(`tools/v7/kitti/kitti_eval.py`); system-specific TrackEval runs for the recent externals
+(`tools/v7/recent/te_eval.py`).

@@ -1,0 +1,78 @@
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: sn-mathphys-num.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: references.bib
+sn-mathphys-num.bst [2024/07/19 v1.1  bibliography style]
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--"{An" isn't a brace-balanced string for entry efron1993bootstrap
+while executing--line 2871 of file sn-mathphys-num.bst
+Warning--"{An" isn't a brace-balanced string for entry efron1993bootstrap
+while executing--line 2871 of file sn-mathphys-num.bst
+Warning--"{An" isn't a brace-balanced string for entry efron1993bootstrap
+while executing--line 2871 of file sn-mathphys-num.bst
+Warning--"Bootstrap}" isn't a brace-balanced string for entry efron1993bootstrap
+while executing--line 2871 of file sn-mathphys-num.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 36 entries,
+            7485 wiz_defined-function locations,
+            1414 strings with 18189 characters,
+and the built_in function-call counts, 805161 in all, are:
+= -- 150840
+> -- 1615
+< -- 705
++ -- 94592
+- -- 566
+* -- 18155
+:= -- 138484
+add.period$ -- 56
+call.type$ -- 36
+change.case$ -- 307
+chr.to.int$ -- 1983
+cite$ -- 36
+duplicate$ -- 2047
+empty$ -- 9642
+format.name$ -- 1209
+if$ -- 208764
+int.to.chr$ -- 1
+int.to.str$ -- 50
+missing$ -- 0
+newline$ -- 631
+num.names$ -- 180
+pop$ -- 1083
+preamble$ -- 1
+purify$ -- 157
+quote$ -- 0
+skip$ -- 93010
+stack$ -- 0
+substring$ -- 75502
+swap$ -- 1214
+text.length$ -- 560
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 1519
+warning$ -- 0
+while$ -- 1370
+width$ -- 0
+write$ -- 845
+(There were 4 warnings)

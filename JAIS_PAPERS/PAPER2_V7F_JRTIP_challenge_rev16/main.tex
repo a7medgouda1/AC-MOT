@@ -1,0 +1,103 @@
+\documentclass[pdflatex,referee,sn-mathphys-num]{sn-jnl}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\hypersetup{hypertexnames=false}
+\newcommand{\ci}[3]{\begin{tabular}[c]{@{}c@{}}$#1$\\{}[$#2$, $#3$]\end{tabular}}
+\newcommand{\cib}[3]{{\boldmath\ci{#1}{#2}{#3}}}
+\newcommand{\cit}[3]{\begin{tabular}[t]{@{}c@{}}$#1$\\{}[$#2$, $#3$]\end{tabular}}
+\newcommand{\cibt}[3]{{\boldmath\cit{#1}{#2}{#3}}}
+\newcommand{\scl}{SCL}
+\newcommand{\aob}{AOB}
+\newcommand{\twol}[2]{\begin{tabular}[c]{@{}l@{}}#1\\#2\end{tabular}}
+
+\makeatletter
+\def\email#1{\global\advance\emailcnt by 1\relax
+\if@corauemail
+  \ifx\corrauthemail\@empty\g@addto@macro\corrauthemail{\textcolor{blue}{#1}}%
+  \else\g@addto@macro\corrauthemail{;\ \textcolor{blue}{#1}}\fi
+\else
+  \ifx\authemail\@empty\g@addto@macro\authemail{\textcolor{blue}{#1}}%
+  \else\g@addto@macro\authemail{;\ \textcolor{blue}{#1}}\fi
+\fi}
+\makeatother
+
+\begin{document}
+
+\title[Self-Calibrating Control Layer for Multi-Object Trackers]{Training-Free Self-Calibrating Control Layer for Heterogeneous Multi-Object Trackers}
+
+\author*[1]{\fnm{Ahmed Gouda} \sur{Ismail}}\email{a7medgouda1@gmail.com}
+\author[1]{\fnm{Mohamed S.} \sur{Mohamed}}\email{mohamedms@mtc.edu.eg}
+\author[2]{\fnm{Tarek Ahmed} \sur{Mahmoud}}\email{tarek.mohamed@eui.edu.eg}
+
+\affil*[1]{\orgdiv{Computer Engineering and Artificial Intelligence Department}, \orgname{Military Technical College}, \orgaddress{\city{Cairo}, \country{Egypt}}}
+\affil[2]{\orgdiv{Computer Engineering Department}, \orgname{Egypt University of Informatics}, \orgaddress{\city{Cairo}, \country{Egypt}}}
+
+\abstract{Many multi-object tracking systems combine a detector and a tracker developed separately. When the detector is replaced, retrained, or quantized for embedded hardware, its confidence scores change, but the tracker keeps thresholds set for another detector. This paper presents a training-free self-calibrating control layer (SCL) that sits between a frozen detector and a frozen tracker. While running, it splits the detector scores of recent frames with Otsu's histogram threshold and decides whether they are clean or noisy. On clean scores it keeps the tracker's settings; on noisy scores it chooses which candidates reach the tracker, assigns them new scores, and sets the tracker's thresholds. It also adds a continuation step for trackers that lack one. It needs no labels and no future frames. One frozen configuration was tested on seven published trackers, four detection sources, and three datasets. Relative to the tracker alone, it raised the higher order tracking accuracy (HOTA) of two single-stage trackers by 0.9\%: OC-SORT, used during development, and PD-SORT, which was not. When all detector scores were halved, two trackers failed completely; with \scl{}, both recovered at least 97\% of their HOTA on the original scores. With a noisy RT-DETR-L detector, it raised the multiple object tracking accuracy (MOTA) of ByteTrack and BoT-SORT by 12.6\% and 16.3\%. On four trackers with a low-score step and well-matched detections, HOTA changed by less than 0.1\%. Paired bootstrap analysis supports these results. \scl{} takes 2.95 ms per frame on a central processing unit, which suits real-time use.}
+
+\keywords{Multi-object tracking, Tracking by detection, Detector confidence calibration, Online adaptation, Otsu thresholding, Real-time image processing}
+
+\maketitle
+
+\input{sections/01_introduction}
+\input{sections/02_data}
+\input{sections/03_related}
+\input{sections/03_method}
+\input{sections/04_development}
+\input{sections/05_setup}
+\input{sections/06_results}
+\input{sections/07_discussion}
+\input{sections/08_conclusion}
+
+\backmatter
+
+\section*{Statements and Declarations}
+
+\bmhead{Funding}
+The authors did not receive support from any organization for the submitted work.
+
+\bmhead{Competing interests}
+The authors have no competing interests to declare that are relevant to the content of this
+article.
+
+\bmhead{Ethics approval and consent to participate}
+Not applicable. The study uses only public benchmark datasets and involves no human participants
+or animals.
+
+\bmhead{Consent for publication}
+Not applicable.
+
+\bmhead{Data availability}
+The datasets analysed in this study are publicly available: MOT17
+(\url{https://motchallenge.net}), KITTI tracking (\url{https://www.cvlibs.net/datasets/kitti}), and
+VisDrone2019-MOT (\url{https://github.com/VisDrone/VisDrone-Dataset}).
+The detections released by the authors of the evaluated trackers were obtained from their public
+repositories. The per-sequence results and bootstrap outputs generated in this study are available
+from the corresponding author on reasonable request.
+
+\bmhead{Materials availability}
+Not applicable.
+
+\bmhead{Code availability}
+The code of the layer, its frozen configuration, the tracker adapters, and the evaluation scripts
+are available from the corresponding author on reasonable request.
+
+\bmhead{Author contributions}
+Ahmed Gouda Ismail: conceptualization, methodology, software, investigation, formal analysis, and
+writing of the original draft. Mohamed S. Mohamed and Tarek Ahmed Mahmoud: supervision, and
+review and editing of the manuscript. All authors read and approved the final manuscript.
+
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,20 @@
+{
+ "baseline": {
+  "num_objects": 12984,
+  "num_switches": 439,
+  "num_fragmentations": 551,
+  "mostly_tracked": 44,
+  "partially_tracked": 55,
+  "mostly_lost": 17,
+  "num_unique_objects": 116
+ },
+ "acmot": {
+  "num_objects": 12984,
+  "num_switches": 400,
+  "num_fragmentations": 555,
+  "mostly_tracked": 40,
+  "partially_tracked": 56,
+  "mostly_lost": 20,
+  "num_unique_objects": 116
+ }
+}

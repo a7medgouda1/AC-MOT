@@ -1,0 +1,42 @@
+name: research-guard
+# Read-only validation of the AC-MOT research record on every push and pull request:
+# preservation rules (tools/research_guard.py), code inventory, context health,
+# and the research-memory tests. It never commits or modifies files.
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  guard:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test runner
+        run: python -m pip install --quiet pytest
+      - name: Preservation rules on the pushed commits
+        env:
+          BEFORE: ${{ github.event.before }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          # Owner public key(s) from a repository variable (Settings > Secrets and variables >
+          # Actions > Variables). Only an admin can set it; when set, key files in the
+          # repository are ignored. Without any owner key, every deletion fails (fail closed).
+          ACMOT_OWNER_KEYS: ${{ vars.ACMOT_OWNER_KEYS }}
+        run: |
+          if [ -n "$BASE_SHA" ]; then base="$BASE_SHA";
+          elif [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then base="$BEFORE";
+          else base=$(git rev-parse HEAD~1); fi
+          python3 tools/research_guard.py --range "$base" "$GITHUB_SHA"
+      - name: Code inventory is current
+        run: python3 tools/build_code_inventory.py --check
+      - name: Context health (no local graph in CI)
+        run: python3 tools/context_health_check.py --no-graph
+      - name: Completed versions are byte-for-byte identical to their records
+        run: python3 tools/version_registry.py verify
+      - name: Research-memory, deletion-guard and completed-version tests
+        run: python3 -m pytest -q tests/test_research_memory.py tests/test_deletion_guard.py tests/test_completed_versions.py

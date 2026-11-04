@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\caption{Comparison of \scl{} with recent adaptive methods for tracking (BT: ByteTrack; ReID: re-identification network; NMS: non-maximum suppression).}
+\label{tab:related}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{22mm}c>{\raggedright\arraybackslash}p{27mm}>{\raggedright\arraybackslash}p{24mm}>{\raggedright\arraybackslash}p{18mm}>{\raggedright\arraybackslash}p{19mm}>{\raggedright\arraybackslash}p{26mm}@{}}
+\toprule
+Method & Year & Adapted & Statistics & Extra trained part & Detector input & Where it works\\
+\midrule
+Adapt.\ BT \cite{ma2023adaptivebytetrack} & 2023 & high/low score split & current frame & none & boxes and scores & inside BT\\
+ConfTrack \cite{jung2024conftrack} & 2024 & Kalman update, noise, and cost & score of each box & ReID & boxes and scores & new tracker\\
+AdapTrack \cite{shim2024adaptrack} & 2024 & matching thresholds & current frame & ReID & boxes and scores & new tracker\\
+UTrack \cite{solano2025utrack} & 2025 & Kalman noise & spread of boxes merged by NMS & none & boxes before NMS & added to existing trackers\\
+ACT \cite{act2026adaptive} & 2026 & high and low thresholds & current frame & none & boxes and scores & inside the tracker\\
+PlugTrack \cite{kim2026plugtrack} & 2026 & mix of Kalman and learned motion & track boxes & network trained with labels & boxes & added to two learned predictors\\
+K{\"u}ppers \cite{kuppers2020detcalib} & 2020 & detector scores & labelled data & calibration map & boxes and scores & detector output\\
+Chameleon \cite{jiang2018chameleon} & 2018 & pipeline configuration & profiling & none & whole pipeline & analytics pipeline\\
+AC-MOT (ours, submitted) & 2026 & detector operating point & image and track cues & none & sets its settings & before the detector\\
+\scl{} (this paper) & -- & candidates, scores, thresholds & past frames, no labels & none & boxes and scores & between detector and seven unchanged trackers\\
+\bottomrule
+\end{tabular}
+\end{table*}

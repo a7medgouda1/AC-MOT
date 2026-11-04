@@ -1,0 +1,117 @@
+\section{Introduction}\label{sec:intro}
+
+Multi-object tracking (MOT) finds every object of interest in a video, such as
+people or cars, and gives each object one identity number (ID) that stays the
+same over time. It is used in surveillance, driving, and drone systems
+\cite{zhu2022visdrone,wu2022uavsurvey}, and many of these systems must give
+results with little delay. Most trackers follow the tracking-by-detection
+design \cite{adzemovic2026survey}. First, an object detector, a neural network,
+looks at each frame and returns candidate boxes. Each box has a confidence
+score between 0 and 1 that says how sure the detector is that the box holds an
+object. Then a tracker links the boxes of consecutive frames into tracks, one
+track per object \cite{bewley2016sort,zhang2022bytetrack,cao2023ocsort}. The
+tracker uses a box only if its score passes a fixed limit, called a threshold.
+Table~\ref{tab:terms} explains the main terms of this paper in plain words.
+
+Trackers use their thresholds in one of two ways. A two-stage tracker, such as
+ByteTrack, first matches the high-score boxes to its tracks and then uses
+lower-score boxes in a second step, only to continue tracks that are still
+unmatched \cite{zhang2022bytetrack}. A single-stage tracker, such as OC-SORT,
+uses one threshold and ignores every box below it \cite{cao2023ocsort}.
+
+In real systems, the detector and the tracker are rarely built together. A
+detector is replaced by a faster model, retrained for a new camera, or made
+smaller (quantized) for embedded hardware. The tracker, however, keeps the
+thresholds that its authors set for another detector. Detector scores are not
+calibrated across models and conditions \cite{kuppers2020detcalib}: the same
+object can get a high score from one detector and a much lower score from
+another. A new detector therefore usually gives scores on a different scale,
+and nothing in the system notices the change.
+
+The effect can be large. In this paper, halving the scores of a published
+detector reduces two well-known trackers to 0 higher order tracking accuracy
+(HOTA) \cite{luiten2021hota}, the main tracking metric of this paper, because
+no detection passes their fixed thresholds (Sect.~\ref{sec:shift}). Retuning
+every tracker for every detector needs labels from the new setting, that is,
+boxes and identities drawn by people, and a working system usually does not
+have them.
+
+Current methods solve only part of this problem. Trackers with adaptive
+thresholds change their own thresholds from the detections of each frame, but
+each method is built into one tracker
+\cite{ma2023adaptivebytetrack,shim2024adaptrack,act2026adaptive}. Score
+calibration methods correct the detector scores, but they need labelled data
+\cite{kuppers2020detcalib}. Methods that adapt a vision system while it runs
+learn or measure their settings for one model
+\cite{han2022dynamic,jiang2018chameleon}. What is missing is a component that
+needs no training, works outside the tracker, adjusts itself from the
+detector's own scores, and leaves the tracker alone when it already fits those
+scores.
+
+This paper presents such a component: a self-calibrating control layer
+(\scl{}) that sits between a detector and a tracker that are both kept fixed
+(frozen). We call the tracker that \scl{} serves the \emph{host}, because
+\scl{} sits in front of it and works for it without changing its code. The
+host gives \scl{} four numbers from its published settings, which we call the
+host contract (Sect.~\ref{sec:contract}). The main idea is simple: the
+detector's own scores show whether its output fits the host. \scl{} looks at
+the scores of recent frames and checks how clearly they separate confident
+objects from clutter, that is, boxes that are not real objects. If the
+separation is clear, the host keeps its own settings, and the layer only adds
+help that the host lacks, such as a step that continues tracks. If it is not
+clear, \scl{} chooses which candidates reach the host, gives them new scores,
+and sets the host's thresholds. The novelty is therefore a layer outside the
+tracker that needs no labels, uses one fixed configuration for many trackers,
+and stays out of the way when the tracker already fits the detector.
+
+\input{tables/tab_terms}
+
+The results are consistent across trackers, detectors, and data. With halved
+detector scores, \scl{} restored two trackers from 0 to about 66 HOTA. It
+improved every single-stage tracker that was tested, including one that was
+not seen during design, and it raised HOTA on every MOT17 sequence for both of
+them. With other detectors, it raised the multiple object tracking accuracy
+(MOTA), a metric that counts errors, of two-stage trackers by up to 7.9 points
+on KITTI and by 24.7 points on held-out aerial data, that is, data that was
+not used during the design. It also cut the identity switches, the cases
+where an object's ID changes, by 43\% and 47\% for the two-stage trackers on
+KITTI and by 45\% and 56\% on the aerial data. On the same scores, it reached higher HOTA than
+simple adaptive thresholds by 2.2 to 8.6 points, and it was ahead of the
+published adaptive-threshold method ACT under halved scores (by 2.0 and 10.1
+HOTA points) and on held-out aerial data (by 1.8 HOTA points with YOLOv8n and
+22.7 MOTA points with RT-DETR-L). Strong trackers that already fit their
+detector kept their accuracy, and no statistically significant HOTA loss was
+found in any tested combination of data, detector, and tracker. The layer
+takes about 3 ms per frame on an ordinary processor (central processing unit,
+CPU).
+
+The main contributions are:
+\begin{enumerate}
+\item \scl{}, a control layer that needs no training, adjusts itself from the
+      detector scores, uses no future frames, keeps the tracker's settings
+      when the scores are clean, and takes full control only when they are
+      noisy (Sect.~\ref{sec:method}).
+\item A host contract, a set of four numbers from the tracker's published
+      settings, that lets one fixed configuration work with single-stage and
+      two-stage trackers without changing them (Sect.~\ref{sec:contract}).
+\item A development path from always-on banding (\aob{}), an earlier design
+      that always intervened, in which each step is compared with that
+      design (Sect.~\ref{sec:development}).
+\item A test of one fixed configuration on seven published trackers, four
+      detection sources, and three datasets: on data used during the design,
+      and on trackers and data that were chosen in advance and run only once.
+      The test includes statistical intervals for every difference, a
+      comparison with simple adaptive thresholds and with the published ACT
+      method, an analysis of each part of the layer, and a speed measurement
+      on a CPU (Sects.~\ref{sec:setup} and~\ref{sec:results}).
+\end{enumerate}
+
+The rest of the paper is organized as follows. Section~\ref{sec:data-eval}
+describes the data, the evaluation roles, and the metrics, and
+Section~\ref{sec:related} reviews related work. Section~\ref{sec:method}
+explains \scl{} and all its settings, and Section~\ref{sec:development} shows
+how it was developed from an earlier design that always intervened. The
+configuration was then frozen before any external system was run.
+Section~\ref{sec:setup} gives the experimental setup,
+Section~\ref{sec:results} the results and their analysis, and
+Section~\ref{sec:conclusion} concludes the paper.

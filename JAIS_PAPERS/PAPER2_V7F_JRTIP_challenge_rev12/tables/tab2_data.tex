@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\caption{Evaluation cells and their role. Development cells were visible while
+the layer was designed. External cells were declared before they were run and
+were run once with the frozen configuration: PD-SORT and Hybrid-SORT in the
+freeze commit, the others under a protocol registered after the freeze and
+before any run.}
+\label{tab:data}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{31mm}>{\raggedright\arraybackslash}p{28mm}>{\raggedright\arraybackslash}p{35mm}>{\raggedright\arraybackslash}p{26mm}@{}}
+\toprule
+Data & Detector & Trackers & Role\\
+\midrule
+MOT17 val-half (7 sequences) & published YOLOX-X detections & ByteTrack (2 settings), OC-SORT, BoostTrack, SparseTrack & development\\
+KITTI tracking training (21 sequences) & RT-DETR-L; YOLOv8n & ByteTrack, BoT-SORT, OC-SORT (each with both detectors) & development (detector change)\\
+MOT17 val-half, score transforms & published YOLOX-X, transformed scores & ByteTrack (2 settings), OC-SORT, BoostTrack & development (robustness)\\
+VisDrone2019-MOT val (7) and train (40 sequences) & YOLOv8n, RT-DETR-L, Faster R-CNN & ByteTrack & development (aerial video, mechanisms only)\\
+MOT17 val-half & released PD-SORT / Hybrid-SORT detections & PD-SORT, Hybrid-SORT & external, declared at the freeze\\
+MOT17 val-half; KITTI MOTS val (9 sequences); DanceTrack val (25) & detections released by the authors & C-TWiX & external, declared after the freeze\\
+DanceTrack val (25 sequences) & detections released by the authors & TrackTrack & external, declared after the freeze\\
+MOT17 val-half & authors' detector & TOPICTrack & external; reproduction FAILED, excluded\\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,11 @@
+#!/bin/sh
+# AC-MOT owner-only-delete policy (installed by tools/install_git_hooks.sh). Read-only:
+# never edits files or creates commits. A staged deletion, rename/move, emptied file or
+# change to a frozen/protected file is always refused here, because a local hook cannot
+# verify the owner's signature. The owner commits an approved change with a signed
+# commit (git commit -S --no-verify); CI and pre-push verify the signature.
+root=$(git rev-parse --show-toplevel) || exit 1
+python3 "$root/tools/research_guard.py" --staged
+status=$?
+[ $status -ne 0 ] && echo "pre-commit: blocked by the owner-only-delete policy (research/context/PRESERVATION_POLICY.md)." >&2
+exit $status

@@ -1,0 +1,16 @@
+\section{Conclusion}\label{sec:conclusion}
+
+This paper \hl{treated} \hl{the compatibility between} a \hl{detector's} \hl{score} \hl{scale} and \hl{a} \hl{tracker's thresholds}
+\hl{as} \hl{a property that can be checked and restored online, without labels and without changing either
+component. \scl{} checks it with nested} Otsu splits of recent logits \hl{and} \hl{a} \hl{whole-stream} \hl{majority
+rule,} \hl{leaves} \hl{compatible} \hl{pairs} \hl{as} \hl{they} \hl{are,} \hl{and} \hl{restores} \hl{incompatible ones through} the tracker's \hl{own
+published} \hl{settings:} it chooses \hl{and rescores} the candidates, sets the thresholds, and \hl{recovers} \hl{weak
+detections} \hl{that} \hl{continue} \hl{tracks.} \hl{The} frozen \hl{layer demonstrated this compatibility on seven trackers
+and four detection sources: it} restored two trackers from 0 to about 66 HOTA under halved scores,
+improved both single-stage trackers on every MOT17 sequence, raised MOTA by up to 24.70 points \hl{with
+a mismatched detector} on held-out aerial data, \hl{kept well-matched trackers at their own accuracy
+with no statistically detected HOTA loss,} reached higher HOTA than simple adaptive thresholds and
+ACT, \hl{stayed} \hl{within} \hl{0.62} HOTA \hl{points under changes of its values,} and took 2.95 ms per frame on a
+CPU. \hl{Detector--tracker} \hl{compatibility} \hl{can} therefore be \hl{managed} as part of the tracking \hl{system, so a
+detector can be replaced or retrained without retuning the tracker.} Future work will test the layer
+with more \hl{detector} \hl{families, object types,} and \hl{trackers.}

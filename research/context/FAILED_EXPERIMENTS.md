@@ -27,3 +27,18 @@ declared in the protocol before running.
 
 Gate ablation note (not a failure of the method): V4 without the gate
 collapses like V1 (test-dev RT-DETR 12 catastrophic sequences, E31).
+
+## V6-TF, V7, compute lines and Paper 1 (added 2026-10-20; evidence files named per row)
+| ID | Version / commit | Hypothesis | Result (evidence) | Why it failed | Lesson | Retry? |
+|---|---|---|---|---|---|---|
+| FX-20 | V6-TF 2cff95f | a layer that always applies the bands helps any tracker | SparseTrack −4.15, BoostTrack −5.89 HOTA (`research/final/EXTERNAL_PAPER_TRANSFER.md`, D-029) | duplicate removal deleted occluded people; thresholds stricter than strong hosts | decide from the scores whether to act (→ V7 clean mode) | no (V6-TF frozen) |
+| FX-21 | V7 E4 | scene-evidence duplicate rule `ctx` | rejected (`research/final/V7_EXPERIMENT_LEDGER.md` E4) | no gain over the track-context rule | keep crowd-safe track rule | no |
+| FX-22 | V7 E20 | host-relative noisy primary band | KITTI YOLOv8n +1.4 HOTA but VisDrone RT-DETR 26.9 vs 14.9 boxes/frame (ledger E20) | uncontrolled false tracks on a noisy aerial stream | noisy band must stay self-calibrated | no |
+| FX-23 | V7 variants | no candidates at frame 1; rescue below a two-stage low stage; rank scores in clean frames | −0.3 to −0.5 HOTA; FP +700–1000; ByteTrack −0.2 / −1.6 (`research/final/V7_ABLATION.md`) | each removed host-native information | cold = host; rescue only for single-stage; raw scores when clean | no |
+| FX-24 | V7f 488df9a (known regression) | V7f never harms a two-stage host | KITTI YOLOv8n ByteTrack MOTA −1.87, BoT-SORT −2.43 (CI < 0) (`research/final/V7_STATISTICS.md`) | noisy-regime birth restriction on a weak detector | report it; do not tune a frozen policy | only as a new version |
+| FX-25 | V7f post-freeze | frozen V7f improves recent 2025 trackers | C-TWiX KITTIMOT car −1.52 HOTA (CI < 0); TrackTrack DanceTrack −0.012 (CI < 0); C-TWiX MOT17/DanceTrack n.s. negative (`research/final/V7_RECENT_EXTERNAL_RESULTS.json`) | strong coordinate/ReID trackers on clean streams; single-sequence collapses (KITTIMOT 0014, DanceTrack 0004) | V7f gains are limited to single-stage or mismatched hosts | analysis only |
+| FX-26 | C1 5a8502f | historical SCI resolution rule adds value on top of V7f | SCI + V7f − V7f only −0.17 HOTA [−0.56, +0.21] (`research/final/SCI_V7F_RESULTS.md`) | no cue predicts per-segment compute benefit across detectors | constant compute point (G1) | only with a new pre-registered cue |
+| FX-27 | G2 | compute adaptation (resolution, call rate, crops) has headroom at matched compute | all spaces fail the GT-oracle gate (`research/final/G2_EXPERIMENT_LEDGER.md`) | headroom too small or not scene-predictable | static compute + V7f | no |
+| FX-28 | P1 Phase A | an adaptive policy beats the calibration-tuned matched-static point | null in 5 stages (`research/acmot_paper_v2/FINAL_REPORT.md` §1) | the best fixed point already captures most gain | objective redefined vs the host baseline r1536_n70 (Phase B) | recorded as a design pivot |
+| FX-29 | P1 v3 | controller timing adds value beyond its action mix | shuffled same-distribution control not worse (`research/acmot_paper_v2/controller_search/SHUFFLED_CONTROL_RESULT.json`) | the action mix explains the gain | do not claim causal timing value | report in Paper 1 revision |
+| FX-30 | TOPICTrack reproduction | faithful CPU reproduction within 1.0 HOTA | 67.538 vs 69.6 (`research/final/V7_RECENT_EXTERNAL_FAILURES.md`) | not isolated; the run used CPU fp32 instead of the authors' CUDA fp16 | exclude from claims | needs GPU fp16 run |

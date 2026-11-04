@@ -5,20 +5,18 @@ Source of authority: `research/OPTIMIZATION_PROTOCOL.md` Amendment 6 (commit
 protocol amendment committed BEFORE the result it would affect, plus a new
 superseding entry in `DECISIONS.md`. Chat instructions alone do not change it.
 
-## C0 — FINAL TARGET = V6-TF (Amendment 9; supersedes the V5-TF/E41 target of Amendment 7)
-The final research target and contribution is Version: V6-TF — the
-training-free line's successor to V5-TF after the E41 audit (Amendment 9):
-training-free, online self-calibrating, causal, detector-agnostic,
-tracker-agnostic, plug-and-play, real-time, with scene-state
-(motion-conditioned) association control.
-Version: V4 is historical evidence, an ablation and a comparison baseline
-ONLY. It is NEVER a fallback final system. Do not revert to V4, and do not
-present V4 and V6-TF as alternative final systems. V5-TF families (F1–F5,
-E41) are recorded development history; E41 is rejected (FX-18), never frozen.
-Development of V6-TF iterated on val-7 (Amendment 9). The confirmation-16
-comparison against V4 is REPORTED, not a system-selection gate.
+## C0 — FINAL TARGET = V7 (Amendment 10, owner decision 2026-10-20; frozen V7f; supersedes the V6-TF target of Amendment 9)
+The final version and contribution is Version: V7, the frozen policy V7f
+(tag universal-acmot-v7-freeze → 488df9a, configs/universal_acmot_policy_v7.json,
+lock research/V7_POLICY_LOCK.json, code acmot_v7.py): training-free, online self-calibrating, causal, detector-agnostic, tracker-agnostic layer between a frozen detector and a frozen tracker: nested exact Otsu on the logits of frames t−10..t−1, whole-stream clean/noisy mode (median ρ ≥ ½) with a background check, host contract (a, b, ℓ, m0), host-anchored clean mode, crowd-safe duplicates and rank score remap in noisy frames, foreground continuation rescue, motion tolerance in noisy frames.
+V7f is frozen and immutable: no retuning, no new constants.
+Version: V6-TF is frozen history (predecessor; negative external transfer,
+D-029). Version: V4 is historical evidence, an ablation and a comparison
+baseline ONLY; it is NEVER a fallback final system. Do not revert to V4 or
+V6-TF, and do not present them as alternative final systems. V5-TF families
+(F1–F5, E41) are recorded development history; E41 is rejected (FX-18).
 
-## C1 — Final AC layer is training-free (Version: V6-TF)
+## C1 — Final AC layer is training-free (Version: V7, frozen V7f)
 The deployed AC layer must NOT require, at any point:
 training on VisDrone2019-MOT · fitting on the development-40 sequences ·
 learned decision stumps / trees · regression or logistic models · learned cue

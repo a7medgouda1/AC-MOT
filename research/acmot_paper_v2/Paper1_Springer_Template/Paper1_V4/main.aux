@@ -1,0 +1,199 @@
+\relax 
+\bibstyle{sn-mathphys-num}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wu2022uavsurvey,zhu2022visdrone}
+\citation{zhu2022visdrone,du2018uavdt,cheng2023smallobject}
+\citation{bewley2016sort,zhang2022bytetrack}
+\citation{chin2019adascale,xu2020approxdet}
+\citation{ma2023adaptivebytetrack,shim2024adaptrack}
+\Newlabel{3}{3}
+\Newlabel{4}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.3}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.3}{}}
+\citation{zhu2022visdrone}
+\citation{du2018uavdt}
+\citation{zhu2022visdrone}
+\citation{zhu2022visdrone}
+\citation{du2018uavdt}
+\citation{du2018uavdt}
+\citation{dendorfer2021motchallenge,luiten2021hota}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.8}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Background and Related Work}{section.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Dataset Description}{2}{subsection.9}\protected@file@percent }
+\newlabel{sec:datasets}{{2.1}{2}{Dataset Description}{subsection.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}VisDrone2019-MOT}{2}{subsubsection.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}UAVDT}{2}{subsubsection.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}MOT Evaluation Metrics}{2}{subsection.12}\protected@file@percent }
+\newlabel{sec:metrics}{{2.2}{2}{MOT Evaluation Metrics}{subsection.12}{}}
+\citation{luiten2021hota}
+\citation{efron1993bootstrap}
+\citation{bewley2016sort}
+\citation{du2023strongsort}
+\citation{zhang2022bytetrack}
+\citation{meinhardt2022trackformer}
+\citation{dendorfer2021motchallenge}
+\citation{zhu2022visdrone,du2018uavdt}
+\citation{liu2022uavmot}
+\citation{dai2026lsoyolo}
+\citation{qi2026oatrack}
+\citation{jocher2024yolo11}
+\citation{zhu2022visdrone}
+\citation{zhang2022bytetrack}
+\citation{qi2026oatrack}
+\newlabel{eq:gt}{{1}{3}{MOT Evaluation Metrics}{equation.13}{}}
+\newlabel{eq:fpfn}{{2}{3}{MOT Evaluation Metrics}{equation.14}{}}
+\newlabel{eq:prrc}{{3}{3}{MOT Evaluation Metrics}{equation.15}{}}
+\newlabel{eq:ids}{{4}{3}{MOT Evaluation Metrics}{equation.16}{}}
+\newlabel{eq:mota}{{5}{3}{MOT Evaluation Metrics}{equation.17}{}}
+\newlabel{eq:idf1}{{6}{3}{MOT Evaluation Metrics}{equation.18}{}}
+\newlabel{eq:deta}{{7}{3}{MOT Evaluation Metrics}{equation.19}{}}
+\newlabel{eq:ac}{{8}{3}{MOT Evaluation Metrics}{equation.20}{}}
+\newlabel{eq:assa}{{9}{3}{MOT Evaluation Metrics}{equation.21}{}}
+\newlabel{eq:hota}{{10}{3}{MOT Evaluation Metrics}{equation.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}MOT Literature Survey}{3}{subsection.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Tracking-by-Detection Methods in Aerial MOT}{3}{subsubsection.24}\protected@file@percent }
+\newlabel{sec:hosts}{{2.3.1}{3}{Tracking-by-Detection Methods in Aerial MOT}{subsubsection.24}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Adaptive Threshold Selection in MOT}{3}{subsubsection.25}\protected@file@percent }
+\citation{ma2023adaptivebytetrack}
+\citation{shim2024adaptrack}
+\citation{han2022dynamic}
+\citation{yang2020ranet}
+\citation{chin2019adascale}
+\citation{xu2020approxdet}
+\citation{jiang2018chameleon}
+\citation{chin2019adascale}
+\citation{xu2020approxdet}
+\citation{jiang2018chameleon}
+\citation{ma2023adaptivebytetrack}
+\citation{shim2024adaptrack}
+\citation{akiba2019optuna}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Adaptive Inference for Object Detection}{4}{subsubsection.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.4}Optimization and Evaluation for MOT}{4}{subsubsection.29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Adaptive methods closest to AC-MOT (BT: ByteTrack).}}{4}{table.28}\protected@file@percent }
+\newlabel{tab:related}{{1}{4}{Adaptive methods closest to AC-MOT (BT: ByteTrack)}{table.28}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Proposed AC-MOT Framework}{4}{section.30}\protected@file@percent }
+\newlabel{sec:method}{{3}{4}{Proposed AC-MOT Framework}{section.30}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Overview and operating point}{4}{subsection.31}\protected@file@percent }
+\newlabel{sec:overview}{{3.1}{4}{Overview and operating point}{subsection.31}{}}
+\newlabel{eq:theta}{{11}{4}{Overview and operating point}{equation.32}{}}
+\citation{lin2014coco}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Symbols computed at run time. Fixed values are listed in Table~\ref {tab:constants}.}}{5}{table.37}\protected@file@percent }
+\newlabel{tab:symbols}{{2}{5}{Symbols computed at run time. Fixed values are listed in Table~\ref {tab:constants}}{table.37}{}}
+\newlabel{eq:policy}{{12}{5}{Overview and operating point}{equation.33}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Scene cues}{5}{subsection.38}\protected@file@percent }
+\newlabel{sec:cues}{{3.2}{5}{Scene cues}{subsection.38}{}}
+\newlabel{eq:crowd}{{13}{5}{Scene cues}{equation.39}{}}
+\newlabel{eq:tiny}{{14}{5}{Scene cues}{equation.40}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Scene complexity index and scene label}{5}{subsection.41}\protected@file@percent }
+\newlabel{sec:sci}{{3.3}{5}{Scene complexity index and scene label}{subsection.41}{}}
+\newlabel{eq:sci}{{15}{5}{Scene complexity index and scene label}{equation.42}{}}
+\newlabel{eq:label}{{16}{5}{Scene complexity index and scene label}{equation.43}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Three-state controller}{5}{subsection.44}\protected@file@percent }
+\newlabel{sec:states}{{3.4}{5}{Three-state controller}{subsection.44}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces AC-MOT in a tracking-by-detection pipeline. Scene analysis and the controller choose the operating point $\theta _t=(c_t,\eta _t,r_t)$ before the detector runs. The frozen detector and tracker are not modified. Tracked boxes of frame $t$ feed the scene analysis of later frames (dashed arrow).}}{6}{figure.35}\protected@file@percent }
+\newlabel{fig:pipeline}{{1}{6}{AC-MOT in a tracking-by-detection pipeline. Scene analysis and the controller choose the operating point $\theta _t=(c_t,\eta _t,r_t)$ before the detector runs. The frozen detector and tracker are not modified. Tracked boxes of frame $t$ feed the scene analysis of later frames (dashed arrow)}{figure.35}{}}
+\newlabel{eq:target}{{17}{6}{Three-state controller}{equation.45}{}}
+\newlabel{eq:drop}{{18}{6}{Three-state controller}{equation.46}{}}
+\newlabel{eq:peak}{{19}{6}{Three-state controller}{equation.47}{}}
+\newlabel{eq:hold}{{20}{6}{Three-state controller}{equation.48}{}}
+\newlabel{eq:dwell}{{21}{6}{Three-state controller}{equation.49}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces AC-MOT controller for one video}}{6}{algorithm.50}\protected@file@percent }
+\newlabel{alg:controller}{{1}{6}{Three-state controller}{algorithm.50}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Action map}{6}{subsection.51}\protected@file@percent }
+\newlabel{sec:actions}{{3.5}{6}{Action map}{subsection.51}{}}
+\citation{akiba2019optuna}
+\citation{lin2014coco}
+\citation{lin2014coco}
+\citation{jocher2023yolov8}
+\citation{zhang2022bytetrack}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Action map. State names describe scene difficulty, not a resolution rank. Selected by the joint search on the calibration sequences.}}{7}{table.53}\protected@file@percent }
+\newlabel{tab:actions}{{3}{7}{Action map. State names describe scene difficulty, not a resolution rank. Selected by the joint search on the calibration sequences}{table.53}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Selection of Parameter Values of the AC-MOT Controller}{7}{subsection.54}\protected@file@percent }
+\newlabel{sec:constants}{{3.6}{7}{Selection of Parameter Values of the AC-MOT Controller}{subsection.54}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Development of the Final AC-MOT Controller}{7}{section.57}\protected@file@percent }
+\newlabel{sec:development}{{4}{7}{Development of the Final AC-MOT Controller}{section.57}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Quality-oriented profile}{7}{subsection.58}\protected@file@percent }
+\newlabel{sec:quality}{{4.1}{7}{Quality-oriented profile}{subsection.58}{}}
+\newlabel{eq:hist-sci}{{22}{7}{Quality-oriented profile}{equation.59}{}}
+\citation{akiba2019optuna}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Values of the AC-MOT controller and how each value is chosen. Calibration sequences: eight VisDrone2019-MOT training sequences used as tuning data, disjoint from the evaluation sequences. CV: four-fold cross-validation.}}{8}{table.56}\protected@file@percent }
+\newlabel{tab:constants}{{4}{8}{Values of the AC-MOT controller and how each value is chosen. Calibration sequences: eight VisDrone2019-MOT training sequences used as tuning data, disjoint from the evaluation sequences. CV: four-fold cross-validation}{table.56}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Quality-oriented profile versus its baseline (YOLOv8n with ByteTrack at default settings) on VisDrone test-dev, historical protocol. Gain: paired bootstrap difference with 95\% interval; for IDS it is the reduction.}}{8}{table.61}\protected@file@percent }
+\newlabel{tab:quality}{{5}{8}{Quality-oriented profile versus its baseline (YOLOv8n with ByteTrack at default settings) on VisDrone test-dev, historical protocol. Gain: paired bootstrap difference with 95\% interval; for IDS it is the reduction}{table.61}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Identity-aware profile versus its baseline (YOLOv8n with ByteTrack at default settings) on VisDrone test-dev, historical protocol. Gain: paired bootstrap difference with 95\% interval; for IDS it is the reduction.}}{8}{table.64}\protected@file@percent }
+\newlabel{tab:identity}{{6}{8}{Identity-aware profile versus its baseline (YOLOv8n with ByteTrack at default settings) on VisDrone test-dev, historical protocol. Gain: paired bootstrap difference with 95\% interval; for IDS it is the reduction}{table.64}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Identity-aware Pareto profile}{8}{subsection.62}\protected@file@percent }
+\newlabel{sec:identity}{{4.2}{8}{Identity-aware Pareto profile}{subsection.62}{}}
+\citation{du2018uavdt}
+\citation{liu2023u2mot}
+\citation{liu2025sparsetrack}
+\citation{dendorfer2021motchallenge}
+\citation{jocher2024yolo11}
+\citation{zhang2022bytetrack}
+\citation{qi2026oatrack}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Historical UAVDT transfer without retuning. Baseline: YOLOv8n with ByteTrack at default settings.}}{9}{table.67}\protected@file@percent }
+\newlabel{tab:hist-uavdt}{{7}{9}{Historical UAVDT transfer without retuning. Baseline: YOLOv8n with ByteTrack at default settings}{table.67}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-pipeline study on VisDrone test-dev. Baseline: U2MOT with its YOLOX-X detector at its static setting.}}{9}{table.69}\protected@file@percent }
+\newlabel{tab:u2mot}{{8}{9}{Cross-pipeline study on VisDrone test-dev. Baseline: U2MOT with its YOLOX-X detector at its static setting}{table.69}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-pipeline study on MOT17 \texttt  {val\_half}. Baseline: SparseTrack with a fixed NMS IoU threshold of 0.75.}}{9}{table.71}\protected@file@percent }
+\newlabel{tab:sparsetrack}{{9}{9}{Cross-pipeline study on MOT17 \texttt {val\_half}. Baseline: SparseTrack with a fixed NMS IoU threshold of 0.75}{table.71}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Transfer and cross-pipeline studies}{9}{subsection.65}\protected@file@percent }
+\newlabel{sec:transfer}{{4.3}{9}{Transfer and cross-pipeline studies}{subsection.65}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Modern development of the frozen controller}{9}{subsection.72}\protected@file@percent }
+\newlabel{sec:modern}{{4.4}{9}{Modern development of the frozen controller}{subsection.72}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{9}{section.77}\protected@file@percent }
+\newlabel{sec:results}{{5}{9}{Results}{section.77}{}}
+\citation{qi2026oatrack}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Main modern development steps on the eight calibration sequences (ByteTrack host). The score-threshold gain is pooled HOTA; the joint-search result is the mean over four folds.}}{10}{table.74}\protected@file@percent }
+\newlabel{tab:devrecord}{{10}{10}{Main modern development steps on the eight calibration sequences (ByteTrack host). The score-threshold gain is pooled HOTA; the joint-search result is the mean over four folds}{table.74}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Frozen policy versus the modern baseline (YOLO11m at 1536 pixels and NMS 0.70, ByteTrack) on the four calibration folds: change in HOTA.}}{10}{table.76}\protected@file@percent }
+\newlabel{tab:folds}{{11}{10}{Frozen policy versus the modern baseline (YOLO11m at 1536 pixels and NMS 0.70, ByteTrack) on the four calibration folds: change in HOTA}{table.76}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Frozen VisDrone evaluation}{10}{subsection.78}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Frozen VisDrone evaluation on seven VisDrone2019-MOT sequences (71,830 ground-truth boxes). Baseline: fixed operating point (1536, 0.70).}}{10}{table.80}\protected@file@percent }
+\newlabel{tab:visdrone}{{12}{10}{Frozen VisDrone evaluation on seven VisDrone2019-MOT sequences (71,830 ground-truth boxes). Baseline: fixed operating point (1536, 0.70)}{table.80}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces HOTA, MOTA, and IDF1 on the seven VisDrone sequences for both tracker hosts (values in Table~\ref {tab:visdrone}).}}{10}{figure.82}\protected@file@percent }
+\newlabel{fig:visdrone}{{2}{10}{HOTA, MOTA, and IDF1 on the seven VisDrone sequences for both tracker hosts (values in Table~\ref {tab:visdrone})}{figure.82}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Paired sequence-level bootstrap on VisDrone: AC-MOT minus baseline, 5000 resamples, seed 42. HOTA, MOTA, IDF1, precision, and recall in points; IDS, FP, and FN in counts.}}{10}{table.84}\protected@file@percent }
+\newlabel{tab:bootstrap}{{13}{10}{Paired sequence-level bootstrap on VisDrone: AC-MOT minus baseline, 5000 resamples, seed 42. HOTA, MOTA, IDF1, precision, and recall in points; IDS, FP, and FN in counts}{table.84}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Frozen UAVDT transfer without retuning (20 sequences, 16,592 frames, one vehicle class). Baseline: fixed operating point (1536, 0.70).}}{11}{table.87}\protected@file@percent }
+\newlabel{tab:uavdt}{{14}{11}{Frozen UAVDT transfer without retuning (20 sequences, 16,592 frames, one vehicle class). Baseline: fixed operating point (1536, 0.70)}{table.87}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Paired sequence-level bootstrap on UAVDT: AC-MOT minus baseline, 5000 resamples, seed 42, 20 sequences. MOTA and IDF1 in points; IDS, FP, and FN in counts.}}{11}{table.89}\protected@file@percent }
+\newlabel{tab:uavdt-boot}{{15}{11}{Paired sequence-level bootstrap on UAVDT: AC-MOT minus baseline, 5000 resamples, seed 42, 20 sequences. MOTA and IDF1 in points; IDS, FP, and FN in counts}{table.89}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Frozen UAVDT transfer}{11}{subsection.85}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces HOTA, MOTA, and IDF1 of the frozen UAVDT transfer for both tracker hosts (values in Table~\ref {tab:uavdt}). The ByteTrack baseline MOTA is negative ($-1.573$); the solid line marks zero.}}{11}{figure.91}\protected@file@percent }
+\newlabel{fig:uavdt}{{3}{11}{HOTA, MOTA, and IDF1 of the frozen UAVDT transfer for both tracker hosts (values in Table~\ref {tab:uavdt}). The ByteTrack baseline MOTA is negative ($-1.573$); the solid line marks zero}{figure.91}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{11}{section.92}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{11}{Discussion}{section.92}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{11}{section.93}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{11}{Conclusion}{section.93}{}}
+\bibdata{references}
+\bibcite{wu2022uavsurvey}{{1}{2022}{{Wu et~al.}}{{}}}
+\bibcite{zhu2022visdrone}{{2}{2022}{{Zhu et~al.}}{{}}}
+\bibcite{du2018uavdt}{{3}{2018}{{Du et~al.}}{{}}}
+\bibcite{cheng2023smallobject}{{4}{2023}{{Cheng et~al.}}{{}}}
+\bibcite{bewley2016sort}{{5}{2016}{{Bewley et~al.}}{{}}}
+\bibcite{zhang2022bytetrack}{{6}{2022}{{Zhang et~al.}}{{}}}
+\bibcite{chin2019adascale}{{7}{2019}{{Chin et~al.}}{{}}}
+\bibcite{xu2020approxdet}{{8}{2020}{{Xu et~al.}}{{}}}
+\bibcite{ma2023adaptivebytetrack}{{9}{2023}{{Ma et~al.}}{{}}}
+\bibcite{shim2024adaptrack}{{10}{2024}{{Shim et~al.}}{{}}}
+\bibcite{dendorfer2021motchallenge}{{11}{2021}{{Dendorfer et~al.}}{{}}}
+\bibcite{luiten2021hota}{{12}{2021}{{Luiten et~al.}}{{}}}
+\bibcite{efron1993bootstrap}{{13}{1993}{{Efron and Tibshirani}}{{}}}
+\bibcite{du2023strongsort}{{14}{2023}{{Du et~al.}}{{}}}
+\bibcite{meinhardt2022trackformer}{{15}{2022}{{Meinhardt et~al.}}{{}}}
+\bibcite{liu2022uavmot}{{16}{2022}{{Liu et~al.}}{{}}}
+\bibcite{dai2026lsoyolo}{{17}{2026}{{Dai et~al.}}{{}}}
+\bibcite{qi2026oatrack}{{18}{2026}{{Qi et~al.}}{{}}}
+\bibcite{jocher2024yolo11}{{19}{2024}{{Jocher and Qiu}}{{}}}
+\bibcite{han2022dynamic}{{20}{2022}{{Han et~al.}}{{}}}
+\bibcite{yang2020ranet}{{21}{2020}{{Yang et~al.}}{{}}}
+\bibcite{jiang2018chameleon}{{22}{2018}{{Jiang et~al.}}{{}}}
+\bibcite{akiba2019optuna}{{23}{2019}{{Akiba et~al.}}{{}}}
+\bibcite{lin2014coco}{{24}{2014}{{Lin et~al.}}{{}}}
+\bibcite{jocher2023yolov8}{{25}{2023}{{Jocher et~al.}}{{}}}
+\bibcite{liu2023u2mot}{{26}{2023}{{Liu et~al.}}{{}}}
+\bibcite{liu2025sparsetrack}{{27}{2025}{{Liu et~al.}}{{}}}
+\gdef \@abspage@last{12}

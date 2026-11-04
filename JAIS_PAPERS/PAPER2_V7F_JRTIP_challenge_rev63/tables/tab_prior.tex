@@ -1,0 +1,27 @@
+\begin{table*}[!t]
+\caption{MOT17 val-half with the published YOLOX-X detections: the earlier design \aob{} and the final \scl{}, each added to the same strong tracker. Host: the tracker alone; Host+\aob{} and Host+\scl{}: the same tracker with each layer, on the same detections. Change: the run with the layer minus Host, with its 95\% bootstrap interval in brackets; a negative HOTA, MOTA, or IDF1 change means the layer made the tracker worse; bold: the interval does not include zero, so the change is reliable. $\uparrow$: higher is better; $\downarrow$: lower is better (IDS: identity switches, a count).}
+\label{tab:prior}
+\centering\footnotesize
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{@{}lrrlrl@{}}
+\toprule
+Metric & Host & Host+\aob{} & \aob{} change [95\% CI] & Host+\scl{} & \scl{} change [95\% CI]\\
+\midrule
+\multicolumn{6}{@{}l}{\textit{SparseTrack} \cite{liu2025sparsetrack}}\\
+\quad HOTA$\uparrow$ & 68.88 & 64.72 & {\boldmath $-4.15$ [$-5.54$, $-1.66$]} & 68.93 & $+0.06$ [$-0.01$, $+0.25$]\\
+\quad MOTA$\uparrow$ & 77.85 & 71.71 & {\boldmath $-6.14$ [$-8.10$, $-2.74$]} & 77.93 & $+0.08$ [$-0.03$, $+0.30$]\\
+\quad IDF1$\uparrow$ & 81.97 & 77.49 & {\boldmath $-4.49$ [$-6.19$, $-1.96$]} & 82.13 & $+0.16$ [$-0.02$, $+0.70$]\\
+\quad IDS$\downarrow$ & 124 & 108 & $-16$ [$-47$, $+12$] & 131 & $+7$ [$0$, $+19$]\\
+\multicolumn{6}{@{}l}{\textit{BoostTrack, online} \cite{stanojevic2024boosttrack}}\\
+\quad HOTA$\uparrow$ & 68.49 & 62.61 & {\boldmath $-5.89$ [$-7.76$, $-2.87$]} & 68.49 & 0 (identical)\\
+\quad MOTA$\uparrow$ & 75.50 & 66.64 & {\boldmath $-8.87$ [$-12.37$, $-7.14$]} & 75.50 & 0 (identical)\\
+\quad IDF1$\uparrow$ & 81.41 & 75.19 & {\boldmath $-6.22$ [$-9.33$, $-2.85$]} & 81.41 & 0 (identical)\\
+\quad IDS$\downarrow$ & 113 & 75 & {\boldmath $-38$ [$-81$, $-1$]} & 113 & 0 (identical)\\
+\multicolumn{6}{@{}l}{\textit{BoostTrack, with GBI} \cite{stanojevic2024boosttrack}}\\
+\quad HOTA$\uparrow$ & 71.73 & 66.35 & {\boldmath $-5.37$ [$-7.30$, $-2.75$]} & 71.73 & 0 (identical)\\
+\quad MOTA$\uparrow$ & 81.03 & 72.30 & {\boldmath $-8.73$ [$-12.59$, $-6.50$]} & 81.03 & 0 (identical)\\
+\quad IDF1$\uparrow$ & 84.16 & 78.51 & {\boldmath $-5.65$ [$-8.96$, $-2.77$]} & 84.16 & 0 (identical)\\
+\quad IDS$\downarrow$ & 97 & 70 & $-27$ [$-73$, $+11$] & 97 & 0 (identical)\\
+\bottomrule
+\end{tabular}
+\end{table*}

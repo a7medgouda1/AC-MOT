@@ -1,0 +1,79 @@
+{
+ "seq": "uav0000117_02622_v",
+ "host": "bytetrack",
+ "rule": {
+  "min_life": 40,
+  "rows": 3
+ },
+ "n_candidates": 10,
+ "selected": [
+  {
+   "key": [
+    1,
+    118
+   ],
+   "life": 71,
+   "first": 2,
+   "last": 72,
+   "ids_baseline": 5,
+   "ids_acmot": 2,
+   "frames_baseline": 68,
+   "frames_acmot": 70,
+   "crop": {
+    "x0": 0,
+    "y0": 983,
+    "w": 636,
+    "h": 358
+   },
+   "class_name": "pedestrian",
+   "frame_shown": "0000072.jpg"
+  },
+  {
+   "key": [
+    5,
+    26
+   ],
+   "life": 153,
+   "first": 197,
+   "last": 349,
+   "ids_baseline": 6,
+   "ids_acmot": 3,
+   "frames_baseline": 46,
+   "frames_acmot": 75,
+   "crop": {
+    "x0": 644,
+    "y0": 272,
+    "w": 488,
+    "h": 275
+   },
+   "class_name": "van",
+   "frame_shown": "0000349.jpg"
+  },
+  {
+   "key": [
+    6,
+    24
+   ],
+   "life": 228,
+   "first": 122,
+   "last": 349,
+   "ids_baseline": 2,
+   "ids_acmot": 1,
+   "frames_baseline": 149,
+   "frames_acmot": 198,
+   "crop": {
+    "x0": 257,
+    "y0": 346,
+    "w": 890,
+    "h": 501
+   },
+   "class_name": "truck",
+   "frame_shown": "0000349.jpg"
+  }
+ ],
+ "objects_fewer_identities_with_acmot": 31,
+ "identities_total": {
+  "baseline": 448,
+  "acmot": 426
+ }
+}

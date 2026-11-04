@@ -1,0 +1,20 @@
+\begin{table*}[!tp]
+\caption{ACT \cite{act2026adaptive} and \scl{} on the same detections and tracker. ACT, \scl{}: HOTA (\%, higher is better) of the tracker with each method. \scl{} $-$ ACT: how much higher \scl{} is than ACT in HOTA and in IDF1, with its 95\% bootstrap interval below; a positive value means that \scl{} is better; bold: the interval does not include zero (a reliable difference). ACT uses its published parameters, without tuning. KITTI: HOTA averaged over cars and pedestrians; MOT17: val-half, the setting ACT was designed for; UAVDT: test split, one vehicle class, ignored regions removed (Sect.~\ref{sec:metrics}).}
+\label{tab:act}
+\centering\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lllrrcc@{}}
+\toprule
+Data & Detector & Tracker & ACT & \scl{} & \scl{} $-$ ACT, HOTA & \scl{} $-$ ACT, IDF1\\
+\midrule
+KITTI, halved scores & RT-DETR-L & ByteTrack & 49.77 & 51.78 & \cib{+2.01}{+0.01}{+4.76} & \ci{+1.70}{-1.13}{+6.80}\\
+KITTI, halved scores & YOLOv8n & OC-SORT & 36.24 & 46.30 & \cib{+10.06}{+6.88}{+12.01} & \cib{+12.03}{+6.85}{+14.69}\\
+\addlinespace[4pt]
+MOT17, floor 0.01 & YOLOX-X & ByteTrack (official) & 67.46 & 67.68 & \ci{+0.22}{-0.43}{+0.88} & \ci{+0.57}{-0.68}{+2.12}\\
+MOT17, floor 0.1 & YOLOX-X & ByteTrack (official) & 67.46 & 67.70 & \ci{+0.23}{-0.40}{+0.90} & \ci{+0.60}{-0.55}{+2.10}\\
+\addlinespace[4pt]
+UAVDT test & YOLOv8n & ByteTrack & 29.01 & 30.83 & \cib{+1.82}{+0.65}{+3.00} & \cib{+4.00}{+1.85}{+6.22}\\
+UAVDT test & RT-DETR-L & ByteTrack & 40.14 & 42.37 & \ci{+2.23}{-0.97}{+6.32} & \ci{+5.35}{-0.03}{+12.47}\\
+\bottomrule
+\end{tabular}
+\end{table*}

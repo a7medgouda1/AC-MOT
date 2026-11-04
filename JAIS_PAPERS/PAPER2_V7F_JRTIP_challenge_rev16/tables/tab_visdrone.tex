@@ -1,0 +1,24 @@
+\begin{table}[t]
+\caption{Baseline comparison on the held-out VisDrone split (16 sequences of the
+VisDrone2019-MOT training set, not used during design), evaluated once with the
+frozen \scl{}. Host: ByteTrack alone with its published setting. $\Delta$: host
+with \scl{} minus host, with 95\% paired-bootstrap interval; bold intervals
+exclude zero.}
+\label{tab:visdrone}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrl@{}}
+\toprule
+Metric & Host & $\Delta$ [95\% CI]\\
+\midrule
+\multicolumn{3}{@{}l}{\textit{ByteTrack, RT-DETR-L} \cite{zhang2022bytetrack,zhao2024rtdetr}}\\
+\quad HOTA & 35.07 & $-0.93$ [$-2.59$, $+1.22$]\\
+\quad MOTA & $-3.46$ & {\boldmath $+16.48$ [$+4.65$, $+31.49$]}\\
+\quad IDF1 & 38.28 & $-0.93$ [$-4.15$, $+2.78$]\\
+\multicolumn{3}{@{}l}{\textit{ByteTrack, YOLOv8n} \cite{zhang2022bytetrack,jocher2023yolov8}}\\
+\quad HOTA & 29.88 & $+0.42$ [$-0.60$, $+1.58$]\\
+\quad MOTA & 14.85 & $-1.08$ [$-2.47$, $+0.25$]\\
+\quad IDF1 & 31.21 & $+1.42$ [$-0.44$, $+3.32$]\\
+\bottomrule
+\end{tabular}
+\end{table}

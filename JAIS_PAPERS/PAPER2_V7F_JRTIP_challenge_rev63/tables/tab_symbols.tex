@@ -1,0 +1,31 @@
+\begin{table}[!tb]
+\caption{The symbols of Sect.~\ref{sec:method} in plain words. Example: the value in the clean
+stream of Fig.~\ref{fig:groups}a (MOT17-02, frame 101, ByteTrack in its official setting), as
+recorded by the frozen \scl{}; values marked e.g.\ are worked examples from the text.}
+\label{tab:symbols}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{37mm}>{\raggedright\arraybackslash}p{22mm}@{}}
+\toprule
+Symbol & Meaning & Example\\
+\midrule
+$s_i$ & detector score of candidate $i$, between 0 and 1 & e.g.\ 0.9\\
+$z_i$ & its logit, $\log\bigl(s_i/(1-s_i)\bigr)$, Eq.~\eqref{eq:logit} & e.g.\ $\log 9=2.2$\\
+$W$ & number of past frames whose logits are pooled & 10\\
+$Z_t^W$ & the logits of frames $t-W$ to $t-1$ & 916 logits\\
+$t_1$ & first split: background lies below it & $-0.78$ (score 0.32)\\
+$t_2$ & second split: confident lies above it & 0.95 (score 0.72)\\
+$\rho_t$ & share of confident candidates in the foreground, Eq.~\eqref{eq:rho} & $175/263=0.67$\\
+median $\rho$ & median of $\rho$ over the stream so far; clean if $\ge0.5$ & 0.63: clean\\
+$a$, $b$ & the tracker's published scores to match a track and to start one & 0.6, 0.7\\
+$\ell$ & the lowest score the tracker uses & 0.1\\
+$m_0$ & the tracker's matching tolerance: 1 minus the smallest IoU that matches & 0.8 (IoU $\ge0.2$)\\
+$a_t$, $b_t$ & the thresholds \scl{} passes for frame $t$ & 0.6, 0.7 (kept)\\
+$u_i$, $\tilde{s}_i$ & rank of $s_i$ among stored scores, and the new score of the noisy mode, Eq.~\eqref{eq:remap} & e.g.\ $u_i=0.8\to\tilde{s}_i=0.9$\\
+$\mathcal{T}_{t-1}$ & the tracks of the previous frame & --\\
+$K_t$ & the candidates passed to the tracker & --\\
+$g_t$, $r_t$ & camera shift between two frames; its ratio to the usual shift & e.g.\ $r_t=2$\\
+$m_t$ & the tolerance \scl{} passes for frame $t$, Eq.~\eqref{eq:motion} & 0.8 (clean)\\
+\bottomrule
+\end{tabular}
+\end{table}
