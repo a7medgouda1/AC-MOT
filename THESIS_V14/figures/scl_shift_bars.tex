@@ -1,0 +1,35 @@
+\documentclass[border=2pt]{standalone}
+\input{fig_preamble}
+\begin{document}
+\begin{tikzpicture}
+\begin{groupplot}[
+  group style={group size=3 by 1, horizontal sep=6mm},
+  height=55mm,
+  ybar, /pgf/bar width=9pt, ymin=0, ymax=80,
+  xtick=data,
+  ymajorgrids, grid style={gray!25},
+  tick label style={font=\small},
+  title style={font=\small, yshift=-1mm},
+  ylabel style={font=\small},
+  nodes near coords, every node near coord/.append style={font=\tiny, rotate=90, anchor=west},
+  nodes near coords style={/pgf/number format/.cd, fixed, fixed zerofill, precision=2},
+  legend style={font=\small, draw=none, legend columns=2,
+                at={(0.5,-0.2)}, anchor=north, /tikz/every even column/.append style={column sep=4mm}},
+  legend image code/.code={\draw[#1] (0cm,-0.1cm) rectangle (0.3cm,0.1cm);}]
+\nextgroupplot[title={ByteTrack (official setting)}, ylabel={HOTA (\%)}, width=58mm,
+  symbolic x coords={$s^3$,$0.5\,s$,$T=2$}, enlarge x limits=0.25]
+\addplot[fill=gray!45, draw=gray!70!black] coordinates {($s^3$,60.92) ($0.5\,s$,0.00) ($T=2$,65.84)};
+\addplot[fill=blue!55, draw=blue!60!black] coordinates {($s^3$,65.81) ($0.5\,s$,66.17) ($T=2$,66.95)};
+\nextgroupplot[title={OC-SORT}, yticklabels={}, width=58mm,
+  symbolic x coords={$s^3$,$0.5\,s$,$T=2$}, enlarge x limits=0.25, legend to name=shiftleg]
+\addplot[fill=gray!45, draw=gray!70!black] coordinates {($s^3$,58.34) ($0.5\,s$,0.00) ($T=2$,65.99)};
+\addplot[fill=blue!55, draw=blue!60!black] coordinates {($s^3$,66.60) ($0.5\,s$,66.72) ($T=2$,67.22)};
+\legend{{Tracker alone (Host)}, {Tracker with SCL (Host+SCL)}}
+\nextgroupplot[title={BoostTrack (online)}, yticklabels={}, width=43mm,
+  symbolic x coords={$s^3$,$T=2$}, enlarge x limits=0.4]
+\addplot[fill=gray!45, draw=gray!70!black] coordinates {($s^3$,61.33) ($T=2$,67.59)};
+\addplot[fill=blue!55, draw=blue!60!black] coordinates {($s^3$,64.84) ($T=2$,67.59)};
+\end{groupplot}
+\node at ($(group c2r1.south)+(0,-11mm)$) {\pgfplotslegendfromname{shiftleg}};
+\end{tikzpicture}
+\end{document}
