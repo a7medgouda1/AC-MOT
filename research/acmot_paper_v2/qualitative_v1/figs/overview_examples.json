@@ -1,0 +1,18 @@
+{
+ "acmot_source": "figs/acmot_qual_false.pdf",
+ "scl_source": "/home/user/AC-MOT/THESIS_V15/figures/scl_kitti_example_v3.pdf",
+ "acmot_band": [
+  1319,
+  1884
+ ],
+ "scl_bands": [
+  [
+   644,
+   1070
+  ],
+  [
+   1145,
+   1637
+  ]
+ ]
+}

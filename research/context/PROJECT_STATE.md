@@ -1,11 +1,11 @@
 # PROJECT STATE — read this first
 
 <!-- AUTO:BEGIN (tools/update_project_context.py — do not edit by hand) -->
-LAST VERIFIED COMMIT: eb1ba764da278d51471cd2bd1d4528dbc9d71abe
+LAST VERIFIED COMMIT: 21a9819e44d3e557be35feb5ef847d5dc544f58b
 CURRENT BRANCH: sci-v7f-general-layer-dev (upstream origin/sci-v7f-general-layer-dev, ahead 0, behind 0)
-LAST CONTEXT UPDATE: 2026-10-29 07:44 UTC
+LAST CONTEXT UPDATE: 2026-11-04 08:45 UTC
 LATEST FROZEN TAG (git): universal-acmot-v7-freeze → 488df9a
-WORKING TREE: 5 uncommitted path(s) — see GIT_STATE.md
+WORKING TREE: 948 uncommitted path(s) — see GIT_STATE.md
 <!-- AUTO:END -->
 
 FINAL TARGET: V7 — the approved final version and contribution, frozen policy V7f (Amendment 10, owner decision 2026-10-20). V6-TF = frozen history; V4 = historical baseline / ablation ONLY, never a fallback.

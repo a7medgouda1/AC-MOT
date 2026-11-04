@@ -384,3 +384,11 @@ Completed manuscript versions are read-only; the next version is created with
 `python3 tools/version_registry.py new paper1|paper2` (exact copy of the latest completed version, parent and
 commit recorded in research/VERSION_REGISTRY.json). Next: Paper 1 = Paper1_V14_JAIS, Paper 2 = Paper2_V12
 (`JAIS_PAPERS/PAPER2_V7F_JRTIP_challenge_rev12`). Status of every version: VERSION_REGISTRY.md.
+
+Thesis V7–V19 (2026-10-29 to 2026-10-31, owner requests): each version is a copy of the previous one with its own
+reports/CHANGES_Vn.md. V7 language and consistency; V8–V12 supervisor corrections; V13 figures of real tracked frames
+(Section 3.6.5, sources in research/acmot_paper_v2/qualitative_v1/); V14 full name of the first supervisor; V15–V16 final
+polish and equation symbols; V17 supervisor revisions (Figs. 1.1/1.2 with start block and block inputs/outputs, Section 2.2
+applications, 5.2 Research Limitations, 5.3 Future Work, 11 Crossref-verified references); V18 redrawn v4 application
+figures; V19 the original v4 images embedded unchanged (hashes in THESIS_V19/reports/V19_ORIGINAL_IMAGE_RECORD.csv,
+lossless PDF export). Results and tables identical across V7–V19. Latest: THESIS_V19/word/Thesis_V19.docx and .pdf (126 pages).

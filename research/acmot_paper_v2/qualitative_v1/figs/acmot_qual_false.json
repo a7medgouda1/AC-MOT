@@ -1,0 +1,96 @@
+{
+ "seq": "uav0000117_02622_v",
+ "host": "bytetrack",
+ "selected_frame": 278,
+ "rows": [
+  268,
+  273,
+  278
+ ],
+ "crop": {
+  "x0": 896,
+  "y0": 32,
+  "w": 1280,
+  "h": 720
+ },
+ "frame_size": {
+  "w": 2720,
+  "h": 1530
+ },
+ "trail": 20,
+ "mode": "false",
+ "per_row": {
+  "baseline": {
+   "268": {
+    "tp": 27,
+    "false": 47,
+    "missed": 5,
+    "n_tracks": 74,
+    "id_switches_last10": 4
+   },
+   "273": {
+    "tp": 26,
+    "false": 53,
+    "missed": 5,
+    "n_tracks": 79,
+    "id_switches_last10": 3
+   },
+   "278": {
+    "tp": 24,
+    "false": 54,
+    "missed": 6,
+    "n_tracks": 78,
+    "id_switches_last10": 3
+   }
+  },
+  "acmot": {
+   "268": {
+    "tp": 27,
+    "false": 22,
+    "missed": 5,
+    "n_tracks": 49,
+    "id_switches_last10": 3
+   },
+   "273": {
+    "tp": 26,
+    "false": 28,
+    "missed": 5,
+    "n_tracks": 54,
+    "id_switches_last10": 1
+   },
+   "278": {
+    "tp": 25,
+    "false": 23,
+    "missed": 5,
+    "n_tracks": 48,
+    "id_switches_last10": 2
+   }
+  }
+ },
+ "acmot_state_per_row": {
+  "268": "HIGH",
+  "273": "HIGH",
+  "278": "HIGH"
+ },
+ "sequence_id_switches": {
+  "baseline": 439,
+  "acmot": 400
+ },
+ "sequence_totals": {
+  "baseline": {
+   "tp": 8742,
+   "false": 9961,
+   "missed": 4242
+  },
+  "acmot": {
+   "tp": 8595,
+   "false": 6484,
+   "missed": 4389
+  }
+ },
+ "frames_used": [
+  "0000268.jpg",
+  "0000273.jpg",
+  "0000278.jpg"
+ ]
+}

@@ -1,0 +1,39 @@
+\documentclass[border=2pt]{standalone}
+\input{fig_preamble}
+\begin{document}
+\begin{tikzpicture}[
+  font=\small,
+  node distance=10mm,
+  stage/.style={draw, rounded corners=2pt, align=center, minimum height=12mm, inner sep=3pt},
+  host/.style={stage, fill=blue!7},
+  c1/.style={stage, fill=orange!15},
+  c2/.style={stage, fill=green!12},
+  note/.style={draw, rounded corners=2pt, align=left, font=\footnotesize, inner sep=3pt},
+  arr/.style={-{Stealth[length=2.2mm]}, thick},
+  fb/.style={-{Stealth[length=2mm]}, thick, dashed, black!60}]
+\node[stage, text width=17mm] (frame) {Video frame\\$I_t$};
+\node[host, text width=21mm, right=of frame] (det) {Detector\\(frozen)};
+\node[c2, text width=24mm, right=of det] (scl) {Controller 2:\\SCL};
+\node[host, text width=21mm, right=of scl] (trk) {Tracker\\(frozen)};
+\node[stage, text width=15mm, right=of trk] (out) {Tracks};
+\node[c1, text width=24mm, above=11mm of det] (ac) {Controller 1:\\AC-MOT};
+\draw[arr] (frame) -- (det);
+\draw[arr] (det) -- node[above=1mm, font=\footnotesize] {scores} (scl);
+\draw[arr] (scl) -- (trk);
+\draw[arr] (trk) -- (out);
+\draw[arr] (ac) -- node[right, font=\footnotesize] {$(c_t,\eta_t,r_t)$} (det);
+\draw[arr] (frame.north) |- (ac.west);
+\draw[fb] (trk.north) |- ($(ac.east)+(0,-2mm)$);
+\draw[fb] ($(trk.north)+(2mm,0)$) -- ++(0,4mm) -| ($(scl.north)+(2mm,0)$);
+\node[note, fill=orange!8, text width=64mm, anchor=north west] (n1) at ($(frame.south west)+(0,-9mm)$) {\textbf{Controller 1 (Chapter 3)}\\
+  scene cues of the frame and of the tracked boxes\\
+  $\rightarrow$ scene complexity index, three states\\
+  $\rightarrow$ detector operating point every 10 frames\\
+  Evaluation: VisDrone2019-MOT, UAVDT;\\ ByteTrack and OATrack};
+\node[note, fill=green!6, text width=64mm, anchor=north east] (n2) at ($(out.south east)+(0,-9mm)$) {\textbf{Controller 2 (Chapter 4)}\\
+  nested Otsu splits of recent score logits\\
+  $\rightarrow$ clean or noisy mode, track continuation\\
+  $\rightarrow$ candidates, scores and thresholds per frame\\
+  Evaluation: MOT17, KITTI, UAVDT;\\ seven published trackers};
+\end{tikzpicture}
+\end{document}

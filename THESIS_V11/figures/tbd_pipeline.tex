@@ -1,0 +1,24 @@
+\documentclass[border=2pt]{standalone}
+\input{fig_preamble}
+\begin{document}
+\begin{tikzpicture}[
+  font=\small,
+  node distance=7mm,
+  stage/.style={draw, rounded corners=2pt, align=center, minimum height=13mm, inner sep=3pt},
+  set/.style={draw, dashed, rounded corners=2pt, align=left, font=\footnotesize, inner sep=3pt, fill=gray!6},
+  arr/.style={-{Stealth[length=2.2mm]}, thick}]
+\node[stage, text width=19mm] (frame) {Video frame\\$I_t$};
+\node[stage, text width=24mm, fill=blue!7, right=of frame] (det) {Detector\\(fixed weights)};
+\node[stage, text width=24mm, fill=blue!7, right=13mm of det] (trk) {Online tracker\\(fixed code)};
+\node[stage, text width=19mm, right=of trk] (out) {Tracks with\\identities};
+\draw[arr] (frame) -- (det);
+\draw[arr] (det) -- node[above, font=\footnotesize, align=center] {boxes,\\scores} (trk);
+\draw[arr] (trk) -- (out);
+\node[set, below=6mm of det, text width=36mm] (dset) {Detector operating point:\\
+  input resolution $r$\\ NMS IoU threshold $\eta$\\ score threshold $c$};
+\node[set, below=6mm of trk, text width=36mm] (tset) {Tracker thresholds:\\
+  matching threshold $a$\\ birth threshold $b$\\ low threshold $\ell$\\ matching tolerance $m_0$};
+\draw[dashed] (det.south) -- (dset.north);
+\draw[dashed] (trk.south) -- (tset.north);
+\end{tikzpicture}
+\end{document}

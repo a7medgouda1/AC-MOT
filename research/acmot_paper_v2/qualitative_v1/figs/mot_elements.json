@@ -1,0 +1,49 @@
+{
+ "seq": "uav0000117_02622_v",
+ "host": "bytetrack",
+ "run": "baseline (1536, 0.70)",
+ "event": {
+  "frame": 48,
+  "prev_frame": 47,
+  "cls": 1,
+  "oid": 118,
+  "old_id": 1497,
+  "new_id": 1693,
+  "area": 10293.0,
+  "box": [
+   233.0,
+   1074.0,
+   73.0,
+   141.0
+  ]
+ },
+ "frames": [
+  47,
+  48
+ ],
+ "frames_used": [
+  "0000047.jpg",
+  "0000048.jpg"
+ ],
+ "crop": {
+  "x0": 0,
+  "y0": 874,
+  "w": 960,
+  "h": 540
+ },
+ "per_frame": {
+  "47": {
+   "tp": 30,
+   "false": 25,
+   "missed": 20,
+   "n_tracks": 55
+  },
+  "48": {
+   "tp": 32,
+   "false": 23,
+   "missed": 18,
+   "n_tracks": 55
+  }
+ },
+ "n_switch_events": 65
+}

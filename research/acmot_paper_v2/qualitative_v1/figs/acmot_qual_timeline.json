@@ -1,0 +1,31 @@
+{
+ "seq": "uav0000117_02622_v",
+ "host": "bytetrack",
+ "state_runs": [
+  [
+   1,
+   30,
+   "LOW"
+  ],
+  [
+   31,
+   349,
+   "HIGH"
+  ]
+ ],
+ "false_mean": {
+  "baseline": 28.541547277936964,
+  "acmot": 18.578796561604584
+ },
+ "frames_acmot_fewer": 306,
+ "frames_equal": 35,
+ "frames_acmot_more": 8,
+ "annotated_objects": {
+  "min": 18,
+  "max": 68
+ },
+ "sci_after_first_change": {
+  "min": 0.7166666666666667,
+  "max": 1.0
+ }
+}
